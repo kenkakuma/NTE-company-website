@@ -62,14 +62,14 @@ onMounted(() => {
                 <div
                   class="bg-gradient-success shadow-success border-radius-lg p-3"
                 >
-                  <h3 class="text-white text-success mb-0">Contact us</h3>
+                  <h3 class="text-white text-success mb-0">お問い合わせ</h3>
                 </div>
               </div>
               <div class="card-body">
                 <p class="pb-3">
-                  For further questions, including partnership opportunities,
-                  please email hello@creative-tim.com or contact using our
-                  contact form.
+                  ご質問やパートナーシップの機会について、
+                  kokennka@gmail.com までメールいただくか、
+                  下記のお問い合わせフォームをご利用ください。
                 </p>
                 <form id="contact-form" method="post" autocomplete="off">
                   <div class="card-body p-0 my-3">
@@ -87,7 +87,7 @@ onMounted(() => {
                           class="input-group-static mb-4"
                           type="email"
                           label="Email"
-                          placeholder="hello@creative-tim.com"
+                          placeholder="kokennka@gmail.com"
                         />
                       </div>
                     </div>

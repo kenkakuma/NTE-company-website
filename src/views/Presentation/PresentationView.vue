@@ -41,6 +41,91 @@ onUnmounted(() => {
 });
 </script>
 
+<style scoped>
+.card-hover-effect {
+  transition: all 0.3s ease;
+  transform: translateY(0);
+}
+
+.card-hover-effect:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+}
+
+.card-hover-effect .info-horizontal {
+  transition: all 0.3s ease;
+}
+
+.card-hover-effect:hover .info-horizontal {
+  background: linear-gradient(195deg, #42424a, #191919) !important;
+}
+
+.card-hover-effect:hover .info-horizontal * {
+  color: white !important;
+}
+
+.card-hover-effect:hover .material-icons {
+  color: #e0e0e0 !important;
+}
+
+/* 固定卡片大小和文字控制 */
+.card-fixed-size {
+  min-height: 196px !important;  /* 280px * 0.7 = 196px */
+  max-height: 196px !important;
+  overflow: hidden;
+}
+
+.card-fixed-size .info-horizontal {
+  height: 100%;
+  display: flex !important;
+  align-items: flex-start;
+  padding: 0 !important;
+}
+
+.card-fixed-size .info-horizontal .material-icons {
+  margin-right: 1rem !important;
+  margin-top: 0.2rem !important;
+  flex-shrink: 0;
+}
+
+.card-fixed-size .info-horizontal .ps-0,
+.card-fixed-size .info-horizontal .ps-md-3 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.card-fixed-size .info-horizontal h5 {
+  font-size: 1.1rem !important;
+  line-height: 1.3 !important;
+  margin-bottom: 0.5rem !important;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-fixed-size .info-horizontal p {
+  font-size: 0.875rem !important;
+  line-height: 1.3 !important;
+  margin-bottom: 0.75rem !important;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-fixed-size .info-horizontal .icon-move-right {
+  font-size: 0.875rem !important;
+  margin-top: auto;
+}
+</style>
+
 <template>
   <div class="container position-sticky z-index-sticky top-0">
     <div class="row">
@@ -52,7 +137,7 @@ onUnmounted(() => {
   <Header>
     <div
       class="page-header min-vh-75"
-      :style="`background-image: url(${vueMkHeader})`"
+      :style="`background-image: url('https://jamaica-homes.com/wp-content/uploads/2024/12/vogelhorst_mistybliss-1-scaled.webp')`"
       loading="lazy"
     >
       <div class="container">
@@ -62,11 +147,11 @@ onUnmounted(() => {
               class="text-white pt-3 mt-n5 me-2"
               :style="{ display: 'inline-block ' }"
             >
-              Material Kit 2
+              未知の領域を探索し、輝く未来を築く
             </h1>
             <p class="lead text-white px-5 mt-3" :style="{ fontWeight: '500' }">
-              Start the Development With Bootstrap 5 Design System inspired by
-              Material Design.
+              お客様との信頼関係を大切にし、<br>
+              共に新たな価値の創造に取り組んでまいります。
             </p>
           </div>
         </div>
@@ -83,46 +168,81 @@ onUnmounted(() => {
 
     <div class="container">
       <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-4 col-md-6 mb-4">
           <FilledInfoCard
-            class="p-4"
-            :color="{ text: 'white', background: 'bg-gradient-success' }"
-            :icon="{ component: 'flag', color: 'white' }"
-            title="Getting Started"
-            description="Check the possible ways of working with our product and the necessary files for building your own project."
+            class="p-4 card-hover-effect card-fixed-size"
+            :color="{ text: 'dark', background: 'bg-light' }"
+            :icon="{ component: 'local_cafe', color: 'dark' }"
+            title="珈琲 | COFFEE"
+            description="コーヒー関連事業：高品質コーヒー商品の企画開発、コーヒー文化の探求と普及を行います。"
             :action="{
-              route:
-                'https://www.creative-tim.com/learning-lab/vue/overview/material-kit/',
-              label: { text: 'Let\'s start', color: 'white' }
+              route: '/coffee',
+              label: { text: '詳細を見る', color: 'dark' }
             }"
           />
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4 col-md-6 mb-4">
           <FilledInfoCard
-            class="px-lg-1 mt-lg-0 mt-4 p-4"
-            height="h-100"
-            :icon="{ component: 'precision_manufacturing', color: 'success' }"
-            title="Plugins"
-            description="Get inspiration and have an overview about the plugins that we
-                used to create the Material Kit."
+            class="p-4 card-hover-effect card-fixed-size"
+            :color="{ text: 'dark', background: 'bg-light' }"
+            :icon="{ component: 'build', color: 'dark' }"
+            title="器具 | EQUIPMENT"
+            description="専門器具開発事業：高品質な専門器具の設計・開発・販売を通じて、品質向上をサポートします。"
             :action="{
-              route:
-                'https://www.creative-tim.com/learning-lab/vue/input/material-kit/',
-              label: { text: 'Read more' }
+              route: '#equipment',
+              label: { text: '詳細を見る', color: 'dark' }
             }"
           />
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4 col-md-6 mb-4">
           <FilledInfoCard
-            class="px-lg-1 mt-lg-0 mt-4 p-4"
-            :icon="{ component: 'receipt_long', color: 'success' }"
-            title="Utility Classes"
-            description="Material Kit is giving you a lot of pre-made elements. For those
-                who want flexibility, we included many utility classes."
+            class="p-4 card-hover-effect card-fixed-size"
+            :color="{ text: 'dark', background: 'bg-light' }"
+            :icon="{ component: 'museum', color: 'dark' }"
+            title="展览 | EXHIBITION"
+            description="展覧企画事業：文化・技術・芸術分野における展示企画、イベント運営、展示空間設計を提供。"
             :action="{
-              route:
-                'https://www.creative-tim.com/learning-lab/vue/utilities/material-kit/',
-              label: { text: 'Read more' }
+              route: '#exhibition',
+              label: { text: '詳細を見る', color: 'dark' }
+            }"
+          />
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+          <FilledInfoCard
+            class="p-4 card-hover-effect card-fixed-size"
+            :color="{ text: 'dark', background: 'bg-light' }"
+            :icon="{ component: 'sailing', color: 'dark' }"
+            title="钓鱼 | FISHING"
+            description="釣り関連事業：釣り体験サービス、釣り具開発、釣りツアー企画を通じて自然との触れ合いを提供。"
+            :action="{
+              route: '#fishing',
+              label: { text: '詳細を見る', color: 'dark' }
+            }"
+          />
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+          <FilledInfoCard
+            class="p-4 card-hover-effect card-fixed-size"
+            :color="{ text: 'dark', background: 'bg-light' }"
+            :icon="{ component: 'downhill_skiing', color: 'dark' }"
+            title="滑雪 | SKIING"
+            description="スキー関連事業：スキー教室運営、スキー用品販売、スキーツアー企画でウインタースポーツを支援。"
+            :action="{
+              route: '#skiing',
+              label: { text: '詳細を見る', color: 'dark' }
+            }"
+          />
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+          <FilledInfoCard
+            class="p-4 card-hover-effect card-fixed-size"
+            :color="{ text: 'dark', background: 'bg-light' }"
+            :icon="{ component: 'science', color: 'dark' }"
+            title="LAB | ラボ"
+            description="研究開発事業：技術研究、市場分析、イノベーション開発を通じて新たなビジネス価値を創造。"
+            :action="{
+              route: '/lab',
+              label: { text: '詳細を見る', color: 'dark' }
             }"
           />
         </div>
@@ -130,164 +250,63 @@ onUnmounted(() => {
     </div>
     <PresentationTestimonials />
 
-    <div
-      class="container-fluid mt-sm-5 border-radius-xl"
-      :style="{
-        background: 'linear-gradient(195deg, rgb(66, 66, 74), rgb(25, 25, 25))'
-      }"
-    >
-      <div
-        class="page-header py-6 py-md-5 my-sm-3 mb-3 border-radius-xl"
-        :style="{
-          backgroundImage: `url(${wavesWhite})`
-        }"
-        loading="lazy"
-      >
-        <span class="mask bg-gradient-dark"></span>
-        <div class="container">
-          <div class="row">
-            <div class="d-flex justify-content-center p-5">
-              <div class="col-lg-8 ms-lg-5 text-center">
-                <h3 class="text-white">
-                  Do you love this awesome UI Kit from Vuejs & Bootstrap?
-                </h3>
-                <p class="text-white text-md">
-                  Cause if you do, it can be yours for FREE. Hit the button
-                  below to navigate to Creative Tim where you can <br />
-                  find the Design System in HTML. Start a new project or give an
-                  old Bootstrap project a new look!
-                </p>
 
-                <a
-                  href="https://www.creative-tim.com/product/vue-material-kit"
-                  class="btn btn-sm mb-0 bg-gradient-success px-5 py-3 mt-4"
-                  >Download Now</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="row">
-        <div class="d-flex flex-column w-100 text-center p-5 mb-8">
-          <h3>Available on these technologies</h3>
-          <div class="d-flex justify-content-center mt-3 flex-wrap">
-            <a
-              href="https://www.creative-tim.com/product/material-kit"
-              data-bs-toggle="tooltip"
-              data-bs-placement="bottom"
-              title="Bootstrap 5 - Most popular front-end component library"
-            >
-              <img
-                :src="logoBootstrap"
-                alt="title"
-                loading="lazy"
-                :style="{ height: '90px' }"
-              />
-            </a>
-            <a
-              class="opacity-5 ms-3"
-              href="#"
-              data-bs-toggle="tooltip"
-              data-bs-placement="bottom"
-              title="Coming Soon"
-            >
-              <img
-                :src="logoTailwind"
-                alt="title"
-                loading="lazy"
-                :style="{ height: '90px' }"
-              />
-            </a>
-            <a
-              href="https://www.creative-tim.com/product/vue-material-kit-pro"
-              class="mx-3"
-              data-bs-toggle="tooltip"
-              data-bs-placement="bottom"
-              title="Vue.js - Is a Progressive JavaScript Framework"
-            >
-              <img
-                :src="logoVue"
-                alt="title"
-                loading="lazy"
-                :style="{ height: '90px' }"
-              />
-            </a>
-            <a
-              class="opacity-5"
-              href="#"
-              data-bs-toggle="tooltip"
-              data-bs-placement="bottom"
-              title="Coming Soon"
-            >
-              <img
-                :src="logoAngular"
-                alt="title"
-                loading="lazy"
-                :style="{ height: '90px' }"
-              />
-            </a>
-            <a
-              href="https://www.creative-tim.com/product/material-kit-react-pro"
-              class="mx-3"
-              data-bs-toggle="tooltip"
-              data-bs-placement="bottom"
-              title="React – A JavaScript library for building user interfaces"
-            >
-              <img
-                :src="logoReact"
-                alt="title"
-                loading="lazy"
-                :style="{ height: '90px' }"
-              />
-            </a>
-            <a
-              class="opacity-5"
-              href="#"
-              data-bs-toggle="tooltip"
-              data-bs-placement="bottom"
-              title="Coming Soon"
-            >
-              <img
-                :src="logoSketch"
-                alt="title"
-                loading="lazy"
-                :style="{ height: '90px' }"
-              />
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="py-5">
+    <div class="py-5 bg-gray-100">
       <div class="container">
         <div class="row">
-          <div class="col-lg-5 ms-auto">
-            <h4 class="mb-1">Thank you for your support!</h4>
-            <p class="lead mb-0">We deliver the best web products</p>
-          </div>
-          <div class="col-lg-5 me-lg-auto my-lg-auto text-lg-end mt-5">
-            <MaterialSocialButton
-              route="https://twitter.com/intent/tweet?text=Check%20Material%20Design%20System%20made%20by%20%40CreativeTim%20%23webdesign%20%23designsystem%20%23bootstrap5&url=https%3A%2F%2Fwww.creative-tim.com%2Fproduct%2Fmaterial-design-system-pro"
-              component="twitter"
-              color="twitter"
-              label="Tweet"
-            />
-            <MaterialSocialButton
-              route="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/material-design-system-pro"
-              component="facebook-square"
-              color="facebook"
-              label="Share"
-            />
-            <MaterialSocialButton
-              route=""
-              component="pinterest"
-              color="pinterest"
-              label="Pin it"
-            />
+          <div class="col-12">
+            <div class="card card-body p-5 border-0 shadow-sm">
+              <div class="row">
+                <div class="col-lg-6 pe-lg-5">
+                  <div class="h-100 d-flex flex-column justify-content-between">
+                    <div>
+                      <h4 class="text-dark mb-3 fw-bold">
+                        未知の領域を探索し、輝く未来を築く
+                      </h4>
+                      <p class="text-muted mb-4 lh-lg">
+                        お客様のビジネス成長を支える、信頼できるパートナーとして、共に新たな価値の創造に取り組んでまいります。
+                      </p>
+                    </div>
+                    <div>
+                      <a
+                        href="/pages/landing-pages/contact-us"
+                        class="btn btn-dark btn-lg px-4 py-2"
+                      >
+                        お問い合わせ
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 ps-lg-5 mt-4 mt-lg-0">
+                  <div class="h-100 d-flex flex-column justify-content-between">
+                    <div class="text-center mb-3">
+                      <h5 class="mb-1 text-dark fw-bold">無迹探索株式会社</h5>
+                      <p class="text-muted mb-0 small">NO TRACE EXPLORER Co., Ltd.</p>
+                    </div>
+                    
+                    <div>
+                      <div class="d-flex align-items-center justify-content-between py-3 px-3 bg-light rounded-3 mb-2">
+                        <div class="d-flex align-items-center">
+                          <i class="fas fa-map-marker-alt text-dark me-2" style="font-size: 0.9rem;"></i>
+                          <span class="text-muted small fw-medium">東京</span>
+                        </div>
+                        <span class="text-dark small">港区南青山2-2-8 DFビル</span>
+                      </div>
+                      
+                      <div class="d-flex align-items-center justify-content-between py-3 px-3 bg-light rounded-3">
+                        <div class="d-flex align-items-center">
+                          <i class="fas fa-envelope text-dark me-2" style="font-size: 0.9rem;"></i>
+                          <span class="text-muted small fw-medium">EMAIL</span>
+                        </div>
+                        <a href="mailto:notracejp@gmail.com" class="text-dark text-decoration-none small fw-medium">
+                          notracejp@gmail.com
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -1,5 +1,4 @@
 <script setup>
-import logoDark from "@/assets/img/logo-ct-dark.png";
 defineProps({
   brand: {
     type: Object,
@@ -7,8 +6,7 @@ defineProps({
     logo: String,
     route: "",
     default: () => ({
-      name: "Material Kit 2",
-      logo: logoDark,
+      name: "NO TRACE EXPLORER",
       route: "/"
     })
   },
@@ -18,24 +16,16 @@ defineProps({
     link: String,
     default: () => [
       {
-        icon: '<i class="fab fa-facebook text-lg opacity-8"></i>',
-        link: "https://www.facebook.com/CreativeTim/"
+        icon: '<i class="fab fa-linkedin text-lg"></i>',
+        link: "#"
       },
       {
-        icon: '<i class="fab fa-twitter text-lg opacity-8"></i>',
-        link: "https://twitter.com/creativetim"
+        icon: '<i class="fab fa-twitter text-lg"></i>',
+        link: "#"
       },
       {
-        icon: '<i class="fab fa-dribbble text-lg opacity-8"></i>',
-        link: "https://dribbble.com/creativetim"
-      },
-      {
-        icon: '<i class="fab fa-github text-lg opacity-8"></i>',
-        link: "https://github.com/creativetimofficial"
-      },
-      {
-        icon: '<i class="fab fa-youtube text-lg opacity-8"></i>',
-        link: "https://www.youtube.com/channel/UCVyTG4sCw-rOvB9oHkzZD1w"
+        icon: '<i class="fab fa-github text-lg"></i>',
+        link: "#"
       }
     ]
   },
@@ -49,72 +39,45 @@ defineProps({
     },
     default: () => [
       {
-        name: "company",
+        name: "サービス",
         items: [
           {
-            name: "about us",
-            href: "https://www.creative-tim.com/presentation"
+            name: "ラボ",
+            href: "/lab"
           },
           {
-            name: "freebies",
-            href: "https://www.creative-tim.com/templates/free"
+            name: "珈琲",
+            href: "/coffee"
           },
           {
-            name: "premium tools",
-            href: "https://www.creative-tim.com/templates/premium"
-          },
-          { name: "blog", href: "https://www.creative-tim.com/blog" }
-        ]
-      },
-      {
-        name: "resources",
-        items: [
-          { name: "illustrations", href: "https://iradesign.io/" },
-          {
-            name: "bits & snippets",
-            href: "https://www.creative-tim.com/bits"
-          },
-          {
-            name: "affiliate program",
-            href: "https://www.creative-tim.com/affiliates/new"
+            name: "クラブ",
+            href: "/club"
           }
         ]
       },
       {
-        name: "help & support",
+        name: "企業情報",
         items: [
           {
-            name: "contact us",
-            href: "https://www.creative-tim.com/contact-us"
+            name: "会社概要",
+            href: "/pages/landing-pages/about-us"
           },
           {
-            name: "knowledge center",
-            href: "https://www.creative-tim.com/knowledge-center"
-          },
-          {
-            name: "custom development",
-            href: "https://services.creative-tim.com/"
-          },
-          {
-            name: "sponsorships",
-            href: "https://www.creative-tim.com/sponsorships"
+            name: "お問い合わせ",
+            href: "/pages/landing-pages/contact-us"
           }
         ]
       },
       {
-        name: "legal",
+        name: "法的情報",
         items: [
           {
-            name: "terms & conditions",
-            href: "https://www.creative-tim.com/terms"
+            name: "プライバシーポリシー",
+            href: "#"
           },
           {
-            name: "privacy policy",
-            href: "https://www.creative-tim.com/privacy"
-          },
-          {
-            name: "licenses (EULA)",
-            href: "https://www.creative-tim.com/license"
+            name: "利用規約",
+            href: "#"
           }
         ]
       }
@@ -123,60 +86,74 @@ defineProps({
 });
 </script>
 <template>
-  <footer class="footer pt-5 mt-5">
+  <footer class="footer pt-4 mt-4 bg-dark">
     <div class="container">
       <div class="row">
-        <div class="col-md-3 mb-4 ms-auto">
-          <div>
-            <a :href="brand.route">
-              <img :src="brand.logo" class="mb-3 footer-logo" alt="main_logo" />
-            </a>
-            <h6 class="font-weight-bolder mb-4">{{ brand.name }}</h6>
+        <!-- 品牌区域 -->
+        <div class="col-lg-4 col-md-6 mb-3">
+          <div class="mb-3">
+            <h5 class="text-white mb-1 fw-bold">無迹探索株式会社</h5>
+            <p class="text-white-50 mb-0" style="font-size: 0.8rem;">NO TRACE EXPLORER Co., Ltd.</p>
           </div>
-          <div>
-            <ul class="d-flex flex-row ms-n3 nav">
-              <li
-                class="nav-item"
-                v-for="{ icon, link } of socials"
-                :key="link"
+          <p class="text-white-50 mb-3" style="font-size: 0.85rem; line-height: 1.4;">
+            信頼できるパートナーとして、お客様と共に新たなビジネス価値を探求し続けます。
+          </p>
+          <div class="d-flex">
+            <div
+              class="me-2"
+              v-for="{ icon, link } of socials"
+              :key="link"
+            >
+              <a
+                class="text-white-50"
+                :href="link"
+                target="_blank"
+                v-html="icon"
               >
-                <a
-                  class="nav-link pe-1"
-                  :href="link"
-                  target="_blank"
-                  v-html="icon"
-                >
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div
-          class="col-md-2 col-sm-6 col-6 mb-4"
-          v-for="{ name, items } of menus"
-          :key="name"
-        >
-          <h6 class="text-sm">{{ name }}</h6>
-          <ul class="flex-column ms-n3 nav">
-            <li class="nav-item" v-for="item of items" :key="item.name">
-              <a class="nav-link" :href="item.href" target="_blank">
-                {{ item.name }}
               </a>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
 
-        <div class="col-12">
-          <div class="text-center">
-            <p class="text-dark my-4 text-sm font-weight-normal">
-              All rights reserved. Copyright ©
-              {{ new Date().getFullYear() }}
-              Material Kit by
-              <a href="https://www.creative-tim.com" target="_blank"
-                >Creative Tim</a
-              >.
-            </p>
+        <!-- 导航菜单 -->
+        <div class="col-lg-8 col-md-6">
+          <div class="row">
+            <div
+              class="col-lg-4 col-sm-6 mb-3"
+              v-for="{ name, items } of menus"
+              :key="name"
+            >
+              <h6 class="text-white mb-2 fw-medium" style="font-size: 0.9rem;">{{ name }}</h6>
+              <ul class="list-unstyled">
+                <li class="mb-1" v-for="item of items" :key="item.name">
+                  <a 
+                    class="text-white-50 text-decoration-none"
+                    :href="item.href"
+                    style="font-size: 0.8rem;"
+                  >
+                    {{ item.name }}
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
+        </div>
+      </div>
+
+      <!-- 分隔线 -->
+      <hr class="border-white-50 my-3">
+      
+      <!-- 版权信息 -->
+      <div class="row align-items-center pb-3">
+        <div class="col-lg-6">
+          <p class="text-white-50 mb-0" style="font-size: 0.75rem;">
+            東京都港区南青山2-2-8 DFビル | notracejp@gmail.com
+          </p>
+        </div>
+        <div class="col-lg-6 text-lg-end">
+          <p class="text-white-50 mb-0" style="font-size: 0.75rem;">
+            © {{ new Date().getFullYear() }} 無迹探索株式会社. All rights reserved.
+          </p>
         </div>
       </div>
     </div>

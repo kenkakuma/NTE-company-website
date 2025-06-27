@@ -7,7 +7,7 @@ import DefaultReviewCard from "@/examples/cards/reviewCards/DefaultReviewCard.vu
       <div class="row">
         <div class="col-lg-6 mx-auto text-center">
           <h2 class="mb-0">Trusted by over</h2>
-          <h2 class="text-gradient text-success mb-3">
+          <h2 class="text-gradient text-primary mb-3">
             1,679,477+ web developers
           </h2>
           <p class="lead">
@@ -26,7 +26,7 @@ import DefaultReviewCard from "@/examples/cards/reviewCards/DefaultReviewCard.vu
         />
         <DefaultReviewCard
           class="ms-md-auto"
-          color="bg-gradient-success"
+          color="bg-gradient-dark"
           name="Shailesh Kushwaha"
           date="1 week ago"
           review='"I found solution to all my design needs from Creative Tim. I

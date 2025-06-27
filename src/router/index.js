@@ -4,6 +4,9 @@ import AboutView from "../views/LandingPages/AboutUs/AboutView.vue";
 import ContactView from "../views/LandingPages/ContactUs/ContactView.vue";
 import AuthorView from "../views/LandingPages/Author/AuthorView.vue";
 import SignInBasicView from "../views/LandingPages/SignIn/BasicView.vue";
+import LabView from "../views/LandingPages/Lab/LabView.vue";
+import CoffeeView from "../views/LandingPages/Coffee/CoffeeView.vue";
+import ClubView from "../views/LandingPages/Club/ClubView.vue";
 import PageHeaders from "../layouts/sections/page-sections/page-headers/HeadersView.vue";
 import PageFeatures from "../layouts/sections/page-sections/features/FeaturesView.vue";
 import NavigationNavbars from "../layouts/sections/navigation/navbars/NavbarsView.vue";
@@ -50,6 +53,21 @@ const router = createRouter({
       path: "/pages/landing-pages/basic",
       name: "signin-basic",
       component: SignInBasicView,
+    },
+    {
+      path: "/lab",
+      name: "lab",
+      component: LabView,
+    },
+    {
+      path: "/coffee",
+      name: "coffee",
+      component: CoffeeView,
+    },
+    {
+      path: "/club",
+      name: "club",
+      component: ClubView,
     },
     {
       path: "/sections/page-sections/page-headers",

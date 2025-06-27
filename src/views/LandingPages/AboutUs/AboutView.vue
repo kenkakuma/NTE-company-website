@@ -42,14 +42,13 @@ onUnmounted(() => {
 });
 </script>
 <template>
-  <DefaultNavbar
-    :action="{
-      route: 'javascript:;',
-      label: 'Buy Now',
-      color: 'btn-white',
-    }"
-    transparent
-  />
+  <div class="container position-sticky z-index-sticky top-0">
+    <div class="row">
+      <div class="col-12">
+        <DefaultNavbar :sticky="true" />
+      </div>
+    </div>
+  </div>
   <header class="bg-gradient-dark">
     <div
       class="page-header min-vh-75"
@@ -60,19 +59,18 @@ onUnmounted(() => {
         <div class="row justify-content-center">
           <div class="col-lg-8 text-center mx-auto my-auto">
             <h1 class="text-white">
-              Work with an amazing <span class="text-white" id="typed"></span>
+              無迹探索株式会社 | <span class="text-white" id="typed"></span>
             </h1>
             <div id="typed-strings">
-              <h1>team</h1>
-              <h1>design</h1>
-              <h1>tool</h1>
+              <h1>NO TRACE EXPLORER</h1>
+              <h1>无迹探索株式会社</h1>
+              <h1>企業コンサルティング</h1>
             </div>
             <p class="lead mb-4 text-white opacity-8">
-              We’re constantly trying to express ourselves and actualize our
-              dreams. If you have the opportunity to play this game
-            </p>
+              信頼できるパートナーとして、お客様と共に新たなビジネス価値を探求し続けます。<br>
+              東京都港区南青山2-2-8 DFビル            </p>
             <button type="submit" class="btn bg-white text-dark">
-              Create Account
+              お問い合わせ
             </button>
             <h6 class="text-white mb-2 mt-5">Find us on</h6>
             <div class="d-flex justify-content-center">

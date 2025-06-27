@@ -10,11 +10,10 @@ import DefaultCounterCard from "../../../examples/cards/counterCards/DefaultCoun
           <div class="row">
             <div class="col-md-4 position-relative">
               <DefaultCounterCard
-                color="success"
-                title="Coded Elements"
-                description="From buttons, to inputs, navbars, alerts or cards, you are
-                  covered"
-                :count="70"
+                color="info"
+                title="イノベーションプロジェクト"
+                description="先進的な技術と创造的なアイデアで、新しい価値を創造しています"
+                :count="50"
                 suffix="+"
                 :duration="3000"
                 divider="vertical"
@@ -22,23 +21,21 @@ import DefaultCounterCard from "../../../examples/cards/counterCards/DefaultCoun
             </div>
             <div class="col-md-4 position-relative">
               <DefaultCounterCard
-                color="success"
-                title="Design Blocks"
-                description="Mix the sections, change the colors and unleash your
-                  creativity"
-                :count="15"
-                suffix="+"
+                color="primary"
+                title="サービス領域"
+                description="ラボ、珈琲、クラブの3つのコアサービスで多様なニーズに対応"
+                :count="3"
+                suffix=""
                 :duration="3000"
                 divider="vertical"
               />
             </div>
             <div class="col-md-4">
               <DefaultCounterCard
-                color="success"
-                title="Pages"
-                description="Save 3-4 weeks of work when you use our pre-made pages for
-                  your website"
-                :count="4"
+                color="dark"
+                title="年間実績"
+                description="設立準備中でありながら、既に多数のプロジェクトを手がけています"
+                :count="2025"
                 :duration="3000"
               />
             </div>

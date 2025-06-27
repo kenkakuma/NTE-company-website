@@ -11,13 +11,13 @@ import imgSigninCover from "@/assets/img/signin-cover.png";
       <div class="row">
         <div class="row text-center my-sm-5 mt-5">
           <div class="col-lg-6 mx-auto">
-            <MaterialBadge color="success" class="mb-3"
-              >Boost creativity</MaterialBadge
+            <MaterialBadge color="primary" class="mb-3"
+              >企業サービス</MaterialBadge
             >
-            <h2 class="">With our coded pages</h2>
+            <h2 class="">企業情報・お問い合わせ</h2>
             <p class="lead">
-              The easiest way to get started is to use one of our <br />
-              pre-built example pages.
+              企業詳細、お問い合わせフォーム、各種サービスページを<br />
+              こちらからご利用いただけます。
             </p>
           </div>
         </div>
@@ -66,11 +66,11 @@ import imgSigninCover from "@/assets/img/signin-cover.png";
         <div class="col-md-3 mx-auto mt-md-0 mt-3">
           <div class="position-sticky" style="top: 100px !important">
             <h3>
-              Presentation Pages for Company, Landing Pages, Blogs and Support
+              企業情報とサポートページ
             </h3>
             <h6 class="text-secondary font-weight-normal">
-              These is just a small selection of the multiple possibitilies you
-              have. Focus on the business, not on the design.
+              NO TRACE EXPLORERの企業情報、お問い合わせ、<br>
+              各種サービスの詳細情報をご覧いただけます。
             </h6>
           </div>
         </div>
