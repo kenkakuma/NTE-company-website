@@ -51,4 +51,4 @@ npm run preview
 
 ---
 
-*未知の領域を探索し、輝く未来を築く*
+*未知の領域を探索し、輝く未来を築く*# Force deployment trigger - Sat Jun 28 17:53:28 JST 2025
