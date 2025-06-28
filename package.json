@@ -8,7 +8,12 @@
     "build": "vite build",
     "preview": "vite preview --port 4173",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf dist node_modules/.vite",
+    "clean:build": "npm run clean && npm run build",
+    "deploy": "./deploy-sync.sh",
+    "workflow": "./dev-workflow.sh",
+    "compare": "node -e \"const fs=require('fs'); const https=require('https'); const local=fs.readFileSync('dist/index.html','utf8'); const localJs=local.match(/index\\.[a-f0-9]*\\.js/)?.[0]||'none'; const localCss=local.match(/index\\.[a-f0-9]*\\.css/)?.[0]||'none'; console.log('本地版本:',localJs,localCss); https.get('https://no-trace.jp',(res)=>{let data=''; res.on('data',chunk=>data+=chunk); res.on('end',()=>{const prodJs=data.match(/index\\.[a-f0-9]*\\.js/)?.[0]||'none'; const prodCss=data.match(/index\\.[a-f0-9]*\\.css/)?.[0]||'none'; console.log('生产版本:',prodJs,prodCss); console.log('是否同步:',localJs===prodJs&&localCss===prodCss?'✅ 是':'❌ 否');});})\""
   },
   "dependencies": {
     "@popperjs/core": "2.11.5",
