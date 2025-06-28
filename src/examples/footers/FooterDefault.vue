@@ -147,7 +147,7 @@ defineProps({
       <div class="row align-items-center pb-3">
         <div class="col-lg-6">
           <p class="text-white-50 mb-0" style="font-size: 0.75rem;">
-            東京都港区南青山2-2-8 DFビル | notracejp@gmail.com
+            東京都内オフィス | contact@no-trace.jp
           </p>
         </div>
         <div class="col-lg-6 text-lg-end">

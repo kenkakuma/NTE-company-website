@@ -68,7 +68,7 @@ onMounted(() => {
               <div class="card-body">
                 <p class="pb-3">
                   ご質問やパートナーシップの機会について、
-                  kokennka@gmail.com までメールいただくか、
+                  contact@no-trace.jp までメールいただくか、
                   下記のお問い合わせフォームをご利用ください。
                 </p>
                 <form id="contact-form" method="post" autocomplete="off">
@@ -87,7 +87,7 @@ onMounted(() => {
                           class="input-group-static mb-4"
                           type="email"
                           label="Email"
-                          placeholder="kokennka@gmail.com"
+                          placeholder="contact@no-trace.jp"
                         />
                       </div>
                     </div>

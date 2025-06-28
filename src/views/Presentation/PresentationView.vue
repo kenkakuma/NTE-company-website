@@ -298,8 +298,8 @@ onUnmounted(() => {
                           <i class="fas fa-envelope text-dark me-2" style="font-size: 0.9rem;"></i>
                           <span class="text-muted small fw-medium">EMAIL</span>
                         </div>
-                        <a href="mailto:notracejp@gmail.com" class="text-dark text-decoration-none small fw-medium">
-                          notracejp@gmail.com
+                        <a href="mailto:contact@no-trace.jp" class="text-dark text-decoration-none small fw-medium">
+                          contact@no-trace.jp
                         </a>
                       </div>
                     </div>
