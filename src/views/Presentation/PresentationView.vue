@@ -5,7 +5,6 @@ import { onMounted, onUnmounted } from "vue";
 import NavbarDefault from "../..//examples/navbars/NavbarDefault.vue";
 import DefaultFooter from "../../examples/footers/FooterDefault.vue";
 import Header from "../../examples/Header.vue";
-import FilledInfoCard from "../../examples/cards/infoCards/FilledInfoCard.vue";
 
 //Vue Material Kit 2 components
 import MaterialSocialButton from "@/components/MaterialSocialButton.vue";
@@ -18,6 +17,7 @@ import data from "./Sections/Data/designBlocksData";
 import BuiltByDevelopers from "./Components/BuiltByDevelopers.vue";
 import PresentationTestimonials from "./Sections/PresentationTestimonials.vue";
 import PresentationInformation from "./Sections/PresentationInformation.vue";
+import ServiceShowcase from "@/components/ServiceShowcase.vue";
 
 //images
 import vueMkHeader from "@/assets/img/vue-mk-header.jpg";
@@ -166,88 +166,8 @@ onUnmounted(() => {
     <PresentationPages />
     <BuiltByDevelopers />
 
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4 col-md-6 mb-4">
-          <FilledInfoCard
-            class="p-4 card-hover-effect card-fixed-size"
-            :color="{ text: 'dark', background: 'bg-light' }"
-            :icon="{ component: 'local_cafe', color: 'dark' }"
-            title="珈琲 | COFFEE"
-            description="コーヒー関連事業：高品質コーヒー商品の企画開発、コーヒー文化の探求と普及を行います。"
-            :action="{
-              route: '/coffee',
-              label: { text: '詳細を見る', color: 'dark' }
-            }"
-          />
-        </div>
-        <div class="col-lg-4 col-md-6 mb-4">
-          <FilledInfoCard
-            class="p-4 card-hover-effect card-fixed-size"
-            :color="{ text: 'dark', background: 'bg-light' }"
-            :icon="{ component: 'build', color: 'dark' }"
-            title="器具 | EQUIPMENT"
-            description="専門器具開発事業：高品質な専門器具の設計・開発・販売を通じて、品質向上をサポートします。"
-            :action="{
-              route: '#equipment',
-              label: { text: '詳細を見る', color: 'dark' }
-            }"
-          />
-        </div>
-        <div class="col-lg-4 col-md-6 mb-4">
-          <FilledInfoCard
-            class="p-4 card-hover-effect card-fixed-size"
-            :color="{ text: 'dark', background: 'bg-light' }"
-            :icon="{ component: 'museum', color: 'dark' }"
-            title="展览 | EXHIBITION"
-            description="展覧企画事業：文化・技術・芸術分野における展示企画、イベント運営、展示空間設計を提供。"
-            :action="{
-              route: '#exhibition',
-              label: { text: '詳細を見る', color: 'dark' }
-            }"
-          />
-        </div>
-        <div class="col-lg-4 col-md-6 mb-4">
-          <FilledInfoCard
-            class="p-4 card-hover-effect card-fixed-size"
-            :color="{ text: 'dark', background: 'bg-light' }"
-            :icon="{ component: 'sailing', color: 'dark' }"
-            title="钓鱼 | FISHING"
-            description="釣り関連事業：釣り体験サービス、釣り具開発、釣りツアー企画を通じて自然との触れ合いを提供。"
-            :action="{
-              route: '#fishing',
-              label: { text: '詳細を見る', color: 'dark' }
-            }"
-          />
-        </div>
-        <div class="col-lg-4 col-md-6 mb-4">
-          <FilledInfoCard
-            class="p-4 card-hover-effect card-fixed-size"
-            :color="{ text: 'dark', background: 'bg-light' }"
-            :icon="{ component: 'downhill_skiing', color: 'dark' }"
-            title="滑雪 | SKIING"
-            description="スキー関連事業：スキー教室運営、スキー用品販売、スキーツアー企画でウインタースポーツを支援。"
-            :action="{
-              route: '#skiing',
-              label: { text: '詳細を見る', color: 'dark' }
-            }"
-          />
-        </div>
-        <div class="col-lg-4 col-md-6 mb-4">
-          <FilledInfoCard
-            class="p-4 card-hover-effect card-fixed-size"
-            :color="{ text: 'dark', background: 'bg-light' }"
-            :icon="{ component: 'science', color: 'dark' }"
-            title="LAB | ラボ"
-            description="研究開発事業：技術研究、市場分析、イノベーション開発を通じて新たなビジネス価値を創造。"
-            :action="{
-              route: '/lab',
-              label: { text: '詳細を見る', color: 'dark' }
-            }"
-          />
-        </div>
-      </div>
-    </div>
+    <!-- 新的交互式服务展示模块 -->
+    <ServiceShowcase />
     <PresentationTestimonials />
 
 
