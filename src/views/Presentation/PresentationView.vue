@@ -15,7 +15,6 @@ import PresentationPages from "./Sections/PresentationPages.vue";
 import PresentationExample from "./Sections/PresentationExample.vue";
 import data from "./Sections/Data/designBlocksData";
 import BuiltByDevelopers from "./Components/BuiltByDevelopers.vue";
-import PresentationTestimonials from "./Sections/PresentationTestimonials.vue";
 import PresentationInformation from "./Sections/PresentationInformation.vue";
 import ServiceShowcase from "@/components/ServiceShowcase.vue";
 
@@ -166,9 +165,6 @@ onUnmounted(() => {
     <PresentationPages />
     <BuiltByDevelopers />
 
-    <!-- 新的交互式服务展示模块 -->
-    <ServiceShowcase />
-    <PresentationTestimonials />
 
 
     <div class="py-5 bg-gray-100">

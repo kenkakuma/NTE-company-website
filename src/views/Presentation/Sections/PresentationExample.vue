@@ -1,6 +1,7 @@
 <script setup>
 import ExampleCard from "../Components/ExampleCard.vue";
 import MaterialBadge from "../../../components/MaterialBadge.vue";
+import ServiceShowcase from "../../../components/ServiceShowcase.vue";
 
 defineProps({
   data: {
@@ -47,24 +48,10 @@ export default {
 };
 </script>
 <template>
-  <section class="my-5 py-5">
-    <div class="container">
-      <div class="row">
-        <div class="row justify-content-center text-center my-sm-5">
-          <div class="col-lg-6">
-            <MaterialBadge color="dark" class="mb-3"
-              >三つのコアサービス</MaterialBadge
-            >
-
-            <h2 class="text-dark mb-0">総合サービスリソース</h2>
-            <p class="lead">
-              ラボ、珈琲、クラブの統合サービスで、お客様のあらゆるニーズに対応します。<br>
-              各サービスは独立しても、組み合わせてもご利用いただけます。
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+  <section class="my-2 py-2">
+    <!-- ServiceShowcase组件 -->
+    <ServiceShowcase />
+    
     <div class="container mt-sm-5 mt-3">
       <div
         v-for="({ heading, description, items }, index) in data"

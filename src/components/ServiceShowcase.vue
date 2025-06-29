@@ -203,7 +203,7 @@ const contactUs = () => {
 
 <style scoped>
 .service-showcase {
-  padding: 6rem 0;
+  padding: 2rem 0;
   background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
 }
 

@@ -42,6 +42,13 @@ import DefaultCounterCard from "../../../examples/cards/counterCards/DefaultCoun
           </div>
         </div>
       </div>
+      
+      <!-- 公司主营业务标题 -->
+      <div class="row mt-3">
+        <div class="col-12 text-center">
+          <h3 class="text-gradient text-dark mb-0">公司主营业务</h3>
+        </div>
+      </div>
     </div>
   </section>
 </template>

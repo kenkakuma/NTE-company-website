@@ -6,10 +6,10 @@ import MaterialBadge from "../../../components/MaterialBadge.vue";
 import imgSigninCover from "@/assets/img/signin-cover.png";
 </script>
 <template>
-  <section class="py-5">
+  <section class="py-2">
     <div class="container">
       <div class="row">
-        <div class="row text-center my-sm-5 mt-5">
+        <div class="row text-center my-sm-2 mt-2">
           <div class="col-lg-6 mx-auto">
             <MaterialBadge color="primary" class="mb-3"
               >企業サービス</MaterialBadge

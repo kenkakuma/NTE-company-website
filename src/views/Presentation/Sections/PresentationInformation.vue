@@ -5,10 +5,10 @@ import RotatingCardBack from "../../../examples/cards/rotatingCards/RotatingCard
 import DefaultInfoCard from "../../../examples/cards/infoCards/DefaultInfoCard.vue";
 </script>
 <template>
-  <section class="my-5 py-5">
+  <section class="my-2 py-3 presentation-info-section">
     <div class="container">
       <div class="row align-items-center">
-        <div class="col-lg-4 ms-auto me-auto p-lg-4 mt-lg-0 mt-4">
+        <div class="col-lg-5 ms-auto me-auto p-lg-3 mt-lg-0 mt-4">
           <RotatingCard>
             <RotatingCardFront
               image="https://images.unsplash.com/photo-1569683795645-b62e50fbf103?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80"
@@ -30,7 +30,7 @@ import DefaultInfoCard from "../../../examples/cards/infoCards/DefaultInfoCard.v
             />
           </RotatingCard>
         </div>
-        <div class="col-lg-6 ms-auto">
+        <div class="col-lg-7">
           <div class="row justify-content-start">
             <DefaultInfoCard
               icon="science"
@@ -62,3 +62,9 @@ import DefaultInfoCard from "../../../examples/cards/infoCards/DefaultInfoCard.v
     </div>
   </section>
 </template>
+
+<style scoped>
+.presentation-info-section {
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+}
+</style>
