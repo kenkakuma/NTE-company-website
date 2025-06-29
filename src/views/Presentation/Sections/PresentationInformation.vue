@@ -33,28 +33,28 @@ import DefaultInfoCard from "../../../examples/cards/infoCards/DefaultInfoCard.v
         <div class="col-lg-7">
           <div class="row justify-content-start">
             <DefaultInfoCard
-              icon="science"
-              title="研究開発・イノベーション"
-              description="最新技術と市場分析を基に、革新的なソリューションを開発。お客様のビジネス課題を解決する新しい価値を創造します。"
+              icon="local_cafe"
+              title="珈琲商品開発・輸出入"
+              description="厳選された珈琲豆の輸入から商品企画開発まで。品質管理と流通ネットワークを活用し、最高品質の珈琲体験をお届けします。"
             />
             <DefaultInfoCard
-              icon="local_cafe"
-              title="珈琲文化・体験設計"
-              description="高品質なコーヒー商品の企画開発から、コーヒー文化の探求まで。専門的な体験サービスを通じて豊かなライフスタイルを提案します。"
+              icon="business"
+              title="総合コンサルティング"
+              description="多分野にわたる専門知識と豊富な経験を基に、お客様のビジネス課題を解決。戦略的アドバイスで持続的な成長をサポートします。"
             />
           </div>
           <div class="row justify-content-start mt-5">
             <DefaultInfoCard
               class="mt-3"
-              icon="people"
-              title="会員制コミュニティ"
-              description="クラブサービスでは、会員限定イベントや専門的なネットワーキングを提供。文化交流とVIPサービスで特別な体験を創出します。"
+              icon="event"
+              title="展覧・イベント運営"
+              description="文化交流イベントから企業展示会まで、企画から運営まで一貫してサポート。印象的な体験を通じて価値ある出会いを創出します。"
             />
             <DefaultInfoCard
               class="mt-3"
-              icon="business"
-              title="総合コンサルティング"
-              description="技術・ビジネス・文化など多分野での専門コンサルティングサービス。深い業界理解に基づいた戦略的なアドバイスを提供します。"
+              icon="people"
+              title="会員制コミュニティ運営"
+              description="専門的なネットワーキングと限定サービスを提供。会員様同士の交流促進と特別な体験を通じて、価値あるコミュニティを構築します。"
             />
           </div>
         </div>
