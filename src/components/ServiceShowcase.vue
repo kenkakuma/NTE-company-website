@@ -12,8 +12,9 @@
         <!-- 左侧服务列表 -->
         <div class="col-lg-6 col-md-12 mb-4">
           <div class="service-list">
+            <!-- 左侧前3个服务 -->
             <div
-              v-for="(service, index) in services"
+              v-for="(service, index) in services.slice(0, Math.ceil(services.length / 2))"
               :key="index"
               class="service-item"
               :class="{ 'active': activeService === index }"
@@ -36,8 +37,38 @@
           </div>
         </div>
         
-        <!-- 右侧详细内容 -->
-        <div class="col-lg-6 col-md-12">
+        <!-- 右侧服务列表 -->
+        <div class="col-lg-6 col-md-12 mb-4">
+          <div class="service-list">
+            <!-- 右侧后面的服务 -->
+            <div
+              v-for="(service, index) in services.slice(Math.ceil(services.length / 2))"
+              :key="index + Math.ceil(services.length / 2)"
+              class="service-item"
+              :class="{ 'active': activeService === (index + Math.ceil(services.length / 2)) }"
+              @mouseenter="setActiveService(index + Math.ceil(services.length / 2))"
+              @click="setActiveService(index + Math.ceil(services.length / 2))"
+            >
+              <div class="service-item-content">
+                <div class="service-icon">
+                  <i class="material-icons">{{ service.icon }}</i>
+                </div>
+                <div class="service-info">
+                  <h5 class="service-title">{{ service.title }}</h5>
+                  <p class="service-summary">{{ service.summary }}</p>
+                </div>
+                <div class="service-arrow">
+                  <i class="material-icons">chevron_right</i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 详细内容区域 -->
+      <div class="row">
+        <div class="col-12">
           <div class="service-detail-container">
             <transition name="fade" mode="out-in">
               <div
@@ -160,6 +191,21 @@ const services = [
       "ゴルフ技術研究・用具開発",
       "エクスペリエンスデザイン・イノベーション開発",
       "プロフェッショナルコンサルティング・市場分析"
+    ]
+  },
+  {
+    title: "クラブ | CLUB",
+    category: "コミュニティ事業",
+    summary: "会員制クラブ・コミュニティ運営",
+    description: "クラブ事業では、各分野の専門家や愛好家が集まる会員制コミュニティを運営しています。コーヒー愛好家クラブ、アウトドアスポーツクラブ、文化芸術サークルなど、多様な興味を持つメンバー同士の交流と学習の場を提供し、豊かなライフスタイルをサポートします。",
+    icon: "groups",
+    route: "/club",
+    features: [
+      "コーヒー愛好家クラブ運営",
+      "アウトドアスポーツクラブ活動",
+      "文化芸術サークル運営",
+      "専門家交流イベント企画",
+      "会員限定体験プログラム"
     ]
   }
 ]
