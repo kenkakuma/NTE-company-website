@@ -8,13 +8,12 @@
         </div>
       </div>
       
-      <div class="row">
+      <div class="row equal-height-row">
         <!-- 左侧服务列表 -->
         <div class="col-lg-6 col-md-12 mb-4">
           <div class="service-list">
-            <!-- 左侧前3个服务 -->
             <div
-              v-for="(service, index) in services.slice(0, Math.ceil(services.length / 2))"
+              v-for="(service, index) in services"
               :key="index"
               class="service-item"
               :class="{ 'active': activeService === index }"
@@ -37,38 +36,8 @@
           </div>
         </div>
         
-        <!-- 右侧服务列表 -->
-        <div class="col-lg-6 col-md-12 mb-4">
-          <div class="service-list">
-            <!-- 右侧后面的服务 -->
-            <div
-              v-for="(service, index) in services.slice(Math.ceil(services.length / 2))"
-              :key="index + Math.ceil(services.length / 2)"
-              class="service-item"
-              :class="{ 'active': activeService === (index + Math.ceil(services.length / 2)) }"
-              @mouseenter="setActiveService(index + Math.ceil(services.length / 2))"
-              @click="setActiveService(index + Math.ceil(services.length / 2))"
-            >
-              <div class="service-item-content">
-                <div class="service-icon">
-                  <i class="material-icons">{{ service.icon }}</i>
-                </div>
-                <div class="service-info">
-                  <h5 class="service-title">{{ service.title }}</h5>
-                  <p class="service-summary">{{ service.summary }}</p>
-                </div>
-                <div class="service-arrow">
-                  <i class="material-icons">chevron_right</i>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- 详细内容区域 -->
-      <div class="row">
-        <div class="col-12">
+        <!-- 右侧详细内容 -->
+        <div class="col-lg-6 col-md-12">
           <div class="service-detail-container">
             <transition name="fade" mode="out-in">
               <div
@@ -140,72 +109,65 @@ const services = [
     title: "珈琲 | COFFEE",
     category: "飲料・文化事業",
     summary: "高品質コーヒー商品の企画開発",
-    description: "コーヒー関連事業では、高品質なコーヒー商品の企画開発から、コーヒー文化の探求と普及まで幅広く展開しています。専門的なコーヒー体験サービスとサプライチェーン構築を通じて、お客様に最高のコーヒー体験をお届けします。",
+    description: "高品質なコーヒー商品の企画開発から、コーヒー文化の探求と普及まで幅広く展開。専門的なコーヒー体験サービスとサプライチェーン構築を通じて、最高のコーヒー体験をお届けします。",
     icon: "local_cafe",
     route: "/coffee",
     features: [
       "高品質コーヒー商品の企画開発",
       "コーヒー文化の探求と普及",
-      "専門的なコーヒー体験サービス",
-      "サプライチェーン構築サポート"
+      "専門的なコーヒー体験サービス"
     ]
   },
   {
     title: "器具 | EQUIPMENT",
     category: "製品開発事業",
     summary: "専門器具の設計・開発・販売",
-    description: "専門器具開発事業では、高品質な専門器具の設計・開発・販売を通じて、お客様の品質向上をサポートしています。技術革新と使いやすさを両立した製品開発により、業界標準を超える器具を提供します。",
+    description: "高品質な専門器具の設計・開発・販売を通じて、お客様の品質向上をサポート。技術革新と使いやすさを両立した製品開発により、業界標準を超える器具を提供します。",
     icon: "build",
     route: "#equipment",
     features: [
       "高品質専門器具の設計・開発",
       "カスタマイズ対応サービス",
-      "品質保證とアフターサポート",
-      "技術コンサルティング"
+      "品質保證とアフターサポート"
     ]
   },
   {
     title: "展览 | EXHIBITION",
     category: "文化・芸術事業",
     summary: "展示企画・イベント運営",
-    description: "展覧企画事業では、文化・技術・芸術分野における展示企画、イベント運営、展示空間設計を提供しています。革新的なアイデアと専門的な運営技術により、印象深い展示体験を創造します。",
+    description: "文化・技術・芸術分野における展示企画、イベント運営、展示空間設計を提供。革新的なアイデアと専門的な運営技術により、印象深い展示体験を創造します。",
     icon: "museum",
     route: "#exhibition",
     features: [
       "文化・技術・芸術展示企画",
       "イベント運営・管理",
-      "展示空間設計・デザイン",
-      "来場者体験の最適化"
+      "展示空間設計・デザイン"
     ]
   },
   {
     title: "LAB | ラボ",
     category: "研究開発事業",
     summary: "技術研究・イノベーション開発",
-    description: "研究開発事業では、技術研究、市場分析、イノベーション開発を通じて新たなビジネス価値を創造しています。釣り、スキー、ゴルフなどのスポーツ関連技術開発から、最先端の研究設備と経験豊富な研究チームにより、お客様のビジネス成長を総合的に支援します。",
+    description: "技術研究、市場分析、イノベーション開発を通じて新たなビジネス価値を創造。釣り、スキー、ゴルフなどのスポーツ関連技術開発と最先端研究により、ビジネス成長を支援します。",
     icon: "science",
     route: "/lab",
     features: [
-      "釣り体験・技術開発・ツアー企画",
-      "スキー教室・用品開発・ツアー運営",
-      "ゴルフ技術研究・用具開発",
-      "エクスペリエンスデザイン・イノベーション開発",
-      "プロフェッショナルコンサルティング・市場分析"
+      "スポーツ関連技術開発・ツアー企画",
+      "エクスペリエンスデザイン・イノベーション",
+      "プロフェッショナルコンサルティング"
     ]
   },
   {
     title: "クラブ | CLUB",
     category: "コミュニティ事業",
     summary: "会員制クラブ・コミュニティ運営",
-    description: "クラブ事業では、各分野の専門家や愛好家が集まる会員制コミュニティを運営しています。コーヒー愛好家クラブ、アウトドアスポーツクラブ、文化芸術サークルなど、多様な興味を持つメンバー同士の交流と学習の場を提供し、豊かなライフスタイルをサポートします。",
+    description: "各分野の専門家や愛好家が集まる会員制コミュニティを運営。コーヒー愛好家クラブ、アウトドアスポーツクラブ、文化芸術サークルなど、多様な交流と学習の場を提供します。",
     icon: "groups",
     route: "/club",
     features: [
       "コーヒー愛好家クラブ運営",
       "アウトドアスポーツクラブ活動",
-      "文化芸術サークル運営",
-      "専門家交流イベント企画",
-      "会員限定体験プログラム"
+      "文化芸術サークル運営"
     ]
   }
 ]
@@ -226,12 +188,6 @@ const contactUs = () => {
   background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
 }
 
-.service-list {
-  background: white;
-  border-radius: 1rem;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-}
 
 .service-item {
   border-bottom: 1px solid #f0f0f0;
@@ -332,12 +288,34 @@ const contactUs = () => {
   transform: translateX(5px);
 }
 
+.service-list {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
 .service-detail-container {
   background: white;
   border-radius: 1rem;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   padding: 2rem;
-  min-height: 500px;
+}
+
+.service-detail {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.detail-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-features {
+  flex: 1;
 }
 
 .detail-header {
@@ -489,10 +467,37 @@ const contactUs = () => {
   transform: translateY(-20px);
 }
 
+/* 等高布局 - 使用JavaScript计算高度 */
+.equal-height-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+.equal-height-row > [class*="col-"] {
+  display: flex;
+  flex-direction: column;
+}
+
+.service-list,
+.service-detail-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 /* 响应式设计 */
 @media (max-width: 991px) {
   .service-showcase {
     padding: 4rem 0;
+  }
+  
+  .equal-height-row {
+    display: block;
+  }
+  
+  .equal-height-row > [class*="col-"] {
+    display: block;
   }
   
   .service-detail-container {
