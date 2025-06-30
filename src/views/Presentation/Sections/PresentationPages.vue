@@ -1,5 +1,4 @@
 <script setup>
-import MaterialBadge from "../../../components/MaterialBadge.vue";
 
 // 新闻数据
 const newsItems = [
@@ -27,6 +26,39 @@ const newsItems = [
 </script>
 
 <style scoped>
+/* 柔和发光特效样式 */
+.glow-title {
+  font-size: 2.0rem;
+  font-weight: 600;
+  color: #344767;
+  letter-spacing: -0.5px;
+  text-shadow: 
+    0 0 5px rgba(128, 128, 128, 0.15),
+    0 0 10px rgba(128, 128, 128, 0.1),
+    0 0 15px rgba(128, 128, 128, 0.05);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
+}
+
+.glow-subtitle {
+  color: #6c757d;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-shadow: 0 0 3px rgba(128, 128, 128, 0.12);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .glow-title {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .glow-title {
+    font-size: 1.2rem;
+  }
+}
+
 /* 现代化新闻卡片样式 */
 .news-card {
   background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
@@ -78,7 +110,7 @@ const newsItems = [
 }
 
 .date-month {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.3px;
@@ -86,7 +118,7 @@ const newsItems = [
 }
 
 .date-day {
-  font-size: 1.1rem;
+  font-size: 1.0rem;
   font-weight: 700;
   line-height: 1;
   margin-top: 1px;
@@ -98,13 +130,13 @@ const newsItems = [
 }
 
 .news-year {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.5px;
 }
 
 .news-title {
-  font-size: 1.3rem;
+  font-size: 1.05rem;
   font-weight: 600;
   line-height: 1.3;
   margin-bottom: 0;
@@ -130,7 +162,7 @@ const newsItems = [
 }
 
 .news-meta .badge {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 500;
   padding: 0.4rem 0.9rem;
   border-radius: 20px;
@@ -138,7 +170,7 @@ const newsItems = [
 }
 
 .news-meta .text-muted {
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   display: flex;
   align-items: center;
   white-space: nowrap;
@@ -174,15 +206,15 @@ const newsItems = [
   }
   
   .date-month {
-    font-size: 0.65rem;
+    font-size: 0.6rem;
   }
   
   .date-day {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
   
   .news-title {
-    font-size: 1.1rem;
+    font-size: 1.0rem;
     line-height: 1.2;
   }
   
@@ -193,12 +225,12 @@ const newsItems = [
   }
   
   .news-meta .badge {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     padding: 0.3rem 0.7rem;
   }
   
   .news-meta .text-muted {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
   }
   
   .news-arrow {
@@ -216,11 +248,11 @@ const newsItems = [
   }
   
   .news-title {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
   
   .news-meta .text-muted {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
 }
 
@@ -248,14 +280,20 @@ const newsItems = [
       <div class="row">
         <div class="row text-center my-sm-2 mt-2">
           <div class="col-lg-6 mx-auto">
-            <MaterialBadge color="primary" class="mb-3"
-              >企業情報</MaterialBadge
-            >
-            <h2 class="">企業最新情報</h2>
-            <p class="lead">
-              NO TRACE EXPLORERの最新ニュース、お知らせ、<br />
-              サービス情報をご覧いただけます。
-            </p>
+            <div class="title-section mb-4">
+              <h3 class="glow-title mb-2">企業最新情報</h3>
+              <p class="glow-subtitle small mb-3">LATEST CORPORATE NEWS</p>
+            </div>
+            <div class="row justify-content-center">
+              <div class="col-lg-10 col-xl-8">
+                <div class="px-md-4">
+                  <p class="text-muted mb-0 lh-lg text-center" style="font-size: 0.9rem; line-height: 1.7;">
+                    NO TRACE EXPLORERの<strong>最新ニュース</strong>、<strong>お知らせ</strong>、<br class="d-none d-lg-block">
+                    <strong>サービス情報</strong>をご覧いただけます。
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -285,7 +323,7 @@ const newsItems = [
                     </div>
                     <div class="news-meta d-flex align-items-center">
                       <span class="badge bg-gradient-primary me-3">企業情報</span>
-                      <span class="text-muted me-3" style="font-size: 0.95rem;">
+                      <span class="text-muted me-3" style="font-size: 0.85rem;">
                         <i class="fas fa-calendar-alt me-2"></i>
                         {{ news.date }}
                       </span>

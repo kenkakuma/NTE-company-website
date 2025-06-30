@@ -47,7 +47,6 @@ npm run preview
 **NO TRACE EXPLORER株式会社**
 - Address: 東京都港区南青山2-2-8 DFビル
 - Email: notracejp@gmail.com
-- Phone: 080-7556-8686 (東京) | +86-18600688306 (北京)
 
 ---
 

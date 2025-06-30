@@ -41,6 +41,118 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+/* === 日式精致Hero区域样式 === */
+.hero-content-wrapper {
+  position: relative;
+  padding: 2rem 0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.hero-main-title {
+  font-size: 1.8rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  line-height: 1.6;
+  text-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.3),
+    0 0 8px rgba(255, 255, 255, 0.1);
+  margin-bottom: 1.5rem;
+  font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', sans-serif;
+}
+
+.hero-main-title .title-line {
+  display: block;
+  margin-bottom: 0.2rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1.2s ease forwards;
+}
+
+.hero-main-title .title-line:nth-child(1) {
+  animation-delay: 0.3s;
+}
+
+.hero-description-wrapper {
+  margin-bottom: 2rem;
+}
+
+.hero-description {
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  line-height: 1.8;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
+  white-space: nowrap;
+}
+
+.hero-description .desc-line {
+  display: block;
+  margin-bottom: 0.3rem;
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeInUp 1s ease forwards;
+}
+
+.hero-description .desc-line:nth-child(1) {
+  animation-delay: 0.6s;
+}
+
+
+/* 动画效果 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .hero-content-wrapper {
+    padding: 1.5rem 0;
+    max-width: 100%;
+  }
+  
+  .hero-main-title {
+    font-size: 1.4rem;
+    line-height: 1.5;
+    margin-bottom: 1.2rem;
+  }
+  
+  .hero-description {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    max-width: 100%;
+    padding: 0 1rem;
+    white-space: normal;
+  }
+  
+}
+
+@media (max-width: 480px) {
+  .hero-main-title {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-description {
+    font-size: 0.8rem;
+    line-height: 1.6;
+    white-space: normal;
+  }
+  
+}
+
 .card-hover-effect {
   transition: all 0.3s ease;
   transform: translateY(0);
@@ -250,17 +362,21 @@ onUnmounted(() => {
     >
       <div class="container">
         <div class="row">
-          <div class="col-lg-7 text-center mx-auto position-relative">
-            <h1
-              class="text-white pt-3 mt-n5 me-2"
-              :style="{ display: 'inline-block ' }"
-            >
-              未知の領域を探索し、輝く未来を築く
-            </h1>
-            <p class="lead text-white px-5 mt-3" :style="{ fontWeight: '500' }">
-              お客様との信頼関係を大切にし、<br>
-              共に新たな価値の創造に取り組んでまいります。
-            </p>
+          <div class="col-lg-8 text-center mx-auto position-relative">
+            <div class="hero-content-wrapper">
+              <!-- 主标题 -->
+              <h1 class="hero-main-title text-white pt-3 mt-n5 mb-4">
+                <span class="title-line">未知の領域を探索し、輝く未来を築く</span>
+              </h1>
+              
+              <!-- 副标题描述 -->
+              <div class="hero-description-wrapper">
+                <p class="hero-description text-white mb-0">
+                  <span class="desc-line">Explore the unknown territories and build a bright future</span>
+                </p>
+              </div>
+              
+            </div>
           </div>
         </div>
       </div>

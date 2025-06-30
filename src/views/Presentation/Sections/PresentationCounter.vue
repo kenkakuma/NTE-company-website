@@ -43,19 +43,21 @@ import DefaultCounterCard from "../../../examples/cards/counterCards/DefaultCoun
         </div>
       </div>
       
-      <!-- 事业领域标题 -->
+      <!-- 事业领域标题 - 应用柔和发光特效 -->
       <div class="row mt-5">
         <div class="col-12 text-center">
-          <h3 class="text-gradient text-dark mb-2">私たちの事業領域</h3>
-          <p class="text-muted small mb-3">OUR CORE BUSINESS DOMAINS</p>
+          <div class="title-section mb-4">
+            <h3 class="glow-title mb-2">私たちの事業領域</h3>
+            <p class="glow-subtitle small mb-3">OUR CORE BUSINESS DOMAINS</p>
+          </div>
           <div class="row justify-content-center mt-4">
             <div class="col-lg-10 col-xl-8">
               <div class="px-md-4">
-                <p class="text-muted mb-4 lh-lg text-center" style="font-size: 1.05rem; line-height: 1.8;">
+                <p class="text-muted mb-4 lh-lg text-center" style="font-size: 0.9rem; line-height: 1.7;">
                   無迹探索株式会社は、<strong>珈琲事業</strong>、<strong>コンサルティング</strong>、<strong>イベント運営</strong>、<strong>コミュニティ構築</strong>の<br class="d-none d-lg-block">
                   4つの専門領域で、お客様に価値あるソリューションをご提供いたします。
                 </p>
-                <p class="text-muted mb-0 lh-lg text-center" style="font-size: 1rem; line-height: 1.7;">
+                <p class="text-muted mb-0 lh-lg text-center" style="font-size: 0.85rem; line-height: 1.6;">
                   グローバルな視点と専門的な知識を活かし、お客様の多様なニーズにお応えできるよう、<br class="d-none d-lg-block">
                   常に革新的なアプローチで取り組んでおります。
                 </p>
@@ -67,3 +69,39 @@ import DefaultCounterCard from "../../../examples/cards/counterCards/DefaultCoun
     </div>
   </section>
 </template>
+
+<style scoped>
+/* 柔和发光特效样式 */
+.glow-title {
+  font-size: 2.0rem;
+  font-weight: 600;
+  color: #344767;
+  letter-spacing: -0.5px;
+  text-shadow: 
+    0 0 5px rgba(128, 128, 128, 0.15),
+    0 0 10px rgba(128, 128, 128, 0.1),
+    0 0 15px rgba(128, 128, 128, 0.05);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
+}
+
+.glow-subtitle {
+  color: #6c757d;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-shadow: 0 0 3px rgba(128, 128, 128, 0.12);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .glow-title {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .glow-title {
+    font-size: 1.2rem;
+  }
+}
+</style>
+

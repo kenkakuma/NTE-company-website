@@ -3,8 +3,20 @@
     <div class="container">
       <div class="row">
         <div class="col-12 text-center mb-5">
-          <h3 class="text-gradient text-dark mb-0">総合サービスリソース</h3>
-          <p class="lead">お客様のニーズに応える幅広いサービスを提供しています</p>
+          <div class="title-section mb-4">
+            <h3 class="glow-title mb-2">総合サービスリソース</h3>
+            <p class="glow-subtitle small mb-3">COMPREHENSIVE SERVICE RESOURCES</p>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-8">
+              <div class="px-md-4">
+                <p class="text-muted mb-0 lh-lg text-center" style="font-size: 0.9rem; line-height: 1.7;">
+                  お客様のニーズに応える<strong>幅広いサービス</strong>を提供し、<br class="d-none d-lg-block">
+                  最適なソリューションで価値創造をサポートいたします。
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       
@@ -188,6 +200,39 @@ const contactUs = () => {
   background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
 }
 
+/* 柔和发光特效样式 */
+.glow-title {
+  font-size: 2.0rem;
+  font-weight: 600;
+  color: #344767;
+  letter-spacing: -0.5px;
+  text-shadow: 
+    0 0 5px rgba(128, 128, 128, 0.15),
+    0 0 10px rgba(128, 128, 128, 0.1),
+    0 0 15px rgba(128, 128, 128, 0.05);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
+}
+
+.glow-subtitle {
+  color: #6c757d;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-shadow: 0 0 3px rgba(128, 128, 128, 0.12);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .glow-title {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .glow-title {
+    font-size: 1.2rem;
+  }
+}
+
 
 .service-item {
   border-bottom: 1px solid #f0f0f0;
@@ -251,7 +296,7 @@ const contactUs = () => {
 }
 
 .service-title {
-  font-size: 1.125rem;
+  font-size: 0.95rem;
   font-weight: 600;
   margin-bottom: 0.25rem;
   color: #344767;
@@ -259,7 +304,7 @@ const contactUs = () => {
 }
 
 .service-summary {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   color: #7b809a;
   margin-bottom: 0;
   transition: all 0.3s ease;
@@ -345,7 +390,7 @@ const contactUs = () => {
 }
 
 .detail-title {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 600;
   color: #344767;
   margin-bottom: 0.5rem;
@@ -356,7 +401,7 @@ const contactUs = () => {
   color: white;
   padding: 0.25rem 0.75rem;
   border-radius: 20px;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 500;
 }
 
@@ -365,14 +410,14 @@ const contactUs = () => {
 }
 
 .detail-description {
-  font-size: 1rem;
+  font-size: 0.85rem;
   line-height: 1.6;
   color: #7b809a;
   margin-bottom: 1.5rem;
 }
 
 .features-title {
-  font-size: 1.125rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: #344767;
   margin-bottom: 1rem;
@@ -388,7 +433,7 @@ const contactUs = () => {
   display: flex;
   align-items: center;
   margin-bottom: 0.75rem;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   color: #7b809a;
 }
 
@@ -414,7 +459,7 @@ const contactUs = () => {
   background-color: transparent;
   border: 1px solid transparent;
   padding: 0.5rem 1rem;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   border-radius: 0.375rem;
   transition: all 0.15s ease-in-out;
   margin-right: 0.5rem;
