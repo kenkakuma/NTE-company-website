@@ -20,90 +20,73 @@
         </div>
       </div>
       
-      <div class="row equal-height-row">
-        <!-- 左侧服务列表 -->
-        <div class="col-lg-6 col-md-12 mb-4">
-          <div class="service-list">
-            <div
-              v-for="(service, index) in services"
-              :key="index"
-              class="service-item"
-              :class="{ 'active': activeService === index }"
-              @mouseenter="setActiveService(index)"
-              @click="setActiveService(index)"
-            >
-              <div class="service-item-content">
-                <div class="service-icon">
-                  <i class="material-icons">{{ service.icon }}</i>
+      <!-- 悬停展开卡片展示 -->
+      <div class="services-container">
+        <div class="services-grid">
+          <div
+            v-for="(service, index) in services"
+            :key="index"
+            class="service-card"
+            :class="{ 'expanded': hoveredCard === index }"
+            @mouseenter="hoveredCard = index"
+            @mouseleave="hoveredCard = null"
+          >
+            <!-- 卡片主要内容 -->
+            <div class="card-main">
+              <div class="service-icon">
+                <i class="material-icons">{{ service.icon }}</i>
+              </div>
+              
+              <div class="service-info-left">
+                <h4 class="service-title">{{ service.title }}</h4>
+                <p class="service-category">{{ service.category }}</p>
+              </div>
+              
+              <div class="service-info-right">
+                <p class="service-summary">{{ service.summary }}</p>
+              </div>
+              
+              <div class="expand-indicator">
+                <i class="material-icons">expand_more</i>
+              </div>
+            </div>
+            
+            <!-- 展开的详细内容 -->
+            <div class="card-details" :class="{ 'visible': hoveredCard === index }">
+              <div class="details-content">
+                <div class="description-section">
+                  <h6 class="details-title">サービス詳細</h6>
+                  <p class="service-description">{{ service.description }}</p>
                 </div>
-                <div class="service-info">
-                  <h5 class="service-title">{{ service.title }}</h5>
-                  <p class="service-summary">{{ service.summary }}</p>
+                
+                <div class="features-section">
+                  <h6 class="features-title">主要特色</h6>
+                  <ul class="features-list">
+                    <li v-for="feature in service.features" :key="feature">
+                      <i class="material-icons">check_circle</i>
+                      <span>{{ feature }}</span>
+                    </li>
+                  </ul>
                 </div>
-                <div class="service-arrow">
-                  <i class="material-icons">chevron_right</i>
+                
+                <div class="actions-section">
+                  <router-link
+                    v-if="service.route && !service.route.startsWith('#')"
+                    :to="service.route"
+                    class="btn btn-primary"
+                  >
+                    詳細を見る
+                  </router-link>
+                  <a
+                    v-else-if="service.route"
+                    :href="service.route"
+                    class="btn btn-primary"
+                  >
+                    詳細を見る
+                  </a>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        
-        <!-- 右侧详细内容 -->
-        <div class="col-lg-6 col-md-12">
-          <div class="service-detail-container">
-            <transition name="fade" mode="out-in">
-              <div
-                :key="activeService"
-                class="service-detail"
-              >
-                <div class="detail-header">
-                  <div class="detail-icon">
-                    <i class="material-icons">{{ services[activeService].icon }}</i>
-                  </div>
-                  <div class="detail-title-section">
-                    <h4 class="detail-title">{{ services[activeService].title }}</h4>
-                    <span class="detail-badge">{{ services[activeService].category }}</span>
-                  </div>
-                </div>
-                
-                <div class="detail-content">
-                  <p class="detail-description">{{ services[activeService].description }}</p>
-                  
-                  <div class="detail-features">
-                    <h6 class="features-title">主要特色</h6>
-                    <ul class="features-list">
-                      <li v-for="feature in services[activeService].features" :key="feature">
-                        <i class="material-icons text-success">check_circle</i>
-                        {{ feature }}
-                      </li>
-                    </ul>
-                  </div>
-                  
-                  <div class="detail-action">
-                    <router-link
-                      v-if="services[activeService].route && !services[activeService].route.startsWith('#')"
-                      :to="services[activeService].route"
-                      class="btn btn-gradient btn-dark me-2"
-                    >
-                      詳細を見る
-                    </router-link>
-                    <a
-                      v-else-if="services[activeService].route"
-                      :href="services[activeService].route"
-                      class="btn btn-gradient btn-dark me-2"
-                    >
-                      詳細を見る
-                    </a>
-                    <button
-                      class="btn btn-outline-dark"
-                      @click="contactUs"
-                    >
-                      お問い合わせ
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </transition>
           </div>
         </div>
       </div>
@@ -114,7 +97,7 @@
 <script setup>
 import { ref } from 'vue'
 
-const activeService = ref(0)
+const hoveredCard = ref(null)
 
 const services = [
   {
@@ -184,12 +167,7 @@ const services = [
   }
 ]
 
-const setActiveService = (index) => {
-  activeService.value = index
-}
-
 const contactUs = () => {
-  // 联系我们的逻辑
   window.location.href = '/pages/landing-pages/contact-us'
 }
 </script>
@@ -220,10 +198,295 @@ const contactUs = () => {
   text-shadow: 0 0 3px rgba(128, 128, 128, 0.12);
 }
 
+/* 服务展示容器 */
+.services-container {
+  padding: 2rem 0;
+}
+
+.services-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0;
+}
+
+/* 服务卡片 - 日式清新风格 */
+.service-card {
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #f5f5f5;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.service-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border-color: #e8e8e8;
+}
+
+.service-card.expanded {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  border-color: #667eea;
+}
+
+/* 卡片主要内容 - 日式简约左右布局 */
+.card-main {
+  display: flex;
+  align-items: center;
+  padding: 1.2rem 2rem;
+  position: relative;
+  background: #ffffff;
+  gap: 1rem;
+}
+
+.service-icon {
+  width: 48px;
+  height: 48px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid #f0f0f0;
+}
+
+.service-icon .material-icons {
+  font-size: 24px;
+  color: #667eea;
+}
+
+.service-info-left {
+  min-width: 200px;
+  flex-shrink: 0;
+}
+
+.service-info-right {
+  flex: 1;
+  min-width: 0;
+}
+
+.service-title {
+  font-size: 1.0rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 0.3rem;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.service-category {
+  font-size: 0.7rem;
+  color: #718096;
+  font-weight: 500;
+  margin: 0;
+  display: inline-block;
+  background: #f7fafc;
+  padding: 0.15rem 0.5rem;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+.service-summary {
+  font-size: 0.8rem;
+  color: #4a5568;
+  line-height: 1.4;
+  margin: 0;
+  font-weight: 400;
+}
+
+.expand-indicator {
+  margin-left: 1rem;
+  color: #a0aec0;
+  transition: all 0.3s ease;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.service-card.expanded .expand-indicator {
+  transform: rotate(180deg);
+  background: #667eea;
+  border-color: #667eea;
+  color: white;
+}
+
+.expand-indicator .material-icons {
+  font-size: 18px;
+}
+
+/* 详细内容区域 - 日式清新 */
+.card-details {
+  max-height: 0;
+  overflow: hidden;
+  background: #fafafa;
+  transition: all 0.3s ease;
+  border-top: none;
+}
+
+.card-details.visible {
+  max-height: 350px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.details-content {
+  padding: 1.5rem 2rem;
+  opacity: 0;
+  transition: opacity 0.2s ease 0.1s;
+}
+
+.card-details.visible .details-content {
+  opacity: 1;
+}
+
+.description-section {
+  margin-bottom: 1.2rem;
+}
+
+.details-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.01em;
+}
+
+.service-description {
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: #4a5568;
+  margin: 0;
+  font-weight: 400;
+}
+
+.features-section {
+  margin-bottom: 1.2rem;
+}
+
+.features-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 0.8rem;
+  letter-spacing: -0.01em;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.features-list li {
+  display: flex;
+  align-items: center;
+  font-size: 0.75rem;
+  color: #4a5568;
+  background: #ffffff;
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid #f0f0f0;
+  font-weight: 400;
+}
+
+.features-list li .material-icons {
+  font-size: 16px;
+  margin-right: 0.6rem;
+  color: #667eea;
+}
+
+.actions-section {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.btn {
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: -0.01em;
+}
+
+.btn-primary {
+  background: #667eea;
+  color: white;
+  border: 1px solid #667eea;
+}
+
+.btn-primary:hover {
+  background: #5a67d8;
+  border-color: #5a67d8;
+  color: white;
+  text-decoration: none;
+}
+
+.btn-outline {
+  background: transparent;
+  color: #4a5568;
+  border: 1px solid #e2e8f0;
+}
+
+.btn-outline:hover {
+  background: #f7fafc;
+  border-color: #cbd5e0;
+  color: #2d3748;
+}
+
 /* 响应式设计 */
 @media (max-width: 768px) {
   .glow-title {
     font-size: 1.4rem;
+  }
+  
+  .card-main {
+    padding: 1.2rem 1.5rem;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.8rem;
+  }
+  
+  .service-info-left {
+    min-width: auto;
+    width: 100%;
+  }
+  
+  .service-info-right {
+    width: 100%;
+  }
+  
+  .expand-indicator {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    margin: 0;
+  }
+  
+  .details-content {
+    padding: 1.2rem 1.5rem;
+  }
+  
+  .actions-section {
+    justify-content: center;
   }
 }
 
@@ -231,370 +494,48 @@ const contactUs = () => {
   .glow-title {
     font-size: 1.2rem;
   }
-}
-
-
-.service-item {
-  border-bottom: 1px solid #f0f0f0;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.service-item:last-child {
-  border-bottom: none;
-}
-
-.service-item:hover,
-.service-item.active {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  transform: translateX(5px);
-}
-
-.service-item:hover .service-item-content,
-.service-item.active .service-item-content {
-  color: white;
-}
-
-.service-item-content {
-  display: flex;
-  align-items: center;
-  padding: 1.5rem;
-  transition: all 0.3s ease;
-}
-
-.service-icon {
-  width: 50px;
-  height: 50px;
-  background: #f8f9fa;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 1rem;
-  transition: all 0.3s ease;
-}
-
-.service-item:hover .service-icon,
-.service-item.active .service-icon {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.service-icon .material-icons {
-  font-size: 24px;
-  color: #344767;
-  transition: all 0.3s ease;
-}
-
-.service-item:hover .service-icon .material-icons,
-.service-item.active .service-icon .material-icons {
-  color: white;
-}
-
-.service-info {
-  flex: 1;
-}
-
-.service-title {
-  font-size: 0.95rem;
-  font-weight: 600;
-  margin-bottom: 0.25rem;
-  color: #344767;
-  transition: all 0.3s ease;
-}
-
-.service-summary {
-  font-size: 0.75rem;
-  color: #7b809a;
-  margin-bottom: 0;
-  transition: all 0.3s ease;
-}
-
-.service-item:hover .service-title,
-.service-item.active .service-title,
-.service-item:hover .service-summary,
-.service-item.active .service-summary {
-  color: white;
-}
-
-.service-arrow {
-  margin-left: 1rem;
-  transition: all 0.3s ease;
-}
-
-.service-arrow .material-icons {
-  color: #7b809a;
-  transition: all 0.3s ease;
-}
-
-.service-item:hover .service-arrow .material-icons,
-.service-item.active .service-arrow .material-icons {
-  color: white;
-  transform: translateX(5px);
-}
-
-.service-list {
-  background: white;
-  border-radius: 1rem;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-}
-
-.service-detail-container {
-  background: white;
-  border-radius: 1rem;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
-}
-
-.service-detail {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.detail-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.detail-features {
-  flex: 1;
-}
-
-.detail-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1.5rem;
-}
-
-.detail-icon {
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 1rem;
-}
-
-.detail-icon .material-icons {
-  font-size: 28px;
-  color: white;
-}
-
-.detail-title-section {
-  flex: 1;
-}
-
-.detail-title {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #344767;
-  margin-bottom: 0.5rem;
-}
-
-.detail-badge {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: 0.25rem 0.75rem;
-  border-radius: 20px;
-  font-size: 0.7rem;
-  font-weight: 500;
-}
-
-.detail-content {
-  margin-top: 1.5rem;
-}
-
-.detail-description {
-  font-size: 0.85rem;
-  line-height: 1.6;
-  color: #7b809a;
-  margin-bottom: 1.5rem;
-}
-
-.features-title {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #344767;
-  margin-bottom: 1rem;
-}
-
-.features-list {
-  list-style: none;
-  padding: 0;
-  margin-bottom: 2rem;
-}
-
-.features-list li {
-  display: flex;
-  align-items: center;
-  margin-bottom: 0.75rem;
-  font-size: 0.75rem;
-  color: #7b809a;
-}
-
-.features-list li .material-icons {
-  font-size: 18px;
-  margin-right: 0.5rem;
-}
-
-.detail-action {
-  padding-top: 1rem;
-  border-top: 1px solid #f0f0f0;
-}
-
-.btn {
-  display: inline-block;
-  font-weight: 600;
-  line-height: 1.5;
-  color: #212529;
-  text-align: center;
-  text-decoration: none;
-  vertical-align: middle;
-  cursor: pointer;
-  background-color: transparent;
-  border: 1px solid transparent;
-  padding: 0.5rem 1rem;
-  font-size: 0.75rem;
-  border-radius: 0.375rem;
-  transition: all 0.15s ease-in-out;
-  margin-right: 0.5rem;
-}
-
-.btn-gradient {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-}
-
-.btn-gradient:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-  color: white;
-  text-decoration: none;
-}
-
-.btn-dark {
-  background-color: #344767;
-  border-color: #344767;
-  color: white;
-}
-
-.btn-outline-dark {
-  color: #344767;
-  border-color: #344767;
-  background-color: transparent;
-}
-
-.btn-outline-dark:hover {
-  color: white;
-  background-color: #344767;
-  border-color: #344767;
-}
-
-/* 过渡动画 */
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.3s ease;
-}
-
-.fade-enter-from {
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-.fade-leave-to {
-  opacity: 0;
-  transform: translateY(-20px);
-}
-
-/* 等高布局优化 - 确保左右容器高度一致 */
-.equal-height-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: stretch;
-  min-height: 500px; /* 设置最小高度 */
-}
-
-.equal-height-row > [class*="col-"] {
-  display: flex;
-  flex-direction: column;
-}
-
-.service-list,
-.service-detail-container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-height: 500px; /* 确保两个容器最小高度一致 */
-  height: auto; /* 允许内容过多时自动扩展 */
-}
-
-/* 左侧服务列表高度优化 */
-.service-list {
-  justify-content: space-between; /* 均匀分布服务项目 */
-}
-
-/* 右侧详细内容高度优化 */
-.service-detail-container {
-  justify-content: flex-start; /* 内容从顶部开始 */
-}
-
-/* 响应式设计 */
-@media (max-width: 991px) {
-  .service-showcase {
-    padding: 4rem 0;
+  
+  .service-icon {
+    width: 60px;
+    height: 60px;
   }
   
-  .equal-height-row {
-    display: block;
-    min-height: auto; /* 移动端取消最小高度限制 */
+  .service-icon .material-icons {
+    font-size: 28px;
   }
   
-  .equal-height-row > [class*="col-"] {
-    display: block;
+  .service-title {
+    font-size: 1.2rem;
   }
   
-  .service-list,
-  .service-detail-container {
-    min-height: auto; /* 移动端取消最小高度限制 */
+  .card-main {
+    padding: 1.2rem;
   }
   
-  .service-list {
-    justify-content: flex-start; /* 移动端恢复正常布局 */
-  }
-  
-  .service-detail-container {
-    margin-top: 2rem;
-  }
-  
-  .service-item:hover,
-  .service-item.active {
-    transform: none;
+  .details-content {
+    padding: 1.2rem;
   }
 }
 
-@media (max-width: 767px) {
-  .detail-header {
-    flex-direction: column;
-    text-align: center;
+/* 加载动画 */
+.service-card {
+  animation: slideInUp 0.6s ease-out backwards;
+}
+
+.service-card:nth-child(1) { animation-delay: 0.1s; }
+.service-card:nth-child(2) { animation-delay: 0.2s; }
+.service-card:nth-child(3) { animation-delay: 0.3s; }
+.service-card:nth-child(4) { animation-delay: 0.4s; }
+.service-card:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
   }
-  
-  .detail-icon {
-    margin-right: 0;
-    margin-bottom: 1rem;
-  }
-  
-  .service-item-content {
-    padding: 1rem;
-  }
-  
-  .service-detail-container {
-    padding: 1.5rem;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 </style>
