@@ -67,6 +67,115 @@ onUnmounted(() => {
   color: #e0e0e0 !important;
 }
 
+/* 统一现代简约分割线样式 */
+.section-divider {
+  margin: 3rem 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 1px;
+}
+
+/* 统一分割线设计: 细线 + 中央脉动光点 */
+.unified-divider {
+  width: 100%;
+  position: relative;
+}
+
+.divider-line {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(230, 230, 230, 0.3) 20%, 
+    rgba(102, 126, 234, 0.4) 45%, 
+    rgba(118, 75, 162, 0.5) 50%, 
+    rgba(102, 126, 234, 0.4) 55%, 
+    rgba(230, 230, 230, 0.3) 80%, 
+    transparent 100%
+  );
+  position: relative;
+}
+
+.divider-pulse-dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  box-shadow: 
+    0 0 10px rgba(102, 126, 234, 0.4),
+    0 0 20px rgba(102, 126, 234, 0.2),
+    0 0 30px rgba(102, 126, 234, 0.1);
+  animation: pulseGlow 2.5s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { 
+    transform: translate(-50%, -50%) scale(1); 
+    opacity: 0.8;
+    box-shadow: 
+      0 0 10px rgba(102, 126, 234, 0.4),
+      0 0 20px rgba(102, 126, 234, 0.2),
+      0 0 30px rgba(102, 126, 234, 0.1);
+  }
+  50% { 
+    transform: translate(-50%, -50%) scale(1.3); 
+    opacity: 1;
+    box-shadow: 
+      0 0 15px rgba(102, 126, 234, 0.6),
+      0 0 30px rgba(102, 126, 234, 0.4),
+      0 0 45px rgba(102, 126, 234, 0.2);
+  }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .section-divider {
+    margin: 2.5rem 0;
+  }
+  
+  .divider-pulse-dot {
+    width: 6px;
+    height: 6px;
+    box-shadow: 
+      0 0 8px rgba(102, 126, 234, 0.4),
+      0 0 16px rgba(102, 126, 234, 0.2);
+  }
+  
+  @keyframes pulseGlow {
+    0%, 100% { 
+      transform: translate(-50%, -50%) scale(1); 
+      opacity: 0.8;
+      box-shadow: 
+        0 0 8px rgba(102, 126, 234, 0.4),
+        0 0 16px rgba(102, 126, 234, 0.2);
+    }
+    50% { 
+      transform: translate(-50%, -50%) scale(1.2); 
+      opacity: 1;
+      box-shadow: 
+        0 0 12px rgba(102, 126, 234, 0.6),
+        0 0 24px rgba(102, 126, 234, 0.3);
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .section-divider {
+    margin: 2rem 0;
+  }
+  
+  .divider-pulse-dot {
+    width: 5px;
+    height: 5px;
+  }
+}
+
 /* 固定卡片大小和文字控制 */
 .card-fixed-size {
   min-height: 196px !important;  /* 280px * 0.7 = 196px */
@@ -160,9 +269,37 @@ onUnmounted(() => {
 
   <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
     <PresentationCounter />
+    
+    <!-- 统一分割线 1 -->
+    <div class="section-divider unified-divider">
+      <div class="divider-line"></div>
+      <div class="divider-pulse-dot"></div>
+    </div>
+    
     <PresentationInformation />
+    
+    <!-- 统一分割线 2 -->
+    <div class="section-divider unified-divider">
+      <div class="divider-line"></div>
+      <div class="divider-pulse-dot"></div>
+    </div>
+    
     <PresentationExample :data="data" />
+    
+    <!-- 统一分割线 3 -->
+    <div class="section-divider unified-divider">
+      <div class="divider-line"></div>
+      <div class="divider-pulse-dot"></div>
+    </div>
+    
     <PresentationPages />
+    
+    <!-- 统一分割线 4 -->
+    <div class="section-divider unified-divider">
+      <div class="divider-line"></div>
+      <div class="divider-pulse-dot"></div>
+    </div>
+    
     <BuiltByDevelopers />
 
 

@@ -467,11 +467,12 @@ const contactUs = () => {
   transform: translateY(-20px);
 }
 
-/* 等高布局 - 使用JavaScript计算高度 */
+/* 等高布局优化 - 确保左右容器高度一致 */
 .equal-height-row {
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
+  min-height: 500px; /* 设置最小高度 */
 }
 
 .equal-height-row > [class*="col-"] {
@@ -484,6 +485,18 @@ const contactUs = () => {
   flex: 1;
   display: flex;
   flex-direction: column;
+  min-height: 500px; /* 确保两个容器最小高度一致 */
+  height: auto; /* 允许内容过多时自动扩展 */
+}
+
+/* 左侧服务列表高度优化 */
+.service-list {
+  justify-content: space-between; /* 均匀分布服务项目 */
+}
+
+/* 右侧详细内容高度优化 */
+.service-detail-container {
+  justify-content: flex-start; /* 内容从顶部开始 */
 }
 
 /* 响应式设计 */
@@ -494,10 +507,20 @@ const contactUs = () => {
   
   .equal-height-row {
     display: block;
+    min-height: auto; /* 移动端取消最小高度限制 */
   }
   
   .equal-height-row > [class*="col-"] {
     display: block;
+  }
+  
+  .service-list,
+  .service-detail-container {
+    min-height: auto; /* 移动端取消最小高度限制 */
+  }
+  
+  .service-list {
+    justify-content: flex-start; /* 移动端恢复正常布局 */
   }
   
   .service-detail-container {
