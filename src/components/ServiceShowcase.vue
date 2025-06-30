@@ -22,69 +22,99 @@
       
       <!-- 悬停展开卡片展示 -->
       <div class="services-container">
-        <div class="services-grid">
-          <div
-            v-for="(service, index) in services"
-            :key="index"
-            class="service-card"
-            :class="{ 'expanded': hoveredCard === index }"
-            @mouseenter="hoveredCard = index"
-            @mouseleave="hoveredCard = null"
-          >
-            <!-- 卡片主要内容 -->
-            <div class="card-main">
-              <div class="service-icon">
-                <i class="material-icons">{{ service.icon }}</i>
+        <div class="services-layout">
+          <!-- 左侧卡片区域 60% -->
+          <div class="services-grid">
+            <div
+              v-for="(service, index) in services"
+              :key="index"
+              class="service-card"
+              :class="{ 'expanded': hoveredCard === index, 'active': hoveredCard === index }"
+              @mouseenter="hoveredCard = index"
+              @mouseleave="hoveredCard = null"
+            >
+              <!-- 卡片主要内容 -->
+              <div class="card-main">
+                <div class="service-icon">
+                  <i class="material-icons">{{ service.icon }}</i>
+                </div>
+                
+                <div class="service-info-left">
+                  <h4 class="service-title">{{ service.title }}</h4>
+                  <p class="service-category">{{ service.category }}</p>
+                </div>
+                
+                <div class="service-info-right">
+                  <p class="service-summary">{{ service.summary }}</p>
+                </div>
+                
+                <div class="expand-indicator">
+                  <i class="material-icons">expand_more</i>
+                </div>
               </div>
               
-              <div class="service-info-left">
-                <h4 class="service-title">{{ service.title }}</h4>
-                <p class="service-category">{{ service.category }}</p>
-              </div>
-              
-              <div class="service-info-right">
-                <p class="service-summary">{{ service.summary }}</p>
-              </div>
-              
-              <div class="expand-indicator">
-                <i class="material-icons">expand_more</i>
+              <!-- 展开的详细内容 -->
+              <div class="card-details" :class="{ 'visible': hoveredCard === index }">
+                <div class="details-content">
+                  <div class="description-section">
+                    <h6 class="details-title">サービス詳細</h6>
+                    <p class="service-description">{{ service.description }}</p>
+                  </div>
+                  
+                  <div class="features-section">
+                    <h6 class="features-title">主要特色</h6>
+                    <ul class="features-list">
+                      <li v-for="feature in service.features" :key="feature">
+                        <i class="material-icons">check_circle</i>
+                        <span>{{ feature }}</span>
+                      </li>
+                    </ul>
+                  </div>
+                  
+                  <div class="actions-section">
+                    <router-link
+                      v-if="service.route && !service.route.startsWith('#')"
+                      :to="service.route"
+                      class="btn btn-primary"
+                    >
+                      詳細を見る
+                    </router-link>
+                    <a
+                      v-else-if="service.route"
+                      :href="service.route"
+                      class="btn btn-primary"
+                    >
+                      詳細を見る
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
-            
-            <!-- 展开的详细内容 -->
-            <div class="card-details" :class="{ 'visible': hoveredCard === index }">
-              <div class="details-content">
-                <div class="description-section">
-                  <h6 class="details-title">サービス詳細</h6>
-                  <p class="service-description">{{ service.description }}</p>
+          </div>
+          
+          <!-- 右侧图片展示区域 40% -->
+          <div class="image-display-area">
+            <div class="image-container">
+              <div class="image-wrapper">
+                <img 
+                  v-if="hoveredCard !== null"
+                  :src="services[hoveredCard].image"
+                  :alt="services[hoveredCard].title"
+                  class="service-image"
+                  :class="{ 'visible': hoveredCard !== null }"
+                />
+                <div v-else class="placeholder-content">
+                  <div class="placeholder-icon">
+                    <i class="material-icons">photo_camera</i>
+                  </div>
+                  <p class="placeholder-text">サービスにマウスオーバーして<br>関連画像をご覧ください</p>
                 </div>
-                
-                <div class="features-section">
-                  <h6 class="features-title">主要特色</h6>
-                  <ul class="features-list">
-                    <li v-for="feature in service.features" :key="feature">
-                      <i class="material-icons">check_circle</i>
-                      <span>{{ feature }}</span>
-                    </li>
-                  </ul>
-                </div>
-                
-                <div class="actions-section">
-                  <router-link
-                    v-if="service.route && !service.route.startsWith('#')"
-                    :to="service.route"
-                    class="btn btn-primary"
-                  >
-                    詳細を見る
-                  </router-link>
-                  <a
-                    v-else-if="service.route"
-                    :href="service.route"
-                    class="btn btn-primary"
-                  >
-                    詳細を見る
-                  </a>
-                </div>
+              </div>
+              
+              <!-- 图片说明 -->
+              <div v-if="hoveredCard !== null" class="image-caption">
+                <h6 class="caption-title">{{ services[hoveredCard].title }}</h6>
+                <p class="caption-text">{{ services[hoveredCard].imageCaption }}</p>
               </div>
             </div>
           </div>
@@ -107,6 +137,8 @@ const services = [
     description: "高品質なコーヒー商品の企画開発から、ドリップバッグ開発、コーヒー貿易、ブランド展開まで幅広く展開。専門的なコーヒー体験サービスとサプライチェーン構築を通じて、最高のコーヒー体験をお届けします。",
     icon: "local_cafe",
     route: "/coffee",
+    image: "https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=600&h=400&fit=crop&crop=center",
+    imageCaption: "厳選された高品質なコーヒー豆と専門的な焙煎技術",
     features: [
       "高品質コーヒー商品の企画開発",
       "ドリップバッグ開発・製造",
@@ -120,6 +152,8 @@ const services = [
     description: "専門器具の設計・開発から販売・アフターサポートまで一貫して提供。最新技術と職人の技術を融合し、お客様のニーズに最適化された高品質な器具をお届けします。",
     icon: "build",
     route: "#equipment",
+    image: "https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=600&h=400&fit=crop&crop=center",
+    imageCaption: "精密な設計と高品質な製造技術による専門器具",
     features: [
       "専門器具の設計・開発・販売",
       "技術サポート・メンテナンス",
@@ -133,6 +167,8 @@ const services = [
     description: "文化・技術・芸術分野における展示企画、イベント運営、展示空間設計を提供。革新的なアイデアと専門的な運営技術により、印象深い展示体験を創造します。",
     icon: "museum",
     route: "#exhibition",
+    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop&crop=center",
+    imageCaption: "革新的な展示空間デザインと芸術的な体験創造",
     features: [
       "文化・技術・芸術展示企画",
       "イベント運営・管理",
@@ -146,6 +182,8 @@ const services = [
     description: "技術研究、市場分析、イノベーション開発を通じて新たなビジネス価値を創造。釣り、スキー、ゴルフなどのスポーツ関連技術開発と最先端研究により、ビジネス成長を支援します。",
     icon: "science",
     route: "/lab",
+    image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&h=400&fit=crop&crop=center",
+    imageCaption: "最先端技術研究とイノベーション開発の現場",
     features: [
       "スポーツ関連技術開発・ツアー企画",
       "エクスペリエンスデザイン・イノベーション",
@@ -159,6 +197,8 @@ const services = [
     description: "各分野の専門家や愛好家が集まる会員制コミュニティを運営。コーヒー愛好家クラブ、アウトドアスポーツクラブ、文化芸術サークルなど、多様な交流と学習の場を提供します。",
     icon: "groups",
     route: "/club",
+    image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&h=400&fit=crop&crop=center",
+    imageCaption: "専門家と愛好家が集うコミュニティ交流の場",
     features: [
       "コーヒー愛好家クラブ運営",
       "アウトドアスポーツクラブ活動",
@@ -203,11 +243,26 @@ const contactUs = () => {
   padding: 2rem 0;
 }
 
+/* 主布局：60% 卡片 + 40% 图片 */
+.services-layout {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  min-height: 500px;
+}
+
 .services-grid {
+  flex: 0 0 60%;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   padding: 0;
+}
+
+.image-display-area {
+  flex: 0 0 40%;
+  position: sticky;
+  top: 2rem;
 }
 
 /* 服务卡片 - 日式清新风格 */
@@ -219,6 +274,7 @@ const contactUs = () => {
   transition: all 0.3s ease;
   cursor: pointer;
   box-shadow: none;
+  position: relative;
 }
 
 .service-card:hover {
@@ -230,6 +286,12 @@ const contactUs = () => {
 .service-card.expanded {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
   border-color: #667eea;
+}
+
+.service-card.active {
+  transform: translateY(-2px);
+  border-color: #667eea;
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.12);
 }
 
 /* 卡片主要内容 - 日式简约左右布局 */
@@ -452,7 +514,128 @@ const contactUs = () => {
   color: #2d3748;
 }
 
+/* 图片展示区域样式 - 日式简洁 */
+.image-container {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #f0f0f0;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  overflow: hidden;
+  background: #fafafa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 520px;
+}
+
+.service-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.05);
+  transition: all 0.4s ease;
+  filter: brightness(0.95) saturate(0.9);
+}
+
+.service-image.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* 占位符内容 */
+.placeholder-content {
+  text-align: center;
+  color: #a0aec0;
+  padding: 2rem;
+}
+
+.placeholder-icon {
+  width: 64px;
+  height: 64px;
+  background: #f7fafc;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  border: 1px solid #e2e8f0;
+}
+
+.placeholder-icon .material-icons {
+  font-size: 32px;
+  color: #cbd5e0;
+}
+
+.placeholder-text {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* 图片说明 */
+.image-caption {
+  padding: 1.2rem 1.5rem;
+  background: #fafafa;
+  border-top: 1px solid #f0f0f0;
+  flex-shrink: 0;
+}
+
+.caption-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.caption-text {
+  font-size: 0.75rem;
+  color: #4a5568;
+  line-height: 1.5;
+  margin: 0;
+  font-weight: 400;
+}
+
 /* 响应式设计 */
+@media (max-width: 992px) {
+  .services-layout {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .services-grid {
+    flex: 1;
+  }
+  
+  .image-display-area {
+    flex: 1;
+    position: static;
+    order: -1;
+  }
+  
+  .image-wrapper {
+    min-height: 250px;
+  }
+  
+  .image-container {
+    height: auto;
+  }
+}
+
 @media (max-width: 768px) {
   .glow-title {
     font-size: 1.4rem;

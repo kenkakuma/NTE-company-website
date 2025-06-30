@@ -16,7 +16,6 @@ import PresentationExample from "./Sections/PresentationExample.vue";
 import data from "./Sections/Data/designBlocksData";
 import BuiltByDevelopers from "./Components/BuiltByDevelopers.vue";
 import PresentationInformation from "./Sections/PresentationInformation.vue";
-import ServiceShowcase from "@/components/ServiceShowcase.vue";
 
 //images
 import vueMkHeader from "@/assets/img/vue-mk-header.jpg";
