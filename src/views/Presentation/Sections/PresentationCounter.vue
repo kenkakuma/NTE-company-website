@@ -43,8 +43,14 @@ import DefaultCounterCard from "../../../examples/cards/counterCards/DefaultCoun
         </div>
       </div>
       
+      <!-- 统一分割线 - 事业领域标题上方 -->
+      <div class="section-divider unified-divider mt-5">
+        <div class="divider-line"></div>
+        <div class="divider-pulse-dot"></div>
+      </div>
+      
       <!-- 事业领域标题 - 应用柔和发光特效 -->
-      <div class="row mt-5">
+      <div class="row mt-4">
         <div class="col-12 text-center">
           <div class="title-section mb-4">
             <h3 class="glow-title mb-2">私たちの事業領域</h3>
@@ -91,16 +97,119 @@ import DefaultCounterCard from "../../../examples/cards/counterCards/DefaultCoun
   text-shadow: 0 0 3px rgba(128, 128, 128, 0.12);
 }
 
+/* 统一分割线样式 */
+.section-divider {
+  margin: 3rem 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 1px;
+}
+
+.unified-divider {
+  width: 100%;
+  position: relative;
+}
+
+.divider-line {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(230, 230, 230, 0.3) 20%, 
+    rgba(102, 126, 234, 0.4) 45%, 
+    rgba(118, 75, 162, 0.5) 50%, 
+    rgba(102, 126, 234, 0.4) 55%, 
+    rgba(230, 230, 230, 0.3) 80%, 
+    transparent 100%
+  );
+  position: relative;
+}
+
+.divider-pulse-dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  box-shadow: 
+    0 0 10px rgba(102, 126, 234, 0.4),
+    0 0 20px rgba(102, 126, 234, 0.2),
+    0 0 30px rgba(102, 126, 234, 0.1);
+  animation: pulseGlow 2.5s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { 
+    transform: translate(-50%, -50%) scale(1); 
+    opacity: 0.8;
+    box-shadow: 
+      0 0 10px rgba(102, 126, 234, 0.4),
+      0 0 20px rgba(102, 126, 234, 0.2),
+      0 0 30px rgba(102, 126, 234, 0.1);
+  }
+  50% { 
+    transform: translate(-50%, -50%) scale(1.3); 
+    opacity: 1;
+    box-shadow: 
+      0 0 15px rgba(102, 126, 234, 0.6),
+      0 0 30px rgba(102, 126, 234, 0.4),
+      0 0 45px rgba(102, 126, 234, 0.2);
+  }
+}
+
 /* 响应式设计 */
 @media (max-width: 768px) {
   .glow-title {
     font-size: 1.4rem;
+  }
+  
+  .section-divider {
+    margin: 2.5rem 0;
+  }
+  
+  .divider-pulse-dot {
+    width: 6px;
+    height: 6px;
+    box-shadow: 
+      0 0 8px rgba(102, 126, 234, 0.4),
+      0 0 16px rgba(102, 126, 234, 0.2);
+  }
+  
+  @keyframes pulseGlow {
+    0%, 100% { 
+      transform: translate(-50%, -50%) scale(1); 
+      opacity: 0.8;
+      box-shadow: 
+        0 0 8px rgba(102, 126, 234, 0.4),
+        0 0 16px rgba(102, 126, 234, 0.2);
+    }
+    50% { 
+      transform: translate(-50%, -50%) scale(1.2); 
+      opacity: 1;
+      box-shadow: 
+        0 0 12px rgba(102, 126, 234, 0.6),
+        0 0 24px rgba(102, 126, 234, 0.3);
+    }
   }
 }
 
 @media (max-width: 480px) {
   .glow-title {
     font-size: 1.2rem;
+  }
+  
+  .section-divider {
+    margin: 2rem 0;
+  }
+  
+  .divider-pulse-dot {
+    width: 5px;
+    height: 5px;
   }
 }
 </style>

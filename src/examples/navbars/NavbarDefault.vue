@@ -109,7 +109,7 @@ watch(
         title="NO TRACE EXPLORER | 無迹探索株式会社"
         data-placement="bottom"
       >
-        NO TRACE EXPLORER
+        NO TRACE EXPLORER <span class="ms-2 fw-normal" style="font-size: 0.85em; opacity: 0.8;">| 無迹探索株式会社</span>
       </RouterLink>
       <RouterLink
         class="navbar-brand d-block d-md-none"
@@ -149,64 +149,179 @@ watch(
         class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0"
         id="navigation"
       >
-        <ul class="navbar-nav navbar-nav-hover ms-auto">
-          <li class="nav-item mx-2">
+        <ul class="navbar-nav navbar-nav-hover ms-auto modern-nav">
+          <li class="nav-item mx-1">
             <RouterLink
-              class="nav-link ps-2 d-flex cursor-pointer align-items-center"
-              :class="getTextColor()"
-              :to="{ name: 'lab' }"
-            >
-              ラボ
-            </RouterLink>
-          </li>
-          <li class="nav-item mx-2">
-            <RouterLink
-              class="nav-link ps-2 d-flex cursor-pointer align-items-center"
+              class="nav-link modern-nav-link d-flex cursor-pointer align-items-center"
               :class="getTextColor()"
               :to="{ name: 'coffee' }"
             >
-              珈琲
+              <span class="nav-text">コーヒー</span>
             </RouterLink>
           </li>
-          <li class="nav-item mx-2">
+          <li class="nav-item mx-1">
             <RouterLink
-              class="nav-link ps-2 d-flex cursor-pointer align-items-center"
+              class="nav-link modern-nav-link d-flex cursor-pointer align-items-center"
+              :class="getTextColor()"
+              :to="{ name: 'exhibition' }"
+            >
+              <span class="nav-text">エキシビション</span>
+            </RouterLink>
+          </li>
+          <li class="nav-item mx-1">
+            <RouterLink
+              class="nav-link modern-nav-link d-flex cursor-pointer align-items-center"
+              :class="getTextColor()"
+              :to="{ name: 'lab' }"
+            >
+              <span class="nav-text">ラボ</span>
+            </RouterLink>
+          </li>
+          <li class="nav-item mx-1">
+            <RouterLink
+              class="nav-link modern-nav-link d-flex cursor-pointer align-items-center"
               :class="getTextColor()"
               :to="{ name: 'club' }"
             >
-              クラブ
+              <span class="nav-text">クラブ</span>
             </RouterLink>
           </li>
-          <li class="nav-item mx-2">
+          <li class="nav-item mx-1">
             <RouterLink
-              class="nav-link ps-2 d-flex cursor-pointer align-items-center"
-              :class="getTextColor()"
-              :to="{ name: 'contactus' }"
-            >
-              お問い合わせ
-            </RouterLink>
-          </li>
-          <li class="nav-item mx-2">
-            <RouterLink
-              class="nav-link ps-2 d-flex cursor-pointer align-items-center"
+              class="nav-link modern-nav-link d-flex cursor-pointer align-items-center"
               :class="getTextColor()"
               :to="{ name: 'about' }"
             >
-              企業情報
+              <span class="nav-text">企業情報</span>
             </RouterLink>
           </li>
-        </ul>
-        <ul class="navbar-nav d-lg-block d-none">
-          <li class="nav-item">
-            <a
-              :href="action.route"
-              class="btn btn-sm mb-0"
-              :class="action.color"
-              >{{ action.label }}</a
+          <li class="nav-item mx-1">
+            <RouterLink
+              class="nav-link modern-nav-link d-flex cursor-pointer align-items-center"
+              :class="getTextColor()"
+              :to="{ name: 'contactus' }"
             >
+              <span class="nav-text">お問い合わせ</span>
+            </RouterLink>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 </template>
+
+<style scoped>
+/* 简洁导航菜单样式 - 参考网站标题风格 */
+.modern-nav {
+  gap: 1.5rem;
+  align-items: center;
+}
+
+/* 菜单项分割线 */
+.modern-nav .nav-item {
+  position: relative;
+}
+
+.modern-nav .nav-item:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  right: -0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 16px;
+  background: #e0e0e0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 深色背景下的分割线 */
+.navbar-light .modern-nav .nav-item:not(:last-child)::before {
+  background: #999999;
+}
+
+.modern-nav-link {
+  position: relative;
+  padding: 0.5rem 0.8rem !important;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border: none;
+  text-decoration: none;
+}
+
+.modern-nav-link:hover {
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+/* 动态下划线特效 */
+.modern-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(-50%);
+  border-radius: 1px;
+}
+
+.modern-nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-text {
+  font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', sans-serif;
+  line-height: 1.2;
+}
+
+/* 移动端优化 */
+@media (max-width: 991px) {
+  .modern-nav {
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    padding: 1rem 0;
+  }
+  
+  .modern-nav-link {
+    padding: 0.8rem 1rem !important;
+    font-size: 1.05rem;
+    width: auto;
+    justify-content: center;
+  }
+  
+  .modern-nav-link:hover {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+  }
+  
+  /* 移动端隐藏分割线 */
+  .modern-nav .nav-item:not(:last-child)::before {
+    display: none;
+  }
+}
+
+/* 活跃状态 */
+.modern-nav-link.router-link-active {
+  color: #667eea !important;
+  font-weight: 600;
+}
+
+.modern-nav-link.router-link-active:hover {
+  text-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.modern-nav-link.router-link-active::after {
+  width: 100%;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  box-shadow: 0 0 6px rgba(102, 126, 234, 0.4);
+}
+</style>
