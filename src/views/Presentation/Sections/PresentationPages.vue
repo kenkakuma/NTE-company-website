@@ -1,28 +1,39 @@
 <script setup>
+import { ref, onMounted } from 'vue'
+import { RouterLink } from 'vue-router'
+import { newsArticles as defaultArticles } from "@/data/articles.js"
 
 // 新闻数据
-const newsItems = [
-  {
-    date: '2025.01.15',
-    title: '無迹探索株式会社設立準備開始のお知らせ'
-  },
-  {
-    date: '2025.01.10',
-    title: '東京ルアー・フライフィッシング学院 2025年春季コース募集開始'
-  },
-  {
-    date: '2025.01.08',
-    title: '厳選コーヒー商品ラインナップ拡充について'
-  },
-  {
-    date: '2025.01.05',
-    title: '中国アーティスト展示スペース 中目黒オープン準備中'
-  },
-  {
-    date: '2025.01.03',
-    title: '2025年限定釣具予約受付開始 - Shimano・Daiwa最新モデル'
+const newsItems = ref([])
+
+// 从本地存储或默认数据加载文章
+const loadNewsItems = () => {
+  try {
+    const saved = localStorage.getItem('notrace_articles')
+    if (saved) {
+      const parsedArticles = JSON.parse(saved)
+      if (Array.isArray(parsedArticles) && parsedArticles.length > 0) {
+        // 取最新5篇文章
+        newsItems.value = parsedArticles
+          .sort((a, b) => new Date(b.date) - new Date(a.date))
+          .slice(0, 5)
+        return
+      }
+    }
+  } catch (error) {
+    console.error('Failed to load articles from localStorage:', error)
   }
-];
+  
+  // 如果没有保存的数据，使用默认数据
+  newsItems.value = [...defaultArticles]
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .slice(0, 5)
+}
+
+// 组件挂载时加载数据
+onMounted(() => {
+  loadNewsItems()
+})
 </script>
 
 <style scoped>
@@ -316,13 +327,16 @@ const newsItems = [
                     </div>
                     <div class="news-content ms-4 flex-grow-1">
                       <h4 class="news-title mb-0">
-                        <a href="#" class="text-decoration-none stretched-link">
+                        <RouterLink 
+                          :to="{ name: 'about', query: { articleId: news.id } }" 
+                          class="text-decoration-none stretched-link"
+                        >
                           {{ news.title }}
-                        </a>
+                        </RouterLink>
                       </h4>
                     </div>
                     <div class="news-meta d-flex align-items-center">
-                      <span class="badge bg-gradient-primary me-3">企業情報</span>
+                      <span class="badge bg-gradient-primary me-3">{{ news.category || '企業情報' }}</span>
                       <span class="text-muted me-3" style="font-size: 0.85rem;">
                         <i class="fas fa-calendar-alt me-2"></i>
                         {{ news.date }}

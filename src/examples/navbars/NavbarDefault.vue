@@ -204,6 +204,16 @@ watch(
               <span class="nav-text">お問い合わせ</span>
             </RouterLink>
           </li>
+          <li class="nav-item mx-1 admin-link">
+            <RouterLink
+              class="nav-link modern-nav-link d-flex cursor-pointer align-items-center"
+              :class="getTextColor()"
+              :to="{ name: 'admin' }"
+              title="記事管理システム"
+            >
+              <i class="material-icons" style="font-size: 18px; opacity: 0.7;">settings</i>
+            </RouterLink>
+          </li>
         </ul>
       </div>
     </div>
@@ -323,5 +333,38 @@ watch(
   width: 100%;
   background: linear-gradient(90deg, #667eea, #764ba2);
   box-shadow: 0 0 6px rgba(102, 126, 234, 0.4);
+}
+
+/* 管理链接特殊样式 */
+.admin-link {
+  margin-left: 1rem !important;
+  opacity: 0.6;
+}
+
+.admin-link::before {
+  content: '';
+  position: absolute;
+  left: -0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 20px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 1px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.admin-link:hover {
+  opacity: 1;
+}
+
+.admin-link .modern-nav-link {
+  padding: 0.4rem 0.6rem !important;
+}
+
+/* 隐藏管理链接前面菜单项的分割线 */
+.modern-nav .nav-item:nth-last-child(2)::before {
+  display: none;
 }
 </style>

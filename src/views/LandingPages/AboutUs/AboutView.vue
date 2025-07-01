@@ -1,5 +1,6 @@
 <script setup>
-import { onMounted, onUnmounted, ref } from "vue";
+import { onMounted, onUnmounted, ref, watch } from "vue";
+import { useRoute } from "vue-router";
 
 //example components
 import DefaultNavbar from "../../../examples/navbars/NavbarDefault.vue";
@@ -8,113 +9,38 @@ import Header from "../../../examples/Header.vue";
 
 //Vue Material Kit 2 components
 import MaterialButton from "@/components/MaterialButton.vue";
+import { newsArticles as defaultArticles } from "@/data/articles.js";
 
 //image
 import bg0 from "@/assets/img/bg9.jpg";
 
-// 企業新闻文章数据
-const newsArticles = ref([
-  {
-    id: 1,
-    date: '2025.01.15',
-    title: '無迹探索株式会社設立準備開始のお知らせ',
-    category: '企業ニュース',
-    excerpt: '無迹探索株式会社の設立準備が正式に開始いたしました。東京都港区南青山を拠点として、革新的なビジネスソリューションの提供を目指します。',
-    content: `
-      <p>この度、無迹探索株式会社の設立準備を正式に開始いたしましたことをお知らせいたします。</p>
-      <h4>設立概要</h4>
-      <ul>
-        <li><strong>会社名:</strong> 無迹探索株式会社 (NO TRACE EXPLORER Co., Ltd.)</li>
-        <li><strong>所在地:</strong> 東京都港区南青山2-2-8 DFビル</li>
-        <li><strong>事業内容:</strong> 企業コンサルティング、コーヒー事業、展示・イベント運営等</li>
-        <li><strong>設立予定:</strong> 2025年春</li>
-      </ul>
-      <p>私たちは、コーヒー文化の普及、革新的な展示企画、技術研究開発、そして専門的なコンサルティングサービスを通じて、お客様と共に新たな価値を創造してまいります。</p>
-    `,
-    readTime: '3分',
-    tags: ['設立', '企業情報', 'コンサルティング']
-  },
-  {
-    id: 2,
-    date: '2025.01.10',
-    title: '東京ルアー・フライフィッシング学院 2025年春季コース募集開始',
-    category: 'サービス',
-    excerpt: '2025年春季フィッシング技術コースの受講生を募集開始いたします。初心者から上級者まで、段階的なカリキュラムでフィッシング技術を習得できます。',
-    content: `
-      <p>東京ルアー・フライフィッシング学院では、2025年春季コースの受講生募集を開始いたします。</p>
-      <h4>コース概要</h4>
-      <ul>
-        <li><strong>初級コース:</strong> フィッシング基礎技術、道具の使い方</li>
-        <li><strong>中級コース:</strong> ルアー・フライの選び方、キャスティング技術向上</li>
-        <li><strong>上級コース:</strong> 専門的な釣り技術、ガイド養成</li>
-      </ul>
-      <p>経験豊富なインストラクターによる少人数制指導で、確実にスキルアップできます。</p>
-    `,
-    readTime: '4分',
-    tags: ['フィッシング', '教育', 'スキルアップ']
-  },
-  {
-    id: 3,
-    date: '2025.01.08',
-    title: '厳選コーヒー商品ラインナップ拡充について',
-    category: 'コーヒー事業',
-    excerpt: '世界各地から厳選した高品質コーヒー豆を使用した新商品を順次リリース予定です。サステナブルな調達にもこだわり、品質と社会責任を両立します。',
-    content: `
-      <p>この度、コーヒー事業部では厳選された新商品のラインナップ拡充を進めております。</p>
-      <h4>新商品概要</h4>
-      <ul>
-        <li><strong>エチオピア産シングルオリジン:</strong> フルーティーで爽やかな酸味が特徴</li>
-        <li><strong>グアテマラ産オーガニック:</strong> 深いコクと上品な甘み</li>
-        <li><strong>ブラジル産フェアトレード:</strong> バランスの取れた味わい</li>
-      </ul>
-      <p>全ての商品は現地生産者との直接取引により、高品質と適正価格を実現しています。</p>
-    `,
-    readTime: '3分',
-    tags: ['コーヒー', '新商品', 'サステナブル']
-  },
-  {
-    id: 4,
-    date: '2025.01.05',
-    title: '中国アーティスト展示スペース 中目黒オープン準備中',
-    category: '展示・イベント',
-    excerpt: '中目黒に新設する中国現代アーティストの展示スペースが2025年春のオープンに向けて準備を進めています。文化交流の新拠点として期待されます。',
-    content: `
-      <p>中目黒に中国現代アーティストの作品を常設展示するギャラリースペースを新設いたします。</p>
-      <h4>展示スペース概要</h4>
-      <ul>
-        <li><strong>所在地:</strong> 東京都目黒区中目黒（詳細は後日発表）</li>
-        <li><strong>展示面積:</strong> 約200㎡</li>
-        <li><strong>オープン予定:</strong> 2025年4月</li>
-      </ul>
-      <p>現代中国アートの多様性と革新性を紹介し、日中文化交流の橋渡し役として機能することを目指します。</p>
-    `,
-    readTime: '4分',
-    tags: ['展示', 'アート', '文化交流', '中目黒']
-  },
-  {
-    id: 5,
-    date: '2025.01.03',
-    title: '2025年限定釣具予約受付開始 - Shimano・Daiwa最新モデル',
-    category: '釣具・器具',
-    excerpt: 'Shimano、Daiwa等の有名ブランドの2025年限定モデルの予約受付を開始いたします。早期予約特典もございますので、この機会をお見逃しなく。',
-    content: `
-      <p>2025年の限定釣具モデルの予約受付を開始いたしました。</p>
-      <h4>取扱ブランド・商品</h4>
-      <ul>
-        <li><strong>Shimano:</strong> ステラ2025限定モデル、エクスセンス2025</li>
-        <li><strong>Daiwa:</strong> イグジスト2025、モアザン2025限定カラー</li>
-        <li><strong>がまかつ:</strong> ラグゼ限定シリーズ</li>
-      </ul>
-      <h4>早期予約特典</h4>
-      <p>1月末までのご予約で、オリジナルメンテナンスキットをプレゼントいたします。</p>
-    `,
-    readTime: '3分',
-    tags: ['釣具', '限定モデル', 'Shimano', 'Daiwa']
+// 企業新闻文章数据 - 从管理系统和默认数据中加载
+const newsArticles = ref([]);
+
+// 从本地存储或默认数据加载文章
+const loadArticles = () => {
+  try {
+    const saved = localStorage.getItem('notrace_articles')
+    if (saved) {
+      const parsedArticles = JSON.parse(saved)
+      if (Array.isArray(parsedArticles) && parsedArticles.length > 0) {
+        newsArticles.value = parsedArticles.sort((a, b) => new Date(b.date) - new Date(a.date))
+        return
+      }
+    }
+  } catch (error) {
+    console.error('Failed to load articles from localStorage:', error)
   }
-]);
+  
+  // 如果没有保存的数据，使用默认数据
+  newsArticles.value = [...defaultArticles].sort((a, b) => new Date(b.date) - new Date(a.date))
+};
 
 // 選択された記事
 const selectedArticle = ref(null);
+
+// 路由实例
+const route = useRoute();
 
 // 記事を選択する関数
 const selectArticle = (article) => {
@@ -137,11 +63,33 @@ const formatDate = (dateStr) => {
   };
 };
 
+// 根据URL参数选择文章
+const selectArticleFromQuery = () => {
+  const articleId = route.query.articleId;
+  if (articleId && newsArticles.value.length > 0) {
+    const article = newsArticles.value.find(a => a.id == articleId);
+    if (article) {
+      selectedArticle.value = article;
+    }
+  }
+};
+
+// 监听路由变化
+watch(() => route.query.articleId, () => {
+  selectArticleFromQuery();
+}, { immediate: false });
+
 const body = document.getElementsByTagName("body")[0];
 //hooks
 onMounted(() => {
   body.classList.add("corporate-news");
   body.classList.add("bg-gray-200");
+  // 加载文章数据
+  loadArticles();
+  // 延迟检查URL参数，确保文章数据已加载
+  setTimeout(() => {
+    selectArticleFromQuery();
+  }, 100);
 });
 
 onUnmounted(() => {

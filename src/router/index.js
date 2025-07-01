@@ -8,6 +8,7 @@ import LabView from "../views/LandingPages/Lab/LabView.vue";
 import CoffeeView from "../views/LandingPages/Coffee/CoffeeView.vue";
 import ClubView from "../views/LandingPages/Club/ClubView.vue";
 import ExhibitionView from "../views/LandingPages/Exhibition/ExhibitionView.vue";
+import ArticleAdminView from "../views/LandingPages/Admin/ArticleAdminView.vue";
 import PageHeaders from "../layouts/sections/page-sections/page-headers/HeadersView.vue";
 import PageFeatures from "../layouts/sections/page-sections/features/FeaturesView.vue";
 import NavigationNavbars from "../layouts/sections/navigation/navbars/NavbarsView.vue";
@@ -74,6 +75,11 @@ const router = createRouter({
       path: "/exhibition",
       name: "exhibition",
       component: ExhibitionView,
+    },
+    {
+      path: "/admin",
+      name: "admin",
+      component: ArticleAdminView,
     },
     {
       path: "/sections/page-sections/page-headers",
