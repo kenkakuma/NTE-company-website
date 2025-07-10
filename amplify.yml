@@ -7,7 +7,7 @@ frontend:
         - node --version
         - npm --version
         - echo "Installing dependencies..."
-        - npm ci --legacy-peer-deps
+        - npm install --legacy-peer-deps
         - echo "Dependencies installed successfully"
     build:
       commands:
