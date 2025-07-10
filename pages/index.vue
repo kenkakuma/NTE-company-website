@@ -6,18 +6,26 @@
       <Meta name="description" content="革新的なソリューションで新たなビジネス価値を創造する企業です。コーヒー事業、展示・イベント運営、技術研究開発など多岐にわたるサービスを提供。" />
     </Head>
     
-    <!-- Hero Section - 完全匹配Anthropic设计 -->
+    <!-- Hero Section - 全屏背景图片设计 -->
     <section class="anthropic-hero">
+      <!-- 背景图片层 -->
+      <div class="hero-background-image" :style="{ backgroundImage: `url(${backgroundImage})` }"></div>
+      
+      <!-- 遮罩层用于确保文字清晰可见 -->
+      <div class="hero-overlay"></div>
+      
+      <!-- 内容容器 -->
       <v-container class="hero-container" fluid>
-        <v-row class="hero-content-row" align="center">
-          <!-- 左侧主要内容 -->
-          <v-col cols="12" lg="7" xl="6" class="hero-left-content">
+        <div class="hero-content-wrapper">
+          <!-- 左下角内容区域 -->
+          <div class="hero-bottom-left">
             <!-- 主标题 -->
-            <h1 class="hero-main-title scroll-animate">
-              未知の領域を<span class="title-highlight">探索</span>し、<br>
-              輝く未来を<span class="title-highlight">築く</span><br>
-              innovative solutions
+            <h1 class="hero-main-title scroll-animate" v-html="heroContent.title">
             </h1>
+            
+            <!-- 描述文字 -->
+            <p class="hero-description" v-html="heroContent.description">
+            </p>
             
             <!-- 产品卡片组 - 横向排列 -->
             <div class="hero-product-cards scroll-animate animate-delay-200">
@@ -53,8 +61,7 @@
                     中国現代アートから文化交流まで、革新的な展示とイベントを企画・運営いたします。
                   </p>
                   <v-btn 
-                    class="card-btn secondary-btn"
-                    variant="outlined"
+                    class="card-btn primary-btn"
                     color="black"
                     block
                     rounded="lg"
@@ -66,36 +73,123 @@
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </v-container>
+    </section>
+
+    <!-- 合并区域 - 按照您的HTML代码设计 -->
+    <section class="anthropic-mission-section">
+      <div class="custom-container">
+        <!-- 标题区域 - 修改为左右布局 -->
+        <div class="header-section">
+          <div class="header-left">
+            <h1 class="main-title">
+              NO TRACE EXPLORERでは、<br>
+              未知の領域を探索し、<br>
+              お客様の長期的な<br>
+              価値創造を目指します。
+            </h1>
+          </div>
+          <div class="header-right">
+            <p class="description">
+              多分野にわたる専門知識と革新的なアプローチにより、複雑な課題に対する総合的なソリューションを提供します。コーヒー事業から技術研究開発まで、4つの専門分野で実世界に測定可能な影響を与えることをお約束します。
+            </p>
+          </div>
+        </div>
+
+        <!-- 卡片区域 -->
+        <div class="cards-container">
+          <div class="card">
+            <div class="card-icon">
+              <v-icon size="32" color="#E17B47">mdi-compass-outline</v-icon>
+            </div>
+            <div>
+              <h3 class="card-title">私たちの事業領域</h3>
+              <p class="card-content">コーヒー商品開発、総合コンサルティング、展示・技術サービス、サスティナブル調達から文化芸術企画、専門的なアプローチで実現します。</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">
+              <v-icon size="32" color="#E17B47">mdi-lightbulb-variant-outline</v-icon>
+            </div>
+            <div>
+              <h3 class="card-title">革新を推進する技術力</h3>
+              <p class="card-content">最新テクノロジーと従来の手法を組み合わせ、お客様の課題に対して最適なソリューションを提案します。継続的な改善と品質向上に取り組んでいます。</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">
+              <v-icon size="32" color="#E17B47">mdi-earth</v-icon>
+            </div>
+            <div>
+              <h3 class="card-title">業界変革への取り組み</h3>
+              <p class="card-content">50+体験プログラム、15+パートナー企業との協力により、業界の未来を見据えた持続可能な成長モデルを構築し、社会的価値を創造します。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 企业理念区域 - Anthropic风格 -->
+    <section class="anthropic-philosophy-section">
+      <v-container class="philosophy-container" fluid>
+        <v-row justify="center" align="center">
+          <v-col cols="12" lg="6" class="philosophy-content scroll-animate">
+            <div class="philosophy-text">
+              <span class="philosophy-badge">企業理念</span>
+              <h2 class="philosophy-title">
+                未知の領域を探索し、革新を創造する
+              </h2>
+              <p class="philosophy-description">
+                無迹探索株式会社では、未踏の分野への挑戦から最も画期的なイノベーションが生まれると信じています。
+                倫理的基準を維持しながら境界を押し広げるという私たちのコミットメントが、すべての活動の原動力となっています。
+              </p>
+              <div class="philosophy-principles">
+                <div class="principle-item">
+                  <v-icon size="24" color="#f97316" class="principle-icon">mdi-lightbulb-outline</v-icon>
+                  <div class="principle-content">
+                    <h4 class="principle-title">継続的イノベーション</h4>
+                    <p class="principle-desc">最先端技術を取り入れて複雑な課題を解決</p>
+                  </div>
+                </div>
+                <div class="principle-item">
+                  <v-icon size="24" color="#f97316" class="principle-icon">mdi-shield-check-outline</v-icon>
+                  <div class="principle-content">
+                    <h4 class="principle-title">倫理的卓越性</h4>
+                    <p class="principle-desc">すべての取り組みにおいて最高水準の誠実性を維持</p>
+                  </div>
+                </div>
+                <div class="principle-item">
+                  <v-icon size="24" color="#f97316" class="principle-icon">mdi-account-group-outline</v-icon>
+                  <div class="principle-content">
+                    <h4 class="principle-title">協働的成長</h4>
+                    <p class="principle-desc">相互価値を創造する持続的なパートナーシップの構築</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </v-col>
-          
-          <!-- 右侧装饰图标 -->
-          <v-col cols="12" lg="5" xl="6" class="hero-right-visual d-none d-lg-flex">
-            <div class="hero-visual-container">
-              <div class="network-visualization">
-                <!-- 中心节点 -->
-                <div class="network-node center-node"></div>
-                <!-- 连接节点 -->
-                <div class="network-node node-1"></div>
-                <div class="network-node node-2"></div>
-                <div class="network-node node-3"></div>
-                <div class="network-node node-4"></div>
-                <div class="network-node node-5"></div>
-                <div class="network-node node-6"></div>
-                <!-- 连接线 -->
-                <div class="network-line line-1"></div>
-                <div class="network-line line-2"></div>
-                <div class="network-line line-3"></div>
-                <div class="network-line line-4"></div>
-                <div class="network-line line-5"></div>
-                <div class="network-line line-6"></div>
-                <!-- 抽象手型图案 -->
-                <div class="abstract-hand"></div>
+          <v-col cols="12" lg="6" class="philosophy-visual scroll-animate animate-delay-200">
+            <div class="philosophy-illustration">
+              <div class="illustration-container">
+                <div class="floating-elements">
+                  <div class="element element-1"></div>
+                  <div class="element element-2"></div>
+                  <div class="element element-3"></div>
+                  <div class="element element-4"></div>
+                  <div class="element element-5"></div>
+                </div>
+                <div class="central-glow"></div>
               </div>
             </div>
           </v-col>
         </v-row>
       </v-container>
     </section>
+
 
     <!-- 第二区域 - 匹配Anthropic下方区域 -->
     <section class="secondary-hero-section">
@@ -142,114 +236,6 @@
       </v-container>
     </section>
 
-    <!-- 合并区域 - 按照您的HTML代码设计 -->
-    <section class="anthropic-mission-section">
-      <div class="custom-container">
-        <!-- 标题区域 - 修改为左右布局 -->
-        <div class="header-section">
-          <div class="header-left">
-            <h1 class="main-title">
-              NO TRACE EXPLORERでは、<br>
-              未知の領域を探索し、<br>
-              お客様の長期的な<br>
-              価値創造を目指します。
-            </h1>
-          </div>
-          <div class="header-right">
-            <p class="description">
-              多分野にわたる専門知識と革新的なアプローチにより、複雑な課題に対する総合的なソリューションを提供します。コーヒー事業から技術研究開発まで、4つの専門分野で実世界に測定可能な影響を与えることをお約束します。
-            </p>
-          </div>
-        </div>
-
-        <!-- 卡片区域 -->
-        <div class="cards-container">
-          <div class="card">
-            <div class="card-icon">🔍</div>
-            <div>
-              <h3 class="card-title">私たちの事業領域</h3>
-              <p class="card-content">コーヒー商品開発、総合コンサルティング、展示・技術サービス、サスティナブル調達から文化芸術企画、専門的なアプローチで実現します。</p>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-icon">💡</div>
-            <div>
-              <h3 class="card-title">革新を推進する技術力</h3>
-              <p class="card-content">最新テクノロジーと従来の手法を組み合わせ、お客様の課題に対して最適なソリューションを提案します。継続的な改善と品質向上に取り組んでいます。</p>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-icon">🌍</div>
-            <div>
-              <h3 class="card-title">業界変革への取り組み</h3>
-              <p class="card-content">50+体験プログラム、15+パートナー企業との協力により、業界の未来を見据えた持続可能な成長モデルを構築し、社会的価値を創造します。</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- 企业理念区域 - Anthropic风格 -->
-    <section class="anthropic-philosophy-section">
-      <v-container class="philosophy-container" fluid>
-        <v-row justify="center" align="center">
-          <v-col cols="12" lg="6" class="philosophy-content scroll-animate">
-            <div class="philosophy-text">
-              <span class="philosophy-badge">Our Philosophy</span>
-              <h2 class="philosophy-title">
-                Innovation through exploration of the unknown
-              </h2>
-              <p class="philosophy-description">
-                At NO TRACE EXPLORER, we believe that the most breakthrough innovations emerge from venturing 
-                into uncharted territories. Our commitment to pushing boundaries while maintaining ethical 
-                standards drives everything we do.
-              </p>
-              <div class="philosophy-principles">
-                <div class="principle-item">
-                  <v-icon size="24" color="#f97316" class="principle-icon">mdi-lightbulb-outline</v-icon>
-                  <div class="principle-content">
-                    <h4 class="principle-title">Continuous Innovation</h4>
-                    <p class="principle-desc">Embracing cutting-edge technologies to solve complex challenges</p>
-                  </div>
-                </div>
-                <div class="principle-item">
-                  <v-icon size="24" color="#f97316" class="principle-icon">mdi-shield-check-outline</v-icon>
-                  <div class="principle-content">
-                    <h4 class="principle-title">Ethical Excellence</h4>
-                    <p class="principle-desc">Maintaining highest standards of integrity in all our endeavors</p>
-                  </div>
-                </div>
-                <div class="principle-item">
-                  <v-icon size="24" color="#f97316" class="principle-icon">mdi-account-group-outline</v-icon>
-                  <div class="principle-content">
-                    <h4 class="principle-title">Collaborative Growth</h4>
-                    <p class="principle-desc">Building lasting partnerships that create mutual value</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </v-col>
-          <v-col cols="12" lg="6" class="philosophy-visual scroll-animate animate-delay-200">
-            <div class="philosophy-illustration">
-              <div class="illustration-container">
-                <div class="floating-elements">
-                  <div class="element element-1"></div>
-                  <div class="element element-2"></div>
-                  <div class="element element-3"></div>
-                  <div class="element element-4"></div>
-                  <div class="element element-5"></div>
-                </div>
-                <div class="central-glow"></div>
-              </div>
-            </div>
-          </v-col>
-        </v-row>
-      </v-container>
-    </section>
-
     <!-- 企業情報 - 简洁表格式布局 -->
     <section class="featured-section">
       <v-container fluid>
@@ -263,16 +249,20 @@
               
               <!-- 右侧新闻列表 -->
               <div class="featured-right">
-                <div class="news-table">
+                <div class="featured-news-list">
                   <div 
-                    v-for="(article, index) in latestArticles" 
+                    v-for="article in latestArticles" 
                     :key="article.id"
-                    class="news-row"
+                    class="featured-news-item"
                     @click="navigateToArticle(article.id)"
                   >
-                    <div class="news-title">{{ article.title }}</div>
-                    <div class="news-category">{{ article.category }}</div>
-                    <div class="news-date">{{ formatDate(article.date) }}</div>
+                    <div class="featured-news-content">
+                      <h3 class="featured-news-title">{{ article.title }}</h3>
+                      <div class="featured-news-meta">
+                        <span class="featured-news-category">{{ article.category }}</span>
+                        <span class="featured-news-date">{{ formatDate(article.date) }}</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -289,128 +279,64 @@
           <v-col cols="12" lg="10" xl="8">
             <div class="text-center mb-16 scroll-animate">
               <h2 class="anthropic-section-title">
-                Trusted by industry leaders
+                業界リーダーからの信頼
               </h2>
               <p class="anthropic-section-description animate-delay-200">
-                Collaborating with global partners to deliver exceptional results
+                グローバルパートナーとの協働により卓越した成果を提供
               </p>
             </div>
 
             <div class="partners-logos">
-              <div class="partners-row scroll-animate animate-delay-300">
-                <div class="partner-logo">
-                  <div class="logo-placeholder">
-                    <span class="logo-text">Shimano</span>
-                  </div>
-                </div>
-                <div class="partner-logo">
-                  <div class="logo-placeholder">
-                    <span class="logo-text">Daiwa</span>
-                  </div>
-                </div>
-                <div class="partner-logo">
-                  <div class="logo-placeholder">
-                    <span class="logo-text">Tokyo Coffee</span>
-                  </div>
-                </div>
-                <div class="partner-logo">
-                  <div class="logo-placeholder">
-                    <span class="logo-text">Art Gallery Tokyo</span>
-                  </div>
-                </div>
-              </div>
-              <div class="partners-row scroll-animate animate-delay-400">
-                <div class="partner-logo">
-                  <div class="logo-placeholder">
-                    <span class="logo-text">Sports Tech Inc</span>
-                  </div>
-                </div>
-                <div class="partner-logo">
-                  <div class="logo-placeholder">
-                    <span class="logo-text">Event Solutions</span>
-                  </div>
-                </div>
-                <div class="partner-logo">
-                  <div class="logo-placeholder">
-                    <span class="logo-text">Innovation Lab</span>
-                  </div>
-                </div>
-                <div class="partner-logo">
-                  <div class="logo-placeholder">
-                    <span class="logo-text">Global Trade</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </v-col>
-        </v-row>
-      </v-container>
-    </section>
-
-    <!-- 客户评价区域 - Anthropic风格 -->
-    <section class="anthropic-testimonials-section">
-      <v-container class="testimonials-container" fluid>
-        <v-row justify="center">
-          <v-col cols="12" lg="10" xl="8">
-            <div class="text-center mb-16 scroll-animate">
-              <h2 class="anthropic-section-title">
-                What our clients are saying
-              </h2>
-              <p class="anthropic-section-description animate-delay-200">
-                Hear from industry leaders who have transformed their business with our innovative solutions
-              </p>
-            </div>
-
-            <div class="testimonials-grid">
-              <!-- 客户评价1 -->
-              <div class="testimonial-card scroll-animate animate-delay-300">
-                <div class="testimonial-content">
-                  <div class="testimonial-quote">
-                    "NO TRACE EXPLORER's technical expertise and innovative approach completely transformed our coffee sourcing process. Their R&D team delivered solutions that exceeded our expectations and improved our product quality by 40%."
-                  </div>
-                  <div class="testimonial-author">
-                    <div class="author-avatar">
-                      <span class="author-initial">H.T</span>
-                    </div>
-                    <div class="author-info">
-                      <div class="author-name">Hiroshi Tanaka</div>
-                      <div class="author-title">CEO, Premium Coffee Co.</div>
+              <!-- 滚动容器 -->
+              <div class="partners-scroll-container">
+                <!-- 左侧渐变遮罩 -->
+                <div class="scroll-fade-left"></div>
+                <!-- 右侧渐变遮罩 -->
+                <div class="scroll-fade-right"></div>
+                
+                <!-- 滚动内容 -->
+                <div class="partners-scroll-content">
+                  <!-- 第一组logo -->
+                  <div class="partners-scroll-track">
+                    <div 
+                      v-for="partner in partnersData" 
+                      :key="`first-${partner.id}`"
+                      class="partner-logo"
+                    >
+                      <div class="logo-container">
+                        <img 
+                          v-if="partner.logoUrl" 
+                          :src="partner.logoUrl" 
+                          :alt="partner.name"
+                          class="partner-logo-image"
+                          @error="handleImageError"
+                        />
+                        <div v-else class="logo-placeholder">
+                          <span class="logo-text">{{ partner.name }}</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-
-              <!-- 客户评价2 -->
-              <div class="testimonial-card scroll-animate animate-delay-400">
-                <div class="testimonial-content">
-                  <div class="testimonial-quote">
-                    "The exhibition planning and event management services provided by NTE were exceptional. They created an immersive experience that increased our visitor engagement by 300% and generated significant business leads."
-                  </div>
-                  <div class="testimonial-author">
-                    <div class="author-avatar">
-                      <span class="author-initial">M.S</span>
-                    </div>
-                    <div class="author-info">
-                      <div class="author-name">Marina Suzuki</div>
-                      <div class="author-title">Director, Tokyo Art Museum</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- 客户评价3 -->
-              <div class="testimonial-card scroll-animate animate-delay-500">
-                <div class="testimonial-content">
-                  <div class="testimonial-quote">
-                    "Working with their LAB division on custom fishing equipment development was a game-changer. The precision engineering and attention to detail resulted in products that our customers love."
-                  </div>
-                  <div class="testimonial-author">
-                    <div class="author-avatar">
-                      <span class="author-initial">K.W</span>
-                    </div>
-                    <div class="author-info">
-                      <div class="author-name">Kenji Watanabe</div>
-                      <div class="author-title">Founder, Alpine Fishing Gear</div>
+                  
+                  <!-- 第二组logo（用于无缝循环） -->
+                  <div class="partners-scroll-track">
+                    <div 
+                      v-for="partner in partnersData" 
+                      :key="`second-${partner.id}`"
+                      class="partner-logo"
+                    >
+                      <div class="logo-container">
+                        <img 
+                          v-if="partner.logoUrl" 
+                          :src="partner.logoUrl" 
+                          :alt="partner.name"
+                          class="partner-logo-image"
+                          @error="handleImageError"
+                        />
+                        <div v-else class="logo-placeholder">
+                          <span class="logo-text">{{ partner.name }}</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -420,6 +346,7 @@
         </v-row>
       </v-container>
     </section>
+
 
     <!-- FAQ常见问题区域 - Anthropic风格 -->
     <section class="anthropic-faq-section">
@@ -428,10 +355,10 @@
           <v-col cols="12" lg="10" xl="8">
             <div class="text-center mb-16 scroll-animate">
               <h2 class="anthropic-section-title">
-                Frequently asked questions
+                よくあるご質問
               </h2>
               <p class="anthropic-section-description animate-delay-200">
-                Get answers to common questions about our services and partnerships
+                無迹探索株式会社のサービスや事業に関するよくあるご質問にお答えします
               </p>
             </div>
 
@@ -439,7 +366,7 @@
               <!-- FAQ 1 -->
               <div class="faq-item scroll-animate animate-delay-300" @click="toggleFAQ(1)">
                 <div class="faq-question">
-                  <h3 class="question-text">What makes NO TRACE EXPLORER different from other consulting companies?</h3>
+                  <h3 class="question-text">無迹探索株式会社の主な事業内容は何ですか？</h3>
                   <div class="question-icon" :class="{ expanded: expandedFAQ === 1 }">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                       <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -448,9 +375,7 @@
                 </div>
                 <div class="faq-answer" v-show="expandedFAQ === 1">
                   <p>
-                    We combine deep technical expertise across multiple industries with innovative R&D capabilities. 
-                    Our unique approach integrates coffee business, exhibition management, technical research, and 
-                    community building to deliver comprehensive solutions that traditional consulting firms cannot match.
+                    当社は4つの核心事業を展開しています。珈琲事業では高品質コーヒー商品の企画開発・貿易・ブランド展開を、展示・イベント運営では文化・技術・芸術分野の展示企画とイベント運営を、技術研究開発では革新的な技術研究とイノベーション開発を、コミュニティ運営では会員制の専門家ネットワークと限定サービスを提供しています。
                   </p>
                 </div>
               </div>
@@ -458,7 +383,7 @@
               <!-- FAQ 2 -->
               <div class="faq-item scroll-animate animate-delay-400" @click="toggleFAQ(2)">
                 <div class="faq-question">
-                  <h3 class="question-text">How do you ensure quality in your coffee sourcing and product development?</h3>
+                  <h3 class="question-text">コーヒー事業の品質管理はどのように行っていますか？</h3>
                   <div class="question-icon" :class="{ expanded: expandedFAQ === 2 }">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                       <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -467,9 +392,7 @@
                 </div>
                 <div class="faq-answer" v-show="expandedFAQ === 2">
                   <p>
-                    Our coffee team conducts rigorous quality assessments at every stage, from bean selection to final packaging. 
-                    We maintain direct relationships with premium farms, utilize advanced roasting techniques, and perform 
-                    extensive taste testing to ensure exceptional quality standards.
+                    当社のコーヒー事業では、豆の選定から最終パッケージングまで全工程で厳格な品質評価を実施しています。世界各地の優良農園と直接的な関係を築き、独自の焙煎技術を活用し、広範囲な味覚テストを行うことで、卓越した品質基準を確保しています。また、サステナブルな調達と品質保証も重視しています。
                   </p>
                 </div>
               </div>
@@ -477,7 +400,7 @@
               <!-- FAQ 3 -->
               <div class="faq-item scroll-animate animate-delay-500" @click="toggleFAQ(3)">
                 <div class="faq-question">
-                  <h3 class="question-text">What types of exhibitions and events do you specialize in?</h3>
+                  <h3 class="question-text">展示・イベント運営ではどのような分野を専門としていますか？</h3>
                   <div class="question-icon" :class="{ expanded: expandedFAQ === 3 }">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                       <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -486,9 +409,7 @@
                 </div>
                 <div class="faq-answer" v-show="expandedFAQ === 3">
                   <p>
-                    We specialize in cultural and artistic exhibitions, technical showcases, corporate events, and 
-                    immersive experience design. Our portfolio includes art gallery exhibitions, technology demonstrations, 
-                    product launches, and educational workshops across various industries.
+                    文化・芸術展示、技術デモンストレーション、企業イベント、没入型体験デザインを専門としています。美術館展示、技術発表会、製品発表、教育ワークショップなど、様々な業界で革新的な展示空間設計と専門的なイベント運営サービスを提供し、印象的な体験を創造します。
                   </p>
                 </div>
               </div>
@@ -496,7 +417,7 @@
               <!-- FAQ 4 -->
               <div class="faq-item scroll-animate animate-delay-600" @click="toggleFAQ(4)">
                 <div class="faq-question">
-                  <h3 class="question-text">How can I join your community programs or access specialized services?</h3>
+                  <h3 class="question-text">コミュニティプログラムへの参加方法や専門サービスの利用方法を教えてください</h3>
                   <div class="question-icon" :class="{ expanded: expandedFAQ === 4 }">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                       <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -505,9 +426,7 @@
                 </div>
                 <div class="faq-answer" v-show="expandedFAQ === 4">
                   <p>
-                    Contact us through our website or visit our club page to learn about membership opportunities. 
-                    We offer various community programs including coffee enthusiast clubs, outdoor sports groups, 
-                    and cultural art circles with both beginner and advanced levels available.
+                    当社ウェブサイトのお問い合わせフォームまたはクラブページから会員機会についてお問い合わせください。コーヒー愛好家クラブ、アウトドアスポーツグループ、文化芸術サークルなど多様なコミュニティプログラムを提供しており、初心者から上級者まで様々なレベルに対応しています。
                   </p>
                 </div>
               </div>
@@ -517,45 +436,6 @@
       </v-container>
     </section>
 
-    <!-- Anthropic风格底部行动召唤区域 -->
-    <section class="anthropic-cta-section">
-      <v-container class="cta-container" fluid>
-        <v-row justify="center">
-          <v-col cols="12" lg="8" xl="6">
-            <div class="anthropic-cta-content scroll-animate">
-              <h2 class="cta-title">
-                Ready to explore new frontiers?
-              </h2>
-              <p class="cta-description">
-                Partner with NO TRACE EXPLORER to transform your business with innovative solutions 
-                across coffee, technology, and specialized services.
-              </p>
-              <div class="cta-buttons">
-                <v-btn
-                  class="cta-primary-button"
-                  color="black"
-                  size="x-large"
-                  rounded="lg"
-                  to="/contact"
-                >
-                  Start your project
-                </v-btn>
-                <v-btn
-                  class="cta-secondary-button"
-                  variant="outlined"
-                  color="black"
-                  size="x-large"
-                  rounded="lg"
-                  to="/about"
-                >
-                  Learn more
-                </v-btn>
-              </div>
-            </div>
-          </v-col>
-        </v-row>
-      </v-container>
-    </section>
 
   </div>
 </template>
@@ -577,6 +457,23 @@ const toggleFAQ = (faqNumber: number) => {
 
 // 新闻相关功能
 const latestArticles = getLatestArticles(5)
+
+// 合作伙伴数据管理
+const partnersData = ref([
+  { id: 1, name: 'Shimano', logoUrl: '' },
+  { id: 2, name: 'Daiwa', logoUrl: '' },
+  { id: 3, name: '東京珈琲', logoUrl: '' },
+  { id: 4, name: '東京アートギャラリー', logoUrl: '' },
+  { id: 5, name: 'スポーツテック株式会社', logoUrl: '' },
+  { id: 6, name: 'イベントソリューション', logoUrl: '' },
+  { id: 7, name: 'イノベーションラボ', logoUrl: '' },
+  { id: 8, name: 'グローバル貿易', logoUrl: '' }
+])
+
+// 图片错误处理
+const handleImageError = (event: Event) => {
+  console.error('Partner logo failed to load:', event)
+}
 
 // 格式化日期函数
 const formatDate = (dateString: string): string => {
@@ -706,6 +603,95 @@ onMounted(() => {
     cleanupScrollOptimization()
   })
 })
+
+// Hero section dynamic content
+const backgroundImage = ref('https://images.unsplash.com/photo-1531804055935-76f44d7c3621?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2232&q=80')
+
+const heroContent = ref({
+  title: '夢の家探しを<br>お手伝いします。',
+  description: '商品の香りもとてもよく、お客様にも大変喜ばれております。ヴァルプデートツイス、<br>トチョコレートの利点もあります。悲しい湖の観えも、ウラムコーパー・ルトラム'
+})
+
+// 确保heroContent响应式更新
+watch(heroContent, () => {
+  if (process.client) {
+    // 强制重新渲染Hero区域
+    nextTick(() => {
+      const heroSection = document.querySelector('.anthropic-hero')
+      if (heroSection && heroSection instanceof HTMLElement) {
+        heroSection.style.opacity = '0.99'
+        setTimeout(() => {
+          if (heroSection instanceof HTMLElement) {
+            heroSection.style.opacity = '1'
+          }
+        }, 10)
+      }
+    })
+  }
+}, { deep: true })
+
+// Load homepage settings
+onMounted(() => {
+  if (process.client) {
+    const savedSettings = localStorage.getItem('homepage_settings')
+    if (savedSettings) {
+      try {
+        const settings = JSON.parse(savedSettings)
+        if (settings.backgroundImage) {
+          backgroundImage.value = settings.backgroundImage
+        }
+        if (settings.heroContent) {
+          heroContent.value = { ...heroContent.value, ...settings.heroContent }
+        }
+      } catch (error) {
+        console.error('Failed to load homepage settings:', error)
+      }
+    }
+    
+    // 确保Hero区域和按钮正确渲染
+    nextTick(() => {
+      const heroSection = document.querySelector('.anthropic-hero')
+      const buttons = document.querySelectorAll('.card-btn')
+      
+      if (heroSection && heroSection instanceof HTMLElement) {
+        // 确保Hero区域显示正常
+        heroSection.style.minHeight = '100vh'
+        heroSection.style.position = 'relative'
+      }
+      
+      // 强制应用按钮样式 - 统一为黑色实心按钮
+      buttons.forEach(btn => {
+        if (btn instanceof HTMLElement && btn.classList.contains('primary-btn')) {
+          btn.style.setProperty('background', '#1A1A1A', 'important')
+          btn.style.setProperty('color', '#FFFFFF', 'important')
+          btn.style.setProperty('border', 'none', 'important')
+        }
+      })
+      
+      // 检查文字显示
+      const heroTitle = document.querySelector('.hero-main-title')
+      const heroDesc = document.querySelector('.hero-description')
+      if (heroTitle instanceof HTMLElement && heroDesc instanceof HTMLElement) {
+        // 确保文字可见
+        heroTitle.style.color = 'white'
+        heroTitle.style.textShadow = '0 2px 4px rgba(0, 0, 0, 0.5)'
+        heroDesc.style.color = 'white'
+        heroDesc.style.textShadow = '0 1px 2px rgba(0, 0, 0, 0.5)'
+      }
+    })
+    
+    // Load partners data
+    const savedPartners = localStorage.getItem('partners_data')
+    if (savedPartners) {
+      try {
+        const partners = JSON.parse(savedPartners)
+        partnersData.value = partners
+      } catch (error) {
+        console.error('Failed to load partners data:', error)
+      }
+    }
+  }
+})
 </script>
 
 <!-- 全局CSS变量定义 -->
@@ -752,48 +738,102 @@ onMounted(() => {
 
 /* 基础页面样式 - 匹配原版 */
 .presentation-page {
-  background: var(--anthropic-bg-primary);
+  background: #FAF9F7;
   font-family: var(--anthropic-font-primary);
 }
 
-/* ===== Anthropic风格Hero区域样式 - 完全匹配版本 ===== */
+/* ===== 全屏背景图片Hero区域样式 ===== */
 .anthropic-hero {
-  background: var(--anthropic-bg-primary);
+  position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 6rem 0 4rem;
-  position: relative;
+  justify-content: center;
   overflow: hidden;
+  padding: 4rem 0 2rem;
+}
+
+/* 背景图片层 - 动态加载 */
+.hero-background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+/* 遮罩层确保文字清晰可见 */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+  z-index: 2;
 }
 
 .hero-container {
-  max-width: 1400px;
+  position: relative;
+  z-index: 3;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
+  width: 100%;
 }
 
-.hero-content-row {
-  min-height: 60vh;
-  align-items: center;
+.hero-content-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
 }
 
-.hero-left-content {
-  padding-right: 2rem;
+.hero-bottom-left {
+  max-width: 760px;
+  padding: 0 0 3rem 1.5rem;
+  text-align: left;
 }
 
-/* 主标题样式 */
+/* 主标题样式 - 适配全屏背景 */
 .hero-main-title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(3rem, 6vw, 5rem);
   font-weight: 700;
   line-height: 1.1;
-  color: var(--anthropic-text-primary);
+  color: white !important;
   letter-spacing: -0.02em;
-  margin-bottom: 3rem;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7) !important;
+  z-index: 10;
+  position: relative;
+  margin-bottom: 1.5rem;
   font-family: var(--anthropic-font-primary);
   position: relative;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
   opacity: 0;
   animation: titleAppear 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+}
+
+/* 描述文字样式 */
+.hero-description {
+  font-size: 1.1rem;
+  color: white !important;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7) !important;
+  z-index: 10;
+  position: relative;
+  opacity: 0;
+  animation: titleAppear 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards;
 }
 
 @keyframes titleAppear {
@@ -809,9 +849,10 @@ onMounted(() => {
 
 .title-highlight {
   text-decoration: underline;
-  text-decoration-color: var(--anthropic-text-primary);
+  text-decoration-color: #E17B47;
   text-decoration-thickness: 3px;
   text-underline-offset: 4px;
+  color: #E17B47;
 }
 
 /* 产品卡片容器 */
@@ -839,30 +880,33 @@ onMounted(() => {
 /* 横向卡片布局 */
 .cards-horizontal-layout {
   display: flex;
-  gap: 1rem;
-  justify-content: space-between;
+  gap: 1.5rem;
+  justify-content: flex-start;
   align-items: stretch;
 }
 
-/* 产品卡片样式 */
+/* 产品卡片样式 - 适配全屏背景 */
 .hero-product-card {
-  background: var(--anthropic-bg-card);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
   border-radius: 16px;
-  padding: 2rem;
+  padding: 1.5rem;
   height: 100%;
-  border: 1px solid var(--anthropic-border-light);
-  box-shadow: var(--anthropic-shadow-sm);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 0 4px 16px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 280px;
-  flex: 1; /* 在横向布局中均匀分配空间 */
+  min-height: 260px;
+  width: 300px;
+  flex-shrink: 0;
 }
 
 .hero-product-card:hover {
-  box-shadow: var(--anthropic-shadow-lg);
-  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25), 0 6px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 1);
 }
 
 .card-header {
@@ -901,11 +945,12 @@ onMounted(() => {
 }
 
 .primary-btn {
-  background: var(--btn-primary) !important;
-  color: var(--btn-primary-text) !important;
+  background: #1A1A1A !important;
+  color: #FFFFFF !important;
   position: relative;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none !important;
 }
 
 .primary-btn::before {
@@ -930,196 +975,85 @@ onMounted(() => {
 }
 
 .secondary-btn {
-  border: 1px solid var(--btn-secondary-border) !important;
-  color: var(--btn-secondary-text) !important;
-  background: transparent !important;
+  border: 2px solid rgba(255, 255, 255, 0.8) !important;
+  color: white !important;
+  background: rgba(255, 255, 255, 0.1) !important;
   position: relative;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
 }
 
 .secondary-btn:hover {
-  background: var(--bg-section) !important;
-  border-color: var(--text-secondary) !important;
+  background: white !important;
+  border-color: white !important;
+  color: var(--text-primary) !important;
   transform: translateY(-1px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
 }
 
-/* 右侧视觉装饰 */
-.hero-right-visual {
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+/* 移动端响应式设计 */
+@media (max-width: 768px) {
+  .hero-container {
+    padding: 0 1rem;
+  }
+  
+  .hero-bottom-left {
+    padding: 0 0 2rem 1rem;
+    max-width: 100%;
+  }
+  
+  .anthropic-hero {
+    min-height: 100dvh;
+    padding: 3rem 0 1.5rem;
+  }
+  
+  .hero-main-title {
+    font-size: clamp(2rem, 8vw, 3rem);
+    margin-bottom: 1rem;
+  }
+  
+  .hero-description {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .cards-horizontal-layout {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .hero-product-card {
+    width: 100%;
+    min-height: 200px;
+    padding: 1.2rem;
+  }
 }
 
-.hero-visual-container {
-  position: relative;
-  width: 400px;
-  height: 400px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* 平板端 (768px - 991px) 优化 */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .anthropic-hero {
+    min-height: 75vh;
+    padding: 5rem 0 3rem;
+  }
+  
+  .hero-main-title {
+    font-size: clamp(2.5rem, 5vw, 3rem);
+  }
 }
 
-.network-visualization {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-/* 网络节点 */
-.network-node {
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  background: var(--accent-orange);
-  border-radius: 50%;
-  opacity: 0.9;
-  box-shadow: 0 2px 8px rgba(225, 123, 71, 0.3);
-}
-
-.center-node {
-  width: 20px;
-  height: 20px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: var(--accent-orange);
-  z-index: 3;
-  box-shadow: 0 3px 12px rgba(225, 123, 71, 0.4);
-}
-
-.node-1 {
-  top: 15%;
-  left: 55%;
-  animation: nodeFloat 4s ease-in-out infinite;
-}
-
-.node-2 {
-  top: 30%;
-  right: 12%;
-  animation: nodeFloat 4s ease-in-out infinite 0.7s;
-}
-
-.node-3 {
-  bottom: 25%;
-  right: 18%;
-  animation: nodeFloat 4s ease-in-out infinite 1.4s;
-}
-
-.node-4 {
-  bottom: 15%;
-  left: 38%;
-  animation: nodeFloat 4s ease-in-out infinite 2.1s;
-}
-
-.node-5 {
-  top: 38%;
-  left: 12%;
-  animation: nodeFloat 4s ease-in-out infinite 2.8s;
-}
-
-.node-6 {
-  top: 22%;
-  left: 32%;
-  animation: nodeFloat 4s ease-in-out infinite 3.5s;
-}
-
-/* 连接线 */
-.network-line {
-  position: absolute;
-  background: linear-gradient(90deg, transparent, var(--accent-orange), transparent);
-  opacity: 0.5;
-  z-index: 1;
-  border-radius: 1px;
-}
-
-.line-1 {
-  width: 2px;
-  height: 65px;
-  top: 28%;
-  left: 51%;
-  transform: rotate(28deg);
-  animation: lineGlow 6s ease-in-out infinite;
-}
-
-.line-2 {
-  width: 2px;
-  height: 48px;
-  top: 42%;
-  right: 22%;
-  transform: rotate(-18deg);
-  animation: lineGlow 6s ease-in-out infinite 1s;
-}
-
-.line-3 {
-  width: 2px;
-  height: 52px;
-  bottom: 32%;
-  right: 28%;
-  transform: rotate(42deg);
-  animation: lineGlow 6s ease-in-out infinite 2s;
-}
-
-.line-4 {
-  width: 2px;
-  height: 58px;
-  bottom: 28%;
-  left: 43%;
-  transform: rotate(-32deg);
-  animation: lineGlow 6s ease-in-out infinite 3s;
-}
-
-.line-5 {
-  width: 2px;
-  height: 42px;
-  top: 43%;
-  left: 23%;
-  transform: rotate(58deg);
-  animation: lineGlow 6s ease-in-out infinite 4s;
-}
-
-.line-6 {
-  width: 2px;
-  height: 38px;
-  top: 30%;
-  left: 38%;
-  transform: rotate(-42deg);
-  animation: lineGlow 6s ease-in-out infinite 5s;
-}
-
-/* 抽象手型装饰 */
-.abstract-hand {
-  position: absolute;
-  bottom: 10%;
-  right: 15%;
-  width: 120px;
-  height: 160px;
-  opacity: 0.8;
-  z-index: 2;
-}
-
-.abstract-hand::before {
-  content: '';
-  position: absolute;
-  width: 8px;
-  height: 80px;
-  background: var(--line-black);
-  border-radius: 4px;
-  left: 20px;
-  bottom: 0;
-  transform: rotate(15deg);
-}
-
-.abstract-hand::after {
-  content: '';
-  position: absolute;
-  width: 60px;
-  height: 8px;
-  background: var(--line-black);
-  border-radius: 4px;
-  right: 10px;
-  bottom: 40px;
-  transform: rotate(-10deg);
+/* 小屏幕移动端 (<480px) */
+@media (max-width: 479.98px) {
+  .hero-bottom-left {
+    padding: 0 0 1.5rem 0.5rem;
+  }
+  
+  .hero-main-title {
+    font-size: clamp(1.8rem, 7vw, 2.5rem);
+  }
+  
+  .hero-description {
+    font-size: 0.95rem;
+  }
 }
 
 /* 节点浮动动画 */
@@ -1220,19 +1154,19 @@ onMounted(() => {
 
 /* ===== 第二区域样式 - 匹配Anthropic ===== */
 .secondary-hero-section {
-  background: var(--anthropic-bg-secondary);
-  padding: 4rem 0;
+  background: #FAF9F7;
+  padding: 3rem 0;
   position: relative;
 }
 
 .secondary-content-wrapper {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 20px;
 }
 
 .secondary-hero-card {
-  background: rgba(255, 255, 255, 0.8);
+  background: #F0EDE8;
   border-radius: 24px;
   padding: 3rem;
   display: grid;
@@ -1358,7 +1292,7 @@ onMounted(() => {
 
 @media (max-width: 768px) {
   .secondary-hero-section {
-    padding: 3rem 0;
+    padding: 2.5rem 0;
   }
   
   .secondary-content-wrapper {
@@ -1411,7 +1345,7 @@ onMounted(() => {
 
 /* ===== 按照用户HTML代码的样式 ===== */
 .anthropic-mission-section {
-  background: #f8f9fa;
+  background: #FAF9F7;
   font-family: "Noto Sans JP", "Helvetica Neue", Arial, sans-serif;
   line-height: 1.6;
   color: #333;
@@ -1441,7 +1375,7 @@ onMounted(() => {
 }
 
 .main-title {
-  font-size: 36px;
+  font-size: 32px;
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 0;
@@ -1481,15 +1415,15 @@ onMounted(() => {
 }
 
 .card:nth-child(1) {
-  background: linear-gradient(135deg, #f5f1eb 0%, #e8ddd4 100%);
+  background: #F0EDE8;
 }
 
 .card:nth-child(2) {
-  background: linear-gradient(135deg, #e8f4f0 0%, #d1e7dd 100%);
+  background: #F0EDE8;
 }
 
 .card:nth-child(3) {
-  background: linear-gradient(135deg, #e6e8f5 0%, #d4d8f0 100%);
+  background: #F0EDE8;
 }
 
 .card-icon {
@@ -1618,7 +1552,7 @@ onMounted(() => {
 
 @media (max-width: 768px) {
   .anthropic-mission-section {
-    padding: 4rem 0;
+    padding: 2.5rem 0;
   }
   
   .mission-container {
@@ -1650,7 +1584,7 @@ onMounted(() => {
 /* ===== Anthropic风格服务区域样式 ===== */
 .anthropic-services-section {
   padding: 8rem 0;
-  background: var(--anthropic-bg-card);
+  background: #FAF9F7;
   position: relative;
 }
 
@@ -1689,7 +1623,7 @@ onMounted(() => {
 }
 
 .anthropic-service-item {
-  background: var(--anthropic-bg-card);
+  background: #FAF9F7;
   padding: 2rem;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1702,7 +1636,7 @@ onMounted(() => {
 }
 
 .anthropic-service-item:hover {
-  background: var(--anthropic-bg-primary);
+  background: #FAF9F7;
   transform: translateX(4px);
 }
 
@@ -1754,7 +1688,7 @@ onMounted(() => {
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--anthropic-text-muted);
-  background: var(--anthropic-bg-primary);
+  background: #FAF9F7;
   padding: 0.375rem 0.75rem;
   border-radius: 6px;
   border: 1px solid var(--anthropic-border-light);
@@ -1762,14 +1696,14 @@ onMounted(() => {
 }
 
 .anthropic-service-item:hover .service-tag {
-  background: var(--anthropic-bg-card);
+  background: #FAF9F7;
   border-color: var(--anthropic-border-medium);
 }
 
 /* ===== Anthropic风格统计数据区域样式 ===== */
 .anthropic-stats-section {
   padding: 6rem 0;
-  background: var(--anthropic-bg-secondary);
+  background: #FAF9F7;
   position: relative;
 }
 
@@ -1787,13 +1721,17 @@ onMounted(() => {
 
 .stat-card {
   text-align: center;
-  padding: 2rem 1.5rem;
-  background: var(--anthropic-bg-card);
+  padding: 1.5rem;
+  background: #FAF9F7;
   border-radius: 16px;
   border: 1px solid var(--anthropic-border-light);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .stat-card::before {
@@ -1878,7 +1816,7 @@ onMounted(() => {
 .product-card {
   border: 1px solid var(--anthropic-border-light);
   border-radius: 16px;
-  background: var(--anthropic-bg-primary);
+  background: #FAF9F7;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   overflow: hidden;
@@ -2033,7 +1971,7 @@ onMounted(() => {
 /* ===== 特色功能展示区域样式 - Anthropic风格设计 ===== */
 .feature-highlight-section {
   padding: 5rem 0;
-  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f8fafc 100%);
+  background: #FAF9F7;
   position: relative;
 }
 
@@ -2453,8 +2391,8 @@ onMounted(() => {
 
 /* ===== Anthropic使命陈述区域样式 - 精确匹配版本 ===== */
 .anthropic-mission-section {
-  padding: 8rem 0;
-  background: var(--anthropic-bg-primary);
+  padding: 3rem 0;
+  background: #FAF9F7;
   position: relative;
 }
 
@@ -2509,14 +2447,14 @@ onMounted(() => {
 }
 
 .value-card {
-  background: var(--anthropic-bg-card);
-  border-radius: 20px;
-  padding: 2rem 1.5rem;
+  background: #FAF9F7;
+  border-radius: 16px;
+  padding: 1.5rem;
   border: 1px solid var(--anthropic-border-light);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
-  min-height: 240px;
+  min-height: 220px;
   display: flex;
   flex-direction: column;
 }
@@ -2601,7 +2539,7 @@ onMounted(() => {
 
 @media (max-width: 991px) {
   .anthropic-mission-section {
-    padding: 6rem 0;
+    padding: 2.5rem 0;
   }
   
   .mission-layout {
@@ -2624,7 +2562,7 @@ onMounted(() => {
 
 @media (max-width: 768px) {
   .anthropic-mission-section {
-    padding: 4rem 0;
+    padding: 2.5rem 0;
   }
   
   .mission-container {
@@ -2662,7 +2600,7 @@ onMounted(() => {
 /* ===== 企业使命陈述区域样式 - Anthropic风格设计 ===== */
 .company-mission-section {
   padding: 8rem 0;
-  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%);
+  background: #FAF9F7;
   position: relative;
   overflow: hidden;
 }
@@ -2879,7 +2817,7 @@ onMounted(() => {
 /* ===== 三大核心价值区域样式 - Anthropic风格设计 ===== */
 .three-pillars-section {
   padding: 6rem 0;
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #ffffff 100%);
+  background: #FAF9F7;
   position: relative;
 }
 
@@ -3155,7 +3093,7 @@ onMounted(() => {
 /* ===== 底部行动召唤区域样式 - Anthropic风格设计 ===== */
 .cta-bottom-section {
   padding: 6rem 0 4rem;
-  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%);
+  background: #FAF9F7;
   position: relative;
   overflow: hidden;
 }
@@ -5399,7 +5337,7 @@ onMounted(() => {
 /* ===== 技术能力展示区域样式 ===== */
 .anthropic-capabilities-section {
   padding: 8rem 0;
-  background: var(--anthropic-bg-card);
+  background: #FAF9F7;
   position: relative;
 }
 
@@ -5417,7 +5355,7 @@ onMounted(() => {
 }
 
 .capability-card {
-  background: var(--anthropic-bg-primary);
+  background: #FAF9F7;
   border-radius: 20px;
   padding: 2.5rem 2rem;
   border: 1px solid var(--anthropic-border-light);
@@ -5516,8 +5454,8 @@ onMounted(() => {
 
 /* ===== 企业理念区域样式 ===== */
 .anthropic-philosophy-section {
-  padding: 8rem 0;
-  background: var(--anthropic-bg-card);
+  padding: 3rem 0;
+  background: #FAF9F7;
   position: relative;
 }
 
@@ -5698,8 +5636,8 @@ onMounted(() => {
 
 /* ===== 合作伙伴区域样式 ===== */
 .anthropic-partners-section {
-  padding: 6rem 0;
-  background: var(--anthropic-bg-card);
+  padding: 3rem 0;
+  background: #FAF9F7;
   position: relative;
 }
 
@@ -5711,8 +5649,89 @@ onMounted(() => {
 
 .partners-logos {
   margin-top: 4rem;
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+/* 滚动容器样式 - 优化版本 */
+.partners-scroll-container {
+  position: relative;
+  width: 100%;
+  max-width: 1800px;
+  height: 140px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+}
+
+/* 滚动内容 - 修复重叠问题 */
+.partners-scroll-content {
+  display: flex;
+  animation: scrollPartners 35s linear infinite;
+  will-change: transform;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* 鼠标悬停时暂停动画 */
+.partners-scroll-container:hover .partners-scroll-content {
+  animation-play-state: paused;
+}
+
+/* 滚动轨道 - 修复重叠 */
+.partners-scroll-track {
+  display: flex;
+  gap: 4rem;
+  padding-right: 4rem;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+/* 滚动动画 - 优化的循环 */
+@keyframes scrollPartners {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% - 4rem));
+  }
+}
+
+/* 左侧渐变遮罩 - 减少宽度 */
+.scroll-fade-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 60px;
+  height: 100%;
+  background: linear-gradient(to right, #FAF9F7 0%, #FAF9F7 20%, transparent 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* 右侧渐变遮罩 - 减少宽度 */
+.scroll-fade-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 60px;
+  height: 100%;
+  background: linear-gradient(to left, #FAF9F7 0%, #FAF9F7 20%, transparent 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.partners-row-single {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 0;
+}
+
+/* 保持原有的partners-row样式以防需要回滚 */
 .partners-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -5728,14 +5747,39 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 120px;
+  height: 140px;
+  width: 280px;
+  flex-shrink: 0;
   transition: all 0.3s ease;
 }
 
+.logo-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.partner-logo-image {
+  max-width: 100%;
+  max-height: 80px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transition: all 0.3s ease;
+  filter: grayscale(100%) opacity(0.7);
+}
+
+.partner-logo:hover .partner-logo-image {
+  filter: grayscale(0%) opacity(1);
+  transform: scale(1.05);
+}
+
 .logo-placeholder {
-  width: 180px;
-  height: 80px;
-  background: var(--anthropic-bg-primary);
+  width: 260px;
+  height: 120px;
+  background: #FAF9F7;
   border: 1px solid var(--anthropic-border-light);
   border-radius: 16px;
   display: flex;
@@ -5744,6 +5788,7 @@ onMounted(() => {
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  padding: 10px;
 }
 
 .logo-placeholder::before {
@@ -5769,12 +5814,17 @@ onMounted(() => {
 }
 
 .logo-text {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: var(--anthropic-text-secondary);
   position: relative;
   z-index: 2;
   transition: color 0.3s ease;
+  text-align: center;
+  line-height: 1.3;
+  word-break: keep-all;
+  white-space: normal;
+  max-width: 100%;
 }
 
 .partner-logo:hover .logo-text {
@@ -5812,6 +5862,32 @@ onMounted(() => {
     grid-row: auto;
   }
   
+  .partners-row-single {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+  
+  /* 平板端滚动样式优化 */
+  .partners-scroll-container {
+    max-width: 1200px;
+    height: 120px;
+  }
+  
+  .partners-scroll-track {
+    gap: 3rem;
+    padding-right: 3rem;
+  }
+  
+  .partner-logo {
+    width: 240px;
+    height: 120px;
+  }
+  
+  .scroll-fade-left,
+  .scroll-fade-right {
+    width: 50px;
+  }
+  
   .partners-row {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -5822,7 +5898,7 @@ onMounted(() => {
   .anthropic-philosophy-section,
   .featured-news-section,
   .anthropic-partners-section {
-    padding: 4rem 0;
+    padding: 2.5rem 0;
   }
   
   .capabilities-grid {
@@ -5839,6 +5915,36 @@ onMounted(() => {
     height: 250px;
   }
   
+  .partners-row-single {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+  }
+  
+  /* 移动端滚动样式优化 */
+  .partners-scroll-container {
+    max-width: 100%;
+    height: 100px;
+  }
+  
+  .partners-scroll-track {
+    gap: 2rem;
+    padding-right: 2rem;
+  }
+  
+  .partner-logo {
+    width: 200px;
+    height: 100px;
+  }
+  
+  .scroll-fade-left,
+  .scroll-fade-right {
+    width: 40px;
+  }
+  
+  /* 移动端减慢滚动速度 */
+  .partners-scroll-content {
+    animation-duration: 30s;
+  }
   
   .partners-row {
     grid-template-columns: 1fr;
@@ -5846,8 +5952,8 @@ onMounted(() => {
   }
   
   .logo-placeholder {
-    width: 160px;
-    height: 70px;
+    width: 180px;
+    height: 80px;
   }
   
   /* 客户评价和FAQ区域移动端样式 */
@@ -5877,7 +5983,7 @@ onMounted(() => {
   }
   
   .anthropic-faq-section {
-    padding: 4rem 0;
+    padding: 2.5rem 0;
   }
   
   .faq-container {
@@ -5913,7 +6019,7 @@ onMounted(() => {
 /* ===== 客户评价区域样式 ===== */
 .anthropic-testimonials-section {
   padding: 8rem 0;
-  background: var(--anthropic-bg-primary);
+  background: #FAF9F7;
   position: relative;
 }
 
@@ -5931,7 +6037,7 @@ onMounted(() => {
 }
 
 .testimonial-card {
-  background: var(--anthropic-bg-card);
+  background: #FAF9F7;
   border-radius: 20px;
   padding: 2.5rem;
   border: 1px solid var(--anthropic-border-light);
@@ -6037,8 +6143,8 @@ onMounted(() => {
 
 /* ===== FAQ区域样式 ===== */
 .anthropic-faq-section {
-  padding: 8rem 0;
-  background: var(--anthropic-bg-secondary);
+  padding: 3rem 0;
+  background: #FAF9F7;
   position: relative;
 }
 
@@ -6054,7 +6160,7 @@ onMounted(() => {
 }
 
 .faq-item {
-  background: var(--anthropic-bg-card);
+  background: #FAF9F7;
   border-radius: 16px;
   margin-bottom: 1rem;
   border: 1px solid var(--anthropic-border-light);
@@ -6125,7 +6231,7 @@ onMounted(() => {
 
 /* ===== 企業情報 - 简洁表格式布局 ===== */
 .featured-section {
-  padding: 4rem 0;
+  padding: 3rem 0;
   background: #FAF9F7;
   border-top: 1px solid #E5E5E5;
 }
@@ -6152,52 +6258,67 @@ onMounted(() => {
   flex: 1;
 }
 
-.news-table {
-  background: white;
-  border-radius: 8px;
-  overflow: hidden;
-  border: 1px solid #E5E5E5;
+.featured-news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
-.news-row {
-  display: grid;
-  grid-template-columns: 1fr auto auto;
-  gap: 2rem;
-  padding: 1rem 1.5rem;
-  border-bottom: 1px solid #F0F0F0;
+.featured-news-item {
+  background: transparent;
+  border-bottom: 1px solid #E5E5E5;
+  padding: 1.5rem 0;
   cursor: pointer;
-  transition: background-color 0.2s ease;
-  align-items: center;
+  transition: all 0.2s ease;
+  position: relative;
 }
 
-.news-row:last-child {
+.featured-news-item:last-child {
   border-bottom: none;
 }
 
-.news-row:hover {
-  background: #F8F8F8;
+.featured-news-item:hover {
+  background: rgba(225, 123, 71, 0.02);
 }
 
-.news-title {
-  font-size: 0.95rem;
+.featured-news-item:hover .featured-news-title {
+  color: #E17B47;
+}
+
+.featured-news-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.featured-news-title {
+  font-size: 1.125rem;
   font-weight: 500;
   color: #1A1A1A;
   line-height: 1.4;
+  margin: 0;
+  flex: 1;
+  transition: color 0.2s ease;
 }
 
-.news-category {
-  font-size: 0.8rem;
+.featured-news-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-shrink: 0;
+}
+
+.featured-news-category {
+  font-size: 0.875rem;
   font-weight: 500;
   color: #666666;
-  padding: 0.25rem 0.75rem;
-  background: #F0F0F0;
-  border-radius: 12px;
-  white-space: nowrap;
+  text-transform: capitalize;
 }
 
-.news-date {
-  font-size: 0.85rem;
-  color: #888888;
+.featured-news-date {
+  font-size: 0.875rem;
+  color: #999999;
   font-weight: 400;
   white-space: nowrap;
 }
@@ -6223,22 +6344,22 @@ onMounted(() => {
     font-size: 1.75rem;
   }
   
-  .news-row {
-    grid-template-columns: 1fr;
+  .featured-news-content {
+    flex-direction: column;
     gap: 0.75rem;
-    padding: 1.25rem 1rem;
+    align-items: flex-start;
   }
   
-  .news-title {
-    font-size: 0.9rem;
+  .featured-news-title {
+    font-size: 1rem;
   }
   
-  .news-category {
-    justify-self: start;
+  .featured-news-meta {
+    gap: 1rem;
   }
   
-  .news-date {
-    justify-self: start;
+  .featured-news-category, 
+  .featured-news-date {
     font-size: 0.8rem;
   }
 }
@@ -6248,12 +6369,12 @@ onMounted(() => {
     font-size: 1.5rem;
   }
   
-  .news-row {
-    padding: 1rem 0.75rem;
+  .featured-news-item {
+    padding: 1.25rem 0;
   }
   
-  .news-title {
-    font-size: 0.85rem;
+  .featured-news-title {
+    font-size: 0.95rem;
   }
 }
 </style>

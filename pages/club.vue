@@ -1,220 +1,149 @@
 <template>
-  <v-container fluid class="pa-0">
-    <!-- Page Header -->
-    <v-section class="hero-section">
-      <v-container>
-        <v-row align="center" class="py-16">
-          <v-col cols="12" class="text-center">
-            <h1 class="text-h2 text-white mb-4">
-              クラブ | CLUB
-            </h1>
-            <p class="text-h6 text-white opacity-90 mb-6">
-              会員制コミュニティ
-            </p>
-            <p class="text-body-1 text-white opacity-80">
-              専門家ネットワークと限定サービスで特別な体験を
-            </p>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-section>
+  <div class="anthropic-theme club-page">
+    <!-- Hero Section - Anthropic Style -->
+    <section class="club-hero-section">
+      <div class="custom-container">
+        <div class="hero-content">
+          <h1 class="hero-title">クラブ | CLUB</h1>
+          <p class="hero-subtitle">会員制コミュニティ</p>
+          <p class="hero-description">
+            専門家ネットワークと限定サービスで特別な体験を
+          </p>
+        </div>
+      </div>
+    </section>
 
     <!-- Clubs Section -->
-    <v-section class="py-16">
-      <v-container>
-        <v-row>
-          <v-col cols="12" class="text-center mb-12">
-            <h2 class="text-h3 mb-4">コミュニティ一覧</h2>
-            <p class="text-h6 grey--text">
-              Our Communities
-            </p>
-          </v-col>
-        </v-row>
+    <section class="clubs-section">
+      <div class="custom-container">
+        <div class="section-header">
+          <h2 class="section-title">コミュニティ一覧</h2>
+          <p class="section-description">
+            興味と専門性を共有する3つの特別なコミュニティ
+          </p>
+        </div>
         
-        <v-row>
-          <v-col 
+        <div class="clubs-grid">
+          <div 
             v-for="club in clubs" 
             :key="club.id"
-            cols="12" 
-            md="6" 
-            lg="4"
+            class="club-card"
           >
-            <v-card 
-              class="fill-height club-card"
-              variant="outlined"
-              hover
-            >
-              <v-img
-                :src="club.image"
-                height="200"
-                cover
-              />
-              <v-card-title class="d-flex align-center">
-                <v-icon 
-                  :icon="getClubIcon(club.id)" 
-                  color="primary"
-                  class="mr-2"
-                />
-                {{ club.name }}
-              </v-card-title>
-              <v-card-subtitle>
-                {{ club.category }}
-              </v-card-subtitle>
-              <v-card-text>
-                <p class="mb-3">{{ club.description }}</p>
-                <div class="mb-3">
-                  <strong>会員特典:</strong>
-                  <ul class="benefit-list mt-2">
-                    <li v-for="benefit in club.benefits" :key="benefit">
-                      {{ benefit }}
-                    </li>
-                  </ul>
+            <div class="club-image">
+              <img :src="club.image" :alt="club.name" />
+            </div>
+            <div class="club-content">
+              <div class="club-header">
+                <div class="club-icon">
+                  <v-icon :icon="getClubIcon(club.id)" size="32" color="#E17B47"></v-icon>
                 </div>
-                <div class="d-flex align-center">
-                  <v-icon icon="mdi-account-group" size="small" class="mr-1" />
-                  <span class="text-body-2">{{ club.memberCount }}名</span>
-                </div>
-              </v-card-text>
-              <v-card-actions>
-                <v-btn 
-                  color="primary" 
-                  variant="outlined"
-                  block
-                >
-                  詳細・入会案内
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-section>
+                <h3 class="club-title">{{ club.name }}</h3>
+                <div class="club-category">{{ club.category }}</div>
+              </div>
+              <p class="club-description">{{ club.description }}</p>
+              <div class="club-benefits">
+                <strong class="benefits-title">会員特典:</strong>
+                <ul class="benefits-list">
+                  <li v-for="benefit in club.benefits" :key="benefit">
+                    {{ benefit }}
+                  </li>
+                </ul>
+              </div>
+              <div class="club-stats">
+                <span class="member-count">
+                  <v-icon icon="mdi-account-group" size="16" color="#666666"></v-icon>
+                  {{ club.memberCount }}名
+                </span>
+              </div>
+              <button class="club-button">詳細・入会案内</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Membership Benefits -->
-    <v-section class="py-16 bg-grey-lighten-5">
-      <v-container>
-        <v-row>
-          <v-col cols="12" class="text-center mb-12">
-            <h2 class="text-h3 mb-4">会員制サービスの特徴</h2>
-            <p class="text-h6 grey--text">
-              Membership Benefits
-            </p>
-          </v-col>
-        </v-row>
+    <section class="membership-benefits-section">
+      <div class="custom-container">
+        <div class="section-header">
+          <h2 class="section-title">会員制サービスの特徴</h2>
+          <p class="section-description">
+            会員だけが享受できる特別な価値とサービス
+          </p>
+        </div>
         
-        <v-row>
-          <v-col 
+        <div class="features-grid">
+          <div 
             v-for="feature in membershipFeatures" 
             :key="feature.id"
-            cols="12" 
-            md="6" 
-            lg="3"
+            class="feature-card"
           >
-            <div class="text-center">
-              <div class="feature-icon mb-4">
-                <v-icon 
-                  :icon="feature.icon" 
-                  size="x-large" 
-                  color="white"
-                />
-              </div>
-              <h3 class="text-h6 mb-2">{{ feature.title }}</h3>
-              <p class="text-body-2 grey--text">{{ feature.description }}</p>
+            <div class="feature-icon">
+              <v-icon :icon="getFeatureIcon(feature.id)" size="40" color="white"></v-icon>
             </div>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-section>
+            <h3 class="feature-title">{{ feature.title }}</h3>
+            <p class="feature-description">{{ feature.description }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Events Calendar -->
-    <v-section class="py-16">
-      <v-container>
-        <v-row>
-          <v-col cols="12" class="text-center mb-12">
-            <h2 class="text-h3 mb-4">今後のイベント</h2>
-            <p class="text-h6 grey--text">
-              Upcoming Events
-            </p>
-          </v-col>
-        </v-row>
+    <section class="events-section">
+      <div class="custom-container">
+        <div class="section-header">
+          <h2 class="section-title">今後のイベント</h2>
+          <p class="section-description">
+            会員限定の特別なイベントとワークショップ (準備中)
+          </p>
+        </div>
         
-        <v-row>
-          <v-col 
+        <div class="events-grid events-upcoming">
+          <div 
             v-for="event in upcomingEvents" 
             :key="event.id"
-            cols="12" 
-            md="6"
+            class="event-card"
           >
-            <v-card variant="outlined" class="event-card">
-              <v-row no-gutters>
-                <v-col cols="auto" class="d-flex align-center pa-4">
-                  <div class="event-date text-center">
-                    <div class="text-caption primary--text font-weight-bold">
-                      {{ formatMonth(event.date) }}
-                    </div>
-                    <div class="text-h6 primary--text font-weight-bold">
-                      {{ formatDay(event.date) }}
-                    </div>
-                  </div>
-                </v-col>
-                <v-col class="pa-4">
-                  <h3 class="text-h6 mb-2">{{ event.title }}</h3>
-                  <div class="d-flex align-center mb-2">
-                    <v-icon icon="mdi-map-marker" size="small" class="mr-1" />
-                    <span class="text-body-2">{{ event.location }}</span>
-                  </div>
-                  <div class="d-flex align-center mb-2">
-                    <v-icon icon="mdi-clock" size="small" class="mr-1" />
-                    <span class="text-body-2">{{ event.time }}</span>
-                  </div>
-                  <v-chip
-                    :color="getClubColor(event.club)"
-                    size="small"
-                    class="mb-2"
-                  >
-                    {{ event.club }}
-                  </v-chip>
-                  <p class="text-body-2 mb-0">{{ event.description }}</p>
-                </v-col>
-              </v-row>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-section>
+            <div class="event-date">
+              <div class="event-month">{{ formatMonth(event.date) }}</div>
+              <div class="event-day">{{ formatDay(event.date) }}</div>
+            </div>
+            <div class="event-content">
+              <h3 class="event-title">{{ event.title }}</h3>
+              <div class="event-meta">
+                <div class="event-location">
+                  <v-icon icon="mdi-map-marker" size="16" color="#666666"></v-icon>
+                  {{ event.location }}
+                </div>
+                <div class="event-time">
+                  <v-icon icon="mdi-clock" size="16" color="#666666"></v-icon>
+                  {{ event.time }}
+                </div>
+              </div>
+              <div class="event-club-tag">{{ event.club }}</div>
+              <p class="event-description">{{ event.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Join CTA -->
-    <v-section class="py-16 bg-primary">
-      <v-container>
-        <v-row justify="center">
-          <v-col cols="12" md="8" class="text-center">
-            <h2 class="text-h3 text-white mb-4">
-              コミュニティに参加しませんか？
-            </h2>
-            <p class="text-h6 text-white opacity-90 mb-6">
-              専門的な知識を共有し、新しいつながりを築きましょう
-            </p>
-            <v-btn
-              color="white"
-              size="large"
-              variant="elevated"
-              class="ma-2"
-            >
-              入会申し込み
-            </v-btn>
-            <v-btn
-              color="white"
-              size="large"
-              variant="outlined"
-              class="ma-2"
-            >
-              詳細資料請求
-            </v-btn>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-section>
-  </v-container>
+    <section class="join-cta-section">
+      <div class="custom-container">
+        <div class="cta-content">
+          <h2 class="cta-title">コミュニティに参加しませんか？</h2>
+          <p class="cta-description">
+            専門的な知識を共有し、新しいつながりを築きましょう
+          </p>
+          <div class="cta-buttons">
+            <button class="cta-button primary">入会申し込み</button>
+            <button class="cta-button secondary">詳細資料請求</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -296,7 +225,7 @@ const membershipFeatures = [
   }
 ]
 
-// 今後のイベント
+// 今後のイベント (準備中)
 const upcomingEvents = [
   {
     id: 1,
@@ -324,15 +253,6 @@ const upcomingEvents = [
     location: '六本木アートミュージアム',
     club: '文化芸術',
     description: 'キュレーターによる解説付きの特別鑑賞ツアー'
-  },
-  {
-    id: 4,
-    title: 'ゴルフレッスン & 懇親会',
-    date: '2025.04.10',
-    time: '9:00-17:00',
-    location: '都内ゴルフ場',
-    club: 'アウトドアスポーツ',
-    description: 'プロによる個別レッスンと会員同士の交流'
   }
 ]
 
@@ -350,85 +270,565 @@ const formatDay = (dateStr: string) => {
 const getClubIcon = (clubId: string) => {
   const icons: Record<string, string> = {
     'coffee-lovers': 'mdi-coffee',
-    'outdoor-sports': 'mdi-hiking',
+    'outdoor-sports': 'mdi-run',
     'art-culture': 'mdi-palette'
   }
   return icons[clubId] || 'mdi-account-group'
 }
 
-const getClubColor = (clubName: string) => {
-  const colors: Record<string, string> = {
-    'コーヒー愛好家': 'brown',
-    'アウトドアスポーツ': 'green',
-    '文化芸術': 'purple'
+const getFeatureIcon = (featureId: number) => {
+  const icons: Record<number, string> = {
+    1: 'mdi-account-tie',
+    2: 'mdi-star',
+    3: 'mdi-school',
+    4: 'mdi-heart'
   }
-  return colors[clubName] || 'primary'
+  return icons[featureId] || 'mdi-star'
 }
+
 </script>
 
 <style scoped>
-.hero-section {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  position: relative;
+/* Anthropic Theme Variables */
+.anthropic-theme {
+  background-color: #FAF9F7;
+  min-height: 100vh;
+}
+
+/* Custom Container */
+.custom-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Hero Section */
+.club-hero-section {
+  padding: 80px 0 60px 0;
+  background-color: #FAF9F7;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+.hero-content {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 500;
+  color: #1A1A1A;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: #E17B47;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.hero-description {
+  font-size: 1.125rem;
+  color: #666666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Section Styles */
+.clubs-section,
+.events-section {
+  padding: 80px 0;
+  background-color: #FAF9F7;
+}
+
+.membership-benefits-section {
+  padding: 80px 0;
+  background-color: #F0EDE8;
+}
+
+.join-cta-section {
+  padding: 80px 0;
+  background-color: #1A1A1A;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: #1A1A1A;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.section-description {
+  font-size: 1.125rem;
+  color: #666666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Clubs Grid */
+.clubs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
 }
 
 .club-card {
+  background: #FFFFFF;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid #E5E5E5;
   transition: all 0.3s ease;
 }
 
 .club-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  border-color: #E17B47;
 }
 
-.benefit-list {
+.club-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.club-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.club-content {
+  padding: 2rem;
+}
+
+.club-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.club-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #F0EDE8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+
+.club-title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #1A1A1A;
+  margin: 0;
+  flex: 1;
+}
+
+.club-category {
+  background: #E17B47;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.club-description {
+  color: #666666;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.club-benefits {
+  margin-bottom: 1.5rem;
+}
+
+.benefits-title {
+  color: #1A1A1A;
+  font-size: 0.875rem;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.benefits-list {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
-.benefit-list li {
+.benefits-list li {
   position: relative;
-  padding-left: 16px;
-  margin-bottom: 4px;
-  font-size: 14px;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #333333;
+  line-height: 1.5;
+  font-size: 0.875rem;
 }
 
-.benefit-list li::before {
+.benefits-list li::before {
   content: '✓';
   position: absolute;
   left: 0;
-  color: #1976d2;
-  font-weight: bold;
+  color: #E17B47;
+  font-weight: 600;
+}
+
+.club-stats {
+  margin-bottom: 1.5rem;
+}
+
+.member-count {
+  color: #666666;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.club-button {
+  width: 100%;
+  background: #E17B47;
+  color: white;
+  border: none;
+  padding: 0.875rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.875rem;
+}
+
+.club-button:hover {
+  background: #1A1A1A;
+  transform: translateY(-1px);
+}
+
+/* Features Grid */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.feature-card {
+  background: #FFFFFF;
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid #E5E5E5;
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  border-color: #E17B47;
 }
 
 .feature-icon {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #E17B47;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
+  margin: 0 auto 1.5rem auto;
+}
+
+
+.feature-title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #1A1A1A;
+  margin-bottom: 0.75rem;
+}
+
+.feature-description {
+  color: #666666;
+  line-height: 1.6;
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* Events Grid */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* Events Upcoming - Blur Effect */
+.events-upcoming {
+  filter: blur(3px);
+  opacity: 0.6;
+  pointer-events: none;
+  position: relative;
+}
+
+.events-upcoming::after {
+  content: '準備中';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(26, 26, 26, 0.9);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 1.5rem;
+  font-weight: 500;
+  pointer-events: none;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 .event-card {
+  background: #FFFFFF;
+  border-radius: 16px;
+  display: flex;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid #E5E5E5;
   transition: all 0.3s ease;
 }
 
 .event-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
 }
 
 .event-date {
-  background: rgba(102, 126, 234, 0.1);
-  border-radius: 12px;
-  padding: 12px 16px;
-  min-width: 80px;
+  background: #F0EDE8;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 100px;
+  text-align: center;
 }
 
-.v-section {
-  position: relative;
+.event-month {
+  color: #E17B47;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.event-day {
+  color: #1A1A1A;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.event-content {
+  padding: 1.5rem;
+  flex: 1;
+}
+
+.event-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #1A1A1A;
+  margin-bottom: 0.75rem;
+}
+
+.event-meta {
+  margin-bottom: 0.75rem;
+}
+
+.event-location,
+.event-time {
+  color: #666666;
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.event-club-tag {
+  background: #E17B47;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  display: inline-block;
+  margin-bottom: 0.75rem;
+}
+
+.event-description {
+  color: #666666;
+  line-height: 1.6;
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+/* Join CTA Section */
+.cta-content {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.cta-title {
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: #FFFFFF;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.cta-description {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-button {
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  border: 2px solid transparent;
+}
+
+.cta-button.primary {
+  background: #E17B47;
+  color: white;
+  border-color: #E17B47;
+}
+
+.cta-button.primary:hover {
+  background: transparent;
+  color: #E17B47;
+  border-color: #E17B47;
+}
+
+.cta-button.secondary {
+  background: transparent;
+  color: white;
+  border-color: white;
+}
+
+.cta-button.secondary:hover {
+  background: white;
+  color: #1A1A1A;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .custom-container {
+    padding: 0 16px;
+  }
+  
+  .club-hero-section,
+  .clubs-section,
+  .membership-benefits-section,
+  .events-section,
+  .join-cta-section {
+    padding: 60px 0;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .section-title,
+  .cta-title {
+    font-size: 2rem;
+  }
+  
+  .clubs-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .events-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .event-card {
+    flex-direction: column;
+  }
+  
+  .event-date {
+    flex-direction: row;
+    padding: 1rem;
+    min-width: auto;
+    justify-content: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .cta-button {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .section-title,
+  .cta-title {
+    font-size: 1.75rem;
+  }
+  
+  .club-content {
+    padding: 1.5rem;
+  }
+  
+  .feature-card {
+    padding: 1.5rem;
+  }
+  
+  .event-content {
+    padding: 1.25rem;
+  }
 }
 </style>

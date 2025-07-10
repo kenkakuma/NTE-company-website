@@ -1,0 +1,6 @@
+# Handle static files first
+/assets/*  /assets/:splat  200
+/debug.html /debug.html 200
+
+# Handle Vue Router (SPA fallback)
+/*    /index.html   200

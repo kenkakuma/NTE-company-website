@@ -1,0 +1,4 @@
+const index_vue_vue_type_style_index_0_lang = ':root{--bg-primary:#faf9f7;--bg-card:#fff;--bg-section:#f0ede8;--text-primary:#1a1a1a;--text-secondary:#333;--text-tertiary:#666;--btn-primary:#1a1a1a;--btn-primary-text:#fff;--btn-secondary-border:#ccc;--btn-secondary-text:#333;--accent-orange:#e17b47;--line-black:#1a1a1a;--anthropic-bg-primary:var(--bg-primary);--anthropic-bg-secondary:var(--bg-section);--anthropic-bg-card:var(--bg-card);--anthropic-text-primary:var(--text-primary);--anthropic-text-secondary:var(--text-secondary);--anthropic-text-muted:var(--text-tertiary);--anthropic-accent:var(--accent-orange);--anthropic-border-light:#e5e7eb;--anthropic-border-medium:#d1d5db;--anthropic-shadow-sm:0 1px 3px rgba(0,0,0,.05);--anthropic-shadow-lg:0 4px 20px rgba(0,0,0,.08);--anthropic-font-primary:"Inter",-apple-system,BlinkMacSystemFont,sans-serif}';
+
+export { index_vue_vue_type_style_index_0_lang as i };
+//# sourceMappingURL=index-styles-1.mjs-BS5_WKBD.mjs.map

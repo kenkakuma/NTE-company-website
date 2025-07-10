@@ -1,202 +1,122 @@
 <template>
-  <v-container fluid class="pa-0">
-    <!-- Page Header -->
-    <v-section class="hero-section">
-      <v-container>
-        <v-row align="center" class="py-16">
-          <v-col cols="12" class="text-center">
-            <h1 class="text-h2 text-white mb-4">
-              ラボ | LAB
-            </h1>
-            <p class="text-h6 text-white opacity-90 mb-6">
-              技術研究・イノベーション
-            </p>
-            <p class="text-body-1 text-white opacity-80">
-              最先端技術とイノベーションで未来を創造
-            </p>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-section>
+  <div class="anthropic-theme lab-page">
+    <!-- Hero Section - Anthropic Style -->
+    <section class="lab-hero-section">
+      <div class="custom-container">
+        <div class="hero-content">
+          <h1 class="hero-title">ラボ | LAB</h1>
+          <p class="hero-subtitle">技術研究・イノベーション</p>
+          <p class="hero-description">
+            最先端技術とイノベーションで未来を創造
+          </p>
+        </div>
+      </div>
+    </section>
 
     <!-- Research Areas -->
-    <v-section class="py-16">
-      <v-container>
-        <v-row>
-          <v-col cols="12" class="text-center mb-12">
-            <h2 class="text-h3 mb-4">研究開発領域</h2>
-            <p class="text-h6 grey--text">
-              Research & Development Areas
-            </p>
-          </v-col>
-        </v-row>
+    <section class="research-areas-section">
+      <div class="custom-container">
+        <div class="section-header">
+          <h2 class="section-title">研究開発領域</h2>
+          <p class="section-description">
+            革新的な技術研究で社会課題の解決に取り組む専門分野
+          </p>
+        </div>
         
-        <v-row>
-          <v-col 
+        <div class="research-grid">
+          <div 
             v-for="area in researchAreas" 
             :key="area.id"
-            cols="12" 
-            md="6" 
-            lg="4"
+            class="research-card"
           >
-            <v-card 
-              class="fill-height pa-6"
-              variant="outlined"
-              hover
-            >
-              <div class="text-center mb-4">
-                <v-icon 
-                  :icon="area.icon" 
-                  size="x-large" 
-                  color="primary"
-                />
-              </div>
-              <v-card-title class="justify-center">
-                {{ area.title }}
-              </v-card-title>
-              <v-card-text>
-                <p class="text-body-2 mb-4">{{ area.description }}</p>
-                <ul class="feature-list">
-                  <li v-for="feature in area.features" :key="feature">
-                    {{ feature }}
-                  </li>
-                </ul>
-              </v-card-text>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-section>
+            <div class="research-icon">
+              <v-icon :icon="getResearchIcon(area.id)" size="48" color="#E17B47"></v-icon>
+            </div>
+            <h3 class="research-title">{{ area.title }}</h3>
+            <p class="research-description">{{ area.description }}</p>
+            <ul class="research-features">
+              <li v-for="feature in area.features" :key="feature">
+                {{ feature }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <!-- Sports Technology -->
-    <v-section class="py-16 bg-grey-lighten-5">
-      <v-container>
-        <v-row>
-          <v-col cols="12" class="text-center mb-12">
-            <h2 class="text-h3 mb-4">スポーツテクノロジー</h2>
-            <p class="text-h6 grey--text">
-              Sports Technology Innovation
-            </p>
-          </v-col>
-        </v-row>
-        
-        <v-row>
-          <v-col 
-            v-for="sport in sportsProjects" 
-            :key="sport.id"
-            cols="12" 
-            md="6"
-          >
-            <v-card class="fill-height" variant="outlined">
-              <v-img
-                :src="sport.image"
-                height="200"
-                cover
-              />
-              <v-card-title>
-                {{ sport.title }}
-              </v-card-title>
-              <v-card-subtitle>
-                {{ sport.category }}
-              </v-card-subtitle>
-              <v-card-text>
-                <p class="mb-3">{{ sport.description }}</p>
-                <div class="d-flex flex-wrap">
-                  <v-chip
-                    v-for="tech in sport.technologies"
-                    :key="tech"
-                    size="small"
-                    variant="outlined"
-                    class="mr-1 mb-1"
-                  >
-                    {{ tech }}
-                  </v-chip>
-                </div>
-              </v-card-text>
-              <v-card-actions>
-                <v-btn variant="text" color="primary">
-                  詳細を見る
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-section>
 
     <!-- Innovation Process -->
-    <v-section class="py-16">
-      <v-container>
-        <v-row align="center">
-          <v-col cols="12" md="6">
-            <h2 class="text-h3 mb-6">イノベーション創出プロセス</h2>
-            <div class="mb-6">
-              <h3 class="text-h6 mb-2">1. 調査・分析</h3>
-              <p class="text-body-1 grey--text text--darken-1 mb-4">
-                市場動向や技術トレンドを徹底的に調査・分析し、イノベーションの機会を特定します。
-              </p>
+    <section class="innovation-process-section">
+      <div class="custom-container">
+        <div class="process-content">
+          <div class="process-text">
+            <h2 class="section-title">イノベーション創出プロセス</h2>
+            <div class="process-steps">
+              <div class="process-step">
+                <h3 class="step-title">1. 調査・分析</h3>
+                <p class="step-description">
+                  市場動向や技術トレンドを徹底的に調査・分析し、イノベーションの機会を特定します。
+                </p>
+              </div>
               
-              <h3 class="text-h6 mb-2">2. 研究・開発</h3>
-              <p class="text-body-1 grey--text text--darken-1 mb-4">
-                最新技術と創造的アイデアを組み合わせた革新的なソリューションを開発します。
-              </p>
+              <div class="process-step">
+                <h3 class="step-title">2. 研究・開発</h3>
+                <p class="step-description">
+                  最新技術と創造的アイデアを組み合わせた革新的なソリューションを開発します。
+                </p>
+              </div>
               
-              <h3 class="text-h6 mb-2">3. 実証・検証</h3>
-              <p class="text-body-1 grey--text text--darken-1 mb-4">
-                プロトタイプの作成と実証実験により、技術の有効性を検証します。
-              </p>
+              <div class="process-step">
+                <h3 class="step-title">3. 実証・検証</h3>
+                <p class="step-description">
+                  プロトタイプの作成と実証実験により、技術の有効性を検証します。
+                </p>
+              </div>
               
-              <h3 class="text-h6 mb-2">4. 実用化・展開</h3>
-              <p class="text-body-1 grey--text text--darken-1">
-                実証された技術の実用化と市場展開をサポートします。
-              </p>
+              <div class="process-step">
+                <h3 class="step-title">4. 実用化・展開</h3>
+                <p class="step-description">
+                  実証された技術の実用化と市場展開をサポートします。
+                </p>
+              </div>
             </div>
-          </v-col>
-          <v-col cols="12" md="6">
-            <v-img
-              src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&h=400"
-              height="400"
-              cover
-              class="rounded-lg"
+          </div>
+          <div class="process-image">
+            <img 
+              src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&h=400" 
+              alt="Innovation Process"
             />
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-section>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Partnership -->
-    <v-section class="py-16 bg-grey-lighten-5">
-      <v-container>
-        <v-row>
-          <v-col cols="12" class="text-center">
-            <h2 class="text-h3 mb-6">パートナーシップ</h2>
-            <p class="text-h6 grey--text mb-8">
-              Research Partnerships
-            </p>
-            <div class="partnership-grid">
-              <v-card
-                v-for="partner in partners"
-                :key="partner.id"
-                class="pa-4 ma-2"
-                variant="outlined"
-              >
-                <div class="text-center">
-                  <v-icon 
-                    :icon="partner.icon" 
-                    size="large" 
-                    color="primary"
-                    class="mb-2"
-                  />
-                  <div class="text-h6">{{ partner.name }}</div>
-                  <div class="text-body-2 grey--text">{{ partner.type }}</div>
-                </div>
-              </v-card>
+    <section class="partnership-section">
+      <div class="custom-container">
+        <div class="section-header">
+          <h2 class="section-title">パートナーシップ</h2>
+          <p class="section-description">
+            研究開発を支える信頼できるパートナーネットワーク
+          </p>
+        </div>
+        
+        <div class="partners-grid">
+          <div 
+            v-for="partner in partners"
+            :key="partner.id"
+            class="partner-card"
+          >
+            <div class="partner-icon">
+              <v-icon :icon="getPartnerIcon(partner.id)" size="48" color="#E17B47"></v-icon>
             </div>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-section>
-  </v-container>
+            <h3 class="partner-name">{{ partner.name }}</h3>
+            <p class="partner-type">{{ partner.type }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -204,24 +124,30 @@
 const { setSEO } = useSEO()
 setSEO('lab')
 
+// Helper functions for Material Design icons
+const getResearchIcon = (researchId: string) => {
+  const iconMap: Record<string, string> = {
+    'ai-iot': 'mdi-brain',
+    'sustainable': 'mdi-leaf'
+  }
+  return iconMap[researchId] || 'mdi-microscope'
+}
+
+const getPartnerIcon = (partnerId: number) => {
+  const iconMap: Record<number, string> = {
+    1: 'mdi-school',
+    2: 'mdi-laptop',
+    3: 'mdi-trophy',
+    4: 'mdi-currency-usd'
+  }
+  return iconMap[partnerId] || 'mdi-handshake'
+}
+
 // 研究領域データ
 const researchAreas = [
   {
-    id: 'sports-tech',
-    title: 'スポーツテクノロジー',
-    icon: 'mdi-run',
-    description: 'フィッシング・スキー・ゴルフ技術の革新',
-    features: [
-      '釣具・スキー用品の技術開発',
-      'パフォーマンス分析システム',
-      'トレーニング効率化技術',
-      'スポーツ体験の向上'
-    ]
-  },
-  {
     id: 'ai-iot',
     title: 'AI・IoTテクノロジー',
-    icon: 'mdi-brain',
     description: '人工知能とIoTの融合技術',
     features: [
       '機械学習・深層学習',
@@ -233,7 +159,6 @@ const researchAreas = [
   {
     id: 'sustainable',
     title: 'サステナブル技術',
-    icon: 'mdi-leaf',
     description: '持続可能な社会実現のための技術',
     features: [
       '環境配慮型材料開発',
@@ -244,102 +169,317 @@ const researchAreas = [
   }
 ]
 
-// スポーツプロジェクト
-const sportsProjects = [
-  {
-    id: 1,
-    title: 'AI釣具選択システム',
-    category: 'フィッシング技術',
-    description: 'AIが水域・気象条件・魚種に基づいて最適な釣具を提案するシステム',
-    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&h=400',
-    technologies: ['AI', 'ビッグデータ', 'モバイルアプリ']
-  },
-  {
-    id: 2,
-    title: 'スマートスキー解析',
-    category: 'スキー技術',
-    description: 'センサー技術によるスキー技術の可視化・分析システム',
-    image: 'https://images.unsplash.com/photo-1551524164-6cf2ac40fcb4?w=600&h=400',
-    technologies: ['IoTセンサー', '3D解析', 'リアルタイム']
-  },
-  {
-    id: 3,
-    title: 'ゴルフスイング最適化',
-    category: 'ゴルフ技術',
-    description: '高精度センサーによるスイング解析と個人最適化技術',
-    image: 'https://images.unsplash.com/photo-1535131749006-b7f58c99034d?w=600&h=400',
-    technologies: ['モーション解析', 'AR', 'パーソナライズ']
-  },
-  {
-    id: 4,
-    title: 'エクスペリエンスデザイン',
-    category: '体験設計',
-    description: 'デジタル技術を活用した革新的なスポーツ体験の設計',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400',
-    technologies: ['VR/AR', 'UX設計', 'デジタルツイン']
-  }
-]
 
 // パートナー
 const partners = [
   {
     id: 1,
     name: '大学研究機関',
-    type: '学術パートナー',
-    icon: 'mdi-school'
+    type: '学術パートナー'
   },
   {
     id: 2,
     name: 'テクノロジー企業',
-    type: '技術パートナー',
-    icon: 'mdi-chip'
+    type: '技術パートナー'
   },
   {
     id: 3,
     name: 'スポーツ団体',
-    type: '実証パートナー',
-    icon: 'mdi-trophy'
+    type: '実証パートナー'
   },
   {
     id: 4,
     name: '投資機関',
-    type: '資金パートナー',
-    icon: 'mdi-currency-usd'
+    type: '資金パートナー'
   }
 ]
 </script>
 
 <style scoped>
-.hero-section {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  position: relative;
+/* Anthropic Theme Variables */
+.anthropic-theme {
+  background-color: #FAF9F7;
+  min-height: 100vh;
 }
 
-.feature-list {
+/* Custom Container */
+.custom-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Hero Section */
+.lab-hero-section {
+  padding: 80px 0 60px 0;
+  background-color: #FAF9F7;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+.hero-content {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 500;
+  color: #1A1A1A;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: #E17B47;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.hero-description {
+  font-size: 1.125rem;
+  color: #666666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Section Styles */
+.research-areas-section,
+.innovation-process-section {
+  padding: 80px 0;
+  background-color: #FAF9F7;
+}
+
+.partnership-section {
+  padding: 80px 0;
+  background-color: #F0EDE8;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: #1A1A1A;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.section-description {
+  font-size: 1.125rem;
+  color: #666666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Research Areas Grid */
+.research-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.research-card {
+  background: #FFFFFF;
+  border-radius: 16px;
+  padding: 2.5rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid #E5E5E5;
+  transition: all 0.3s ease;
+}
+
+.research-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  border-color: #E17B47;
+}
+
+.research-icon {
+  margin-bottom: 1.5rem;
+}
+
+
+.research-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #1A1A1A;
+  margin-bottom: 1rem;
+}
+
+.research-description {
+  color: #666666;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.research-features {
   list-style: none;
   padding: 0;
+  margin: 0;
+  text-align: left;
 }
 
-.feature-list li {
+.research-features li {
   position: relative;
-  padding-left: 20px;
-  margin-bottom: 8px;
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: #333333;
+  line-height: 1.5;
 }
 
-.feature-list li::before {
-  content: '⚡';
+.research-features li::before {
+  content: '✓';
   position: absolute;
   left: 0;
-  color: #1976d2;
+  color: #E17B47;
+  font-weight: 600;
 }
 
-.partnership-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+
+/* Innovation Process */
+.process-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
 }
 
-.v-section {
-  position: relative;
+.process-steps {
+  margin-top: 2rem;
+}
+
+.process-step {
+  margin-bottom: 2.5rem;
+}
+
+.step-title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #1A1A1A;
+  margin-bottom: 0.75rem;
+}
+
+.step-description {
+  color: #666666;
+  line-height: 1.6;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.process-image {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.process-image img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+/* Partners Grid */
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.partner-card {
+  background: #FFFFFF;
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid #E5E5E5;
+  transition: all 0.3s ease;
+}
+
+.partner-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  border-color: #E17B47;
+}
+
+.partner-icon {
+  margin-bottom: 1.5rem;
+}
+
+
+.partner-name {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #1A1A1A;
+  margin-bottom: 0.5rem;
+}
+
+.partner-type {
+  color: #666666;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .custom-container {
+    padding: 0 16px;
+  }
+  
+  .lab-hero-section,
+  .research-areas-section,
+  .innovation-process-section,
+  .partnership-section {
+    padding: 60px 0;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .research-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  
+  .partners-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .process-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .process-image {
+    order: -1;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .section-title {
+    font-size: 1.75rem;
+  }
+  
+  .research-card,
+  .partner-card {
+    padding: 1.5rem;
+  }
+  
 }
 </style>

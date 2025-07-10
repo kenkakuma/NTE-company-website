@@ -1,0 +1,5 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <path d="M6.4 0h19.2c3.5 0 6.4 2.9 6.4 6.4v19.2c0 3.5-2.9 6.4-6.4 6.4H6.4C2.9 32 0 29.1 0 25.6V6.4C0 2.9 2.9 0 6.4 0z" fill="black"/>
+  <text x="50%" y="50%" font-family="Arial, sans-serif" font-size="5" font-weight="bold" 
+        fill="white" text-anchor="middle" dominant-baseline="central">NTE</text>
+</svg>
