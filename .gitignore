@@ -27,3 +27,15 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+
+# Private/Memory files - keep local only
+CLAUDE.md
+CLAUDEOLD.md
+CLAUDE_BACKUP.md
+CLAUDE.local.md
+CHANGELOG.md
+ISSUE_TEMPLATE.md
+**/memory.md
+**/private-notes.md
+**/CLAUDE*.md
+**/ISSUE_TEMPLATE.md
