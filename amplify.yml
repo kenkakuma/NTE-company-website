@@ -3,9 +3,7 @@ frontend:
   phases:
     preBuild:
       commands:
-        - echo "Setting up Node.js 20 for Nuxt 3..."
-        - nvm install 20.9.0
-        - nvm use 20.9.0
+        - echo "Setting up Node.js for Nuxt 3..."
         - node --version
         - npm --version
         - echo "Installing dependencies..."
