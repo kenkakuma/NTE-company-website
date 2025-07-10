@@ -18,18 +18,15 @@ type NuxtAppInjections =
   InjectionType<typeof import("../../node_modules/@pinia/nuxt/dist/runtime/plugin.vue3.js")> &
   InjectionType<typeof import("../../node_modules/nuxt/dist/pages/runtime/plugins/prefetch.client.js")> &
   InjectionType<typeof import("../../node_modules/vuetify-nuxt-module/dist/runtime/plugins/vuetify-no-client-hints.js")> &
-  InjectionType<typeof import("../pwa-icons-plugin")> &
   InjectionType<typeof import("../../plugins/gtag.client")> &
   InjectionType<typeof import("../../plugins/performance.client")> &
-  InjectionType<typeof import("../../plugins/web-vitals.client")> &
-  InjectionType<typeof import("../../node_modules/nuxt/dist/pages/runtime/plugins/prerender.server.js")> &
-  InjectionType<typeof import("../../node_modules/@vite-pwa/nuxt/dist/runtime/plugins/pwa.client.js")>
+  InjectionType<typeof import("../../plugins/web-vitals.client")>
 
 declare module '#app' {
   interface NuxtApp extends NuxtAppInjections { }
 
   interface NuxtAppLiterals {
-    pluginName: 'nuxt:revive-payload:client' | 'vuetify:icons:plugin' | 'nuxt:head' | 'nuxt:router' | 'nuxt:revive-payload:server' | 'nuxt:chunk-reload' | 'pinia' | 'nuxt:global-components' | 'nuxt:prefetch' | 'vite-pwa:nuxt:pwa-icons-plugin' | 'vite-pwa:nuxt:client:plugin' | 'vuetify:nuxt:server:plugin' | 'vuetify:nuxt:client:plugin'
+    pluginName: 'nuxt:revive-payload:client' | 'vuetify:icons:plugin' | 'nuxt:head' | 'nuxt:router' | 'nuxt:revive-payload:server' | 'nuxt:chunk-reload' | 'pinia' | 'nuxt:global-components' | 'nuxt:prefetch' | 'vuetify:nuxt:server:plugin' | 'vuetify:nuxt:client:plugin'
   }
 }
 

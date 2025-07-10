@@ -107,9 +107,6 @@
       "pinia": [
         "../node_modules/pinia/dist/pinia"
       ],
-      "#pwa": [
-        "../node_modules/@vite-pwa/nuxt/dist/runtime/composables/index"
-      ],
       "#unhead/composables": [
         "../node_modules/nuxt/dist/head/runtime/composables/v3"
       ]
@@ -125,7 +122,6 @@
     "../node_modules/@pinia/nuxt/runtime/server",
     "../node_modules/@vueuse/nuxt/runtime/server",
     "../node_modules/@nuxtjs/google-fonts/runtime/server",
-    "../node_modules/@vite-pwa/nuxt/runtime/server",
     "../node_modules/vuetify-nuxt-module/runtime/server",
     "../node_modules/@nuxt/devtools/runtime/server",
     "../node_modules/@nuxt/telemetry/runtime/server",
@@ -139,7 +135,6 @@
     "../node_modules/@pinia/nuxt/node_modules",
     "../node_modules/@vueuse/nuxt/node_modules",
     "../node_modules/@nuxtjs/google-fonts/node_modules",
-    "../node_modules/@vite-pwa/nuxt/node_modules",
     "../node_modules/vuetify-nuxt-module/node_modules",
     "../node_modules/@nuxt/devtools/node_modules",
     "../node_modules/@nuxt/telemetry/node_modules",

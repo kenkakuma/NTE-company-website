@@ -38,6 +38,5 @@ export { LazyPages, LazyComponents, preloadCriticalComponents, preloadPageCompon
 export { detectPWACapabilities, checkPWAInstallStatus, getServiceWorkerStatus, getCacheInfo, clearExpiredCaches, shareContent, sendServiceWorkerMessage, getPWAStats, getNetworkInfo, monitorPWAPerformance, savePWASettings, loadPWASettings, checkForPWAUpdate, getPWADebugInfo } from '../utils/pwa';
 export { useArticleStore } from '../stores/articles';
 export { defineStore, acceptHMRUpdate, usePinia, storeToRefs } from '../node_modules/@pinia/nuxt/dist/runtime/composables';
-export { usePWA, useTransparentPwaIcon, useMaskablePwaIcon, useFaviconPwaIcon, useApplePwaIcon, useAppleSplashScreenPwaIcon } from '../node_modules/@vite-pwa/nuxt/dist/runtime/composables/index';
 export { useDate, useLocale, useDefaults, useDisplay, useLayout, useRtl, useTheme, useGoTo } from 'vuetify';
 export { definePageMeta } from '../node_modules/nuxt/dist/pages/runtime/composables';
