@@ -14,10 +14,8 @@ frontend:
     build:
       commands:
         - echo "Building Nuxt 3 static site for production..."
-        - echo "Using local node_modules nuxt..."
-        - ./node_modules/.bin/nuxt --version || echo "Local nuxt version check failed"
-        - echo "Running generate with local nuxt..."
-        - ./node_modules/.bin/nuxt generate
+        - echo "Using npm run generate script..."
+        - npm run generate
         - echo "Verifying build output..."
         - ls -la .output/public || echo "Output directory not found"
         - ls -la .output/public/_nuxt || echo "Nuxt assets directory not found"
