@@ -160,39 +160,14 @@ export default defineNuxtConfig({
         '/lab',
         '/club',
         '/about',
-        '/contact'
+        '/contact',
+        '/admin'
       ]
     },
     // 路由规则
     routeRules: {
-      // 管理系统客户端渲染
-      '/admin/**': { ssr: false },
       // API路由
-      '/api/**': { cors: true },
-      // CSP安全策略
-      '/**': {
-        headers: {
-          'Content-Security-Policy': [
-            "default-src 'self'",
-            "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com",
-            "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-            "font-src 'self' data: https://fonts.gstatic.com",
-            "img-src 'self' data: https: blob:",
-            "connect-src 'self' https://www.google-analytics.com https://analytics.google.com",
-            "media-src 'self' data: blob:",
-            "object-src 'none'",
-            "frame-src 'none'",
-            "worker-src 'self' blob:",
-            "manifest-src 'self'",
-            "base-uri 'self'"
-          ].join('; '),
-          'X-Content-Type-Options': 'nosniff',
-          'X-Frame-Options': 'DENY',
-          'X-XSS-Protection': '1; mode=block',
-          'Referrer-Policy': 'strict-origin-when-cross-origin',
-          'Permissions-Policy': 'camera=(), microphone=(), geolocation=()'
-        }
-      }
+      '/api/**': { cors: true }
     },
     // 压缩配置
     compressPublicAssets: true

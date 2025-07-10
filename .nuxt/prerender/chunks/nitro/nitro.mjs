@@ -640,7 +640,7 @@ function _expandFromEnv(value) {
 const _inlineRuntimeConfig = {
   "app": {
     "baseURL": "/",
-    "buildId": "6af62313-a5c5-4a16-a1ee-53cbaf599321",
+    "buildId": "e4222e5d-b4f7-404f-9e03-416c15bfeea2",
     "buildAssetsDir": "/_nuxt/",
     "cdnURL": ""
   },
@@ -650,9 +650,6 @@ const _inlineRuntimeConfig = {
       "/__nuxt_error": {
         "cache": false
       },
-      "/admin/**": {
-        "ssr": false
-      },
       "/api/**": {
         "cors": true,
         "headers": {
@@ -660,16 +657,6 @@ const _inlineRuntimeConfig = {
           "access-control-allow-methods": "*",
           "access-control-allow-headers": "*",
           "access-control-max-age": "0"
-        }
-      },
-      "/**": {
-        "headers": {
-          "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com; media-src 'self' data: blob:; object-src 'none'; frame-src 'none'; worker-src 'self' blob:; manifest-src 'self'; base-uri 'self'",
-          "X-Content-Type-Options": "nosniff",
-          "X-Frame-Options": "DENY",
-          "X-XSS-Protection": "1; mode=block",
-          "Referrer-Policy": "strict-origin-when-cross-origin",
-          "Permissions-Policy": "camera=(), microphone=(), geolocation=()"
         }
       },
       "/_nuxt/builds/meta/**": {
