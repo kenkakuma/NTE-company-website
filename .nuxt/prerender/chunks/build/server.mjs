@@ -3,7 +3,7 @@ import { $fetch } from 'file:///Users/eric/WebstormProjects/notrace/node_modules
 import { u as useSeoMeta$1, a as useHead$1, h as headSymbol, b as baseURL } from '../_/renderer.mjs';
 import { createHooks } from 'file:///Users/eric/WebstormProjects/notrace/node_modules/hookable/dist/index.mjs';
 import { getContext, executeAsync } from 'file:///Users/eric/WebstormProjects/notrace/node_modules/unctx/dist/index.mjs';
-import { sanitizeStatusCode, createError as createError$1 } from 'file:///Users/eric/WebstormProjects/notrace/node_modules/h3/dist/index.mjs';
+import { sanitizeStatusCode, createError as createError$1, appendHeader } from 'file:///Users/eric/WebstormProjects/notrace/node_modules/h3/dist/index.mjs';
 import { useRoute as useRoute$1, RouterView, createMemoryHistory, createRouter, START_LOCATION } from 'file:///Users/eric/WebstormProjects/notrace/node_modules/vue-router/dist/vue-router.node.mjs';
 import { toRouteMatcher, createRouter as createRouter$1 } from 'file:///Users/eric/WebstormProjects/notrace/node_modules/radix3/dist/index.mjs';
 import { defu } from 'file:///Users/eric/WebstormProjects/notrace/node_modules/defu/dist/defu.mjs';
@@ -1529,7 +1529,7 @@ const unhead_k2P3m_ZDyjlr2mMYnoDPwavjsDN8hBlk9cFai0bbopU = /* @__PURE__ */ defin
     nuxtApp.vueApp.use(head);
   }
 });
-function toArray(value) {
+function toArray$1(value) {
   return Array.isArray(value) ? value : [value];
 }
 async function getRouteRules(arg) {
@@ -1721,7 +1721,7 @@ const plugin$2 = /* @__PURE__ */ defineNuxtPlugin({
     let __temp, __restore;
     let routerBase = (/* @__PURE__ */ useRuntimeConfig()).app.baseURL;
     const history = ((_a = routerOptions.history) == null ? void 0 : _a.call(routerOptions, routerBase)) ?? createMemoryHistory(routerBase);
-    const routes = routerOptions.routes ? ([__temp, __restore] = executeAsync(() => routerOptions.routes(_routes)), __temp = await __temp, __restore(), __temp) ?? _routes : _routes;
+    const routes2 = routerOptions.routes ? ([__temp, __restore] = executeAsync(() => routerOptions.routes(_routes)), __temp = await __temp, __restore(), __temp) ?? _routes : _routes;
     let startPosition;
     const router = createRouter({
       ...routerOptions,
@@ -1742,7 +1742,7 @@ const plugin$2 = /* @__PURE__ */ defineNuxtPlugin({
         }
       },
       history,
-      routes
+      routes: routes2
     });
     nuxtApp.vueApp.use(router);
     const previousRoute = shallowRef(router.currentRoute.value);
@@ -1824,7 +1824,7 @@ const plugin$2 = /* @__PURE__ */ defineNuxtPlugin({
           if (!componentMiddleware) {
             continue;
           }
-          for (const entry2 of toArray(componentMiddleware)) {
+          for (const entry2 of toArray$1(componentMiddleware)) {
             middlewareEntries.add(entry2);
           }
         }
@@ -2466,6 +2466,9 @@ This will fail in production.`);
   useStore.$id = id;
   return useStore;
 }
+function toArray(value) {
+  return Array.isArray(value) ? value : [value];
+}
 defineComponent$1({
   name: "ServerPlaceholder",
   render() {
@@ -2503,6 +2506,15 @@ defineComponent$1({
     };
   }
 });
+function useRequestEvent(nuxtApp) {
+  var _a;
+  nuxtApp || (nuxtApp = useNuxtApp());
+  return (_a = nuxtApp.ssrContext) == null ? void 0 : _a.event;
+}
+function prerenderRoutes(path) {
+  const paths = toArray(path);
+  appendHeader(useRequestEvent(), "x-nitro-prerender", paths.map((p) => encodeURIComponent(p)).join(", "));
+}
 const plugin$1 = /* @__PURE__ */ defineNuxtPlugin({
   name: "pinia",
   setup(nuxtApp) {
@@ -2548,6 +2560,43 @@ const pwa_icons_plugin_C24GcIKjcI2zsa8A86om0L2LZjx1chWtzYxD11T7Txg = /* @__PURE_
     }
   };
 });
+let routes;
+const prerender_server_sqIxOBipVr4FbVMA9kqWL0wT8FPop6sKAXLVfifsJzk = /* @__PURE__ */ defineNuxtPlugin(async () => {
+  let __temp, __restore;
+  if (routes && !routes.length) {
+    return;
+  }
+  (/* @__PURE__ */ useRuntimeConfig()).nitro.routeRules;
+  routes || (routes = Array.from(processRoutes(([__temp, __restore] = executeAsync(() => {
+    var _a;
+    return (_a = routerOptions.routes) == null ? void 0 : _a.call(routerOptions, _routes);
+  }), __temp = await __temp, __restore(), __temp) ?? _routes)));
+  const batch = routes.splice(0, 10);
+  prerenderRoutes(batch);
+});
+const OPTIONAL_PARAM_RE = /^\/?:.*(?:\?|\(\.\*\)\*)$/;
+function shouldPrerender(path) {
+  return true;
+}
+function processRoutes(routes2, currentPath = "/", routesToPrerender = /* @__PURE__ */ new Set()) {
+  var _a;
+  for (const route of routes2) {
+    if (OPTIONAL_PARAM_RE.test(route.path) && !((_a = route.children) == null ? void 0 : _a.length) && shouldPrerender()) {
+      routesToPrerender.add(currentPath);
+    }
+    if (route.path.includes(":")) {
+      continue;
+    }
+    const fullPath = joinURL(currentPath, route.path);
+    {
+      routesToPrerender.add(fullPath);
+    }
+    if (route.children) {
+      processRoutes(route.children, fullPath, routesToPrerender);
+    }
+  }
+  return routesToPrerender;
+}
 const isDev = false;
 function vuetifyConfiguration() {
   const options = { "theme": { "defaultTheme": "light", "themes": { "light": { "dark": false, "colors": { "primary": "#667eea", "secondary": "#764ba2", "accent": "#82B1FF", "error": "#FF5252", "info": "#2196F3", "success": "#4CAF50", "warning": "#FFC107", "surface": "#ffffff", "background": "#f8f9fa", "on-primary": "#ffffff", "on-secondary": "#ffffff", "on-surface": "#1a1a1a", "on-background": "#1a1a1a" } }, "dark": { "dark": true, "colors": { "primary": "#667eea", "secondary": "#764ba2", "accent": "#82B1FF", "error": "#FF5252", "info": "#2196F3", "success": "#4CAF50", "warning": "#FFC107", "surface": "#1e1e1e", "background": "#121212", "on-primary": "#ffffff", "on-secondary": "#ffffff", "on-surface": "#ffffff", "on-background": "#ffffff" } } } }, "defaults": { "VCard": { "elevation": 2 }, "VBtn": { "style": "font-weight: 500;" } }, "ssr": true };
@@ -4302,6 +4351,7 @@ const plugins = [
   components_plugin_z4hgvsiddfKkfXTP6M8M4zG5Cb7sGnDhcryKVM45Di4,
   plugin,
   pwa_icons_plugin_C24GcIKjcI2zsa8A86om0L2LZjx1chWtzYxD11T7Txg,
+  prerender_server_sqIxOBipVr4FbVMA9kqWL0wT8FPop6sKAXLVfifsJzk,
   vuetify_nuxt_plugin_server_C1ywIWVw2IpY52JspribssrozPKdo85pO0AHg0a1GnE
 ];
 function defaultEstimatedProgress(duration, elapsed) {
