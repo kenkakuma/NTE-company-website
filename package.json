@@ -11,6 +11,7 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
+    "generate:simple": "nuxt generate --config nuxt.config.simple.ts",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare || echo 'Postinstall failed, continuing...'",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx --fix --ignore-path .gitignore",

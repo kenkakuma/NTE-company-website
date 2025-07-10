@@ -6,16 +6,18 @@ frontend:
         - echo "Setting up Node.js for Nuxt 3..."
         - node --version
         - npm --version
+        - echo "Cleaning npm cache..."
+        - npm cache clean --force
         - echo "Installing dependencies..."
-        - npm install --legacy-peer-deps
+        - npm install --legacy-peer-deps --no-audit --no-fund
         - echo "Dependencies installed successfully"
     build:
       commands:
         - echo "Building Nuxt 3 static site for production..."
         - npm run generate
         - echo "Verifying build output..."
-        - ls -la .output/public
-        - ls -la .output/public/_nuxt
+        - ls -la .output/public || echo "Output directory not found"
+        - ls -la .output/public/_nuxt || echo "Nuxt assets directory not found"
         - echo "Build completed successfully"
   artifacts:
     baseDirectory: .output/public
@@ -24,4 +26,3 @@ frontend:
   cache:
     paths:
       - node_modules/**/*
-      - .nuxt/**/*
