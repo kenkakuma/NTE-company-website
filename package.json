@@ -4,7 +4,7 @@
   "description": "NO TRACE EXPLORER v2.6.0 - Unified Management Center Complete Edition",
   "private": true,
   "engines": {
-    "node": ">=20.9.0",
+    "node": ">=18.0.0",
     "npm": ">=9.0.0"
   },
   "scripts": {
@@ -13,7 +13,7 @@
     "generate": "nuxt generate",
     "generate:simple": "nuxt generate --config nuxt.config.simple.ts",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare || echo 'Postinstall failed, continuing...'",
+    "postinstall": "npx nuxt prepare || echo 'Postinstall failed, continuing...'",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx --fix --ignore-path .gitignore",
     "type-check": "nuxt typecheck"
   },
