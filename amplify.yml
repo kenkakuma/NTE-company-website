@@ -3,18 +3,21 @@ frontend:
   phases:
     preBuild:
       commands:
-        - echo "Setting up Node.js 20..."
+        - echo "Setting up Node.js 20 for Nuxt 3..."
         - nvm install 20.9.0
         - nvm use 20.9.0
         - node --version
         - npm --version
-        - echo "Installing dependencies with force flag..."
-        - npm install --force --legacy-peer-deps
+        - echo "Installing dependencies..."
+        - npm ci --legacy-peer-deps
         - echo "Dependencies installed successfully"
     build:
       commands:
-        - echo "Building for production..."
+        - echo "Building Nuxt 3 static site for production..."
         - npm run generate
+        - echo "Verifying build output..."
+        - ls -la .output/public
+        - ls -la .output/public/_nuxt
         - echo "Build completed successfully"
   artifacts:
     baseDirectory: .output/public
