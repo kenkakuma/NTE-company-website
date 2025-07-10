@@ -14,11 +14,10 @@ frontend:
     build:
       commands:
         - echo "Building Nuxt 3 static site for production..."
-        - echo "Checking if nuxt is available..."
-        - which nuxt || echo "nuxt command not in PATH"
-        - npx nuxt --version || echo "npx nuxt failed"
-        - echo "Running generate with npx..."
-        - npx nuxt generate
+        - echo "Using local node_modules nuxt..."
+        - ./node_modules/.bin/nuxt --version || echo "Local nuxt version check failed"
+        - echo "Running generate with local nuxt..."
+        - ./node_modules/.bin/nuxt generate
         - echo "Verifying build output..."
         - ls -la .output/public || echo "Output directory not found"
         - ls -la .output/public/_nuxt || echo "Nuxt assets directory not found"
