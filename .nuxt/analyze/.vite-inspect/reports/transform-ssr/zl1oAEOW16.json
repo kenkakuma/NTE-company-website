@@ -1,0 +1,294 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/pages/coffee.vue?vue&type=style&index=0&scoped=b9afb4b5&lang.css",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "\n/* Anthropic Theme Variables */\n.anthropic-theme {\n  background-color: #FAF9F7;\n  min-height: 100vh;\n}\n\n/* Custom Container */\n.custom-container {\n  max-width: 1200px;\n  margin: 0 auto;\n  padding: 0 24px;\n}\n\n/* Hero Section */\n.coffee-hero-section {\n  padding: 80px 0 60px 0;\n  background-color: #FAF9F7;\n  border-bottom: 1px solid #E5E5E5;\n}\n\n.hero-content {\n  text-align: center;\n  max-width: 700px;\n  margin: 0 auto;\n}\n\n.hero-title {\n  font-size: 3.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 1rem;\n  line-height: 1.2;\n}\n\n.hero-subtitle {\n  font-size: 1.25rem;\n  color: #E17B47;\n  font-weight: 500;\n  margin-bottom: 1rem;\n}\n\n.hero-description {\n  font-size: 1.125rem;\n  color: #666666;\n  line-height: 1.6;\n  margin: 0;\n}\n\n/* Section Styles */\n.services-section,\n.quality-section {\n  padding: 80px 0;\n  background-color: #FAF9F7;\n}\n\n.section-header {\n  text-align: center;\n  margin-bottom: 4rem;\n  max-width: 600px;\n  margin-left: auto;\n  margin-right: auto;\n}\n\n.section-title {\n  font-size: 2.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 1rem;\n  line-height: 1.3;\n}\n\n.section-description {\n  font-size: 1.125rem;\n  color: #666666;\n  line-height: 1.6;\n  margin: 0;\n}\n\n/* Services Grid */\n.services-grid {\n  display: grid;\n  grid-template-columns: repeat(4, 1fr);\n  gap: 2rem;\n}\n\n.service-card {\n  background: #FFFFFF;\n  border-radius: 16px;\n  padding: 2.5rem;\n  text-align: center;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);\n  border: 1px solid #E5E5E5;\n  transition: all 0.3s ease;\n}\n\n.service-card:hover {\n  transform: translateY(-4px);\n  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);\n  border-color: #E17B47;\n}\n\n.service-icon {\n  margin-bottom: 1.5rem;\n}\n\n\n.service-title {\n  font-size: 1.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 1.5rem;\n}\n\n.service-features {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n  text-align: left;\n}\n\n.service-features li {\n  position: relative;\n  padding-left: 1.5rem;\n  margin-bottom: 0.75rem;\n  color: #333333;\n  line-height: 1.5;\n}\n\n.service-features li::before {\n  content: '✓';\n  position: absolute;\n  left: 0;\n  color: #E17B47;\n  font-weight: 600;\n}\n\n\n/* Quality Section */\n.quality-content {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 4rem;\n  align-items: center;\n}\n\n.quality-features {\n  margin-top: 2rem;\n}\n\n.quality-feature {\n  margin-bottom: 2rem;\n}\n\n.feature-title {\n  font-size: 1.25rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 0.75rem;\n}\n\n.feature-description {\n  color: #666666;\n  line-height: 1.6;\n  margin: 0;\n}\n\n.quality-image {\n  border-radius: 16px;\n  overflow: hidden;\n}\n\n.quality-image img {\n  width: 100%;\n  height: 400px;\n  object-fit: cover;\n}\n\n/* Responsive Design */\n@media (max-width: 1024px) {\n  .services-grid {\n    grid-template-columns: repeat(2, 1fr);\n  }\n}\n\n@media (max-width: 768px) {\n  .custom-container {\n    padding: 0 16px;\n  }\n  \n  .coffee-hero-section,\n  .services-section,\n  .quality-section {\n    padding: 60px 0;\n  }\n  \n  .hero-title {\n    font-size: 2.5rem;\n  }\n  \n  .section-title {\n    font-size: 2rem;\n  }\n  \n  .services-grid {\n    grid-template-columns: 1fr;\n  }\n  \n  .quality-content {\n    grid-template-columns: 1fr;\n    gap: 2rem;\n  }\n  \n  .quality-image {\n    order: -1;\n  }\n}\n",
+      "start": 1762413666761,
+      "end": 1762413666761,
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/home/user/NTE-company-website/pages/coffee.vue"
+        ],
+        "names": [],
+        "mappings": "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",
+        "file": "/home/user/NTE-company-website/pages/coffee.vue",
+        "sourceRoot": "",
+        "sourcesContent": [
+          "<template>\n  <div class=\"anthropic-theme coffee-page\">\n    <!-- Hero Section - Anthropic Style -->\n    <section class=\"coffee-hero-section\">\n      <div class=\"custom-container\">\n        <div class=\"hero-content\">\n          <h1 class=\"hero-title\">珈琲 | COFFEE</h1>\n          <p class=\"hero-subtitle\">飲料・文化事業</p>\n          <p class=\"hero-description\">\n            高品質コーヒー商品の企画開発・貿易・ブランド展開\n          </p>\n        </div>\n      </div>\n    </section>\n\n    <!-- Services Section -->\n    <section class=\"services-section\">\n      <div class=\"custom-container\">\n        <div class=\"section-header\">\n          <!-- Updated services section -->\n          <h2 class=\"section-title\">コーヒーサービス</h2>\n          <p class=\"section-description\">\n            品質と伝統を融合させた総合的なコーヒーソリューション\n          </p>\n        </div>\n        \n        <div class=\"services-grid\">\n          <div \n            v-for=\"service in services\" \n            :key=\"service.id\"\n            class=\"service-card\"\n          >\n            <div class=\"service-icon\">\n              <v-icon :icon=\"getServiceIcon(service.id)\" size=\"48\" color=\"#E17B47\"></v-icon>\n            </div>\n            <h3 class=\"service-title\">{{ service.title }}</h3>\n            <ul class=\"service-features\">\n              <li v-for=\"feature in service.features\" :key=\"feature\">\n                {{ feature }}\n              </li>\n            </ul>\n          </div>\n        </div>\n      </div>\n    </section>\n\n\n    <!-- Quality Promise -->\n    <section class=\"quality-section\">\n      <div class=\"custom-container\">\n        <div class=\"quality-content\">\n          <div class=\"quality-text\">\n            <h2 class=\"section-title\">品質へのこだわり</h2>\n            <div class=\"quality-features\">\n              <div class=\"quality-feature\">\n                <h3 class=\"feature-title\">厳選された豆</h3>\n                <p class=\"feature-description\">\n                  世界各地の優良農園から直接仕入れた高品質なコーヒー豆のみを使用しています。\n                </p>\n              </div>\n              <div class=\"quality-feature\">\n                <h3 class=\"feature-title\">独自の焙煎技術</h3>\n                <p class=\"feature-description\">\n                  豆の特性を最大限に引き出す独自の焙煎技術により、最高の風味を実現しています。\n                </p>\n              </div>\n              <div class=\"quality-feature\">\n                <h3 class=\"feature-title\">サステナブルな取り組み</h3>\n                <p class=\"feature-description\">\n                  環境と生産者に配慮したサステナブルなコーヒー作りに取り組んでいます。\n                </p>\n              </div>\n            </div>\n          </div>\n          <div class=\"quality-image\">\n            <img \n              src=\"https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=600&h=400\" \n              alt=\"Coffee Quality\"\n            />\n          </div>\n        </div>\n      </div>\n    </section>\n  </div>\n</template>\n\n<script setup lang=\"ts\">\n// SEO設定\nconst { setSEO } = useSEO()\nsetSEO('coffee')\n\n// Helper function for service icons\nconst getServiceIcon = (serviceId: string) => {\n  const iconMap: Record<string, string> = {\n    development: 'mdi-lightbulb-variant',\n    trade: 'mdi-earth',\n    brand: 'mdi-trophy',\n    international: 'mdi-airplane'\n  }\n  return iconMap[serviceId] || 'mdi-coffee'\n}\n\n// 服务数据\nconst services = [\n  {\n    id: 'development',\n    title: '商品企画開発',\n    icon: 'mdi-lightbulb-variant',\n    features: [\n      '高品質コーヒー商品の企画開発',\n      'ドリップバッグ開発・製造',\n      'オリジナルブレンド開発',\n      'パッケージデザイン'\n    ]\n  },\n  {\n    id: 'trade',\n    title: 'コーヒー貿易',\n    icon: 'mdi-earth',\n    features: [\n      '世界各地からの優良豆輸入',\n      '直接取引による品質保証',\n      '適正価格での安定供給',\n      'サステナブル調達'\n    ]\n  },\n  {\n    id: 'branding',\n    title: 'ブランド展開',\n    icon: 'mdi-trophy',\n    features: [\n      'オリジナルブランド展開',\n      'マーケティング戦略立案',\n      '販売チャネル開拓',\n      'ブランド価値向上'\n    ]\n  },\n  {\n    id: 'international',\n    title: '中国戦略展開',\n    icon: 'mdi-airplane',\n    features: [\n      '中国市場向け商品開発',\n      '海外販売戦略立案',\n      '現地パートナーシップ構築',\n      'クロスボーダーEC展開'\n    ]\n  }\n]\n\n</script>\n\n<style scoped>\n/* Anthropic Theme Variables */\n.anthropic-theme {\n  background-color: #FAF9F7;\n  min-height: 100vh;\n}\n\n/* Custom Container */\n.custom-container {\n  max-width: 1200px;\n  margin: 0 auto;\n  padding: 0 24px;\n}\n\n/* Hero Section */\n.coffee-hero-section {\n  padding: 80px 0 60px 0;\n  background-color: #FAF9F7;\n  border-bottom: 1px solid #E5E5E5;\n}\n\n.hero-content {\n  text-align: center;\n  max-width: 700px;\n  margin: 0 auto;\n}\n\n.hero-title {\n  font-size: 3.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 1rem;\n  line-height: 1.2;\n}\n\n.hero-subtitle {\n  font-size: 1.25rem;\n  color: #E17B47;\n  font-weight: 500;\n  margin-bottom: 1rem;\n}\n\n.hero-description {\n  font-size: 1.125rem;\n  color: #666666;\n  line-height: 1.6;\n  margin: 0;\n}\n\n/* Section Styles */\n.services-section,\n.quality-section {\n  padding: 80px 0;\n  background-color: #FAF9F7;\n}\n\n.section-header {\n  text-align: center;\n  margin-bottom: 4rem;\n  max-width: 600px;\n  margin-left: auto;\n  margin-right: auto;\n}\n\n.section-title {\n  font-size: 2.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 1rem;\n  line-height: 1.3;\n}\n\n.section-description {\n  font-size: 1.125rem;\n  color: #666666;\n  line-height: 1.6;\n  margin: 0;\n}\n\n/* Services Grid */\n.services-grid {\n  display: grid;\n  grid-template-columns: repeat(4, 1fr);\n  gap: 2rem;\n}\n\n.service-card {\n  background: #FFFFFF;\n  border-radius: 16px;\n  padding: 2.5rem;\n  text-align: center;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);\n  border: 1px solid #E5E5E5;\n  transition: all 0.3s ease;\n}\n\n.service-card:hover {\n  transform: translateY(-4px);\n  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);\n  border-color: #E17B47;\n}\n\n.service-icon {\n  margin-bottom: 1.5rem;\n}\n\n\n.service-title {\n  font-size: 1.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 1.5rem;\n}\n\n.service-features {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n  text-align: left;\n}\n\n.service-features li {\n  position: relative;\n  padding-left: 1.5rem;\n  margin-bottom: 0.75rem;\n  color: #333333;\n  line-height: 1.5;\n}\n\n.service-features li::before {\n  content: '✓';\n  position: absolute;\n  left: 0;\n  color: #E17B47;\n  font-weight: 600;\n}\n\n\n/* Quality Section */\n.quality-content {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 4rem;\n  align-items: center;\n}\n\n.quality-features {\n  margin-top: 2rem;\n}\n\n.quality-feature {\n  margin-bottom: 2rem;\n}\n\n.feature-title {\n  font-size: 1.25rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 0.75rem;\n}\n\n.feature-description {\n  color: #666666;\n  line-height: 1.6;\n  margin: 0;\n}\n\n.quality-image {\n  border-radius: 16px;\n  overflow: hidden;\n}\n\n.quality-image img {\n  width: 100%;\n  height: 400px;\n  object-fit: cover;\n}\n\n/* Responsive Design */\n@media (max-width: 1024px) {\n  .services-grid {\n    grid-template-columns: repeat(2, 1fr);\n  }\n}\n\n@media (max-width: 768px) {\n  .custom-container {\n    padding: 0 16px;\n  }\n  \n  .coffee-hero-section,\n  .services-section,\n  .quality-section {\n    padding: 60px 0;\n  }\n  \n  .hero-title {\n    font-size: 2.5rem;\n  }\n  \n  .section-title {\n    font-size: 2rem;\n  }\n  \n  .services-grid {\n    grid-template-columns: 1fr;\n  }\n  \n  .quality-content {\n    grid-template-columns: 1fr;\n    gap: 2rem;\n  }\n  \n  .quality-image {\n    order: -1;\n  }\n}\n</style>"
+        ]
+      }
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413666761,
+      "end": 1762413666761,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413666761,
+      "end": 1762413666761,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413666762,
+      "end": 1762413666762,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413666762,
+      "end": 1762413666762,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413666762,
+      "end": 1762413666762,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": ".anthropic-theme{background-color:#faf9f7;min-height:100vh}.custom-container{margin:0 auto;max-width:1200px;padding:0 24px}.coffee-hero-section{background-color:#faf9f7;border-bottom:1px solid #e5e5e5;padding:80px 0 60px}.hero-content{margin:0 auto;max-width:700px;text-align:center}.hero-title{color:#1a1a1a;font-size:3.5rem;line-height:1.2}.hero-subtitle,.hero-title{font-weight:500;margin-bottom:1rem}.hero-subtitle{color:#e17b47;font-size:1.25rem}.hero-description{color:#666;font-size:1.125rem;line-height:1.6;margin:0}.quality-section,.services-section{background-color:#faf9f7;padding:80px 0}.section-header{margin-bottom:4rem;margin-left:auto;margin-right:auto;max-width:600px;text-align:center}.section-title{color:#1a1a1a;font-size:2.5rem;font-weight:500;line-height:1.3;margin-bottom:1rem}.section-description{color:#666;font-size:1.125rem;line-height:1.6;margin:0}.services-grid{display:grid;gap:2rem;grid-template-columns:repeat(4,1fr)}.service-card{background:#fff;border:1px solid #e5e5e5;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,.04);padding:2.5rem;text-align:center;transition:all .3s ease}.service-card:hover{border-color:#e17b47;box-shadow:0 8px 32px rgba(0,0,0,.12);transform:translateY(-4px)}.service-icon,.service-title{margin-bottom:1.5rem}.service-title{color:#1a1a1a;font-size:1.5rem;font-weight:500}.service-features{list-style:none;margin:0;padding:0;text-align:left}.service-features li{color:#333;line-height:1.5;margin-bottom:.75rem;padding-left:1.5rem;position:relative}.service-features li:before{color:#e17b47;content:\"✓\";font-weight:600;left:0;position:absolute}.quality-content{align-items:center;display:grid;gap:4rem;grid-template-columns:1fr 1fr}.quality-features{margin-top:2rem}.quality-feature{margin-bottom:2rem}.feature-title{color:#1a1a1a;font-size:1.25rem;font-weight:500;margin-bottom:.75rem}.feature-description{color:#666;line-height:1.6;margin:0}.quality-image{border-radius:16px;overflow:hidden}.quality-image img{height:400px;-o-object-fit:cover;object-fit:cover;width:100%}@media (max-width:1024px){.services-grid{grid-template-columns:repeat(2,1fr)}}@media (max-width:768px){.custom-container{padding:0 16px}.coffee-hero-section,.quality-section,.services-section{padding:60px 0}.hero-title{font-size:2.5rem}.section-title{font-size:2rem}.quality-content,.services-grid{grid-template-columns:1fr}.quality-content{gap:2rem}.quality-image{order:-1}}",
+      "start": 1762413666762,
+      "end": 1762413666770,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "/home/user/NTE-company-website/pages/coffee.vue",
+        "mappings": "AAEA,iBACE,wBAAyB,CACzB,gBACF,CAGA,kBAEE,aAAc,CADd,gBAAiB,CAEjB,cACF,CAGA,qBAEE,wBAAyB,CACzB,+BAAgC,CAFhC,mBAGF,CAEA,cAGE,aAAc,CADd,eAAgB,CADhB,iBAGF,CAEA,YAGE,aAAc,CAFd,gBAAiB,CAIjB,eACF,CAEA,2BANE,eAAgB,CAEhB,kBASF,CALA,eAEE,aAAc,CADd,iBAIF,CAEA,kBAEE,UAAc,CADd,kBAAmB,CAEnB,eAAgB,CAChB,QACF,CAGA,mCAGE,wBAAyB,CADzB,cAEF,CAEA,gBAEE,kBAAmB,CAEnB,gBAAiB,CACjB,iBAAkB,CAFlB,eAAgB,CAFhB,iBAKF,CAEA,eAGE,aAAc,CAFd,gBAAiB,CACjB,eAAgB,CAGhB,eAAgB,CADhB,kBAEF,CAEA,qBAEE,UAAc,CADd,kBAAmB,CAEnB,eAAgB,CAChB,QACF,CAGA,eACE,YAAa,CAEb,QAAS,CADT,mCAEF,CAEA,cACE,eAAmB,CAKnB,wBAAyB,CAJzB,kBAAmB,CAGnB,oCAAyC,CAFzC,cAAe,CACf,iBAAkB,CAGlB,uBACF,CAEA,oBAGE,oBAAqB,CADrB,qCAA0C,CAD1C,0BAGF,CAOA,6BAJE,oBASF,CALA,eAGE,aAAc,CAFd,gBAAiB,CACjB,eAGF,CAEA,kBACE,eAAgB,CAEhB,QAAS,CADT,SAAU,CAEV,eACF,CAEA,qBAIE,UAAc,CACd,eAAgB,CAFhB,oBAAsB,CADtB,mBAAoB,CADpB,iBAKF,CAEA,4BAIE,aAAc,CAHd,WAAY,CAIZ,eAAgB,CAFhB,MAAO,CADP,iBAIF,CAIA,iBAIE,kBAAmB,CAHnB,YAAa,CAEb,QAAS,CADT,6BAGF,CAEA,kBACE,eACF,CAEA,iBACE,kBACF,CAEA,eAGE,aAAc,CAFd,iBAAkB,CAClB,eAAgB,CAEhB,oBACF,CAEA,qBACE,UAAc,CACd,eAAgB,CAChB,QACF,CAEA,eACE,kBAAmB,CACnB,eACF,CAEA,mBAEE,YAAa,CACb,mBAAiB,CAAjB,gBAAiB,CAFjB,UAGF,CAGA,0BACE,eACE,mCACF,CACF,CAEA,yBACE,kBACE,cACF,CAEA,wDAGE,cACF,CAEA,YACE,gBACF,CAEA,eACE,cACF,CAMA,gCAHE,yBAMF,CAHA,iBAEE,QACF,CAEA,eACE,QACF,CACF",
+        "names": [],
+        "sources": [
+          "/home/user/NTE-company-website/pages/coffee.vue"
+        ],
+        "sourcesContent": [
+          "\n/* Anthropic Theme Variables */\n.anthropic-theme {\n  background-color: #FAF9F7;\n  min-height: 100vh;\n}\n\n/* Custom Container */\n.custom-container {\n  max-width: 1200px;\n  margin: 0 auto;\n  padding: 0 24px;\n}\n\n/* Hero Section */\n.coffee-hero-section {\n  padding: 80px 0 60px 0;\n  background-color: #FAF9F7;\n  border-bottom: 1px solid #E5E5E5;\n}\n\n.hero-content {\n  text-align: center;\n  max-width: 700px;\n  margin: 0 auto;\n}\n\n.hero-title {\n  font-size: 3.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 1rem;\n  line-height: 1.2;\n}\n\n.hero-subtitle {\n  font-size: 1.25rem;\n  color: #E17B47;\n  font-weight: 500;\n  margin-bottom: 1rem;\n}\n\n.hero-description {\n  font-size: 1.125rem;\n  color: #666666;\n  line-height: 1.6;\n  margin: 0;\n}\n\n/* Section Styles */\n.services-section,\n.quality-section {\n  padding: 80px 0;\n  background-color: #FAF9F7;\n}\n\n.section-header {\n  text-align: center;\n  margin-bottom: 4rem;\n  max-width: 600px;\n  margin-left: auto;\n  margin-right: auto;\n}\n\n.section-title {\n  font-size: 2.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 1rem;\n  line-height: 1.3;\n}\n\n.section-description {\n  font-size: 1.125rem;\n  color: #666666;\n  line-height: 1.6;\n  margin: 0;\n}\n\n/* Services Grid */\n.services-grid {\n  display: grid;\n  grid-template-columns: repeat(4, 1fr);\n  gap: 2rem;\n}\n\n.service-card {\n  background: #FFFFFF;\n  border-radius: 16px;\n  padding: 2.5rem;\n  text-align: center;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);\n  border: 1px solid #E5E5E5;\n  transition: all 0.3s ease;\n}\n\n.service-card:hover {\n  transform: translateY(-4px);\n  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);\n  border-color: #E17B47;\n}\n\n.service-icon {\n  margin-bottom: 1.5rem;\n}\n\n\n.service-title {\n  font-size: 1.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 1.5rem;\n}\n\n.service-features {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n  text-align: left;\n}\n\n.service-features li {\n  position: relative;\n  padding-left: 1.5rem;\n  margin-bottom: 0.75rem;\n  color: #333333;\n  line-height: 1.5;\n}\n\n.service-features li::before {\n  content: '✓';\n  position: absolute;\n  left: 0;\n  color: #E17B47;\n  font-weight: 600;\n}\n\n\n/* Quality Section */\n.quality-content {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 4rem;\n  align-items: center;\n}\n\n.quality-features {\n  margin-top: 2rem;\n}\n\n.quality-feature {\n  margin-bottom: 2rem;\n}\n\n.feature-title {\n  font-size: 1.25rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 0.75rem;\n}\n\n.feature-description {\n  color: #666666;\n  line-height: 1.6;\n  margin: 0;\n}\n\n.quality-image {\n  border-radius: 16px;\n  overflow: hidden;\n}\n\n.quality-image img {\n  width: 100%;\n  height: 400px;\n  object-fit: cover;\n}\n\n/* Responsive Design */\n@media (max-width: 1024px) {\n  .services-grid {\n    grid-template-columns: repeat(2, 1fr);\n  }\n}\n\n@media (max-width: 768px) {\n  .custom-container {\n    padding: 0 16px;\n  }\n  \n  .coffee-hero-section,\n  .services-section,\n  .quality-section {\n    padding: 60px 0;\n  }\n  \n  .hero-title {\n    font-size: 2.5rem;\n  }\n  \n  .section-title {\n    font-size: 2rem;\n  }\n  \n  .services-grid {\n    grid-template-columns: 1fr;\n  }\n  \n  .quality-content {\n    grid-template-columns: 1fr;\n    gap: 2rem;\n  }\n  \n  .quality-image {\n    order: -1;\n  }\n}\n"
+        ],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1762413666770,
+      "end": 1762413666770,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413666770,
+      "end": 1762413666770,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413666770,
+      "end": 1762413666770,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": ".anthropic-theme[data-v-b9afb4b5]{background-color:#faf9f7;min-height:100vh}.custom-container[data-v-b9afb4b5]{margin:0 auto;max-width:1200px;padding:0 24px}.coffee-hero-section[data-v-b9afb4b5]{background-color:#faf9f7;border-bottom:1px solid #e5e5e5;padding:80px 0 60px}.hero-content[data-v-b9afb4b5]{margin:0 auto;max-width:700px;text-align:center}.hero-title[data-v-b9afb4b5]{color:#1a1a1a;font-size:3.5rem;line-height:1.2}.hero-subtitle[data-v-b9afb4b5],.hero-title[data-v-b9afb4b5]{font-weight:500;margin-bottom:1rem}.hero-subtitle[data-v-b9afb4b5]{color:#e17b47;font-size:1.25rem}.hero-description[data-v-b9afb4b5]{color:#666;font-size:1.125rem;line-height:1.6;margin:0}.quality-section[data-v-b9afb4b5],.services-section[data-v-b9afb4b5]{background-color:#faf9f7;padding:80px 0}.section-header[data-v-b9afb4b5]{margin-bottom:4rem;margin-left:auto;margin-right:auto;max-width:600px;text-align:center}.section-title[data-v-b9afb4b5]{color:#1a1a1a;font-size:2.5rem;font-weight:500;line-height:1.3;margin-bottom:1rem}.section-description[data-v-b9afb4b5]{color:#666;font-size:1.125rem;line-height:1.6;margin:0}.services-grid[data-v-b9afb4b5]{display:grid;gap:2rem;grid-template-columns:repeat(4,1fr)}.service-card[data-v-b9afb4b5]{background:#fff;border:1px solid #e5e5e5;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,.04);padding:2.5rem;text-align:center;transition:all .3s ease}.service-card[data-v-b9afb4b5]:hover{border-color:#e17b47;box-shadow:0 8px 32px rgba(0,0,0,.12);transform:translateY(-4px)}.service-icon[data-v-b9afb4b5],.service-title[data-v-b9afb4b5]{margin-bottom:1.5rem}.service-title[data-v-b9afb4b5]{color:#1a1a1a;font-size:1.5rem;font-weight:500}.service-features[data-v-b9afb4b5]{list-style:none;margin:0;padding:0;text-align:left}.service-features li[data-v-b9afb4b5]{color:#333;line-height:1.5;margin-bottom:.75rem;padding-left:1.5rem;position:relative}.service-features li[data-v-b9afb4b5]:before{color:#e17b47;content:\"✓\";font-weight:600;left:0;position:absolute}.quality-content[data-v-b9afb4b5]{align-items:center;display:grid;gap:4rem;grid-template-columns:1fr 1fr}.quality-features[data-v-b9afb4b5]{margin-top:2rem}.quality-feature[data-v-b9afb4b5]{margin-bottom:2rem}.feature-title[data-v-b9afb4b5]{color:#1a1a1a;font-size:1.25rem;font-weight:500;margin-bottom:.75rem}.feature-description[data-v-b9afb4b5]{color:#666;line-height:1.6;margin:0}.quality-image[data-v-b9afb4b5]{border-radius:16px;overflow:hidden}.quality-image img[data-v-b9afb4b5]{height:400px;-o-object-fit:cover;object-fit:cover;width:100%}@media (max-width:1024px){.services-grid[data-v-b9afb4b5]{grid-template-columns:repeat(2,1fr)}}@media (max-width:768px){.custom-container[data-v-b9afb4b5]{padding:0 16px}.coffee-hero-section[data-v-b9afb4b5],.quality-section[data-v-b9afb4b5],.services-section[data-v-b9afb4b5]{padding:60px 0}.hero-title[data-v-b9afb4b5]{font-size:2.5rem}.section-title[data-v-b9afb4b5]{font-size:2rem}.quality-content[data-v-b9afb4b5],.services-grid[data-v-b9afb4b5]{grid-template-columns:1fr}.quality-content[data-v-b9afb4b5]{gap:2rem}.quality-image[data-v-b9afb4b5]{order:-1}}",
+      "start": 1762413666770,
+      "end": 1762413666775,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "/home/user/NTE-company-website/pages/coffee.vue",
+        "mappings": "AAAA,kCAAiB,wBAAwB,CAAC,gBAAgB,CAAC,mCAAkB,aAAa,CAAC,gBAAgB,CAAC,cAAc,CAAC,sCAAqB,wBAAwB,CAAC,+BAA+B,CAAC,mBAAmB,CAAC,+BAAc,aAAa,CAAC,eAAe,CAAC,iBAAiB,CAAC,6BAAY,aAAa,CAAC,gBAAgB,CAAC,eAAe,CAAC,6DAA2B,eAAe,CAAC,kBAAkB,CAAC,gCAAe,aAAa,CAAC,iBAAiB,CAAC,mCAAkB,UAAU,CAAC,kBAAkB,CAAC,eAAe,CAAC,QAAQ,CAAC,qEAAmC,wBAAwB,CAAC,cAAc,CAAC,iCAAgB,kBAAkB,CAAC,gBAAgB,CAAC,iBAAiB,CAAC,eAAe,CAAC,iBAAiB,CAAC,gCAAe,aAAa,CAAC,gBAAgB,CAAC,eAAe,CAAC,eAAe,CAAC,kBAAkB,CAAC,sCAAqB,UAAU,CAAC,kBAAkB,CAAC,eAAe,CAAC,QAAQ,CAAC,gCAAe,YAAY,CAAC,QAAQ,CAAC,mCAAmC,CAAC,+BAAc,eAAe,CAAC,wBAAwB,CAAC,kBAAkB,CAAC,oCAAoC,CAAC,cAAc,CAAC,iBAAiB,CAAC,uBAAuB,CAAC,qCAAoB,oBAAoB,CAAC,qCAAqC,CAAC,0BAA0B,CAAC,+DAA6B,oBAAoB,CAAC,gCAAe,aAAa,CAAC,gBAAgB,CAAC,eAAe,CAAC,mCAAkB,eAAe,CAAC,QAAQ,CAAC,SAAS,CAAC,eAAe,CAAC,sCAAqB,UAAU,CAAC,eAAe,CAAC,oBAAoB,CAAC,mBAAmB,CAAC,iBAAiB,CAAC,6CAA4B,aAAa,CAAC,WAAW,CAAC,eAAe,CAAC,MAAM,CAAC,iBAAiB,CAAC,kCAAiB,kBAAkB,CAAC,YAAY,CAAC,QAAQ,CAAC,6BAA6B,CAAC,mCAAkB,eAAe,CAAC,kCAAiB,kBAAkB,CAAC,gCAAe,aAAa,CAAC,iBAAiB,CAAC,eAAe,CAAC,oBAAoB,CAAC,sCAAqB,UAAU,CAAC,eAAe,CAAC,QAAQ,CAAC,gCAAe,kBAAkB,CAAC,eAAe,CAAC,oCAAmB,YAAY,CAAC,mBAAmB,CAAC,gBAAgB,CAAC,UAAU,CAAC,0BAA0B,gCAAe,mCAAmC,CAAC,CAAC,yBAAyB,mCAAkB,cAAc,CAAC,2GAAwD,cAAc,CAAC,6BAAY,gBAAgB,CAAC,gCAAe,cAAc,CAAC,kEAAgC,yBAAyB,CAAC,kCAAiB,QAAQ,CAAC,gCAAe,QAAQ,CAAC",
+        "names": [],
+        "sources": [
+          "/home/user/NTE-company-website/pages/coffee.vue"
+        ],
+        "sourcesContent": [
+          null
+        ],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413666775,
+      "end": 1762413666775,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413666775,
+      "end": 1762413666775,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413666775,
+      "end": 1762413666775,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413666775,
+      "end": 1762413666775,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413666775,
+      "end": 1762413666775,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413666775,
+      "end": 1762413666775,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413666775,
+      "end": 1762413666775,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413666775,
+      "end": 1762413666775,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413666775,
+      "end": 1762413666775,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413666775,
+      "end": 1762413666775,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "export default ''",
+      "start": 1762413666775,
+      "end": 1762413666775,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413666775,
+      "end": 1762413666775,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413666775,
+      "end": 1762413666775,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413666775,
+      "end": 1762413666775,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413666775,
+      "end": 1762413666775,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413666775,
+      "end": 1762413666775,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413666775,
+      "end": 1762413666775,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413666775,
+      "end": 1762413666775,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413666775,
+      "end": 1762413666775,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413666775,
+      "end": 1762413666775,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413666775,
+      "end": 1762413666775,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413666776,
+      "end": 1762413666776,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413666776,
+      "end": 1762413666776,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413666776,
+      "end": 1762413666776,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413666776,
+      "end": 1762413666776,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1762413666776,
+      "end": 1762413666776,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413666776,
+      "end": 1762413666776,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413666776,
+      "end": 1762413666776,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413666776,
+      "end": 1762413666776,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413666776,
+      "end": 1762413666776,
+      "order": "normal"
+    }
+  ]
+}

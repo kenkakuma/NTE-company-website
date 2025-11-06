@@ -1,0 +1,223 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/pages/exhibition.vue?macro=true",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\n  <div class=\"anthropic-theme exhibition-page\">\n    <!-- Hero Section - Anthropic Style -->\n    <section class=\"exhibition-hero-section\">\n      <div class=\"custom-container\">\n        <div class=\"hero-content\">\n          <h1 class=\"hero-title\">展覧 | EXHIBITION</h1>\n          <p class=\"hero-subtitle\">文化・技術・芸術事業</p>\n          <p class=\"hero-description\">\n            革新的なアプローチで印象的な体験を創造します\n          </p>\n        </div>\n      </div>\n    </section>\n\n    <!-- Services Section -->\n    <section class=\"services-section\">\n      <div class=\"custom-container\">\n        <div class=\"section-header\">\n          <h2 class=\"section-title\">展示・イベントサービス</h2>\n          <p class=\"section-description\">\n            文化・技術・芸術分野の専門的な展示企画と運営サービス\n          </p>\n        </div>\n        \n        <div class=\"services-grid\">\n          <div \n            v-for=\"service in services\" \n            :key=\"service.id\"\n            class=\"service-card\"\n          >\n            <div class=\"service-icon\">\n              <v-icon :icon=\"getServiceIcon(service.id)\" size=\"48\" color=\"#E17B47\"></v-icon>\n            </div>\n            <h3 class=\"service-title\">{{ service.title }}</h3>\n            <p class=\"service-description\">{{ service.description }}</p>\n            <ul class=\"service-features\">\n              <li v-for=\"feature in service.features\" :key=\"feature\">\n                {{ feature }}\n              </li>\n            </ul>\n          </div>\n        </div>\n      </div>\n    </section>\n\n    <!-- Quality Promise -->\n    <section class=\"quality-section\">\n      <div class=\"custom-container\">\n        <div class=\"quality-content\">\n          <div class=\"quality-text\">\n            <h2 class=\"section-title\">品質へのこだわり（2025年1月最新版）</h2>\n            <div class=\"quality-features\">\n              <div class=\"quality-feature\">\n                <h3 class=\"feature-title\">革新的な企画力</h3>\n                <p class=\"feature-description\">\n                  独創的なアイデアと豊富な経験に基づいて、お客様の期待を超える展示企画を提供します。\n                </p>\n              </div>\n              <div class=\"quality-feature\">\n                <h3 class=\"feature-title\">最新技術の活用</h3>\n                <p class=\"feature-description\">\n                  デジタル技術とインタラクティブメディアを駆使して、来場者に印象的な体験を創造します。\n                </p>\n              </div>\n              <div class=\"quality-feature\">\n                <h3 class=\"feature-title\">細部への配慮</h3>\n                <p class=\"feature-description\">\n                  空間デザインから運営まで、すべての細部にわたって品質にこだわった展示を実現します。\n                </p>\n              </div>\n            </div>\n          </div>\n          <div class=\"quality-image\">\n            <img \n              src=\"https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=600&h=400\" \n              alt=\"Exhibition Quality\"\n            />\n          </div>\n        </div>\n      </div>\n    </section>\n\n    <!-- Process Section -->\n    <section class=\"process-section\">\n      <div class=\"custom-container\">\n        <div class=\"section-header\">\n          <h2 class=\"section-title\">プロジェクト進行プロセス</h2>\n          <p class=\"section-description\">\n            お客様のニーズに応える体系的なプロジェクト管理\n          </p>\n        </div>\n        \n        <div class=\"process-steps\">\n          <div \n            v-for=\"(step, index) in processSteps\" \n            :key=\"step.id\"\n            class=\"process-step\"\n          >\n            <div class=\"step-number-wrapper\">\n              <div class=\"step-number\">{{ index + 1 }}</div>\n            </div>\n            <h3 class=\"step-title\">{{ step.title }}</h3>\n            <p class=\"step-description\">{{ step.description }}</p>\n          </div>\n        </div>\n      </div>\n    </section>\n  </div>\n</template>\n\n<script setup lang=\"ts\">\n// SEO設定\nconst { setSEO } = useSEO()\nsetSEO('exhibition')\n\n// Helper function for Material Design icons\nconst getServiceIcon = (serviceId: string) => {\n  const iconMap: Record<string, string> = {\n    planning: 'mdi-palette-outline',\n    management: 'mdi-calendar-check',\n    promotion: 'mdi-bullhorn'\n  }\n  return iconMap[serviceId] || 'mdi-presentation'\n}\n\n// 服务数据\nconst services = [\n  {\n    id: 'planning',\n    title: '展示企画・デザイン',\n    description: '文化・技術・芸術展示の企画からデザインまで',\n    features: [\n      'コンセプト企画・立案',\n      '空間デザイン・設計',\n      'インタラクティブ展示',\n      'デジタル技術活用'\n    ]\n  },\n  {\n    id: 'management',\n    title: 'イベント運営・管理',\n    description: 'プロフェッショナルなイベント運営サービス',\n    features: [\n      'プロジェクト管理',\n      '会場設営・運営',\n      'スタッフィング',\n      '安全管理・警備'\n    ]\n  },\n  {\n    id: 'promotion',\n    title: '文化・芸術プロモーション',\n    description: '効果的なプロモーション戦略の立案・実行',\n    features: [\n      'マーケティング戦略',\n      'メディア対応',\n      'SNS活用',\n      'パートナーシップ構築'\n    ]\n  }\n]\n\n\n// プロセス段階\nconst processSteps = [\n  {\n    id: 1,\n    title: '企画・提案',\n    description: 'お客様のニーズを理解し、最適な企画を提案いたします'\n  },\n  {\n    id: 2,\n    title: '設計・デザイン',\n    description: '詳細な設計とデザインで理想の空間を創造します'\n  },\n  {\n    id: 3,\n    title: '制作・準備',\n    description: '高品質な制作と入念な準備で成功を確実にします'\n  },\n  {\n    id: 4,\n    title: '実施・運営',\n    description: 'プロフェッショナルな運営で最高の体験を提供します'\n  }\n]\n</script>\n\n<style scoped>\n/* Anthropic Theme Variables */\n.anthropic-theme {\n  background-color: #FAF9F7;\n  min-height: 100vh;\n}\n\n/* Custom Container */\n.custom-container {\n  max-width: 1200px;\n  margin: 0 auto;\n  padding: 0 24px;\n}\n\n/* Hero Section */\n.exhibition-hero-section {\n  padding: 80px 0 60px 0;\n  background-color: #FAF9F7;\n  border-bottom: 1px solid #E5E5E5;\n}\n\n.hero-content {\n  text-align: center;\n  max-width: 700px;\n  margin: 0 auto;\n}\n\n.hero-title {\n  font-size: 3.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 1rem;\n  line-height: 1.2;\n}\n\n.hero-subtitle {\n  font-size: 1.25rem;\n  color: #E17B47;\n  font-weight: 500;\n  margin-bottom: 1rem;\n}\n\n.hero-description {\n  font-size: 1.125rem;\n  color: #666666;\n  line-height: 1.6;\n  margin: 0;\n}\n\n/* Section Styles */\n.services-section,\n.process-section {\n  padding: 80px 0;\n  background-color: #FAF9F7;\n}\n\n.quality-section {\n  padding: 80px 0;\n  background-color: #F0EDE8;\n}\n\n.section-header {\n  text-align: center;\n  margin-bottom: 4rem;\n  max-width: 600px;\n  margin-left: auto;\n  margin-right: auto;\n}\n\n.section-title {\n  font-size: 2.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 1rem;\n  line-height: 1.3;\n}\n\n.section-description {\n  font-size: 1.125rem;\n  color: #666666;\n  line-height: 1.6;\n  margin: 0;\n}\n\n/* Services Grid */\n.services-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));\n  gap: 2rem;\n}\n\n.service-card {\n  background: #FFFFFF;\n  border-radius: 16px;\n  padding: 2.5rem;\n  text-align: center;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);\n  border: 1px solid #E5E5E5;\n  transition: all 0.3s ease;\n}\n\n.service-card:hover {\n  transform: translateY(-4px);\n  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);\n  border-color: #E17B47;\n}\n\n.service-icon {\n  margin-bottom: 1.5rem;\n}\n\n.service-title {\n  font-size: 1.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 1rem;\n}\n\n.service-description {\n  color: #666666;\n  line-height: 1.6;\n  margin-bottom: 1.5rem;\n  font-size: 1rem;\n}\n\n.service-features {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n  text-align: left;\n}\n\n.service-features li {\n  position: relative;\n  padding-left: 1.5rem;\n  margin-bottom: 0.75rem;\n  color: #333333;\n  line-height: 1.5;\n}\n\n.service-features li::before {\n  content: '✓';\n  position: absolute;\n  left: 0;\n  color: #E17B47;\n  font-weight: 600;\n}\n\n/* Quality Section */\n.quality-content {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 4rem;\n  align-items: center;\n}\n\n.quality-features {\n  margin-top: 2rem;\n}\n\n.quality-feature {\n  margin-bottom: 2rem;\n}\n\n.feature-title {\n  font-size: 1.25rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 0.75rem;\n}\n\n.feature-description {\n  color: #666666;\n  line-height: 1.6;\n  margin: 0;\n}\n\n.quality-image {\n  border-radius: 16px;\n  overflow: hidden;\n}\n\n.quality-image img {\n  width: 100%;\n  height: 400px;\n  object-fit: cover;\n}\n\n/* Process Steps */\n.process-steps {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));\n  gap: 2rem;\n}\n\n.process-step {\n  text-align: center;\n}\n\n.step-number-wrapper {\n  display: flex;\n  justify-content: center;\n  margin-bottom: 1.5rem;\n}\n\n.step-number {\n  width: 60px;\n  height: 60px;\n  border-radius: 50%;\n  background: #E17B47;\n  color: white;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 1.5rem;\n  font-weight: 600;\n  box-shadow: 0 4px 12px rgba(225, 123, 71, 0.3);\n}\n\n.step-title {\n  font-size: 1.25rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 0.75rem;\n}\n\n.step-description {\n  color: #666666;\n  line-height: 1.6;\n  margin: 0;\n  font-size: 1rem;\n}\n\n/* Responsive Design */\n@media (max-width: 768px) {\n  .custom-container {\n    padding: 0 16px;\n  }\n  \n  .exhibition-hero-section,\n  .services-section,\n  .quality-section,\n  .process-section {\n    padding: 60px 0;\n  }\n  \n  .hero-title {\n    font-size: 2.5rem;\n  }\n  \n  .section-title {\n    font-size: 2rem;\n  }\n  \n  .services-grid {\n    grid-template-columns: 1fr;\n  }\n  \n  .quality-content {\n    grid-template-columns: 1fr;\n    gap: 2rem;\n  }\n  \n  .quality-image {\n    order: -1;\n  }\n  \n  .process-steps {\n    grid-template-columns: 1fr;\n  }\n}\n\n@media (max-width: 480px) {\n  .hero-title {\n    font-size: 2rem;\n  }\n  \n  .section-title {\n    font-size: 1.75rem;\n  }\n  \n  .service-card {\n    padding: 1.5rem;\n  }\n}\n</style>",
+      "start": 1762413661528,
+      "end": 1762413661878,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413661878,
+      "end": 1762413661878,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413661878,
+      "end": 1762413661878,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413661878,
+      "end": 1762413661878,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1762413661878,
+      "end": 1762413661878,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1762413661878,
+      "end": 1762413661878,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413661878,
+      "end": 1762413661878,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413661878,
+      "end": 1762413661878,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/home/user/NTE-company-website/pages/exhibition.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/home/user/NTE-company-website/pages/exhibition.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/home/user/NTE-company-website/pages/exhibition.vue?vue&type=style&index=0&scoped=e740bb3a&lang.css\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-e740bb3a\"]]);\n",
+      "start": 1762413661878,
+      "end": 1762413662534,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413662534,
+      "end": 1762413662534,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413662534,
+      "end": 1762413662534,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413662534,
+      "end": 1762413662534,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1762413662534,
+      "end": 1762413662534,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413662534,
+      "end": 1762413662535,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413662535,
+      "end": 1762413662535,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413662535,
+      "end": 1762413662535,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413662535,
+      "end": 1762413662535,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1762413662535,
+      "end": 1762413662535,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413662536,
+      "end": 1762413662536,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413662536,
+      "end": 1762413662536,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413662536,
+      "end": 1762413662536,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413662536,
+      "end": 1762413662536,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413662536,
+      "end": 1762413662536,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413662536,
+      "end": 1762413662536,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413662537,
+      "end": 1762413662537,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413662537,
+      "end": 1762413662540,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413662540,
+      "end": 1762413662540,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "result": "export { default } from \"/home/user/NTE-company-website/pages/exhibition.vue?macro=true&vue&type=script&setup=true&lang.ts\"",
+      "start": 1762413662541,
+      "end": 1762413662542,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          ""
+        ],
+        "names": [],
+        "mappings": "AAAA"
+      }
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1762413662543,
+      "end": 1762413662543,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1762413662544,
+      "end": 1762413662544,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413662544,
+      "end": 1762413662545,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413662546,
+      "end": 1762413662546,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413662546,
+      "end": 1762413662546,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413662547,
+      "end": 1762413662547,
+      "order": "normal"
+    }
+  ]
+}

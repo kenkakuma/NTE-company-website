@@ -1,0 +1,281 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/components/ImageManager.vue?vue&type=style&index=0&scoped=12d3a28e&lang.css?inline&used",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "\n.image-manager {\n  width: 100%;\n}\n\n.toolbar {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 1rem;\n  gap: 1rem;\n}\n\n.toolbar-section {\n  display: flex;\n  gap: 1rem;\n  flex: 1;\n}\n\n.search-field {\n  max-width: 300px;\n}\n\n.category-filter {\n  max-width: 200px;\n}\n\n.toolbar-actions {\n  display: flex;\n  gap: 0.5rem;\n}\n\n.stats-bar {\n  display: flex;\n  gap: 2rem;\n  padding: 1rem;\n  background: #F8F9FA;\n  border-radius: 8px;\n  margin-bottom: 1.5rem;\n}\n\n.stat-item {\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n  color: #666666;\n  font-size: 0.9rem;\n}\n\n.image-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));\n  gap: 1.5rem;\n}\n\n.image-item {\n  background: white;\n  border-radius: 12px;\n  border: 2px solid #E0E0E0;\n  overflow: hidden;\n  transition: all 0.3s ease;\n  cursor: pointer;\n  position: relative;\n}\n\n.image-item:hover {\n  border-color: #667eea;\n  transform: translateY(-2px);\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);\n}\n\n.image-item.selected {\n  border-color: #667eea;\n  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.3);\n}\n\n.image-checkbox {\n  position: absolute;\n  top: 8px;\n  left: 8px;\n  z-index: 2;\n  background: rgba(255, 255, 255, 0.9);\n  border-radius: 4px;\n}\n\n.image-preview {\n  position: relative;\n  height: 200px;\n  overflow: hidden;\n}\n\n.image-preview img {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n}\n\n.image-overlay {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background: rgba(0, 0, 0, 0.5);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  opacity: 0;\n  transition: opacity 0.3s ease;\n}\n\n.image-preview:hover .image-overlay {\n  opacity: 1;\n}\n\n.image-info {\n  padding: 1rem;\n}\n\n.image-name {\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 0.5rem;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n.image-meta {\n  display: flex;\n  justify-content: space-between;\n  color: #666666;\n  font-size: 0.875rem;\n  margin-bottom: 0.5rem;\n}\n\n.image-tags {\n  margin-top: 0.5rem;\n}\n\n.image-actions {\n  display: flex;\n  justify-content: flex-end;\n  gap: 0.25rem;\n  padding: 0.5rem 1rem;\n  background: #F8F9FA;\n  border-top: 1px solid #E0E0E0;\n}\n\n.empty-state {\n  text-align: center;\n  padding: 4rem 2rem;\n  color: #666666;\n}\n\n.empty-state h3 {\n  margin: 1rem 0 0.5rem;\n  font-weight: 500;\n}\n\n.loading-state {\n  text-align: center;\n  padding: 4rem 2rem;\n  color: #666666;\n}\n\n.loading-state p {\n  margin-top: 1rem;\n}\n\n.preview-content {\n  display: flex;\n  gap: 2rem;\n}\n\n.preview-image {\n  flex: 1;\n  text-align: center;\n}\n\n.preview-image img {\n  max-width: 100%;\n  max-height: 400px;\n  border-radius: 8px;\n}\n\n.preview-details {\n  flex: 1;\n}\n\n.detail-item {\n  margin-bottom: 1rem;\n  padding-bottom: 0.5rem;\n  border-bottom: 1px solid #E0E0E0;\n}\n\n.detail-item:last-child {\n  border-bottom: none;\n}\n\n/* 响应式设计 */\n@media (max-width: 768px) {\n  .toolbar {\n    flex-direction: column;\n    align-items: stretch;\n  }\n  \n  .toolbar-section {\n    flex-direction: column;\n  }\n  \n  .search-field,\n  .category-filter {\n    max-width: none;\n  }\n  \n  .stats-bar {\n    flex-direction: column;\n    gap: 1rem;\n  }\n  \n  .image-grid {\n    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));\n    gap: 1rem;\n  }\n  \n  .preview-content {\n    flex-direction: column;\n  }\n}\n",
+      "start": 1762413666504,
+      "end": 1762413666505
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413666505,
+      "end": 1762413666510,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413666505,
+      "end": 1762413666510,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413666512,
+      "end": 1762413666512,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413666512,
+      "end": 1762413666512,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413666512,
+      "end": 1762413666512,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": ".image-manager{width:100%}.toolbar{align-items:center;display:flex;gap:1rem;justify-content:space-between;margin-bottom:1rem}.toolbar-section{display:flex;flex:1;gap:1rem}.search-field{max-width:300px}.category-filter{max-width:200px}.toolbar-actions{display:flex;gap:.5rem}.stats-bar{background:#f8f9fa;border-radius:8px;display:flex;gap:2rem;margin-bottom:1.5rem;padding:1rem}.stat-item{align-items:center;color:#666;display:flex;font-size:.9rem;gap:.5rem}.image-grid{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}.image-item{background:#fff;border:2px solid #e0e0e0;border-radius:12px;cursor:pointer;overflow:hidden;position:relative;transition:all .3s ease}.image-item:hover{border-color:#667eea;box-shadow:0 8px 24px rgba(0,0,0,.1);transform:translateY(-2px)}.image-item.selected{border-color:#667eea;box-shadow:0 0 0 2px rgba(102,126,234,.3)}.image-checkbox{background:hsla(0,0%,100%,.9);border-radius:4px;left:8px;position:absolute;top:8px;z-index:2}.image-preview{height:200px;overflow:hidden;position:relative}.image-preview img{height:100%;-o-object-fit:cover;object-fit:cover;width:100%}.image-overlay{align-items:center;background:rgba(0,0,0,.5);bottom:0;display:flex;justify-content:center;left:0;opacity:0;position:absolute;right:0;top:0;transition:opacity .3s ease}.image-preview:hover .image-overlay{opacity:1}.image-info{padding:1rem}.image-name{color:#1a1a1a;font-weight:500;margin-bottom:.5rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.image-meta{color:#666;display:flex;font-size:.875rem;justify-content:space-between;margin-bottom:.5rem}.image-tags{margin-top:.5rem}.image-actions{background:#f8f9fa;border-top:1px solid #e0e0e0;display:flex;gap:.25rem;justify-content:flex-end;padding:.5rem 1rem}.empty-state{color:#666;padding:4rem 2rem;text-align:center}.empty-state h3{font-weight:500;margin:1rem 0 .5rem}.loading-state{color:#666;padding:4rem 2rem;text-align:center}.loading-state p{margin-top:1rem}.preview-content{display:flex;gap:2rem}.preview-image{flex:1;text-align:center}.preview-image img{border-radius:8px;max-height:400px;max-width:100%}.preview-details{flex:1}.detail-item{border-bottom:1px solid #e0e0e0;margin-bottom:1rem;padding-bottom:.5rem}.detail-item:last-child{border-bottom:none}@media (max-width:768px){.toolbar{align-items:stretch}.toolbar,.toolbar-section{flex-direction:column}.category-filter,.search-field{max-width:none}.stats-bar{flex-direction:column;gap:1rem}.image-grid{gap:1rem;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}.preview-content{flex-direction:column}}",
+      "start": 1762413666512,
+      "end": 1762413666525,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "/home/user/NTE-company-website/components/ImageManager.vue",
+        "mappings": "AACA,eACE,UACF,CAEA,SAGE,kBAAmB,CAFnB,YAAa,CAIb,QAAS,CAHT,6BAA8B,CAE9B,kBAEF,CAEA,iBACE,YAAa,CAEb,MAAO,CADP,QAEF,CAEA,cACE,eACF,CAEA,iBACE,eACF,CAEA,iBACE,YAAa,CACb,SACF,CAEA,WAIE,kBAAmB,CACnB,iBAAkB,CAJlB,YAAa,CACb,QAAS,CAIT,oBAAqB,CAHrB,YAIF,CAEA,WAEE,kBAAmB,CAEnB,UAAc,CAHd,YAAa,CAIb,eAAiB,CAFjB,SAGF,CAEA,YACE,YAAa,CAEb,UAAW,CADX,yDAEF,CAEA,YACE,eAAiB,CAEjB,wBAAyB,CADzB,kBAAmB,CAInB,cAAe,CAFf,eAAgB,CAGhB,iBAAkB,CAFlB,uBAGF,CAEA,kBACE,oBAAqB,CAErB,oCAAyC,CADzC,0BAEF,CAEA,qBACE,oBAAqB,CACrB,yCACF,CAEA,gBAKE,6BAAoC,CACpC,iBAAkB,CAHlB,QAAS,CAFT,iBAAkB,CAClB,OAAQ,CAER,SAGF,CAEA,eAEE,YAAa,CACb,eAAgB,CAFhB,iBAGF,CAEA,mBAEE,WAAY,CACZ,mBAAiB,CAAjB,gBAAiB,CAFjB,UAGF,CAEA,eAQE,kBAAmB,CAFnB,yBAA8B,CAD9B,QAAS,CAET,YAAa,CAEb,sBAAuB,CANvB,MAAO,CAOP,SAAU,CATV,iBAAkB,CAGlB,OAAQ,CAFR,KAAM,CASN,2BACF,CAEA,oCACE,SACF,CAEA,YACE,YACF,CAEA,YAEE,aAAc,CADd,eAAgB,CAEhB,mBAAqB,CACrB,eAAgB,CAChB,sBAAuB,CACvB,kBACF,CAEA,YAGE,UAAc,CAFd,YAAa,CAGb,iBAAmB,CAFnB,6BAA8B,CAG9B,mBACF,CAEA,YACE,gBACF,CAEA,eAKE,kBAAmB,CACnB,4BAA6B,CAL7B,YAAa,CAEb,UAAY,CADZ,wBAAyB,CAEzB,kBAGF,CAEA,aAGE,UAAc,CADd,iBAAkB,CADlB,iBAGF,CAEA,gBAEE,eAAgB,CADhB,mBAEF,CAEA,eAGE,UAAc,CADd,iBAAkB,CADlB,iBAGF,CAEA,iBACE,eACF,CAEA,iBACE,YAAa,CACb,QACF,CAEA,eACE,MAAO,CACP,iBACF,CAEA,mBAGE,iBAAkB,CADlB,gBAAiB,CADjB,cAGF,CAEA,iBACE,MACF,CAEA,aAGE,+BAAgC,CAFhC,kBAAmB,CACnB,oBAEF,CAEA,wBACE,kBACF,CAGA,yBACE,SAEE,mBACF,CAEA,0BAJE,qBAMF,CAEA,+BAEE,cACF,CAEA,WACE,qBAAsB,CACtB,QACF,CAEA,YAEE,QAAS,CADT,yDAEF,CAEA,iBACE,qBACF,CACF",
+        "names": [],
+        "sources": [
+          "/home/user/NTE-company-website/components/ImageManager.vue"
+        ],
+        "sourcesContent": [
+          "\n.image-manager {\n  width: 100%;\n}\n\n.toolbar {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 1rem;\n  gap: 1rem;\n}\n\n.toolbar-section {\n  display: flex;\n  gap: 1rem;\n  flex: 1;\n}\n\n.search-field {\n  max-width: 300px;\n}\n\n.category-filter {\n  max-width: 200px;\n}\n\n.toolbar-actions {\n  display: flex;\n  gap: 0.5rem;\n}\n\n.stats-bar {\n  display: flex;\n  gap: 2rem;\n  padding: 1rem;\n  background: #F8F9FA;\n  border-radius: 8px;\n  margin-bottom: 1.5rem;\n}\n\n.stat-item {\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n  color: #666666;\n  font-size: 0.9rem;\n}\n\n.image-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));\n  gap: 1.5rem;\n}\n\n.image-item {\n  background: white;\n  border-radius: 12px;\n  border: 2px solid #E0E0E0;\n  overflow: hidden;\n  transition: all 0.3s ease;\n  cursor: pointer;\n  position: relative;\n}\n\n.image-item:hover {\n  border-color: #667eea;\n  transform: translateY(-2px);\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);\n}\n\n.image-item.selected {\n  border-color: #667eea;\n  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.3);\n}\n\n.image-checkbox {\n  position: absolute;\n  top: 8px;\n  left: 8px;\n  z-index: 2;\n  background: rgba(255, 255, 255, 0.9);\n  border-radius: 4px;\n}\n\n.image-preview {\n  position: relative;\n  height: 200px;\n  overflow: hidden;\n}\n\n.image-preview img {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n}\n\n.image-overlay {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background: rgba(0, 0, 0, 0.5);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  opacity: 0;\n  transition: opacity 0.3s ease;\n}\n\n.image-preview:hover .image-overlay {\n  opacity: 1;\n}\n\n.image-info {\n  padding: 1rem;\n}\n\n.image-name {\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 0.5rem;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n.image-meta {\n  display: flex;\n  justify-content: space-between;\n  color: #666666;\n  font-size: 0.875rem;\n  margin-bottom: 0.5rem;\n}\n\n.image-tags {\n  margin-top: 0.5rem;\n}\n\n.image-actions {\n  display: flex;\n  justify-content: flex-end;\n  gap: 0.25rem;\n  padding: 0.5rem 1rem;\n  background: #F8F9FA;\n  border-top: 1px solid #E0E0E0;\n}\n\n.empty-state {\n  text-align: center;\n  padding: 4rem 2rem;\n  color: #666666;\n}\n\n.empty-state h3 {\n  margin: 1rem 0 0.5rem;\n  font-weight: 500;\n}\n\n.loading-state {\n  text-align: center;\n  padding: 4rem 2rem;\n  color: #666666;\n}\n\n.loading-state p {\n  margin-top: 1rem;\n}\n\n.preview-content {\n  display: flex;\n  gap: 2rem;\n}\n\n.preview-image {\n  flex: 1;\n  text-align: center;\n}\n\n.preview-image img {\n  max-width: 100%;\n  max-height: 400px;\n  border-radius: 8px;\n}\n\n.preview-details {\n  flex: 1;\n}\n\n.detail-item {\n  margin-bottom: 1rem;\n  padding-bottom: 0.5rem;\n  border-bottom: 1px solid #E0E0E0;\n}\n\n.detail-item:last-child {\n  border-bottom: none;\n}\n\n/* 响应式设计 */\n@media (max-width: 768px) {\n  .toolbar {\n    flex-direction: column;\n    align-items: stretch;\n  }\n  \n  .toolbar-section {\n    flex-direction: column;\n  }\n  \n  .search-field,\n  .category-filter {\n    max-width: none;\n  }\n  \n  .stats-bar {\n    flex-direction: column;\n    gap: 1rem;\n  }\n  \n  .image-grid {\n    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));\n    gap: 1rem;\n  }\n  \n  .preview-content {\n    flex-direction: column;\n  }\n}\n"
+        ],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1762413666525,
+      "end": 1762413666525,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413666525,
+      "end": 1762413666525,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413666526,
+      "end": 1762413666526,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": ".image-manager[data-v-12d3a28e]{width:100%}.toolbar[data-v-12d3a28e]{align-items:center;display:flex;gap:1rem;justify-content:space-between;margin-bottom:1rem}.toolbar-section[data-v-12d3a28e]{display:flex;flex:1;gap:1rem}.search-field[data-v-12d3a28e]{max-width:300px}.category-filter[data-v-12d3a28e]{max-width:200px}.toolbar-actions[data-v-12d3a28e]{display:flex;gap:.5rem}.stats-bar[data-v-12d3a28e]{background:#f8f9fa;border-radius:8px;display:flex;gap:2rem;margin-bottom:1.5rem;padding:1rem}.stat-item[data-v-12d3a28e]{align-items:center;color:#666;display:flex;font-size:.9rem;gap:.5rem}.image-grid[data-v-12d3a28e]{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}.image-item[data-v-12d3a28e]{background:#fff;border:2px solid #e0e0e0;border-radius:12px;cursor:pointer;overflow:hidden;position:relative;transition:all .3s ease}.image-item[data-v-12d3a28e]:hover{border-color:#667eea;box-shadow:0 8px 24px rgba(0,0,0,.1);transform:translateY(-2px)}.image-item.selected[data-v-12d3a28e]{border-color:#667eea;box-shadow:0 0 0 2px rgba(102,126,234,.3)}.image-checkbox[data-v-12d3a28e]{background:hsla(0,0%,100%,.9);border-radius:4px;left:8px;position:absolute;top:8px;z-index:2}.image-preview[data-v-12d3a28e]{height:200px;overflow:hidden;position:relative}.image-preview img[data-v-12d3a28e]{height:100%;-o-object-fit:cover;object-fit:cover;width:100%}.image-overlay[data-v-12d3a28e]{align-items:center;background:rgba(0,0,0,.5);bottom:0;display:flex;justify-content:center;left:0;opacity:0;position:absolute;right:0;top:0;transition:opacity .3s ease}.image-preview:hover .image-overlay[data-v-12d3a28e]{opacity:1}.image-info[data-v-12d3a28e]{padding:1rem}.image-name[data-v-12d3a28e]{color:#1a1a1a;font-weight:500;margin-bottom:.5rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.image-meta[data-v-12d3a28e]{color:#666;display:flex;font-size:.875rem;justify-content:space-between;margin-bottom:.5rem}.image-tags[data-v-12d3a28e]{margin-top:.5rem}.image-actions[data-v-12d3a28e]{background:#f8f9fa;border-top:1px solid #e0e0e0;display:flex;gap:.25rem;justify-content:flex-end;padding:.5rem 1rem}.empty-state[data-v-12d3a28e]{color:#666;padding:4rem 2rem;text-align:center}.empty-state h3[data-v-12d3a28e]{font-weight:500;margin:1rem 0 .5rem}.loading-state[data-v-12d3a28e]{color:#666;padding:4rem 2rem;text-align:center}.loading-state p[data-v-12d3a28e]{margin-top:1rem}.preview-content[data-v-12d3a28e]{display:flex;gap:2rem}.preview-image[data-v-12d3a28e]{flex:1;text-align:center}.preview-image img[data-v-12d3a28e]{border-radius:8px;max-height:400px;max-width:100%}.preview-details[data-v-12d3a28e]{flex:1}.detail-item[data-v-12d3a28e]{border-bottom:1px solid #e0e0e0;margin-bottom:1rem;padding-bottom:.5rem}.detail-item[data-v-12d3a28e]:last-child{border-bottom:none}@media (max-width:768px){.toolbar[data-v-12d3a28e]{align-items:stretch}.toolbar[data-v-12d3a28e],.toolbar-section[data-v-12d3a28e]{flex-direction:column}.category-filter[data-v-12d3a28e],.search-field[data-v-12d3a28e]{max-width:none}.stats-bar[data-v-12d3a28e]{flex-direction:column;gap:1rem}.image-grid[data-v-12d3a28e]{gap:1rem;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}.preview-content[data-v-12d3a28e]{flex-direction:column}}",
+      "start": 1762413666526,
+      "end": 1762413666529,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "/home/user/NTE-company-website/components/ImageManager.vue",
+        "mappings": "AAAA,gCAAe,UAAU,CAAC,0BAAS,kBAAkB,CAAC,YAAY,CAAC,QAAQ,CAAC,6BAA6B,CAAC,kBAAkB,CAAC,kCAAiB,YAAY,CAAC,MAAM,CAAC,QAAQ,CAAC,+BAAc,eAAe,CAAC,kCAAiB,eAAe,CAAC,kCAAiB,YAAY,CAAC,SAAS,CAAC,4BAAW,kBAAkB,CAAC,iBAAiB,CAAC,YAAY,CAAC,QAAQ,CAAC,oBAAoB,CAAC,YAAY,CAAC,4BAAW,kBAAkB,CAAC,UAAU,CAAC,YAAY,CAAC,eAAe,CAAC,SAAS,CAAC,6BAAY,YAAY,CAAC,UAAU,CAAC,yDAAyD,CAAC,6BAAY,eAAe,CAAC,wBAAwB,CAAC,kBAAkB,CAAC,cAAc,CAAC,eAAe,CAAC,iBAAiB,CAAC,uBAAuB,CAAC,mCAAkB,oBAAoB,CAAC,oCAAoC,CAAC,0BAA0B,CAAC,sCAAqB,oBAAoB,CAAC,yCAAyC,CAAC,iCAAgB,6BAA6B,CAAC,iBAAiB,CAAC,QAAQ,CAAC,iBAAiB,CAAC,OAAO,CAAC,SAAS,CAAC,gCAAe,YAAY,CAAC,eAAe,CAAC,iBAAiB,CAAC,oCAAmB,WAAW,CAAC,mBAAmB,CAAC,gBAAgB,CAAC,UAAU,CAAC,gCAAe,kBAAkB,CAAC,yBAAyB,CAAC,QAAQ,CAAC,YAAY,CAAC,sBAAsB,CAAC,MAAM,CAAC,SAAS,CAAC,iBAAiB,CAAC,OAAO,CAAC,KAAK,CAAC,2BAA2B,CAAC,qDAAoC,SAAS,CAAC,6BAAY,YAAY,CAAC,6BAAY,aAAa,CAAC,eAAe,CAAC,mBAAmB,CAAC,eAAe,CAAC,sBAAsB,CAAC,kBAAkB,CAAC,6BAAY,UAAU,CAAC,YAAY,CAAC,iBAAiB,CAAC,6BAA6B,CAAC,mBAAmB,CAAC,6BAAY,gBAAgB,CAAC,gCAAe,kBAAkB,CAAC,4BAA4B,CAAC,YAAY,CAAC,UAAU,CAAC,wBAAwB,CAAC,kBAAkB,CAAC,8BAAa,UAAU,CAAC,iBAAiB,CAAC,iBAAiB,CAAC,iCAAgB,eAAe,CAAC,mBAAmB,CAAC,gCAAe,UAAU,CAAC,iBAAiB,CAAC,iBAAiB,CAAC,kCAAiB,eAAe,CAAC,kCAAiB,YAAY,CAAC,QAAQ,CAAC,gCAAe,MAAM,CAAC,iBAAiB,CAAC,oCAAmB,iBAAiB,CAAC,gBAAgB,CAAC,cAAc,CAAC,kCAAiB,MAAM,CAAC,8BAAa,+BAA+B,CAAC,kBAAkB,CAAC,oBAAoB,CAAC,yCAAwB,kBAAkB,CAAC,yBAAyB,0BAAS,mBAAmB,CAAC,4DAA0B,qBAAqB,CAAC,iEAA+B,cAAc,CAAC,4BAAW,qBAAqB,CAAC,QAAQ,CAAC,6BAAY,QAAQ,CAAC,yDAAyD,CAAC,kCAAiB,qBAAqB,CAAC",
+        "names": [],
+        "sources": [
+          "/home/user/NTE-company-website/components/ImageManager.vue"
+        ],
+        "sourcesContent": [
+          null
+        ],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413666529,
+      "end": 1762413666529,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413666529,
+      "end": 1762413666529,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413666529,
+      "end": 1762413666529,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413666529,
+      "end": 1762413666529,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413666529,
+      "end": 1762413666529,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413666529,
+      "end": 1762413666529,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413666529,
+      "end": 1762413666529,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413666529,
+      "end": 1762413666529,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413666530,
+      "end": 1762413666530,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413666530,
+      "end": 1762413666530,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "export default \".image-manager[data-v-12d3a28e]{width:100%}.toolbar[data-v-12d3a28e]{align-items:center;display:flex;gap:1rem;justify-content:space-between;margin-bottom:1rem}.toolbar-section[data-v-12d3a28e]{display:flex;flex:1;gap:1rem}.search-field[data-v-12d3a28e]{max-width:300px}.category-filter[data-v-12d3a28e]{max-width:200px}.toolbar-actions[data-v-12d3a28e]{display:flex;gap:.5rem}.stats-bar[data-v-12d3a28e]{background:#f8f9fa;border-radius:8px;display:flex;gap:2rem;margin-bottom:1.5rem;padding:1rem}.stat-item[data-v-12d3a28e]{align-items:center;color:#666;display:flex;font-size:.9rem;gap:.5rem}.image-grid[data-v-12d3a28e]{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}.image-item[data-v-12d3a28e]{background:#fff;border:2px solid #e0e0e0;border-radius:12px;cursor:pointer;overflow:hidden;position:relative;transition:all .3s ease}.image-item[data-v-12d3a28e]:hover{border-color:#667eea;box-shadow:0 8px 24px rgba(0,0,0,.1);transform:translateY(-2px)}.image-item.selected[data-v-12d3a28e]{border-color:#667eea;box-shadow:0 0 0 2px rgba(102,126,234,.3)}.image-checkbox[data-v-12d3a28e]{background:hsla(0,0%,100%,.9);border-radius:4px;left:8px;position:absolute;top:8px;z-index:2}.image-preview[data-v-12d3a28e]{height:200px;overflow:hidden;position:relative}.image-preview img[data-v-12d3a28e]{height:100%;-o-object-fit:cover;object-fit:cover;width:100%}.image-overlay[data-v-12d3a28e]{align-items:center;background:rgba(0,0,0,.5);bottom:0;display:flex;justify-content:center;left:0;opacity:0;position:absolute;right:0;top:0;transition:opacity .3s ease}.image-preview:hover .image-overlay[data-v-12d3a28e]{opacity:1}.image-info[data-v-12d3a28e]{padding:1rem}.image-name[data-v-12d3a28e]{color:#1a1a1a;font-weight:500;margin-bottom:.5rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.image-meta[data-v-12d3a28e]{color:#666;display:flex;font-size:.875rem;justify-content:space-between;margin-bottom:.5rem}.image-tags[data-v-12d3a28e]{margin-top:.5rem}.image-actions[data-v-12d3a28e]{background:#f8f9fa;border-top:1px solid #e0e0e0;display:flex;gap:.25rem;justify-content:flex-end;padding:.5rem 1rem}.empty-state[data-v-12d3a28e]{color:#666;padding:4rem 2rem;text-align:center}.empty-state h3[data-v-12d3a28e]{font-weight:500;margin:1rem 0 .5rem}.loading-state[data-v-12d3a28e]{color:#666;padding:4rem 2rem;text-align:center}.loading-state p[data-v-12d3a28e]{margin-top:1rem}.preview-content[data-v-12d3a28e]{display:flex;gap:2rem}.preview-image[data-v-12d3a28e]{flex:1;text-align:center}.preview-image img[data-v-12d3a28e]{border-radius:8px;max-height:400px;max-width:100%}.preview-details[data-v-12d3a28e]{flex:1}.detail-item[data-v-12d3a28e]{border-bottom:1px solid #e0e0e0;margin-bottom:1rem;padding-bottom:.5rem}.detail-item[data-v-12d3a28e]:last-child{border-bottom:none}@media (max-width:768px){.toolbar[data-v-12d3a28e]{align-items:stretch}.toolbar[data-v-12d3a28e],.toolbar-section[data-v-12d3a28e]{flex-direction:column}.category-filter[data-v-12d3a28e],.search-field[data-v-12d3a28e]{max-width:none}.stats-bar[data-v-12d3a28e]{flex-direction:column;gap:1rem}.image-grid[data-v-12d3a28e]{gap:1rem;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}.preview-content[data-v-12d3a28e]{flex-direction:column}}\"",
+      "start": 1762413666530,
+      "end": 1762413666530,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413666530,
+      "end": 1762413666531,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413666533,
+      "end": 1762413666533,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413666535,
+      "end": 1762413666535,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413666536,
+      "end": 1762413666542,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413666544,
+      "end": 1762413666544,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413666545,
+      "end": 1762413666545,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413666545,
+      "end": 1762413666545,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413666545,
+      "end": 1762413666545,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413666549,
+      "end": 1762413666549,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413666549,
+      "end": 1762413666549,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413666552,
+      "end": 1762413666553,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413666552,
+      "end": 1762413666553,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413666558,
+      "end": 1762413666558,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413666558,
+      "end": 1762413666568,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1762413666571,
+      "end": 1762413666571,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413666573,
+      "end": 1762413666573,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413666573,
+      "end": 1762413666573,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413666573,
+      "end": 1762413666573,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413666573,
+      "end": 1762413666573,
+      "order": "normal"
+    }
+  ]
+}

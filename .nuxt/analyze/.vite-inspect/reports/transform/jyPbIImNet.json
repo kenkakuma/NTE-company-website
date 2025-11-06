@@ -1,0 +1,223 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/pages/about.vue?macro=true",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\n  <div class=\"anthropic-theme about-page\">\n    <!-- Hero Section - Anthropic Style -->\n    <section class=\"about-hero-section\">\n      <div class=\"custom-container\">\n        <div class=\"hero-content\">\n          <h1 class=\"hero-title\">企業情報・ニュース</h1>\n          <p class=\"hero-description\">\n            NO TRACE EXPLORERの最新ニュース、お知らせ、サービス情報をご覧いただけます\n          </p>\n        </div>\n      </div>\n    </section>\n\n    <!-- Article List -->\n    <section class=\"articles-section\">\n      <div class=\"custom-container\">\n        <div v-if=\"!selectedArticle\">\n          <!-- Articles Grid -->\n          <div class=\"articles-grid\">\n            <div \n              v-for=\"article in articles\" \n              :key=\"article.id\"\n              class=\"article-card\"\n              @click=\"selectArticle(article)\"\n            >\n              <!-- Date Badge -->\n              <div class=\"article-date-badge\">\n                <div class=\"month\">{{ formatMonth(article.date) }}</div>\n                <div class=\"day\">{{ formatDay(article.date) }}</div>\n              </div>\n              \n              <!-- Article Content -->\n              <div class=\"article-content\">\n                <div class=\"article-header\">\n                  <h3 class=\"article-title\">{{ article.title }}</h3>\n                  <div class=\"article-arrow\">→</div>\n                </div>\n                \n                <div class=\"article-meta\">\n                  <span class=\"article-category\">{{ article.category }}</span>\n                  <span class=\"article-info\">{{ article.date }} | {{ article.readTime }}</span>\n                </div>\n                \n                <p class=\"article-excerpt\">{{ article.excerpt }}</p>\n              </div>\n            </div>\n          </div>\n        </div>\n\n        <!-- Article Detail -->\n        <div v-else class=\"article-detail\">\n          <button \n            class=\"back-button\"\n            @click=\"goBackToList\"\n          >\n            ← 記事一覧に戻る\n          </button>\n          \n          <div class=\"article-detail-card\">\n            <div class=\"article-detail-header\">\n              <div class=\"article-detail-meta\">\n                <span class=\"detail-category\">{{ selectedArticle.category }}</span>\n                <span class=\"detail-info\">{{ selectedArticle.date }} | {{ selectedArticle.readTime }}</span>\n              </div>\n              \n              <h1 class=\"article-detail-title\">{{ selectedArticle.title }}</h1>\n            </div>\n            \n            <div \n              class=\"article-detail-content\"\n              v-html=\"selectedArticle.content\"\n            />\n            \n            <div class=\"article-tags\">\n              <span class=\"tags-label\">タグ:</span>\n              <div class=\"tags-list\">\n                <span\n                  v-for=\"tag in selectedArticle.tags\"\n                  :key=\"tag\"\n                  class=\"tag-item\"\n                >\n                  {{ tag }}\n                </span>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </section>\n  </div>\n</template>\n\n<script setup lang=\"ts\">\nimport type { Article } from '~/types'\n\n// SEO設定\nconst { setSEO } = useSEO()\nsetSEO('about')\n\n// Article store integration\nconst articleStore = useArticleStore()\n\n// 响应式数据\nconst selectedArticle = ref<Article | null>(null)\n\n// Initialize article store\nonMounted(async () => {\n  await articleStore.initialize()\n  \n  // Check for articleId in URL params\n  const route = useRoute()\n  const articleId = route.query.articleId\n  \n  if (articleId) {\n    const article = articleStore.getArticleById(Number(articleId))\n    if (article) {\n      selectedArticle.value = article\n    }\n  }\n})\n\n// Get articles from store\nconst articles = computed(() => articleStore.articles)\n\n// 方法\nconst selectArticle = (article: Article) => {\n  selectedArticle.value = article\n  \n  // Update URL without page reload\n  const router = useRouter()\n  router.push({ query: { articleId: article.id } })\n}\n\nconst goBackToList = () => {\n  selectedArticle.value = null\n  \n  // Clear URL parameter\n  const router = useRouter()\n  router.push({ query: {} })\n}\n\nconst formatMonth = (dateStr: string) => {\n  const month = dateStr.split('.')[1]\n  return month + '月'\n}\n\nconst formatDay = (dateStr: string) => {\n  const day = dateStr.split('.')[2]\n  return day\n}\n</script>\n\n<style scoped>\n/* Anthropic Theme Variables */\n.anthropic-theme {\n  background-color: #FAF9F7;\n  min-height: 100vh;\n}\n\n/* Custom Container */\n.custom-container {\n  max-width: 1200px;\n  margin: 0 auto;\n  padding: 0 24px;\n}\n\n/* Hero Section */\n.about-hero-section {\n  padding: 80px 0 60px 0;\n  background-color: #FAF9F7;\n  border-bottom: 1px solid #E5E5E5;\n}\n\n.hero-content {\n  text-align: center;\n  max-width: 600px;\n  margin: 0 auto;\n}\n\n.hero-title {\n  font-size: 3.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 1.5rem;\n  line-height: 1.2;\n}\n\n.hero-description {\n  font-size: 1.25rem;\n  color: #666666;\n  line-height: 1.6;\n  margin: 0;\n}\n\n/* Articles Section */\n.articles-section {\n  padding: 80px 0;\n  background-color: #FAF9F7;\n}\n\n.articles-grid {\n  display: flex;\n  flex-direction: column;\n  gap: 1.5rem;\n}\n\n/* Article Card */\n.article-card {\n  display: flex;\n  background: #FFFFFF;\n  border-radius: 16px;\n  padding: 2rem;\n  cursor: pointer;\n  transition: all 0.3s ease;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);\n  border: 1px solid #E5E5E5;\n}\n\n.article-card:hover {\n  transform: translateY(-4px);\n  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);\n  border-color: #E17B47;\n}\n\n.article-date-badge {\n  flex-shrink: 0;\n  background: #1A1A1A;\n  color: white;\n  border-radius: 12px;\n  padding: 1rem;\n  text-align: center;\n  margin-right: 2rem;\n  min-width: 80px;\n  height: fit-content;\n}\n\n.month {\n  font-size: 0.875rem;\n  font-weight: 500;\n  margin-bottom: 0.25rem;\n}\n\n.day {\n  font-size: 1.5rem;\n  font-weight: 600;\n}\n\n.article-content {\n  flex: 1;\n}\n\n.article-header {\n  display: flex;\n  align-items: flex-start;\n  justify-content: space-between;\n  margin-bottom: 1rem;\n}\n\n.article-title {\n  font-size: 1.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  line-height: 1.4;\n  margin: 0;\n  flex: 1;\n  margin-right: 1rem;\n}\n\n.article-arrow {\n  color: #E17B47;\n  font-size: 1.5rem;\n  font-weight: 600;\n  opacity: 0.7;\n  transition: all 0.3s ease;\n}\n\n.article-card:hover .article-arrow {\n  opacity: 1;\n  transform: translateX(4px);\n}\n\n.article-meta {\n  display: flex;\n  align-items: center;\n  gap: 1rem;\n  margin-bottom: 1rem;\n}\n\n.article-category {\n  background: #E17B47;\n  color: white;\n  padding: 0.25rem 0.75rem;\n  border-radius: 20px;\n  font-size: 0.875rem;\n  font-weight: 500;\n}\n\n.article-info {\n  color: #666666;\n  font-size: 0.875rem;\n}\n\n.article-excerpt {\n  color: #333333;\n  line-height: 1.6;\n  margin: 0;\n  font-size: 1rem;\n}\n\n/* Article Detail */\n.article-detail {\n  max-width: 800px;\n  margin: 0 auto;\n}\n\n.back-button {\n  background: none;\n  border: none;\n  color: #E17B47;\n  font-size: 1rem;\n  cursor: pointer;\n  margin-bottom: 2rem;\n  transition: color 0.3s ease;\n}\n\n.back-button:hover {\n  color: #1A1A1A;\n}\n\n.article-detail-card {\n  background: #FFFFFF;\n  border-radius: 16px;\n  padding: 3rem;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);\n  border: 1px solid #E5E5E5;\n}\n\n.article-detail-header {\n  margin-bottom: 2rem;\n  padding-bottom: 2rem;\n  border-bottom: 1px solid #E5E5E5;\n}\n\n.article-detail-meta {\n  display: flex;\n  align-items: center;\n  gap: 1rem;\n  margin-bottom: 1.5rem;\n}\n\n.detail-category {\n  background: #E17B47;\n  color: white;\n  padding: 0.5rem 1rem;\n  border-radius: 20px;\n  font-size: 0.875rem;\n  font-weight: 500;\n}\n\n.detail-info {\n  color: #666666;\n  font-size: 0.875rem;\n}\n\n.article-detail-title {\n  font-size: 2.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  line-height: 1.3;\n  margin: 0;\n}\n\n.article-detail-content {\n  line-height: 1.8;\n  color: #333333;\n  margin-bottom: 3rem;\n  font-size: 1.125rem;\n}\n\n.article-detail-content :deep(h3) {\n  margin: 2rem 0 1rem 0;\n  color: #1A1A1A;\n  font-weight: 500;\n}\n\n.article-detail-content :deep(ul) {\n  margin: 1rem 0;\n  padding-left: 1.5rem;\n}\n\n.article-detail-content :deep(li) {\n  margin-bottom: 0.5rem;\n}\n\n.article-tags {\n  display: flex;\n  align-items: center;\n  gap: 1rem;\n  padding-top: 2rem;\n  border-top: 1px solid #E5E5E5;\n}\n\n.tags-label {\n  color: #666666;\n  font-weight: 500;\n}\n\n.tags-list {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 0.5rem;\n}\n\n.tag-item {\n  background: #F0EDE8;\n  color: #333333;\n  padding: 0.25rem 0.75rem;\n  border-radius: 20px;\n  font-size: 0.875rem;\n  border: 1px solid #E5E5E5;\n}\n\n/* Responsive Design */\n@media (max-width: 768px) {\n  .custom-container {\n    padding: 0 16px;\n  }\n  \n  .about-hero-section {\n    padding: 60px 0 40px 0;\n  }\n  \n  .hero-title {\n    font-size: 2.5rem;\n  }\n  \n  .hero-description {\n    font-size: 1.125rem;\n  }\n  \n  .articles-section {\n    padding: 60px 0;\n  }\n  \n  .article-card {\n    flex-direction: column;\n    padding: 1.5rem;\n  }\n  \n  .article-date-badge {\n    margin-right: 0;\n    margin-bottom: 1rem;\n    align-self: flex-start;\n  }\n  \n  .article-detail-card {\n    padding: 2rem;\n  }\n  \n  .article-detail-title {\n    font-size: 2rem;\n  }\n  \n  .article-detail-content {\n    font-size: 1rem;\n  }\n  \n  .article-tags {\n    flex-direction: column;\n    align-items: flex-start;\n    gap: 0.75rem;\n  }\n}\n</style>",
+      "start": 1762413661385,
+      "end": 1762413661753,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413661754,
+      "end": 1762413661754,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413661754,
+      "end": 1762413661754,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413661754,
+      "end": 1762413661754,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1762413661754,
+      "end": 1762413661754,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1762413661754,
+      "end": 1762413661754,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413661754,
+      "end": 1762413661754,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413661754,
+      "end": 1762413661754,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/home/user/NTE-company-website/pages/about.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/home/user/NTE-company-website/pages/about.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/home/user/NTE-company-website/pages/about.vue?vue&type=style&index=0&scoped=a2b542a9&lang.css\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-a2b542a9\"]]);\n",
+      "start": 1762413661754,
+      "end": 1762413662268,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413662269,
+      "end": 1762413662269,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413662269,
+      "end": 1762413662269,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413662269,
+      "end": 1762413662269,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1762413662269,
+      "end": 1762413662269,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413662269,
+      "end": 1762413662269,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413662269,
+      "end": 1762413662270,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413662270,
+      "end": 1762413662270,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413662270,
+      "end": 1762413662270,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1762413662270,
+      "end": 1762413662270,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413662270,
+      "end": 1762413662270,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413662270,
+      "end": 1762413662270,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413662270,
+      "end": 1762413662270,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413662271,
+      "end": 1762413662271,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413662271,
+      "end": 1762413662271,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413662271,
+      "end": 1762413662271,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413662271,
+      "end": 1762413662271,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413662271,
+      "end": 1762413662272,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413662272,
+      "end": 1762413662273,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "result": "export { default } from \"/home/user/NTE-company-website/pages/about.vue?macro=true&vue&type=script&setup=true&lang.ts\"",
+      "start": 1762413662275,
+      "end": 1762413662277,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          ""
+        ],
+        "names": [],
+        "mappings": "AAAA"
+      }
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1762413662280,
+      "end": 1762413662281,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1762413662282,
+      "end": 1762413662282,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413662282,
+      "end": 1762413662282,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413662283,
+      "end": 1762413662283,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413662283,
+      "end": 1762413662283,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413662283,
+      "end": 1762413662283,
+      "order": "normal"
+    }
+  ]
+}

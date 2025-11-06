@@ -1,0 +1,281 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/components/AnalyticsManager.vue?vue&type=style&index=0&scoped=86369a80&lang.css?inline&used",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "\n.analytics-manager {\n  width: 100%;\n}\n\n.overview-cards {\n  margin-bottom: 2rem;\n}\n\n.stat-card {\n  height: 100%;\n}\n\n.stat-content {\n  display: flex;\n  align-items: center;\n  gap: 1rem;\n}\n\n.stat-icon {\n  flex-shrink: 0;\n}\n\n.stat-info {\n  flex: 1;\n}\n\n.stat-number {\n  font-size: 2rem;\n  font-weight: 600;\n  color: #1A1A1A;\n  line-height: 1;\n}\n\n.stat-label {\n  color: #666666;\n  font-size: 0.875rem;\n  margin-top: 0.25rem;\n}\n\n.charts-section {\n  margin-bottom: 2rem;\n}\n\n.chart-container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  min-height: 300px;\n}\n\n.details-section {\n  margin-bottom: 2rem;\n}\n\n.system-section {\n  margin-bottom: 2rem;\n}\n\n.system-info h4 {\n  color: #1A1A1A;\n  margin-bottom: 1rem;\n  font-size: 1.1rem;\n}\n\n.system-info p {\n  margin: 0.5rem 0;\n  color: #666666;\n}\n\n.actions-section {\n  margin-bottom: 2rem;\n}\n\n.action-buttons {\n  display: flex;\n  gap: 1rem;\n  flex-wrap: wrap;\n}\n\n/* 响应式设计 */\n@media (max-width: 768px) {\n  .action-buttons {\n    flex-direction: column;\n  }\n  \n  .action-buttons .v-btn {\n    width: 100%;\n  }\n  \n  .stat-content {\n    flex-direction: column;\n    text-align: center;\n  }\n  \n  .chart-container {\n    min-height: 250px;\n  }\n}\n\n/* 深色主题支持 */\n.v-theme--dark .stat-number {\n  color: #FFFFFF;\n}\n\n.v-theme--dark .system-info h4 {\n  color: #FFFFFF;\n}\n\n.v-theme--dark .system-info p {\n  color: #CCCCCC;\n}\n",
+      "start": 1762413666584,
+      "end": 1762413666584
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413666585,
+      "end": 1762413666588,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413666585,
+      "end": 1762413666588,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413666589,
+      "end": 1762413666590,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413666589,
+      "end": 1762413666590,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413666590,
+      "end": 1762413666590,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": ".analytics-manager{width:100%}.overview-cards{margin-bottom:2rem}.stat-card{height:100%}.stat-content{align-items:center;display:flex;gap:1rem}.stat-icon{flex-shrink:0}.stat-info{flex:1}.stat-number{color:#1a1a1a;font-size:2rem;font-weight:600;line-height:1}.stat-label{color:#666;font-size:.875rem;margin-top:.25rem}.charts-section{margin-bottom:2rem}.chart-container{align-items:center;display:flex;justify-content:center;min-height:300px}.details-section,.system-section{margin-bottom:2rem}.system-info h4{color:#1a1a1a;font-size:1.1rem;margin-bottom:1rem}.system-info p{color:#666;margin:.5rem 0}.actions-section{margin-bottom:2rem}.action-buttons{display:flex;flex-wrap:wrap;gap:1rem}@media (max-width:768px){.action-buttons{flex-direction:column}.action-buttons .v-btn{width:100%}.stat-content{flex-direction:column;text-align:center}.chart-container{min-height:250px}}.v-theme--dark .stat-number,.v-theme--dark .system-info h4{color:#fff}.v-theme--dark .system-info p{color:#ccc}",
+      "start": 1762413666590,
+      "end": 1762413666598,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "/home/user/NTE-company-website/components/AnalyticsManager.vue",
+        "mappings": "AACA,mBACE,UACF,CAEA,gBACE,kBACF,CAEA,WACE,WACF,CAEA,cAEE,kBAAmB,CADnB,YAAa,CAEb,QACF,CAEA,WACE,aACF,CAEA,WACE,MACF,CAEA,aAGE,aAAc,CAFd,cAAe,CACf,eAAgB,CAEhB,aACF,CAEA,YACE,UAAc,CACd,iBAAmB,CACnB,iBACF,CAEA,gBACE,kBACF,CAEA,iBAGE,kBAAmB,CAFnB,YAAa,CACb,sBAAuB,CAEvB,gBACF,CAMA,iCACE,kBACF,CAEA,gBACE,aAAc,CAEd,gBAAiB,CADjB,kBAEF,CAEA,eAEE,UAAc,CADd,cAEF,CAEA,iBACE,kBACF,CAEA,gBACE,YAAa,CAEb,cAAe,CADf,QAEF,CAGA,yBACE,gBACE,qBACF,CAEA,uBACE,UACF,CAEA,cACE,qBAAsB,CACtB,iBACF,CAEA,iBACE,gBACF,CACF,CAOA,2DACE,UACF,CAEA,8BACE,UACF",
+        "names": [],
+        "sources": [
+          "/home/user/NTE-company-website/components/AnalyticsManager.vue"
+        ],
+        "sourcesContent": [
+          "\n.analytics-manager {\n  width: 100%;\n}\n\n.overview-cards {\n  margin-bottom: 2rem;\n}\n\n.stat-card {\n  height: 100%;\n}\n\n.stat-content {\n  display: flex;\n  align-items: center;\n  gap: 1rem;\n}\n\n.stat-icon {\n  flex-shrink: 0;\n}\n\n.stat-info {\n  flex: 1;\n}\n\n.stat-number {\n  font-size: 2rem;\n  font-weight: 600;\n  color: #1A1A1A;\n  line-height: 1;\n}\n\n.stat-label {\n  color: #666666;\n  font-size: 0.875rem;\n  margin-top: 0.25rem;\n}\n\n.charts-section {\n  margin-bottom: 2rem;\n}\n\n.chart-container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  min-height: 300px;\n}\n\n.details-section {\n  margin-bottom: 2rem;\n}\n\n.system-section {\n  margin-bottom: 2rem;\n}\n\n.system-info h4 {\n  color: #1A1A1A;\n  margin-bottom: 1rem;\n  font-size: 1.1rem;\n}\n\n.system-info p {\n  margin: 0.5rem 0;\n  color: #666666;\n}\n\n.actions-section {\n  margin-bottom: 2rem;\n}\n\n.action-buttons {\n  display: flex;\n  gap: 1rem;\n  flex-wrap: wrap;\n}\n\n/* 响应式设计 */\n@media (max-width: 768px) {\n  .action-buttons {\n    flex-direction: column;\n  }\n  \n  .action-buttons .v-btn {\n    width: 100%;\n  }\n  \n  .stat-content {\n    flex-direction: column;\n    text-align: center;\n  }\n  \n  .chart-container {\n    min-height: 250px;\n  }\n}\n\n/* 深色主题支持 */\n.v-theme--dark .stat-number {\n  color: #FFFFFF;\n}\n\n.v-theme--dark .system-info h4 {\n  color: #FFFFFF;\n}\n\n.v-theme--dark .system-info p {\n  color: #CCCCCC;\n}\n"
+        ],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1762413666599,
+      "end": 1762413666599,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413666600,
+      "end": 1762413666603,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413666604,
+      "end": 1762413666604,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": ".analytics-manager[data-v-86369a80]{width:100%}.overview-cards[data-v-86369a80]{margin-bottom:2rem}.stat-card[data-v-86369a80]{height:100%}.stat-content[data-v-86369a80]{align-items:center;display:flex;gap:1rem}.stat-icon[data-v-86369a80]{flex-shrink:0}.stat-info[data-v-86369a80]{flex:1}.stat-number[data-v-86369a80]{color:#1a1a1a;font-size:2rem;font-weight:600;line-height:1}.stat-label[data-v-86369a80]{color:#666;font-size:.875rem;margin-top:.25rem}.charts-section[data-v-86369a80]{margin-bottom:2rem}.chart-container[data-v-86369a80]{align-items:center;display:flex;justify-content:center;min-height:300px}.details-section[data-v-86369a80],.system-section[data-v-86369a80]{margin-bottom:2rem}.system-info h4[data-v-86369a80]{color:#1a1a1a;font-size:1.1rem;margin-bottom:1rem}.system-info p[data-v-86369a80]{color:#666;margin:.5rem 0}.actions-section[data-v-86369a80]{margin-bottom:2rem}.action-buttons[data-v-86369a80]{display:flex;flex-wrap:wrap;gap:1rem}@media (max-width:768px){.action-buttons[data-v-86369a80]{flex-direction:column}.action-buttons .v-btn[data-v-86369a80]{width:100%}.stat-content[data-v-86369a80]{flex-direction:column;text-align:center}.chart-container[data-v-86369a80]{min-height:250px}}.v-theme--dark .stat-number[data-v-86369a80],.v-theme--dark .system-info h4[data-v-86369a80]{color:#fff}.v-theme--dark .system-info p[data-v-86369a80]{color:#ccc}",
+      "start": 1762413666605,
+      "end": 1762413666608,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "/home/user/NTE-company-website/components/AnalyticsManager.vue",
+        "mappings": "AAAA,oCAAmB,UAAU,CAAC,iCAAgB,kBAAkB,CAAC,4BAAW,WAAW,CAAC,+BAAc,kBAAkB,CAAC,YAAY,CAAC,QAAQ,CAAC,4BAAW,aAAa,CAAC,4BAAW,MAAM,CAAC,8BAAa,aAAa,CAAC,cAAc,CAAC,eAAe,CAAC,aAAa,CAAC,6BAAY,UAAU,CAAC,iBAAiB,CAAC,iBAAiB,CAAC,iCAAgB,kBAAkB,CAAC,kCAAiB,kBAAkB,CAAC,YAAY,CAAC,sBAAsB,CAAC,gBAAgB,CAAC,mEAAiC,kBAAkB,CAAC,iCAAgB,aAAa,CAAC,gBAAgB,CAAC,kBAAkB,CAAC,gCAAe,UAAU,CAAC,cAAc,CAAC,kCAAiB,kBAAkB,CAAC,iCAAgB,YAAY,CAAC,cAAc,CAAC,QAAQ,CAAC,yBAAyB,iCAAgB,qBAAqB,CAAC,wCAAuB,UAAU,CAAC,+BAAc,qBAAqB,CAAC,iBAAiB,CAAC,kCAAiB,gBAAgB,CAAC,CAAC,6FAA2D,UAAU,CAAC,+CAA8B,UAAU",
+        "names": [],
+        "sources": [
+          "/home/user/NTE-company-website/components/AnalyticsManager.vue"
+        ],
+        "sourcesContent": [
+          null
+        ],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413666610,
+      "end": 1762413666610,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413666611,
+      "end": 1762413666611,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413666611,
+      "end": 1762413666611,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413666611,
+      "end": 1762413666611,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413666611,
+      "end": 1762413666611,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413666611,
+      "end": 1762413666611,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413666612,
+      "end": 1762413666612,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413666614,
+      "end": 1762413666615,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413666616,
+      "end": 1762413666616,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413666616,
+      "end": 1762413666616,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "export default \".analytics-manager[data-v-86369a80]{width:100%}.overview-cards[data-v-86369a80]{margin-bottom:2rem}.stat-card[data-v-86369a80]{height:100%}.stat-content[data-v-86369a80]{align-items:center;display:flex;gap:1rem}.stat-icon[data-v-86369a80]{flex-shrink:0}.stat-info[data-v-86369a80]{flex:1}.stat-number[data-v-86369a80]{color:#1a1a1a;font-size:2rem;font-weight:600;line-height:1}.stat-label[data-v-86369a80]{color:#666;font-size:.875rem;margin-top:.25rem}.charts-section[data-v-86369a80]{margin-bottom:2rem}.chart-container[data-v-86369a80]{align-items:center;display:flex;justify-content:center;min-height:300px}.details-section[data-v-86369a80],.system-section[data-v-86369a80]{margin-bottom:2rem}.system-info h4[data-v-86369a80]{color:#1a1a1a;font-size:1.1rem;margin-bottom:1rem}.system-info p[data-v-86369a80]{color:#666;margin:.5rem 0}.actions-section[data-v-86369a80]{margin-bottom:2rem}.action-buttons[data-v-86369a80]{display:flex;flex-wrap:wrap;gap:1rem}@media (max-width:768px){.action-buttons[data-v-86369a80]{flex-direction:column}.action-buttons .v-btn[data-v-86369a80]{width:100%}.stat-content[data-v-86369a80]{flex-direction:column;text-align:center}.chart-container[data-v-86369a80]{min-height:250px}}.v-theme--dark .stat-number[data-v-86369a80],.v-theme--dark .system-info h4[data-v-86369a80]{color:#fff}.v-theme--dark .system-info p[data-v-86369a80]{color:#ccc}\"",
+      "start": 1762413666616,
+      "end": 1762413666616,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413666616,
+      "end": 1762413666617,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413666618,
+      "end": 1762413666618,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413666619,
+      "end": 1762413666619,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413666619,
+      "end": 1762413666621,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413666622,
+      "end": 1762413666622,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413666622,
+      "end": 1762413666622,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413666622,
+      "end": 1762413666622,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413666622,
+      "end": 1762413666622,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413666622,
+      "end": 1762413666622,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413666622,
+      "end": 1762413666622,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413666622,
+      "end": 1762413666622,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413666622,
+      "end": 1762413666622,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413666625,
+      "end": 1762413666625,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413666625,
+      "end": 1762413666625,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1762413666625,
+      "end": 1762413666625,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413666625,
+      "end": 1762413666625,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413666625,
+      "end": 1762413666625,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413666625,
+      "end": 1762413666626,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413666626,
+      "end": 1762413666626,
+      "order": "normal"
+    }
+  ]
+}

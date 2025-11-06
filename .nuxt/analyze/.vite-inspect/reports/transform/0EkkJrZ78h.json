@@ -1,0 +1,214 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/components/ServiceShowcase.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\n  <section class=\"py-5 bg-gray-100\">\n    <div class=\"container\">\n      <div class=\"row align-items-center\">\n        <!-- 标题区域 -->\n        <div class=\"col-12 text-center mb-5\">\n          <div class=\"divider-dot top\"></div>\n          <h2 class=\"text-h3 mb-2 text-gradient\">総合サービスリソース</h2>\n          <p class=\"text-h6 text-on-surface-variant mb-8\">COMPREHENSIVE SERVICE RESOURCES</p>\n          <div class=\"mx-auto\" style=\"max-width: 600px;\">\n            <p class=\"text-body-1 text-on-surface-variant mb-2\">お客様のニーズに応える幅広いサービスを提供し、</p>\n            <p class=\"text-body-1 text-on-surface-variant\">最適なソリューションで価値創造をサポートいたします。</p>\n          </div>\n        </div>\n      </div>\n\n      <div class=\"row equal-height-row\">\n        <!-- 左侧服务列表 60% -->\n        <div class=\"col-lg-7 col-md-12 service-list-container\">\n          <div class=\"service-list\">\n            <div \n              v-for=\"(service, index) in services\" \n              :key=\"service.id\"\n              class=\"service-card mb-3\"\n              :class=\"{ 'service-card--active': hoveredCard === index }\"\n              @mouseenter=\"hoverService(index)\"\n              @mouseleave=\"leaveService\"\n              @click=\"selectService(index)\"\n            >\n              <div class=\"card-content\" style=\"padding: 1.2rem 1.5rem;\">\n                <div class=\"d-flex align-items-center\">\n                  <!-- 服务图标 -->\n                  <div class=\"service-icon-wrapper me-3\">\n                    <i class=\"material-icons\">{{ service.icon }}</i>\n                  </div>\n                  \n                  <!-- 服务信息 -->\n                  <div class=\"service-info flex-grow-1\">\n                    <h4 class=\"service-title mb-1\">{{ service.title }}</h4>\n                    <p class=\"service-category mb-2 text-muted\">{{ service.category }}</p>\n                    <p class=\"service-description mb-0\">{{ service.description }}</p>\n                  </div>\n                  \n                  <!-- 右侧箭头 -->\n                  <div class=\"service-arrow\">\n                    <i class=\"material-icons\">chevron_right</i>\n                  </div>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n\n        <!-- 右侧图片展示区域 40% -->\n        <div class=\"col-lg-5 col-md-12 image-display-container\">\n          <div class=\"service-image-card sticky-top\">\n            <div class=\"image-container\">\n              <!-- 图片显示 -->\n              <transition name=\"fade\" mode=\"out-in\">\n                <img\n                  v-if=\"currentService && currentService.image\"\n                  :key=\"currentService.id\"\n                  :src=\"currentService.image\"\n                  :alt=\"currentService.title\"\n                  class=\"service-image\"\n                  loading=\"lazy\"\n                />\n                <div \n                  v-else\n                  class=\"image-placeholder d-flex flex-column align-items-center justify-content-center\"\n                >\n                  <i class=\"material-icons mb-3\" style=\"font-size: 4rem; opacity: 0.3;\">camera_alt</i>\n                  <p class=\"text-muted text-center\">\n                    サービスにマウスオーバーして<br>\n                    関連画像をご覧ください\n                  </p>\n                </div>\n              </transition>\n              \n              <!-- 图片覆盖信息 -->\n              <div \n                v-if=\"currentService\"\n                class=\"image-overlay\"\n              >\n                <div class=\"overlay-card\">\n                  <span class=\"service-badge\">{{ currentService.category }}</span>\n                  <h5 class=\"overlay-title mb-1\">{{ currentService.title }}</h5>\n                  <p class=\"overlay-description mb-0\">{{ currentService.description }}</p>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </section>\n</template>\n\n<script setup lang=\"ts\">\n// 服务数据\nconst services = [\n  {\n    id: 'coffee',\n    title: '珈琲 | COFFEE',\n    category: '飲料・文化事業',\n    description: '高品質コーヒー商品の企画開発・貿易・ブランド展開を通じて、コーヒー文化の探求と普及に取り組んでいます。',\n    icon: 'local_cafe',\n    image: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=600&h=400&fit=crop&auto=format'\n  },\n  {\n    id: 'equipment',\n    title: '器具 | EQUIPMENT',\n    category: '製品開発事業',\n    description: '専門器具の設計・開発・販売から技術サポートまで、一貫したサービスを提供しています。',\n    icon: 'build',\n    image: 'https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=600&h=400&fit=crop&auto=format'\n  },\n  {\n    id: 'exhibition',\n    title: '展覧 | EXHIBITION',\n    category: '文化・芸術事業',\n    description: '文化・技術・芸術分野の展示企画からイベント運営まで、革新的なアプローチで印象的な体験を創造します。',\n    icon: 'museum',\n    image: 'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=600&h=400&fit=crop&auto=format'\n  },\n  {\n    id: 'lab',\n    title: 'ラボ | LAB',\n    category: '技術研究・イノベーション',\n    description: '最先端技術とイノベーション開発・スポーツ関連研究を通じて、未来の価値創造に挑戦しています。',\n    icon: 'science',\n    image: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&h=400&fit=crop&auto=format'\n  },\n  {\n    id: 'club',\n    title: 'クラブ | CLUB',\n    category: '会員制コミュニティ',\n    description: '会員制コミュニティ・専門家ネットワーク運営を通じて、特別な体験と深いつながりを提供します。',\n    icon: 'people',\n    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop&auto=format'\n  }\n]\n\n// 响应式状态\nconst hoveredCard = ref<number | null>(null)\nconst selectedCard = ref<number>(0)\n\n// 计算属性\nconst currentService = computed(() => {\n  const index = hoveredCard.value !== null ? hoveredCard.value : selectedCard.value\n  return services[index] || null\n})\n\n// 方法\nconst hoverService = (index: number) => {\n  hoveredCard.value = index\n}\n\nconst leaveService = () => {\n  hoveredCard.value = null\n}\n\nconst selectService = (index: number) => {\n  selectedCard.value = index\n}\n\n// 初始化\nonMounted(() => {\n  selectedCard.value = 0\n})\n</script>\n\n<style scoped>\n/* ===== 主容器样式 ===== */\n.bg-gray-100 {\n  background-color: #F0EDE8;\n}\n\n.py-5 {\n  padding-top: 3rem;\n  padding-bottom: 3rem;\n}\n\n.container {\n  max-width: 1200px;\n  margin: 0 auto;\n  padding: 0 20px;\n}\n\n/* ===== 标题样式 ===== */\n.text-gradient {\n  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n  -webkit-background-clip: text;\n  -webkit-text-fill-color: transparent;\n  background-clip: text;\n  text-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);\n}\n\n.divider-dot {\n  width: 10px;\n  height: 10px;\n  background: linear-gradient(135deg, #667eea, #764ba2);\n  border-radius: 50%;\n  margin: 0 auto 1.5rem;\n  animation: pulseGlow 2.5s ease-in-out infinite;\n  box-shadow: \n    0 0 10px rgba(102, 126, 234, 0.6),\n    0 0 20px rgba(102, 126, 234, 0.4);\n}\n\n@keyframes pulseGlow {\n  0%, 100% { \n    transform: scale(1); \n    opacity: 0.8;\n  }\n  50% { \n    transform: scale(1.3); \n    opacity: 1;\n  }\n}\n\n/* ===== 布局样式 ===== */\n.equal-height-row {\n  display: flex;\n  align-items: stretch;\n  min-height: 500px;\n}\n\n.service-list-container {\n  flex: 0 0 62%;\n  max-width: 62%;\n  padding-right: 1.5rem;\n}\n\n.image-display-container {\n  flex: 0 0 38%;\n  max-width: 38%;\n  padding-left: 1rem;\n}\n\n/* ===== 服务卡片样式 ===== */\n.service-list {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  height: 100%;\n}\n\n.service-card {\n  background: white;\n  border-radius: 16px;\n  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);\n  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n  cursor: pointer;\n  border: 2px solid transparent;\n  overflow: hidden;\n  position: relative;\n  margin-bottom: 0.8rem;\n}\n\n.service-card::before {\n  content: '';\n  position: absolute;\n  left: 0;\n  top: 0;\n  bottom: 0;\n  width: 4px;\n  background: linear-gradient(135deg, #667eea, #764ba2);\n  transform: scaleY(0);\n  transform-origin: bottom;\n  transition: transform 0.3s ease;\n}\n\n.service-card:hover::before,\n.service-card--active::before {\n  transform: scaleY(1);\n}\n\n.service-card:hover,\n.service-card--active {\n  transform: translateY(-3px);\n  box-shadow: 0 12px 30px rgba(102, 126, 234, 0.15);\n  border-color: rgba(102, 126, 234, 0.2);\n}\n\n.card-content {\n  position: relative;\n  z-index: 2;\n}\n\n/* ===== 服务信息样式 ===== */\n.service-icon-wrapper {\n  width: 50px;\n  height: 50px;\n  background: linear-gradient(135deg, #667eea, #764ba2);\n  border-radius: 12px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  transition: all 0.3s ease;\n}\n\n.service-icon-wrapper .material-icons {\n  color: white;\n  font-size: 24px;\n}\n\n.service-card:hover .service-icon-wrapper,\n.service-card--active .service-icon-wrapper {\n  transform: scale(1.1);\n  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);\n}\n\n.service-title {\n  font-size: 1.15rem;\n  font-weight: 600;\n  color: #333;\n  margin-bottom: 0.3rem;\n  transition: color 0.3s ease;\n}\n\n.service-card:hover .service-title,\n.service-card--active .service-title {\n  color: #667eea;\n}\n\n.service-category {\n  font-size: 0.85rem;\n  color: #999;\n  margin-bottom: 0.5rem;\n}\n\n.service-description {\n  font-size: 0.9rem;\n  color: #666;\n  line-height: 1.5;\n}\n\n.service-arrow {\n  color: #667eea;\n  transition: all 0.3s ease;\n}\n\n.service-card:hover .service-arrow,\n.service-card--active .service-arrow {\n  transform: translateX(5px);\n  color: #764ba2;\n}\n\n/* ===== 图片展示区域样式 ===== */\n.service-image-card {\n  background: white;\n  border-radius: 16px;\n  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);\n  overflow: hidden;\n  height: 500px;\n  position: relative;\n}\n\n.sticky-top {\n  position: sticky;\n  top: 2rem;\n}\n\n.image-container {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n}\n\n.service-image {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n  transition: all 0.4s ease;\n  filter: brightness(0.95) saturate(1.1);\n}\n\n.image-placeholder {\n  width: 100%;\n  height: 100%;\n  background: #f8f9fa;\n  color: #999;\n}\n\n/* ===== 图片覆盖信息样式 ===== */\n.image-overlay {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));\n  padding: 3rem 2rem 2rem;\n  color: white;\n}\n\n.overlay-card {\n  background: rgba(255, 255, 255, 0.1);\n  backdrop-filter: blur(10px);\n  border: 1px solid rgba(255, 255, 255, 0.2);\n  border-radius: 15px;\n  padding: 1.5rem;\n}\n\n.service-badge {\n  background: rgba(102, 126, 234, 0.9);\n  color: white;\n  padding: 0.3rem 0.8rem;\n  border-radius: 20px;\n  font-size: 0.8rem;\n  font-weight: 500;\n  display: inline-block;\n  margin-bottom: 0.8rem;\n}\n\n.overlay-title {\n  font-size: 1.1rem;\n  font-weight: 600;\n  margin-bottom: 0.5rem;\n}\n\n.overlay-description {\n  font-size: 0.9rem;\n  opacity: 0.9;\n  line-height: 1.5;\n}\n\n/* ===== 过渡动画 ===== */\n.fade-enter-active,\n.fade-leave-active {\n  transition: all 0.4s ease;\n}\n\n.fade-enter-from {\n  opacity: 0;\n  transform: scale(1.1);\n}\n\n.fade-leave-to {\n  opacity: 0;\n  transform: scale(0.9);\n}\n\n/* ===== 响应式设计 ===== */\n/* 平板端 (768px - 991px) - 左右分栏 50%/50% */\n@media (min-width: 768px) and (max-width: 991.98px) {\n  .equal-height-row {\n    gap: 1.5rem;\n    min-height: 400px;\n  }\n  \n  .service-list-container {\n    flex: 0 0 50%;\n    max-width: 50%;\n    padding-right: 1rem;\n  }\n  \n  .image-display-container {\n    flex: 0 0 50%;\n    max-width: 50%;\n    padding-left: 0.5rem;\n  }\n  \n  .service-image-card {\n    height: 400px;\n  }\n}\n\n/* 移动端 (<768px) - 垂直布局 */\n@media (max-width: 767.98px) {\n  .equal-height-row {\n    flex-direction: column;\n    min-height: auto;\n    gap: 1.5rem;\n  }\n  \n  .service-list-container,\n  .image-display-container {\n    flex: none;\n    max-width: 100%;\n    padding: 0;\n  }\n  \n  .image-display-container {\n    order: -1; /* 图片显示在顶部 */\n  }\n  \n  .service-image-card {\n    position: relative;\n    height: 250px;\n  }\n  \n  .sticky-top {\n    position: relative;\n    top: auto;\n  }\n}\n\n@media (max-width: 767px) {\n  .service-card {\n    margin-bottom: 1rem;\n  }\n  \n  .service-image-card {\n    height: 250px;\n  }\n  \n  .service-icon-wrapper {\n    width: 40px;\n    height: 40px;\n  }\n  \n  .service-icon-wrapper .material-icons {\n    font-size: 20px;\n  }\n  \n  .service-title {\n    font-size: 1rem;\n  }\n  \n  .service-description {\n    font-size: 0.85rem;\n  }\n  \n  .overlay-card {\n    padding: 1rem;\n  }\n}\n\n/* ===== 工具类 ===== */\n.d-flex {\n  display: flex;\n}\n\n.align-items-center {\n  align-items: center;\n}\n\n.justify-content-center {\n  justify-content: center;\n}\n\n.flex-column {\n  flex-direction: column;\n}\n\n.flex-grow-1 {\n  flex-grow: 1;\n}\n\n.text-center {\n  text-align: center;\n}\n\n.text-muted {\n  color: #999 !important;\n}\n\n.mb-0 { margin-bottom: 0; }\n.mb-1 { margin-bottom: 0.25rem; }\n.mb-2 { margin-bottom: 0.5rem; }\n.mb-3 { margin-bottom: 1rem; }\n.mb-5 { margin-bottom: 3rem; }\n.mb-8 { margin-bottom: 4rem; }\n\n.me-3 { margin-right: 1rem; }\n\n.p-4 { padding: 1.5rem; }\n\n.text-h3 {\n  font-size: 2rem;\n  font-weight: 600;\n}\n\n.text-h6 {\n  font-size: 1.25rem;\n  font-weight: 500;\n}\n\n.text-body-1 {\n  font-size: 1rem;\n  line-height: 1.6;\n}\n\n.text-on-surface-variant {\n  color: #666;\n}\n\n.mx-auto {\n  margin-left: auto;\n  margin-right: auto;\n}\n</style>",
+      "start": 1762413662472,
+      "end": 1762413663400,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413663400,
+      "end": 1762413663400,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413663400,
+      "end": 1762413663400,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413663400,
+      "end": 1762413663400,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1762413663400,
+      "end": 1762413663400,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1762413663400,
+      "end": 1762413663400,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413663400,
+      "end": 1762413663400,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413663400,
+      "end": 1762413663400,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/home/user/NTE-company-website/components/ServiceShowcase.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/home/user/NTE-company-website/components/ServiceShowcase.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/home/user/NTE-company-website/components/ServiceShowcase.vue?vue&type=style&index=0&scoped=128eceeb&lang.css\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-128eceeb\"]]);\n",
+      "start": 1762413663400,
+      "end": 1762413663685,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413663685,
+      "end": 1762413663685,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413663685,
+      "end": 1762413663685,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413663685,
+      "end": 1762413663685,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1762413663685,
+      "end": 1762413663685,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413663686,
+      "end": 1762413663686,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413663686,
+      "end": 1762413663686,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413663686,
+      "end": 1762413663686,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413663686,
+      "end": 1762413663687,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1762413663687,
+      "end": 1762413663687,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413663687,
+      "end": 1762413663687,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413663688,
+      "end": 1762413663688,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413663688,
+      "end": 1762413663688,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413663688,
+      "end": 1762413663688,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413663688,
+      "end": 1762413663688,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413663688,
+      "end": 1762413663688,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413663689,
+      "end": 1762413663689,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413663689,
+      "end": 1762413663690,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413663691,
+      "end": 1762413663691,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413663697,
+      "end": 1762413663698,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1762413663702,
+      "end": 1762413663702,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1762413663715,
+      "end": 1762413663715,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413663719,
+      "end": 1762413663719,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413663720,
+      "end": 1762413663720,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413663720,
+      "end": 1762413663720,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413663720,
+      "end": 1762413663720,
+      "order": "normal"
+    }
+  ]
+}

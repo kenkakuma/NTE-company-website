@@ -1,0 +1,221 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/pages/club.vue?vue&type=style&index=0&scoped=cab07f4a&lang.css",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "\n/* Anthropic Theme Variables */\n.anthropic-theme {\n  background-color: #FAF9F7;\n  min-height: 100vh;\n}\n\n/* Custom Container */\n.custom-container {\n  max-width: 1200px;\n  margin: 0 auto;\n  padding: 0 24px;\n}\n\n/* Hero Section */\n.club-hero-section {\n  padding: 80px 0 60px 0;\n  background-color: #FAF9F7;\n  border-bottom: 1px solid #E5E5E5;\n}\n\n.hero-content {\n  text-align: center;\n  max-width: 700px;\n  margin: 0 auto;\n}\n\n.hero-title {\n  font-size: 3.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 1rem;\n  line-height: 1.2;\n}\n\n.hero-subtitle {\n  font-size: 1.25rem;\n  color: #E17B47;\n  font-weight: 500;\n  margin-bottom: 1rem;\n}\n\n.hero-description {\n  font-size: 1.125rem;\n  color: #666666;\n  line-height: 1.6;\n  margin: 0;\n}\n\n/* Section Styles */\n.clubs-section,\n.events-section {\n  padding: 80px 0;\n  background-color: #FAF9F7;\n}\n\n.membership-benefits-section {\n  padding: 80px 0;\n  background-color: #F0EDE8;\n}\n\n.join-cta-section {\n  padding: 80px 0;\n  background-color: #1A1A1A;\n}\n\n.section-header {\n  text-align: center;\n  margin-bottom: 4rem;\n  max-width: 600px;\n  margin-left: auto;\n  margin-right: auto;\n}\n\n.section-title {\n  font-size: 2.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 1rem;\n  line-height: 1.3;\n}\n\n.section-description {\n  font-size: 1.125rem;\n  color: #666666;\n  line-height: 1.6;\n  margin: 0;\n}\n\n/* Clubs Grid */\n.clubs-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));\n  gap: 2rem;\n}\n\n.club-card {\n  background: #FFFFFF;\n  border-radius: 16px;\n  overflow: hidden;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);\n  border: 1px solid #E5E5E5;\n  transition: all 0.3s ease;\n}\n\n.club-card:hover {\n  transform: translateY(-4px);\n  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);\n  border-color: #E17B47;\n}\n\n.club-image {\n  width: 100%;\n  height: 200px;\n  overflow: hidden;\n}\n\n.club-image img {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n}\n\n.club-content {\n  padding: 2rem;\n}\n\n.club-header {\n  display: flex;\n  align-items: center;\n  gap: 1rem;\n  margin-bottom: 1rem;\n}\n\n.club-icon {\n  width: 50px;\n  height: 50px;\n  border-radius: 50%;\n  background: #F0EDE8;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-shrink: 0;\n}\n\n\n.club-title {\n  font-size: 1.25rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin: 0;\n  flex: 1;\n}\n\n.club-category {\n  background: #E17B47;\n  color: white;\n  padding: 0.25rem 0.75rem;\n  border-radius: 20px;\n  font-size: 0.75rem;\n  font-weight: 500;\n}\n\n.club-description {\n  color: #666666;\n  line-height: 1.6;\n  margin-bottom: 1.5rem;\n  font-size: 0.95rem;\n}\n\n.club-benefits {\n  margin-bottom: 1.5rem;\n}\n\n.benefits-title {\n  color: #1A1A1A;\n  font-size: 0.875rem;\n  font-weight: 600;\n  display: block;\n  margin-bottom: 0.75rem;\n}\n\n.benefits-list {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\n\n.benefits-list li {\n  position: relative;\n  padding-left: 1.5rem;\n  margin-bottom: 0.5rem;\n  color: #333333;\n  line-height: 1.5;\n  font-size: 0.875rem;\n}\n\n.benefits-list li::before {\n  content: '✓';\n  position: absolute;\n  left: 0;\n  color: #E17B47;\n  font-weight: 600;\n}\n\n.club-stats {\n  margin-bottom: 1.5rem;\n}\n\n.member-count {\n  color: #666666;\n  font-size: 0.875rem;\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n}\n\n.club-button {\n  width: 100%;\n  background: #E17B47;\n  color: white;\n  border: none;\n  padding: 0.875rem 1.5rem;\n  border-radius: 8px;\n  font-weight: 500;\n  cursor: pointer;\n  transition: all 0.3s ease;\n  font-size: 0.875rem;\n}\n\n.club-button:hover {\n  background: #1A1A1A;\n  transform: translateY(-1px);\n}\n\n/* Features Grid */\n.features-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));\n  gap: 2rem;\n}\n\n.feature-card {\n  background: #FFFFFF;\n  border-radius: 16px;\n  padding: 2rem;\n  text-align: center;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);\n  border: 1px solid #E5E5E5;\n  transition: all 0.3s ease;\n}\n\n.feature-card:hover {\n  transform: translateY(-4px);\n  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);\n  border-color: #E17B47;\n}\n\n.feature-icon {\n  width: 80px;\n  height: 80px;\n  border-radius: 50%;\n  background: #E17B47;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  margin: 0 auto 1.5rem auto;\n}\n\n\n.feature-title {\n  font-size: 1.25rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 0.75rem;\n}\n\n.feature-description {\n  color: #666666;\n  line-height: 1.6;\n  margin: 0;\n  font-size: 1rem;\n}\n\n/* Events Grid */\n.events-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));\n  gap: 2rem;\n}\n\n/* Events Upcoming - Blur Effect */\n.events-upcoming {\n  filter: blur(3px);\n  opacity: 0.6;\n  pointer-events: none;\n  position: relative;\n}\n\n.events-upcoming::after {\n  content: '準備中';\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  background: rgba(26, 26, 26, 0.9);\n  color: white;\n  padding: 1rem 2rem;\n  border-radius: 8px;\n  font-size: 1.5rem;\n  font-weight: 500;\n  pointer-events: none;\n  z-index: 10;\n  backdrop-filter: blur(10px);\n  border: 2px solid rgba(255, 255, 255, 0.1);\n}\n\n.event-card {\n  background: #FFFFFF;\n  border-radius: 16px;\n  display: flex;\n  overflow: hidden;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);\n  border: 1px solid #E5E5E5;\n  transition: all 0.3s ease;\n}\n\n.event-card:hover {\n  transform: translateY(-4px);\n  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);\n}\n\n.event-date {\n  background: #F0EDE8;\n  padding: 1.5rem;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  min-width: 100px;\n  text-align: center;\n}\n\n.event-month {\n  color: #E17B47;\n  font-size: 0.75rem;\n  font-weight: 600;\n  text-transform: uppercase;\n  margin-bottom: 0.25rem;\n}\n\n.event-day {\n  color: #1A1A1A;\n  font-size: 1.5rem;\n  font-weight: 600;\n}\n\n.event-content {\n  padding: 1.5rem;\n  flex: 1;\n}\n\n.event-title {\n  font-size: 1.125rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 0.75rem;\n}\n\n.event-meta {\n  margin-bottom: 0.75rem;\n}\n\n.event-location,\n.event-time {\n  color: #666666;\n  font-size: 0.875rem;\n  margin-bottom: 0.25rem;\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n}\n\n.event-club-tag {\n  background: #E17B47;\n  color: white;\n  padding: 0.25rem 0.75rem;\n  border-radius: 20px;\n  font-size: 0.75rem;\n  font-weight: 500;\n  display: inline-block;\n  margin-bottom: 0.75rem;\n}\n\n.event-description {\n  color: #666666;\n  line-height: 1.6;\n  margin: 0;\n  font-size: 0.875rem;\n}\n\n/* Join CTA Section */\n.cta-content {\n  text-align: center;\n  max-width: 600px;\n  margin: 0 auto;\n}\n\n.cta-title {\n  font-size: 2.5rem;\n  font-weight: 500;\n  color: #FFFFFF;\n  margin-bottom: 1rem;\n  line-height: 1.3;\n}\n\n.cta-description {\n  font-size: 1.125rem;\n  color: rgba(255, 255, 255, 0.9);\n  line-height: 1.6;\n  margin-bottom: 2rem;\n}\n\n.cta-buttons {\n  display: flex;\n  gap: 1rem;\n  justify-content: center;\n  flex-wrap: wrap;\n}\n\n.cta-button {\n  padding: 1rem 2rem;\n  border-radius: 8px;\n  font-weight: 500;\n  cursor: pointer;\n  transition: all 0.3s ease;\n  font-size: 1rem;\n  border: 2px solid transparent;\n}\n\n.cta-button.primary {\n  background: #E17B47;\n  color: white;\n  border-color: #E17B47;\n}\n\n.cta-button.primary:hover {\n  background: transparent;\n  color: #E17B47;\n  border-color: #E17B47;\n}\n\n.cta-button.secondary {\n  background: transparent;\n  color: white;\n  border-color: white;\n}\n\n.cta-button.secondary:hover {\n  background: white;\n  color: #1A1A1A;\n}\n\n/* Responsive Design */\n@media (max-width: 768px) {\n  .custom-container {\n    padding: 0 16px;\n  }\n  \n  .club-hero-section,\n  .clubs-section,\n  .membership-benefits-section,\n  .events-section,\n  .join-cta-section {\n    padding: 60px 0;\n  }\n  \n  .hero-title {\n    font-size: 2.5rem;\n  }\n  \n  .section-title,\n  .cta-title {\n    font-size: 2rem;\n  }\n  \n  .clubs-grid {\n    grid-template-columns: 1fr;\n  }\n  \n  .features-grid {\n    grid-template-columns: 1fr;\n  }\n  \n  .events-grid {\n    grid-template-columns: 1fr;\n  }\n  \n  .event-card {\n    flex-direction: column;\n  }\n  \n  .event-date {\n    flex-direction: row;\n    padding: 1rem;\n    min-width: auto;\n    justify-content: flex-start;\n    gap: 0.5rem;\n  }\n  \n  .cta-buttons {\n    flex-direction: column;\n    align-items: center;\n  }\n  \n  .cta-button {\n    width: 100%;\n    max-width: 300px;\n  }\n}\n\n@media (max-width: 480px) {\n  .hero-title {\n    font-size: 2rem;\n  }\n  \n  .section-title,\n  .cta-title {\n    font-size: 1.75rem;\n  }\n  \n  .club-content {\n    padding: 1.5rem;\n  }\n  \n  .feature-card {\n    padding: 1.5rem;\n  }\n  \n  .event-content {\n    padding: 1.25rem;\n  }\n}\n",
+      "start": 1762413662854,
+      "end": 1762413662854
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413662867,
+      "end": 1762413662867,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413662869,
+      "end": 1762413662870,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413662870,
+      "end": 1762413662870,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": ".anthropic-theme{background-color:#faf9f7;min-height:100vh}.custom-container{margin:0 auto;max-width:1200px;padding:0 24px}.club-hero-section{background-color:#faf9f7;border-bottom:1px solid #e5e5e5;padding:80px 0 60px}.hero-content{margin:0 auto;max-width:700px;text-align:center}.hero-title{color:#1a1a1a;font-size:3.5rem;line-height:1.2}.hero-subtitle,.hero-title{font-weight:500;margin-bottom:1rem}.hero-subtitle{color:#e17b47;font-size:1.25rem}.hero-description{color:#666;font-size:1.125rem;line-height:1.6;margin:0}.clubs-section,.events-section{background-color:#faf9f7;padding:80px 0}.membership-benefits-section{background-color:#f0ede8;padding:80px 0}.join-cta-section{background-color:#1a1a1a;padding:80px 0}.section-header{margin-bottom:4rem;margin-left:auto;margin-right:auto;max-width:600px;text-align:center}.section-title{color:#1a1a1a;font-size:2.5rem;font-weight:500;line-height:1.3;margin-bottom:1rem}.section-description{color:#666;font-size:1.125rem;line-height:1.6;margin:0}.clubs-grid{display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}.club-card{background:#fff;border:1px solid #e5e5e5;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,.04);overflow:hidden;transition:all .3s ease}.club-card:hover{border-color:#e17b47;box-shadow:0 8px 32px rgba(0,0,0,.12);transform:translateY(-4px)}.club-image{height:200px;overflow:hidden;width:100%}.club-image img{height:100%;-o-object-fit:cover;object-fit:cover;width:100%}.club-content{padding:2rem}.club-header{gap:1rem;margin-bottom:1rem}.club-header,.club-icon{align-items:center;display:flex}.club-icon{background:#f0ede8;border-radius:50%;flex-shrink:0;height:50px;justify-content:center;width:50px}.club-title{color:#1a1a1a;flex:1;font-size:1.25rem;font-weight:500;margin:0}.club-category{background:#e17b47;border-radius:20px;color:#fff;font-size:.75rem;font-weight:500;padding:.25rem .75rem}.club-description{color:#666;font-size:.95rem;line-height:1.6}.club-benefits,.club-description{margin-bottom:1.5rem}.benefits-title{color:#1a1a1a;display:block;font-size:.875rem;font-weight:600;margin-bottom:.75rem}.benefits-list{list-style:none;margin:0;padding:0}.benefits-list li{color:#333;font-size:.875rem;line-height:1.5;margin-bottom:.5rem;padding-left:1.5rem;position:relative}.benefits-list li:before{color:#e17b47;content:\"✓\";font-weight:600;left:0;position:absolute}.club-stats{margin-bottom:1.5rem}.member-count{align-items:center;color:#666;display:flex;font-size:.875rem;gap:.5rem}.club-button{background:#e17b47;border:none;border-radius:8px;color:#fff;cursor:pointer;font-size:.875rem;font-weight:500;padding:.875rem 1.5rem;transition:all .3s ease;width:100%}.club-button:hover{background:#1a1a1a;transform:translateY(-1px)}.features-grid{display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}.feature-card{background:#fff;border:1px solid #e5e5e5;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,.04);padding:2rem;text-align:center;transition:all .3s ease}.feature-card:hover{border-color:#e17b47;box-shadow:0 8px 32px rgba(0,0,0,.12);transform:translateY(-4px)}.feature-icon{align-items:center;background:#e17b47;border-radius:50%;display:flex;height:80px;justify-content:center;margin:0 auto 1.5rem;width:80px}.feature-title{color:#1a1a1a;font-size:1.25rem;font-weight:500;margin-bottom:.75rem}.feature-description{color:#666;font-size:1rem;line-height:1.6;margin:0}.events-grid{display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}.events-upcoming{filter:blur(3px);opacity:.6;pointer-events:none;position:relative}.events-upcoming:after{backdrop-filter:blur(10px);background:rgba(26,26,26,.9);border:2px solid hsla(0,0%,100%,.1);border-radius:8px;color:#fff;content:\"準備中\";font-size:1.5rem;font-weight:500;left:50%;padding:1rem 2rem;pointer-events:none;position:absolute;top:50%;transform:translate(-50%,-50%);z-index:10}.event-card{background:#fff;border:1px solid #e5e5e5;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,.04);display:flex;overflow:hidden;transition:all .3s ease}.event-card:hover{box-shadow:0 8px 32px rgba(0,0,0,.12);transform:translateY(-4px)}.event-date{align-items:center;background:#f0ede8;display:flex;flex-direction:column;justify-content:center;min-width:100px;padding:1.5rem;text-align:center}.event-month{color:#e17b47;font-size:.75rem;font-weight:600;margin-bottom:.25rem;text-transform:uppercase}.event-day{color:#1a1a1a;font-size:1.5rem;font-weight:600}.event-content{flex:1;padding:1.5rem}.event-title{color:#1a1a1a;font-size:1.125rem;font-weight:500}.event-meta,.event-title{margin-bottom:.75rem}.event-location,.event-time{align-items:center;color:#666;display:flex;font-size:.875rem;gap:.5rem;margin-bottom:.25rem}.event-club-tag{background:#e17b47;border-radius:20px;color:#fff;display:inline-block;font-size:.75rem;font-weight:500;margin-bottom:.75rem;padding:.25rem .75rem}.event-description{color:#666;font-size:.875rem;line-height:1.6;margin:0}.cta-content{margin:0 auto;max-width:600px;text-align:center}.cta-title{color:#fff;font-size:2.5rem;font-weight:500;line-height:1.3;margin-bottom:1rem}.cta-description{color:hsla(0,0%,100%,.9);font-size:1.125rem;line-height:1.6;margin-bottom:2rem}.cta-buttons{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center}.cta-button{border:2px solid transparent;border-radius:8px;cursor:pointer;font-size:1rem;font-weight:500;padding:1rem 2rem;transition:all .3s ease}.cta-button.primary{background:#e17b47;border-color:#e17b47;color:#fff}.cta-button.primary:hover{background:transparent;border-color:#e17b47;color:#e17b47}.cta-button.secondary{background:transparent;border-color:#fff;color:#fff}.cta-button.secondary:hover{background:#fff;color:#1a1a1a}@media (max-width:768px){.custom-container{padding:0 16px}.club-hero-section,.clubs-section,.events-section,.join-cta-section,.membership-benefits-section{padding:60px 0}.hero-title{font-size:2.5rem}.cta-title,.section-title{font-size:2rem}.clubs-grid,.events-grid,.features-grid{grid-template-columns:1fr}.event-card{flex-direction:column}.event-date{flex-direction:row;gap:.5rem;justify-content:flex-start;min-width:auto;padding:1rem}.cta-buttons{align-items:center;flex-direction:column}.cta-button{max-width:300px;width:100%}}@media (max-width:480px){.hero-title{font-size:2rem}.cta-title,.section-title{font-size:1.75rem}.club-content,.feature-card{padding:1.5rem}.event-content{padding:1.25rem}}",
+      "start": 1762413662870,
+      "end": 1762413662913,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1762413662913,
+      "end": 1762413662913,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413662915,
+      "end": 1762413662917,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413662918,
+      "end": 1762413662918,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": ".anthropic-theme[data-v-cab07f4a]{background-color:#faf9f7;min-height:100vh}.custom-container[data-v-cab07f4a]{margin:0 auto;max-width:1200px;padding:0 24px}.club-hero-section[data-v-cab07f4a]{background-color:#faf9f7;border-bottom:1px solid #e5e5e5;padding:80px 0 60px}.hero-content[data-v-cab07f4a]{margin:0 auto;max-width:700px;text-align:center}.hero-title[data-v-cab07f4a]{color:#1a1a1a;font-size:3.5rem;line-height:1.2}.hero-subtitle[data-v-cab07f4a],.hero-title[data-v-cab07f4a]{font-weight:500;margin-bottom:1rem}.hero-subtitle[data-v-cab07f4a]{color:#e17b47;font-size:1.25rem}.hero-description[data-v-cab07f4a]{color:#666;font-size:1.125rem;line-height:1.6;margin:0}.clubs-section[data-v-cab07f4a],.events-section[data-v-cab07f4a]{background-color:#faf9f7;padding:80px 0}.membership-benefits-section[data-v-cab07f4a]{background-color:#f0ede8;padding:80px 0}.join-cta-section[data-v-cab07f4a]{background-color:#1a1a1a;padding:80px 0}.section-header[data-v-cab07f4a]{margin-bottom:4rem;margin-left:auto;margin-right:auto;max-width:600px;text-align:center}.section-title[data-v-cab07f4a]{color:#1a1a1a;font-size:2.5rem;font-weight:500;line-height:1.3;margin-bottom:1rem}.section-description[data-v-cab07f4a]{color:#666;font-size:1.125rem;line-height:1.6;margin:0}.clubs-grid[data-v-cab07f4a]{display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}.club-card[data-v-cab07f4a]{background:#fff;border:1px solid #e5e5e5;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,.04);overflow:hidden;transition:all .3s ease}.club-card[data-v-cab07f4a]:hover{border-color:#e17b47;box-shadow:0 8px 32px rgba(0,0,0,.12);transform:translateY(-4px)}.club-image[data-v-cab07f4a]{height:200px;overflow:hidden;width:100%}.club-image img[data-v-cab07f4a]{height:100%;-o-object-fit:cover;object-fit:cover;width:100%}.club-content[data-v-cab07f4a]{padding:2rem}.club-header[data-v-cab07f4a]{gap:1rem;margin-bottom:1rem}.club-header[data-v-cab07f4a],.club-icon[data-v-cab07f4a]{align-items:center;display:flex}.club-icon[data-v-cab07f4a]{background:#f0ede8;border-radius:50%;flex-shrink:0;height:50px;justify-content:center;width:50px}.club-title[data-v-cab07f4a]{color:#1a1a1a;flex:1;font-size:1.25rem;font-weight:500;margin:0}.club-category[data-v-cab07f4a]{background:#e17b47;border-radius:20px;color:#fff;font-size:.75rem;font-weight:500;padding:.25rem .75rem}.club-description[data-v-cab07f4a]{color:#666;font-size:.95rem;line-height:1.6}.club-benefits[data-v-cab07f4a],.club-description[data-v-cab07f4a]{margin-bottom:1.5rem}.benefits-title[data-v-cab07f4a]{color:#1a1a1a;display:block;font-size:.875rem;font-weight:600;margin-bottom:.75rem}.benefits-list[data-v-cab07f4a]{list-style:none;margin:0;padding:0}.benefits-list li[data-v-cab07f4a]{color:#333;font-size:.875rem;line-height:1.5;margin-bottom:.5rem;padding-left:1.5rem;position:relative}.benefits-list li[data-v-cab07f4a]:before{color:#e17b47;content:\"✓\";font-weight:600;left:0;position:absolute}.club-stats[data-v-cab07f4a]{margin-bottom:1.5rem}.member-count[data-v-cab07f4a]{align-items:center;color:#666;display:flex;font-size:.875rem;gap:.5rem}.club-button[data-v-cab07f4a]{background:#e17b47;border:none;border-radius:8px;color:#fff;cursor:pointer;font-size:.875rem;font-weight:500;padding:.875rem 1.5rem;transition:all .3s ease;width:100%}.club-button[data-v-cab07f4a]:hover{background:#1a1a1a;transform:translateY(-1px)}.features-grid[data-v-cab07f4a]{display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}.feature-card[data-v-cab07f4a]{background:#fff;border:1px solid #e5e5e5;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,.04);padding:2rem;text-align:center;transition:all .3s ease}.feature-card[data-v-cab07f4a]:hover{border-color:#e17b47;box-shadow:0 8px 32px rgba(0,0,0,.12);transform:translateY(-4px)}.feature-icon[data-v-cab07f4a]{align-items:center;background:#e17b47;border-radius:50%;display:flex;height:80px;justify-content:center;margin:0 auto 1.5rem;width:80px}.feature-title[data-v-cab07f4a]{color:#1a1a1a;font-size:1.25rem;font-weight:500;margin-bottom:.75rem}.feature-description[data-v-cab07f4a]{color:#666;font-size:1rem;line-height:1.6;margin:0}.events-grid[data-v-cab07f4a]{display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}.events-upcoming[data-v-cab07f4a]{filter:blur(3px);opacity:.6;pointer-events:none;position:relative}.events-upcoming[data-v-cab07f4a]:after{backdrop-filter:blur(10px);background:rgba(26,26,26,.9);border:2px solid hsla(0,0%,100%,.1);border-radius:8px;color:#fff;content:\"準備中\";font-size:1.5rem;font-weight:500;left:50%;padding:1rem 2rem;pointer-events:none;position:absolute;top:50%;transform:translate(-50%,-50%);z-index:10}.event-card[data-v-cab07f4a]{background:#fff;border:1px solid #e5e5e5;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,.04);display:flex;overflow:hidden;transition:all .3s ease}.event-card[data-v-cab07f4a]:hover{box-shadow:0 8px 32px rgba(0,0,0,.12);transform:translateY(-4px)}.event-date[data-v-cab07f4a]{align-items:center;background:#f0ede8;display:flex;flex-direction:column;justify-content:center;min-width:100px;padding:1.5rem;text-align:center}.event-month[data-v-cab07f4a]{color:#e17b47;font-size:.75rem;font-weight:600;margin-bottom:.25rem;text-transform:uppercase}.event-day[data-v-cab07f4a]{color:#1a1a1a;font-size:1.5rem;font-weight:600}.event-content[data-v-cab07f4a]{flex:1;padding:1.5rem}.event-title[data-v-cab07f4a]{color:#1a1a1a;font-size:1.125rem;font-weight:500}.event-meta[data-v-cab07f4a],.event-title[data-v-cab07f4a]{margin-bottom:.75rem}.event-location[data-v-cab07f4a],.event-time[data-v-cab07f4a]{align-items:center;color:#666;display:flex;font-size:.875rem;gap:.5rem;margin-bottom:.25rem}.event-club-tag[data-v-cab07f4a]{background:#e17b47;border-radius:20px;color:#fff;display:inline-block;font-size:.75rem;font-weight:500;margin-bottom:.75rem;padding:.25rem .75rem}.event-description[data-v-cab07f4a]{color:#666;font-size:.875rem;line-height:1.6;margin:0}.cta-content[data-v-cab07f4a]{margin:0 auto;max-width:600px;text-align:center}.cta-title[data-v-cab07f4a]{color:#fff;font-size:2.5rem;font-weight:500;line-height:1.3;margin-bottom:1rem}.cta-description[data-v-cab07f4a]{color:hsla(0,0%,100%,.9);font-size:1.125rem;line-height:1.6;margin-bottom:2rem}.cta-buttons[data-v-cab07f4a]{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center}.cta-button[data-v-cab07f4a]{border:2px solid transparent;border-radius:8px;cursor:pointer;font-size:1rem;font-weight:500;padding:1rem 2rem;transition:all .3s ease}.cta-button.primary[data-v-cab07f4a]{background:#e17b47;border-color:#e17b47;color:#fff}.cta-button.primary[data-v-cab07f4a]:hover{background:transparent;border-color:#e17b47;color:#e17b47}.cta-button.secondary[data-v-cab07f4a]{background:transparent;border-color:#fff;color:#fff}.cta-button.secondary[data-v-cab07f4a]:hover{background:#fff;color:#1a1a1a}@media (max-width:768px){.custom-container[data-v-cab07f4a]{padding:0 16px}.club-hero-section[data-v-cab07f4a],.clubs-section[data-v-cab07f4a],.events-section[data-v-cab07f4a],.join-cta-section[data-v-cab07f4a],.membership-benefits-section[data-v-cab07f4a]{padding:60px 0}.hero-title[data-v-cab07f4a]{font-size:2.5rem}.cta-title[data-v-cab07f4a],.section-title[data-v-cab07f4a]{font-size:2rem}.clubs-grid[data-v-cab07f4a],.events-grid[data-v-cab07f4a],.features-grid[data-v-cab07f4a]{grid-template-columns:1fr}.event-card[data-v-cab07f4a]{flex-direction:column}.event-date[data-v-cab07f4a]{flex-direction:row;gap:.5rem;justify-content:flex-start;min-width:auto;padding:1rem}.cta-buttons[data-v-cab07f4a]{align-items:center;flex-direction:column}.cta-button[data-v-cab07f4a]{max-width:300px;width:100%}}@media (max-width:480px){.hero-title[data-v-cab07f4a]{font-size:2rem}.cta-title[data-v-cab07f4a],.section-title[data-v-cab07f4a]{font-size:1.75rem}.club-content[data-v-cab07f4a],.feature-card[data-v-cab07f4a]{padding:1.5rem}.event-content[data-v-cab07f4a]{padding:1.25rem}}",
+      "start": 1762413662920,
+      "end": 1762413662928,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413662938,
+      "end": 1762413662938,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413662939,
+      "end": 1762413662939,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413662940,
+      "end": 1762413662940,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1762413662943,
+      "end": 1762413662943,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413662944,
+      "end": 1762413662944,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413662948,
+      "end": 1762413662948,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413662949,
+      "end": 1762413662949,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413662949,
+      "end": 1762413662949,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "export default ''",
+      "start": 1762413662950,
+      "end": 1762413662950,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413662950,
+      "end": 1762413662950,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413663030,
+      "end": 1762413663036,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413663060,
+      "end": 1762413663071,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413663113,
+      "end": 1762413663114,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413663211,
+      "end": 1762413663225,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413663253,
+      "end": 1762413663253,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413663253,
+      "end": 1762413663253,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413663257,
+      "end": 1762413663257,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413663259,
+      "end": 1762413663259,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413663261,
+      "end": 1762413663261,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1762413663352,
+      "end": 1762413663352,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1762413663353,
+      "end": 1762413663353,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413663354,
+      "end": 1762413663354,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413663354,
+      "end": 1762413663354,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413663354,
+      "end": 1762413663354,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413663359,
+      "end": 1762413663359,
+      "order": "normal"
+    }
+  ]
+}

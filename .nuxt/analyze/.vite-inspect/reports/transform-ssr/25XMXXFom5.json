@@ -1,0 +1,17 @@
+{
+  "resolvedId": "virtual:nuxt:/home/user/NTE-company-website/.nuxt/css.mjs",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "",
+      "start": 1762413665865,
+      "end": 1762413665865
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413665865,
+      "end": 1762413665865,
+      "order": "normal"
+    }
+  ]
+}

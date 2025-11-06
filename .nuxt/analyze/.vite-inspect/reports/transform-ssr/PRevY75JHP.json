@@ -1,0 +1,256 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/components/HomepageManager.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<!-- 首页管理组件 -->\n<template>\n  <div class=\"homepage-manager\">\n    <!-- 标签导航 -->\n    <v-tabs v-model=\"activeTab\" color=\"primary\" class=\"mb-6\">\n      <v-tab value=\"background\">\n        <v-icon start>mdi-image</v-icon>\n        背景图片管理\n      </v-tab>\n      <v-tab value=\"partners\">\n        <v-icon start>mdi-handshake</v-icon>\n        合作伙伴管理\n      </v-tab>\n    </v-tabs>\n\n    <!-- 标签内容 -->\n    <v-window v-model=\"activeTab\">\n      <!-- 背景图片管理 -->\n      <v-window-item value=\"background\">\n        <div class=\"tab-content\">\n          <div class=\"content-header\">\n            <h2 class=\"section-title\">\n              <v-icon start>mdi-image</v-icon>\n              Hero背景图片管理\n            </h2>\n            <p class=\"section-description\">\n              管理首页Hero区域的背景图片和内容设置\n            </p>\n          </div>\n\n          <v-row>\n            <!-- 设置面板 -->\n            <v-col cols=\"12\" md=\"6\">\n              <v-card title=\"背景图片设置\">\n                <v-card-text>\n                  <div class=\"current-background\">\n                    <div class=\"background-preview\">\n                      <img \n                        :src=\"currentBackground\" \n                        alt=\"当前背景\" \n                        class=\"preview-image\"\n                      >\n                      <div class=\"preview-overlay\">\n                        <v-btn\n                          icon=\"mdi-eye\"\n                          color=\"white\"\n                          @click=\"previewBackground\"\n                        />\n                      </div>\n                    </div>\n                    <div class=\"background-info\">\n                      <h4>当前背景</h4>\n                      <p>点击预设图片或上传自定义图片来更换背景</p>\n                    </div>\n                  </div>\n\n                  <v-divider class=\"my-4\" />\n\n                  <div class=\"preset-images\">\n                    <h4 class=\"mb-3\">预设背景图片</h4>\n                    <div class=\"preset-grid\">\n                      <div\n                        v-for=\"(preset, index) in presetImages\"\n                        :key=\"index\"\n                        class=\"preset-item\"\n                        :class=\"{ active: currentBackground === preset.url }\"\n                        @click=\"selectPreset(preset)\"\n                      >\n                        <img :src=\"preset.url\" :alt=\"preset.name\">\n                        <div class=\"preset-overlay\">\n                          <v-icon color=\"white\">mdi-check</v-icon>\n                        </div>\n                      </div>\n                    </div>\n                  </div>\n\n                  <v-divider class=\"my-4\" />\n\n                  <div class=\"upload-section\">\n                    <h4 class=\"mb-3\">上传自定义背景</h4>\n                    <v-file-input\n                      v-model=\"uploadedFile\"\n                      label=\"选择图片文件\"\n                      accept=\"image/*\"\n                      prepend-icon=\"mdi-upload\"\n                      variant=\"outlined\"\n                      @update:model-value=\"handleFileUpload\"\n                    />\n                  </div>\n                </v-card-text>\n              </v-card>\n            </v-col>\n\n            <!-- 内容设置 -->\n            <v-col cols=\"12\" md=\"6\">\n              <v-card title=\"Hero内容设置\">\n                <v-card-text>\n                  <v-form>\n                    <v-textarea\n                      v-model=\"heroContent.title\"\n                      label=\"主标题\"\n                      variant=\"outlined\"\n                      rows=\"2\"\n                      class=\"mb-3\"\n                    />\n                    \n                    <v-textarea\n                      v-model=\"heroContent.description\"\n                      label=\"描述文字\"\n                      variant=\"outlined\"\n                      rows=\"3\"\n                      class=\"mb-3\"\n                    />\n                    \n                    <div class=\"button-settings\">\n                      <h4 class=\"mb-3\">按钮设置</h4>\n                      <v-row>\n                        <v-col cols=\"6\">\n                          <v-text-field\n                            v-model=\"heroContent.button1Text\"\n                            label=\"按钮1文字\"\n                            variant=\"outlined\"\n                            density=\"compact\"\n                          />\n                        </v-col>\n                        <v-col cols=\"6\">\n                          <v-text-field\n                            v-model=\"heroContent.button1Link\"\n                            label=\"按钮1链接\"\n                            variant=\"outlined\"\n                            density=\"compact\"\n                          />\n                        </v-col>\n                      </v-row>\n                      <v-row>\n                        <v-col cols=\"6\">\n                          <v-text-field\n                            v-model=\"heroContent.button2Text\"\n                            label=\"按钮2文字\"\n                            variant=\"outlined\"\n                            density=\"compact\"\n                          />\n                        </v-col>\n                        <v-col cols=\"6\">\n                          <v-text-field\n                            v-model=\"heroContent.button2Link\"\n                            label=\"按钮2链接\"\n                            variant=\"outlined\"\n                            density=\"compact\"\n                          />\n                        </v-col>\n                      </v-row>\n                    </div>\n                  </v-form>\n                </v-card-text>\n                \n                <v-card-actions>\n                  <v-spacer />\n                  <v-btn \n                    color=\"primary\" \n                    @click=\"saveHeroContent\"\n                    :loading=\"saving\"\n                  >\n                    保存设置\n                  </v-btn>\n                </v-card-actions>\n              </v-card>\n            </v-col>\n          </v-row>\n        </div>\n      </v-window-item>\n\n      <!-- 合作伙伴管理 -->\n      <v-window-item value=\"partners\">\n        <div class=\"tab-content\">\n          <div class=\"content-header\">\n            <h2 class=\"section-title\">\n              <v-icon start>mdi-handshake</v-icon>\n              合作伙伴管理\n            </h2>\n            <p class=\"section-description\">\n              管理首页合作伙伴Logo和链接\n            </p>\n          </div>\n\n          <v-card>\n            <v-card-title class=\"d-flex align-center\">\n              <span>合作伙伴列表</span>\n              <v-spacer />\n              <v-btn\n                color=\"primary\"\n                @click=\"showAddPartner = true\"\n                prepend-icon=\"mdi-plus\"\n              >\n                添加合作伙伴\n              </v-btn>\n            </v-card-title>\n\n            <v-card-text>\n              <div class=\"partners-grid\">\n                <div\n                  v-for=\"(partner, index) in partners\"\n                  :key=\"index\"\n                  class=\"partner-item\"\n                >\n                  <div class=\"partner-logo\">\n                    <img :src=\"partner.logo\" :alt=\"partner.name\">\n                  </div>\n                  <div class=\"partner-info\">\n                    <h4>{{ partner.name }}</h4>\n                    <p>{{ partner.description }}</p>\n                    <a :href=\"partner.link\" target=\"_blank\" class=\"partner-link\">\n                      {{ partner.link }}\n                    </a>\n                  </div>\n                  <div class=\"partner-actions\">\n                    <v-btn\n                      icon=\"mdi-pencil\"\n                      size=\"small\"\n                      variant=\"text\"\n                      @click=\"editPartner(partner, index)\"\n                    />\n                    <v-btn\n                      icon=\"mdi-delete\"\n                      size=\"small\"\n                      variant=\"text\"\n                      color=\"error\"\n                      @click=\"confirmDeletePartner(partner, index)\"\n                    />\n                  </div>\n                </div>\n              </div>\n\n              <div v-if=\"partners.length === 0\" class=\"empty-state\">\n                <v-icon size=\"64\" color=\"grey\">mdi-handshake-outline</v-icon>\n                <h3>还没有合作伙伴</h3>\n                <p>点击\"添加合作伙伴\"开始添加</p>\n              </div>\n            </v-card-text>\n          </v-card>\n        </div>\n      </v-window-item>\n    </v-window>\n\n    <!-- 添加/编辑合作伙伴对话框 -->\n    <v-dialog v-model=\"showAddPartner\" max-width=\"600\">\n      <v-card>\n        <v-card-title>\n          {{ editingPartnerIndex !== null ? '编辑合作伙伴' : '添加合作伙伴' }}\n        </v-card-title>\n        <v-card-text>\n          <v-form v-model=\"partnerFormValid\">\n            <v-text-field\n              v-model=\"partnerForm.name\"\n              label=\"合作伙伴名称\"\n              :rules=\"[v => !!v || '请输入名称']\"\n              variant=\"outlined\"\n              required\n            />\n            \n            <v-text-field\n              v-model=\"partnerForm.description\"\n              label=\"描述\"\n              variant=\"outlined\"\n            />\n            \n            <v-text-field\n              v-model=\"partnerForm.link\"\n              label=\"网站链接\"\n              :rules=\"[v => !!v || '请输入链接']\"\n              variant=\"outlined\"\n              required\n            />\n            \n            <v-file-input\n              v-model=\"partnerLogoFile\"\n              label=\"Logo图片\"\n              accept=\"image/*\"\n              prepend-icon=\"mdi-upload\"\n              variant=\"outlined\"\n              @update:model-value=\"handlePartnerLogoUpload\"\n            />\n            \n            <div v-if=\"partnerForm.logo\" class=\"logo-preview\">\n              <img :src=\"partnerForm.logo\" alt=\"Logo预览\" class=\"preview-logo\">\n            </div>\n          </v-form>\n        </v-card-text>\n        <v-card-actions>\n          <v-spacer />\n          <v-btn @click=\"cancelPartnerEdit\">取消</v-btn>\n          <v-btn\n            color=\"primary\"\n            :disabled=\"!partnerFormValid\"\n            @click=\"savePartner\"\n          >\n            保存\n          </v-btn>\n        </v-card-actions>\n      </v-card>\n    </v-dialog>\n\n    <!-- 删除确认对话框 -->\n    <v-dialog v-model=\"showDeleteConfirm\" max-width=\"400\">\n      <v-card>\n        <v-card-title>确认删除</v-card-title>\n        <v-card-text>\n          确定要删除合作伙伴\"{{ deleteTarget?.name }}\"吗？\n        </v-card-text>\n        <v-card-actions>\n          <v-spacer />\n          <v-btn @click=\"showDeleteConfirm = false\">取消</v-btn>\n          <v-btn color=\"error\" @click=\"deletePartner\">删除</v-btn>\n        </v-card-actions>\n      </v-card>\n    </v-dialog>\n\n    <!-- 消息提示 -->\n    <v-snackbar\n      v-model=\"showMessage\"\n      :color=\"messageType\"\n      :timeout=\"3000\"\n    >\n      {{ message }}\n      <template v-slot:actions>\n        <v-btn variant=\"text\" @click=\"showMessage = false\">关闭</v-btn>\n      </template>\n    </v-snackbar>\n  </div>\n</template>\n\n<script setup lang=\"ts\">\nimport { ref, onMounted } from 'vue'\n\n// 响应式状态\nconst activeTab = ref('background')\nconst saving = ref(false)\nconst showAddPartner = ref(false)\nconst showDeleteConfirm = ref(false)\nconst partnerFormValid = ref(false)\nconst showMessage = ref(false)\nconst message = ref('')\nconst messageType = ref<'success' | 'error' | 'warning'>('success')\n\n// 背景图片相关\nconst currentBackground = ref('/images/default-hero-bg.svg')\nconst uploadedFile = ref<File[]>([])\n\n// Hero内容\nconst heroContent = ref({\n  title: '夢の家探しを<br>お手伝いします。',\n  description: '商品の香りもとてもよく、お客様にも大変喜ばれております。ヴァルプデートツイス、<br>トチョコレートの利点もあります。悲しい湖の観えも、ウラムコーパー・ルトラム',\n  button1Text: '私たちについて',\n  button1Link: '/about',\n  button2Text: 'サービス詳細',\n  button2Link: '/services'\n})\n\n// 合作伙伴相关\nconst partners = ref<Array<{\n  name: string\n  description: string\n  link: string\n  logo: string\n}>>([])\n\nconst partnerForm = ref({\n  name: '',\n  description: '',\n  link: '',\n  logo: ''\n})\n\nconst partnerLogoFile = ref<File[]>([])\nconst editingPartnerIndex = ref<number | null>(null)\nconst deleteTarget = ref<any>(null)\nconst deleteTargetIndex = ref<number | null>(null)\n\n// 预设背景图片\nconst presetImages = [\n  {\n    name: '珈琲事業',\n    url: '/images/hero-bg-1.svg'\n  },\n  {\n    name: '展示・イベント',\n    url: '/images/hero-bg-2.svg'\n  },\n  {\n    name: '技術研究開発',\n    url: '/images/hero-bg-3.svg'\n  },\n  {\n    name: 'コミュニティ運営',\n    url: '/images/hero-bg-4.svg'\n  },\n  {\n    name: 'イノベーション',\n    url: '/images/hero-bg-5.svg'\n  },\n  {\n    name: '未来ビジョン',\n    url: '/images/hero-bg-6.svg'\n  }\n]\n\n// 方法\nconst loadSettings = () => {\n  try {\n    const savedSettings = localStorage.getItem('homepage_settings')\n    if (savedSettings) {\n      const settings = JSON.parse(savedSettings)\n      if (settings.backgroundImage) {\n        currentBackground.value = settings.backgroundImage\n      }\n      if (settings.heroContent) {\n        heroContent.value = { ...heroContent.value, ...settings.heroContent }\n      }\n      if (settings.partners) {\n        partners.value = settings.partners\n      }\n    }\n  } catch (error) {\n    console.error('Failed to load settings:', error)\n  }\n}\n\nconst saveSettings = () => {\n  try {\n    const settings = {\n      backgroundImage: currentBackground.value,\n      heroContent: heroContent.value,\n      partners: partners.value\n    }\n    localStorage.setItem('homepage_settings', JSON.stringify(settings))\n  } catch (error) {\n    console.error('Failed to save settings:', error)\n  }\n}\n\nconst selectPreset = (preset: any) => {\n  currentBackground.value = preset.url\n  saveSettings()\n  showMessage.value = true\n  message.value = `已设置为: ${preset.name}`\n  messageType.value = 'success'\n}\n\nconst handleFileUpload = (files: File | File[]) => {\n  const fileArray = Array.isArray(files) ? files : [files]\n  if (fileArray && fileArray.length > 0) {\n    const file = fileArray[0]\n    if (file.type.startsWith('image/')) {\n      const reader = new FileReader()\n      reader.onload = (e) => {\n        currentBackground.value = e.target?.result as string\n        saveSettings()\n        showMessage.value = true\n        message.value = '背景图片已上传'\n        messageType.value = 'success'\n      }\n      reader.readAsDataURL(file)\n    } else {\n      showMessage.value = true\n      message.value = '请选择图片文件'\n      messageType.value = 'error'\n    }\n  }\n}\n\nconst previewBackground = () => {\n  window.open(currentBackground.value, '_blank')\n}\n\nconst saveHeroContent = () => {\n  saving.value = true\n  \n  setTimeout(() => {\n    saveSettings()\n    saving.value = false\n    showMessage.value = true\n    message.value = 'Hero内容已保存'\n    messageType.value = 'success'\n  }, 500)\n}\n\nconst handlePartnerLogoUpload = (files: File | File[]) => {\n  const fileArray = Array.isArray(files) ? files : [files]\n  if (fileArray && fileArray.length > 0) {\n    const file = fileArray[0]\n    if (file.type.startsWith('image/')) {\n      const reader = new FileReader()\n      reader.onload = (e) => {\n        partnerForm.value.logo = e.target?.result as string\n      }\n      reader.readAsDataURL(file)\n    }\n  }\n}\n\nconst editPartner = (partner: any, index: number) => {\n  editingPartnerIndex.value = index\n  partnerForm.value = { ...partner }\n  showAddPartner.value = true\n}\n\nconst confirmDeletePartner = (partner: any, index: number) => {\n  deleteTarget.value = partner\n  deleteTargetIndex.value = index\n  showDeleteConfirm.value = true\n}\n\nconst deletePartner = () => {\n  if (deleteTargetIndex.value !== null) {\n    partners.value.splice(deleteTargetIndex.value, 1)\n    saveSettings()\n    showMessage.value = true\n    message.value = '合作伙伴已删除'\n    messageType.value = 'success'\n  }\n  showDeleteConfirm.value = false\n  deleteTarget.value = null\n  deleteTargetIndex.value = null\n}\n\nconst savePartner = () => {\n  if (editingPartnerIndex.value !== null) {\n    partners.value[editingPartnerIndex.value] = { ...partnerForm.value }\n    showMessage.value = true\n    message.value = '合作伙伴已更新'\n    messageType.value = 'success'\n  } else {\n    partners.value.push({ ...partnerForm.value })\n    showMessage.value = true\n    message.value = '合作伙伴已添加'\n    messageType.value = 'success'\n  }\n  \n  saveSettings()\n  cancelPartnerEdit()\n}\n\nconst cancelPartnerEdit = () => {\n  showAddPartner.value = false\n  editingPartnerIndex.value = null\n  partnerForm.value = {\n    name: '',\n    description: '',\n    link: '',\n    logo: ''\n  }\n  partnerLogoFile.value = []\n}\n\n// 生命周期\nonMounted(() => {\n  loadSettings()\n})\n</script>\n\n<style scoped>\n.homepage-manager {\n  width: 100%;\n}\n\n.tab-content {\n  padding: 0;\n}\n\n.content-header {\n  margin-bottom: 2rem;\n}\n\n.section-title {\n  font-size: 1.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 0.5rem;\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n}\n\n.section-description {\n  color: #666666;\n  margin: 0;\n}\n\n.current-background {\n  margin-bottom: 1.5rem;\n}\n\n.background-preview {\n  position: relative;\n  width: 100%;\n  height: 200px;\n  border-radius: 8px;\n  overflow: hidden;\n  margin-bottom: 1rem;\n}\n\n.preview-image {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n}\n\n.preview-overlay {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background: rgba(0, 0, 0, 0.3);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  opacity: 0;\n  transition: opacity 0.3s;\n}\n\n.background-preview:hover .preview-overlay {\n  opacity: 1;\n}\n\n.background-info h4 {\n  color: #1A1A1A;\n  margin-bottom: 0.5rem;\n}\n\n.background-info p {\n  color: #666666;\n  margin: 0;\n}\n\n.preset-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));\n  gap: 1rem;\n}\n\n.preset-item {\n  position: relative;\n  height: 80px;\n  border-radius: 8px;\n  overflow: hidden;\n  cursor: pointer;\n  border: 2px solid transparent;\n  transition: all 0.3s;\n}\n\n.preset-item:hover {\n  border-color: #667eea;\n}\n\n.preset-item.active {\n  border-color: #667eea;\n}\n\n.preset-item img {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n}\n\n.preset-overlay {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background: rgba(102, 126, 234, 0.8);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  opacity: 0;\n  transition: opacity 0.3s;\n}\n\n.preset-item.active .preset-overlay {\n  opacity: 1;\n}\n\n.button-settings h4 {\n  color: #1A1A1A;\n  font-weight: 500;\n}\n\n.partners-grid {\n  display: grid;\n  gap: 1rem;\n}\n\n.partner-item {\n  display: flex;\n  align-items: center;\n  gap: 1rem;\n  padding: 1rem;\n  border: 1px solid #E0E0E0;\n  border-radius: 8px;\n}\n\n.partner-logo {\n  width: 60px;\n  height: 60px;\n  border-radius: 8px;\n  overflow: hidden;\n  flex-shrink: 0;\n}\n\n.partner-logo img {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n}\n\n.partner-info {\n  flex: 1;\n}\n\n.partner-info h4 {\n  color: #1A1A1A;\n  margin-bottom: 0.25rem;\n}\n\n.partner-info p {\n  color: #666666;\n  margin-bottom: 0.25rem;\n}\n\n.partner-link {\n  color: #667eea;\n  text-decoration: none;\n  font-size: 0.875rem;\n}\n\n.partner-actions {\n  display: flex;\n  gap: 0.25rem;\n}\n\n.empty-state {\n  text-align: center;\n  padding: 3rem;\n  color: #666666;\n}\n\n.empty-state h3 {\n  margin: 1rem 0 0.5rem;\n}\n\n.logo-preview {\n  margin-top: 1rem;\n  text-align: center;\n}\n\n.preview-logo {\n  max-width: 150px;\n  max-height: 100px;\n  border-radius: 8px;\n  border: 1px solid #E0E0E0;\n}\n\n/* 响应式设计 */\n@media (max-width: 768px) {\n  .preset-grid {\n    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));\n  }\n  \n  .preset-item {\n    height: 60px;\n  }\n  \n  .partner-item {\n    flex-direction: column;\n    align-items: flex-start;\n  }\n  \n  .partner-logo {\n    width: 80px;\n    height: 80px;\n  }\n}\n</style>",
+      "start": 1762413667059,
+      "end": 1762413668126,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413668126,
+      "end": 1762413668126,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413668126,
+      "end": 1762413668126,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413668126,
+      "end": 1762413668126,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413668126,
+      "end": 1762413668126,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413668126,
+      "end": 1762413668126,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1762413668126,
+      "end": 1762413668126,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1762413668126,
+      "end": 1762413668126,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413668126,
+      "end": 1762413668126,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413668126,
+      "end": 1762413668126,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/home/user/NTE-company-website/components/HomepageManager.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/home/user/NTE-company-website/components/HomepageManager.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/home/user/NTE-company-website/components/HomepageManager.vue?vue&type=style&index=0&scoped=50847e32&lang.css\";\nimport { useSSRContext as __vite_useSSRContext } from \"vue\";\nconst _sfc_setup = _sfc_main.setup;\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext();\n  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add(\"components/HomepageManager.vue\");\n  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;\n};\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-50847e32\"]]);\n",
+      "start": 1762413668126,
+      "end": 1762413668260,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413668260,
+      "end": 1762413668260,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413668260,
+      "end": 1762413668260,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413668260,
+      "end": 1762413668260,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413668260,
+      "end": 1762413668260,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413668260,
+      "end": 1762413668260,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413668260,
+      "end": 1762413668260,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413668260,
+      "end": 1762413668260,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413668260,
+      "end": 1762413668261,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413668261,
+      "end": 1762413668261,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413668261,
+      "end": 1762413668261,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1762413668261,
+      "end": 1762413668261,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413668261,
+      "end": 1762413668261,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413668261,
+      "end": 1762413668261,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413668261,
+      "end": 1762413668261,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413668261,
+      "end": 1762413668261,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413668261,
+      "end": 1762413668261,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413668261,
+      "end": 1762413668261,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413668261,
+      "end": 1762413668261,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413668261,
+      "end": 1762413668261,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413668261,
+      "end": 1762413668262,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413668261,
+      "end": 1762413668262,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413668262,
+      "end": 1762413668262,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413668262,
+      "end": 1762413668262,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413668262,
+      "end": 1762413668262,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413668262,
+      "end": 1762413668262,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1762413668262,
+      "end": 1762413668262,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413668262,
+      "end": 1762413668262,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413668263,
+      "end": 1762413668263,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413668263,
+      "end": 1762413668263,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413668263,
+      "end": 1762413668263,
+      "order": "normal"
+    }
+  ]
+}

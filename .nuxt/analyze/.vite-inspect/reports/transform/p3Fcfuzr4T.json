@@ -1,0 +1,214 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/components/DeferredImage.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\n  <div ref=\"imageContainer\" class=\"lazy-image-container\">\n    <transition name=\"fade\" mode=\"out-in\">\n      <div v-if=\"!imageLoaded && !imageError\" class=\"image-placeholder\">\n        <v-skeleton-loader\n          type=\"image\"\n          :height=\"height\"\n          :width=\"width\"\n          class=\"mx-auto\"\n        />\n      </div>\n      <div v-else-if=\"imageError\" class=\"image-error\">\n        <v-icon icon=\"mdi-image-broken\" size=\"large\" color=\"grey\" />\n        <p class=\"text-caption mt-2\">画像を読み込めませんでした</p>\n      </div>\n      <img\n        v-else\n        :src=\"currentSrc\"\n        :alt=\"alt\"\n        :style=\"{ width: typeof width === 'string' ? width : `${width}px`, height: typeof height === 'string' ? height : `${height}px` }\"\n        class=\"lazy-image\"\n        @load=\"onImageLoad\"\n        @error=\"onImageError\"\n      />\n    </transition>\n  </div>\n</template>\n\n<script setup lang=\"ts\">\ninterface Props {\n  // 图片源地址\n  src: string\n  // 替代文本\n  alt: string\n  // 宽度\n  width?: string | number\n  // 高度  \n  height?: string | number\n  // 占位符图片\n  placeholder?: string\n  // 进入视窗的边距\n  rootMargin?: string\n  // 进入视窗的阈值\n  threshold?: number\n  // 图片加载失败时的回调\n  onError?: () => void\n  // 图片加载成功时的回调\n  onLoad?: () => void\n}\n\nconst props = withDefaults(defineProps<Props>(), {\n  alt: 'Image',\n  width: '100%',\n  height: 'auto',\n  placeholder: '',\n  rootMargin: '50px',\n  threshold: 0.1\n})\n\nconst emit = defineEmits<{\n  load: []\n  error: []\n}>()\n\n// 响应式状态\nconst imageContainer = ref<HTMLElement>()\nconst isInView = ref(false)\nconst imageLoaded = ref(false)\nconst imageError = ref(false)\nconst currentSrc = ref('')\n\n// 当图片进入视窗时开始加载\nwatch(isInView, (inView) => {\n  if (inView && !imageLoaded.value && !imageError.value) {\n    currentSrc.value = props.src\n  }\n})\n\n// 图片加载成功处理\nconst onImageLoad = () => {\n  imageLoaded.value = true\n  emit('load')\n  props.onLoad?.()\n}\n\n// 图片加载失败处理\nconst onImageError = () => {\n  imageError.value = true\n  emit('error')\n  props.onError?.()\n}\n\n// 初始化Intersection Observer\nonMounted(() => {\n  if (!imageContainer.value) return\n\n  // 如果有占位符，先显示占位符\n  if (props.placeholder) {\n    currentSrc.value = props.placeholder\n  }\n\n  const observer = new IntersectionObserver(\n    (entries) => {\n      entries.forEach((entry) => {\n        if (entry.isIntersecting) {\n          isInView.value = true\n          observer.disconnect() // 进入视窗后断开观察\n        }\n      })\n    },\n    {\n      rootMargin: props.rootMargin,\n      threshold: props.threshold\n    }\n  )\n\n  observer.observe(imageContainer.value)\n\n  onUnmounted(() => {\n    observer.disconnect()\n  })\n})\n\n// 服务端渲染支持\nif (process.server) {\n  isInView.value = true\n  currentSrc.value = props.src\n}\n</script>\n\n<style scoped>\n.lazy-image-container {\n  position: relative;\n  overflow: hidden;\n  display: inline-block;\n}\n\n.lazy-image {\n  display: block;\n  max-width: 100%;\n  height: auto;\n  transition: opacity 0.3s ease;\n}\n\n.image-placeholder,\n.image-error {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  background: #f5f5f5;\n  border-radius: 4px;\n}\n\n.image-error {\n  color: #999;\n}\n\n/* 淡入淡出过渡效果 */\n.fade-enter-active,\n.fade-leave-active {\n  transition: opacity 0.3s ease;\n}\n\n.fade-enter-from,\n.fade-leave-to {\n  opacity: 0;\n}\n\n/* 骨架屏动画 */\n.image-placeholder :deep(.v-skeleton-loader) {\n  border-radius: 4px;\n}\n</style>",
+      "start": 1762413662501,
+      "end": 1762413663411,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413663411,
+      "end": 1762413663411,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413663411,
+      "end": 1762413663411,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413663411,
+      "end": 1762413663411,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1762413663411,
+      "end": 1762413663411,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1762413663411,
+      "end": 1762413663411,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413663411,
+      "end": 1762413663411,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413663411,
+      "end": 1762413663411,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/home/user/NTE-company-website/components/DeferredImage.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/home/user/NTE-company-website/components/DeferredImage.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/home/user/NTE-company-website/components/DeferredImage.vue?vue&type=style&index=0&scoped=7b51b4be&lang.css\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-7b51b4be\"]]);\n",
+      "start": 1762413663411,
+      "end": 1762413663685,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413663685,
+      "end": 1762413663685,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413663685,
+      "end": 1762413663685,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413663685,
+      "end": 1762413663685,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1762413663685,
+      "end": 1762413663685,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413663686,
+      "end": 1762413663686,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413663686,
+      "end": 1762413663686,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413663686,
+      "end": 1762413663686,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413663687,
+      "end": 1762413663687,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1762413663687,
+      "end": 1762413663687,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413663687,
+      "end": 1762413663687,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413663688,
+      "end": 1762413663688,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413663688,
+      "end": 1762413663688,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413663688,
+      "end": 1762413663688,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413663688,
+      "end": 1762413663688,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413663688,
+      "end": 1762413663688,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413663689,
+      "end": 1762413663689,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413663689,
+      "end": 1762413663690,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413663691,
+      "end": 1762413663691,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413663698,
+      "end": 1762413663698,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1762413663702,
+      "end": 1762413663702,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1762413663715,
+      "end": 1762413663715,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413663719,
+      "end": 1762413663719,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413663720,
+      "end": 1762413663720,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413663720,
+      "end": 1762413663720,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413663720,
+      "end": 1762413663720,
+      "order": "normal"
+    }
+  ]
+}

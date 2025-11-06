@@ -1,0 +1,214 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/components/ArticleManager.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<!-- 文章管理组件 -->\n<template>\n  <div class=\"article-manager\">\n    <!-- 顶部操作栏 -->\n    <div class=\"toolbar\">\n      <div class=\"toolbar-left\">\n        <v-text-field\n          v-model=\"searchQuery\"\n          label=\"搜索文章\"\n          prepend-icon=\"mdi-magnify\"\n          variant=\"outlined\"\n          density=\"compact\"\n          class=\"search-field\"\n          clearable\n        />\n        \n        <v-select\n          v-model=\"selectedCategory\"\n          label=\"筛选分类\"\n          :items=\"categoryOptions\"\n          variant=\"outlined\"\n          density=\"compact\"\n          class=\"category-filter\"\n          clearable\n        />\n      </div>\n      \n      <div class=\"toolbar-right\">\n        <v-btn\n          color=\"primary\"\n          @click=\"showCreateDialog = true\"\n          prepend-icon=\"mdi-plus\"\n        >\n          新建文章\n        </v-btn>\n      </div>\n    </div>\n\n    <!-- 文章列表 -->\n    <v-card>\n      <v-card-title class=\"d-flex align-center\">\n        <v-icon start>mdi-newspaper</v-icon>\n        文章列表\n        <v-spacer />\n        <v-chip color=\"primary\" size=\"small\">\n          {{ filteredArticles.length }} 篇文章\n        </v-chip>\n      </v-card-title>\n\n      <v-data-table\n        :headers=\"headers\"\n        :items=\"filteredArticles\"\n        :loading=\"loading\"\n        item-key=\"id\"\n        class=\"article-table\"\n        no-data-text=\"暂无文章\"\n        loading-text=\"加载中...\"\n      >\n        <template v-slot:item.title=\"{ item }\">\n          <div class=\"article-title\">\n            <div class=\"title-text\">{{ item.title }}</div>\n            <div class=\"excerpt\">{{ item.excerpt }}</div>\n          </div>\n        </template>\n\n        <template v-slot:item.category=\"{ item }\">\n          <v-chip\n            :color=\"getCategoryColor(item.category)\"\n            size=\"small\"\n            variant=\"tonal\"\n          >\n            {{ item.category }}\n          </v-chip>\n        </template>\n\n        <template v-slot:item.date=\"{ item }\">\n          {{ formatDate(item.date) }}\n        </template>\n\n        <template v-slot:item.readTime=\"{ item }\">\n          <v-chip size=\"small\" variant=\"outlined\">\n            {{ item.readTime }}\n          </v-chip>\n        </template>\n\n        <template v-slot:item.actions=\"{ item }\">\n          <div class=\"action-buttons\">\n            <v-btn\n              icon=\"mdi-eye\"\n              size=\"small\"\n              variant=\"text\"\n              @click=\"viewArticle(item)\"\n              title=\"查看\"\n            />\n            <v-btn\n              icon=\"mdi-pencil\"\n              size=\"small\"\n              variant=\"text\"\n              @click=\"editArticle(item)\"\n              title=\"编辑\"\n            />\n            <v-btn\n              icon=\"mdi-delete\"\n              size=\"small\"\n              variant=\"text\"\n              color=\"error\"\n              @click=\"confirmDelete(item)\"\n              title=\"删除\"\n            />\n          </div>\n        </template>\n      </v-data-table>\n    </v-card>\n\n    <!-- 创建/编辑文章对话框 -->\n    <v-dialog v-model=\"showCreateDialog\" max-width=\"1000\" persistent>\n      <v-card>\n        <v-card-title class=\"d-flex align-center\">\n          <v-icon start>{{ editingArticle ? 'mdi-pencil' : 'mdi-plus' }}</v-icon>\n          {{ editingArticle ? '编辑文章' : '新建文章' }}\n        </v-card-title>\n\n        <v-card-text>\n          <v-form ref=\"articleForm\" v-model=\"formValid\">\n            <v-row>\n              <v-col cols=\"12\" md=\"8\">\n                <v-text-field\n                  v-model=\"articleForm.title\"\n                  label=\"文章标题\"\n                  :rules=\"[rules.required]\"\n                  variant=\"outlined\"\n                  required\n                />\n              </v-col>\n              <v-col cols=\"12\" md=\"4\">\n                <v-text-field\n                  v-model=\"articleForm.date\"\n                  label=\"发布日期\"\n                  type=\"date\"\n                  :rules=\"[rules.required]\"\n                  variant=\"outlined\"\n                  required\n                />\n              </v-col>\n            </v-row>\n\n            <v-row>\n              <v-col cols=\"12\" md=\"6\">\n                <v-select\n                  v-model=\"articleForm.category\"\n                  label=\"文章分类\"\n                  :items=\"categoryOptions\"\n                  :rules=\"[rules.required]\"\n                  variant=\"outlined\"\n                  required\n                />\n              </v-col>\n              <v-col cols=\"12\" md=\"6\">\n                <v-text-field\n                  v-model=\"articleForm.readTime\"\n                  label=\"阅读时间\"\n                  placeholder=\"例如: 3分钟\"\n                  variant=\"outlined\"\n                />\n              </v-col>\n            </v-row>\n\n            <v-row>\n              <v-col cols=\"12\">\n                <v-text-field\n                  v-model=\"articleForm.tags\"\n                  label=\"标签 (用逗号分隔)\"\n                  placeholder=\"例如: 企业新闻, 产品更新\"\n                  variant=\"outlined\"\n                />\n              </v-col>\n            </v-row>\n\n            <v-row>\n              <v-col cols=\"12\">\n                <v-textarea\n                  v-model=\"articleForm.excerpt\"\n                  label=\"文章摘要\"\n                  :rules=\"[rules.required]\"\n                  variant=\"outlined\"\n                  rows=\"3\"\n                  counter=\"200\"\n                  required\n                />\n              </v-col>\n            </v-row>\n\n            <v-row>\n              <v-col cols=\"12\">\n                <v-textarea\n                  v-model=\"articleForm.content\"\n                  label=\"文章内容 (支持HTML)\"\n                  :rules=\"[rules.required]\"\n                  variant=\"outlined\"\n                  rows=\"10\"\n                  required\n                />\n              </v-col>\n            </v-row>\n          </v-form>\n        </v-card-text>\n\n        <v-card-actions>\n          <v-spacer />\n          <v-btn @click=\"cancelEdit\">取消</v-btn>\n          <v-btn\n            color=\"primary\"\n            :disabled=\"!formValid\"\n            @click=\"saveArticle\"\n          >\n            {{ editingArticle ? '保存' : '创建' }}\n          </v-btn>\n        </v-card-actions>\n      </v-card>\n    </v-dialog>\n\n    <!-- 文章预览对话框 -->\n    <v-dialog v-model=\"showPreviewDialog\" max-width=\"800\">\n      <v-card v-if=\"previewArticle\">\n        <v-card-title>{{ previewArticle.title }}</v-card-title>\n        <v-card-text>\n          <div class=\"article-meta\">\n            <v-chip color=\"primary\" size=\"small\">{{ previewArticle.category }}</v-chip>\n            <span class=\"mx-2\">{{ formatDate(previewArticle.date) }}</span>\n            <span>{{ previewArticle.readTime }}</span>\n          </div>\n          <p class=\"article-excerpt\">{{ previewArticle.excerpt }}</p>\n          <div class=\"article-content\" v-html=\"previewArticle.content\"></div>\n        </v-card-text>\n        <v-card-actions>\n          <v-spacer />\n          <v-btn @click=\"showPreviewDialog = false\">关闭</v-btn>\n        </v-card-actions>\n      </v-card>\n    </v-dialog>\n\n    <!-- 删除确认对话框 -->\n    <v-dialog v-model=\"showDeleteDialog\" max-width=\"400\">\n      <v-card>\n        <v-card-title>确认删除</v-card-title>\n        <v-card-text>\n          确定要删除文章\"{{ deleteTarget?.title }}\"吗？此操作不可撤销。\n        </v-card-text>\n        <v-card-actions>\n          <v-spacer />\n          <v-btn @click=\"showDeleteDialog = false\">取消</v-btn>\n          <v-btn color=\"error\" @click=\"deleteArticle\">删除</v-btn>\n        </v-card-actions>\n      </v-card>\n    </v-dialog>\n\n    <!-- 消息提示 -->\n    <v-snackbar\n      v-model=\"showMessage\"\n      :color=\"messageType\"\n      :timeout=\"3000\"\n    >\n      {{ message }}\n      <template v-slot:actions>\n        <v-btn variant=\"text\" @click=\"showMessage = false\">关闭</v-btn>\n      </template>\n    </v-snackbar>\n  </div>\n</template>\n\n<script setup lang=\"ts\">\nimport { ref, computed, onMounted } from 'vue'\nimport type { Article } from '~/types'\nimport { articlesData } from '~/data/articles'\n\n// 响应式状态\nconst loading = ref(false)\nconst searchQuery = ref('')\nconst selectedCategory = ref('')\nconst showCreateDialog = ref(false)\nconst showPreviewDialog = ref(false)\nconst showDeleteDialog = ref(false)\nconst formValid = ref(false)\nconst showMessage = ref(false)\nconst message = ref('')\nconst messageType = ref<'success' | 'error' | 'warning'>('success')\n\n// 文章数据\nconst articles = ref<Article[]>([])\nconst editingArticle = ref<Article | null>(null)\nconst previewArticle = ref<Article | null>(null)\nconst deleteTarget = ref<Article | null>(null)\n\n// 表单数据\nconst articleForm = ref({\n  title: '',\n  date: '',\n  category: '',\n  excerpt: '',\n  content: '',\n  readTime: '',\n  tags: ''\n})\n\n// 表格列定义\nconst headers = [\n  { title: '标题', key: 'title', sortable: true },\n  { title: '分类', key: 'category', sortable: true },\n  { title: '发布日期', key: 'date', sortable: true },\n  { title: '阅读时间', key: 'readTime', sortable: false },\n  { title: '操作', key: 'actions', sortable: false, width: '120' }\n]\n\n// 分类选项\nconst categoryOptions = [\n  '企業ニュース',\n  'サービス',\n  'コーヒー事業',\n  '展示・イベント',\n  '釣具・器具',\n  'LAB・研究開発',\n  'クラブ活動'\n]\n\n// 表单验证规则\nconst rules = {\n  required: (value: string) => !!value || '此字段为必填项'\n}\n\n// 计算属性\nconst filteredArticles = computed(() => {\n  let filtered = articles.value\n\n  if (searchQuery.value) {\n    const query = searchQuery.value.toLowerCase()\n    filtered = filtered.filter(article =>\n      article.title.toLowerCase().includes(query) ||\n      article.excerpt.toLowerCase().includes(query) ||\n      article.category.toLowerCase().includes(query)\n    )\n  }\n\n  if (selectedCategory.value) {\n    filtered = filtered.filter(article => \n      article.category === selectedCategory.value\n    )\n  }\n\n  return filtered.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())\n})\n\n// 方法\nconst loadArticles = () => {\n  try {\n    const stored = localStorage.getItem('notrace_articles')\n    if (stored) {\n      articles.value = JSON.parse(stored)\n    } else {\n      articles.value = [...articlesData]\n      saveArticles()\n    }\n  } catch (error) {\n    console.error('Failed to load articles:', error)\n    articles.value = [...articlesData]\n  }\n}\n\nconst saveArticles = () => {\n  try {\n    localStorage.setItem('notrace_articles', JSON.stringify(articles.value))\n  } catch (error) {\n    console.error('Failed to save articles:', error)\n    showMessage.value = true\n    message.value = '保存失败'\n    messageType.value = 'error'\n  }\n}\n\nconst formatDate = (dateString: string) => {\n  const date = new Date(dateString.replace(/\\./g, '-'))\n  return date.toLocaleDateString('zh-CN')\n}\n\nconst getCategoryColor = (category: string) => {\n  const colors: Record<string, string> = {\n    '企業ニュース': 'blue',\n    'サービス': 'green',\n    'コーヒー事業': 'brown',\n    '展示・イベント': 'purple',\n    '釣具・器具': 'orange',\n    'LAB・研究開発': 'red',\n    'クラブ活動': 'pink'\n  }\n  return colors[category] || 'grey'\n}\n\nconst viewArticle = (article: Article) => {\n  previewArticle.value = article\n  showPreviewDialog.value = true\n}\n\nconst editArticle = (article: Article) => {\n  editingArticle.value = article\n  articleForm.value = {\n    title: article.title,\n    date: article.date.replace(/\\./g, '-'),\n    category: article.category,\n    excerpt: article.excerpt,\n    content: article.content,\n    readTime: article.readTime,\n    tags: article.tags.join(', ')\n  }\n  showCreateDialog.value = true\n}\n\nconst confirmDelete = (article: Article) => {\n  deleteTarget.value = article\n  showDeleteDialog.value = true\n}\n\nconst deleteArticle = () => {\n  if (deleteTarget.value) {\n    const index = articles.value.findIndex(a => a.id === deleteTarget.value!.id)\n    if (index !== -1) {\n      articles.value.splice(index, 1)\n      saveArticles()\n      showMessage.value = true\n      message.value = '文章已删除'\n      messageType.value = 'success'\n    }\n  }\n  showDeleteDialog.value = false\n  deleteTarget.value = null\n}\n\nconst saveArticle = () => {\n  if (!formValid.value) return\n\n  const articleData = {\n    id: editingArticle.value?.id || Date.now(),\n    title: articleForm.value.title,\n    date: articleForm.value.date.replace(/-/g, '.'),\n    category: articleForm.value.category,\n    excerpt: articleForm.value.excerpt,\n    content: articleForm.value.content,\n    readTime: articleForm.value.readTime || '阅读时间未设置',\n    tags: articleForm.value.tags.split(',').map(tag => tag.trim()).filter(Boolean)\n  }\n\n  if (editingArticle.value) {\n    // 更新文章\n    const index = articles.value.findIndex(a => a.id === editingArticle.value!.id)\n    if (index !== -1) {\n      articles.value[index] = articleData\n      showMessage.value = true\n      message.value = '文章已更新'\n      messageType.value = 'success'\n    }\n  } else {\n    // 新建文章\n    articles.value.unshift(articleData)\n    showMessage.value = true\n    message.value = '文章已创建'\n    messageType.value = 'success'\n  }\n\n  saveArticles()\n  cancelEdit()\n}\n\nconst cancelEdit = () => {\n  showCreateDialog.value = false\n  editingArticle.value = null\n  articleForm.value = {\n    title: '',\n    date: '',\n    category: '',\n    excerpt: '',\n    content: '',\n    readTime: '',\n    tags: ''\n  }\n}\n\n// 生命周期\nonMounted(() => {\n  loadArticles()\n})\n</script>\n\n<style scoped>\n.article-manager {\n  width: 100%;\n}\n\n.toolbar {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 1.5rem;\n  gap: 1rem;\n}\n\n.toolbar-left {\n  display: flex;\n  gap: 1rem;\n  flex: 1;\n}\n\n.search-field {\n  max-width: 300px;\n}\n\n.category-filter {\n  max-width: 200px;\n}\n\n.article-table {\n  background: white;\n}\n\n.article-title {\n  max-width: 400px;\n}\n\n.title-text {\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 0.25rem;\n}\n\n.excerpt {\n  font-size: 0.875rem;\n  color: #666666;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n.action-buttons {\n  display: flex;\n  gap: 0.25rem;\n}\n\n.article-meta {\n  display: flex;\n  align-items: center;\n  gap: 1rem;\n  margin-bottom: 1rem;\n  padding-bottom: 1rem;\n  border-bottom: 1px solid #E0E0E0;\n}\n\n.article-excerpt {\n  font-size: 1.1rem;\n  color: #666666;\n  line-height: 1.6;\n  margin-bottom: 1.5rem;\n}\n\n.article-content {\n  line-height: 1.8;\n}\n\n.article-content h3 {\n  color: #1A1A1A;\n  margin: 1.5rem 0 1rem;\n}\n\n.article-content p {\n  margin-bottom: 1rem;\n}\n\n.article-content ul, .article-content ol {\n  margin-bottom: 1rem;\n  padding-left: 1.5rem;\n}\n\n.article-content li {\n  margin-bottom: 0.5rem;\n}\n\n/* 响应式设计 */\n@media (max-width: 768px) {\n  .toolbar {\n    flex-direction: column;\n    align-items: stretch;\n  }\n  \n  .toolbar-left {\n    flex-direction: column;\n  }\n  \n  .search-field,\n  .category-filter {\n    max-width: none;\n  }\n  \n  .article-title {\n    max-width: 250px;\n  }\n}\n</style>",
+      "start": 1762413663678,
+      "end": 1762413663948,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413663948,
+      "end": 1762413663948,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413663948,
+      "end": 1762413663948,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413663948,
+      "end": 1762413663948,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1762413663948,
+      "end": 1762413663948,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1762413663948,
+      "end": 1762413663948,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413663948,
+      "end": 1762413663948,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413663948,
+      "end": 1762413663948,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/home/user/NTE-company-website/components/ArticleManager.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/home/user/NTE-company-website/components/ArticleManager.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/home/user/NTE-company-website/components/ArticleManager.vue?vue&type=style&index=0&scoped=c31da707&lang.css\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-c31da707\"]]);\n",
+      "start": 1762413663948,
+      "end": 1762413664030,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413664030,
+      "end": 1762413664030,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413664030,
+      "end": 1762413664030,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413664030,
+      "end": 1762413664030,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1762413664030,
+      "end": 1762413664030,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413664030,
+      "end": 1762413664030,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413664031,
+      "end": 1762413664031,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413664031,
+      "end": 1762413664031,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413664031,
+      "end": 1762413664031,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1762413664031,
+      "end": 1762413664031,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413664031,
+      "end": 1762413664031,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413664031,
+      "end": 1762413664031,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413664031,
+      "end": 1762413664031,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413664031,
+      "end": 1762413664031,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413664031,
+      "end": 1762413664031,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413664031,
+      "end": 1762413664031,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413664032,
+      "end": 1762413664032,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413664032,
+      "end": 1762413664032,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413664032,
+      "end": 1762413664032,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413664034,
+      "end": 1762413664034,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1762413664036,
+      "end": 1762413664036,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1762413664036,
+      "end": 1762413664036,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413664037,
+      "end": 1762413664037,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413664037,
+      "end": 1762413664037,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413664037,
+      "end": 1762413664037,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413664037,
+      "end": 1762413664037,
+      "order": "normal"
+    }
+  ]
+}

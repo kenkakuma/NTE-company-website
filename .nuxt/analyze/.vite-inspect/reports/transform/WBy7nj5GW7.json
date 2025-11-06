@@ -1,0 +1,214 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/components/DefaultCounterCard.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\n  <div class=\"counter-card h-100\">\n    <div class=\"counter-content text-center py-3\">\n      <!-- 数字显示区域 -->\n      <div class=\"counter-number-display mb-3\">\n        <h2 \n          class=\"counter-number font-weight-bolder mb-0\" \n          :class=\"`text-${color}`\"\n        >\n          <span ref=\"numberElement\">{{ displayNumber }}</span>{{ suffix }}\n        </h2>\n      </div>\n\n      <!-- 标题 -->\n      <h5 class=\"counter-title font-weight-bolder mb-2\">\n        {{ title }}\n      </h5>\n\n      <!-- 描述 -->\n      <p class=\"counter-description text-sm opacity-8 mb-0\">\n        {{ description }}\n      </p>\n    </div>\n\n    <!-- 分割线 -->\n    <div \n      v-if=\"divider === 'vertical'\" \n      class=\"divider-vertical\"\n    ></div>\n  </div>\n</template>\n\n<script setup lang=\"ts\">\ninterface Props {\n  color?: string\n  title: string\n  description: string\n  count: number\n  suffix?: string\n  duration?: number\n  divider?: string\n}\n\nconst props = withDefaults(defineProps<Props>(), {\n  color: 'dark',\n  suffix: '',\n  duration: 2000,\n  divider: ''\n})\n\n// 响应式数据\nconst numberElement = ref<HTMLElement>()\nconst displayNumber = ref(0)\nconst isAnimated = ref(false)\n\n// 数字动画函数\nconst animateNumber = () => {\n  if (isAnimated.value) return\n  \n  isAnimated.value = true\n  const start = 0\n  const end = props.count\n  const duration = props.duration\n  const increment = end / (duration / 16)\n  let current = start\n\n  const timer = setInterval(() => {\n    current += increment\n    if (current >= end) {\n      current = end\n      clearInterval(timer)\n    }\n    displayNumber.value = Math.floor(current)\n  }, 16)\n}\n\n// 观察器设置\nconst setupIntersectionObserver = () => {\n  if (!numberElement.value) return\n\n  const observer = new IntersectionObserver(\n    (entries) => {\n      entries.forEach((entry) => {\n        if (entry.isIntersecting && !isAnimated.value) {\n          animateNumber()\n        }\n      })\n    },\n    { threshold: 0.5 }\n  )\n\n  observer.observe(numberElement.value)\n}\n\n// 生命周期\nonMounted(() => {\n  nextTick(() => {\n    setupIntersectionObserver()\n  })\n})\n</script>\n\n<style scoped>\n.counter-card {\n  position: relative;\n  background: transparent;\n  border: none;\n  padding: 1rem 1.5rem;\n}\n\n.counter-content {\n  position: relative;\n  z-index: 2;\n}\n\n.counter-number {\n  font-size: 3rem;\n  line-height: 1.2;\n  font-weight: 700;\n  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n}\n\n.counter-title {\n  font-size: 1.1rem;\n  color: #344767;\n  font-weight: 600;\n  line-height: 1.4;\n}\n\n.counter-description {\n  font-size: 0.875rem;\n  color: #67748e;\n  line-height: 1.6;\n  max-width: 280px;\n  margin: 0 auto;\n}\n\n/* 分割线样式 */\n.divider-vertical {\n  position: absolute;\n  right: 0;\n  top: 50%;\n  transform: translateY(-50%);\n  width: 1px;\n  height: 60%;\n  background: linear-gradient(\n    to bottom,\n    transparent 0%,\n    #e9ecef 20%,\n    #dee2e6 50%,\n    #e9ecef 80%,\n    transparent 100%\n  );\n}\n\n/* Color classes matching Material Kit */\n.text-info {\n  color: #17a2b8 !important;\n}\n\n.text-primary {\n  color: #e91e63 !important;\n}\n\n.text-dark {\n  color: #344767 !important;\n}\n\n.text-success {\n  color: #4caf50 !important;\n}\n\n.text-warning {\n  color: #fb8c00 !important;\n}\n\n/* 工具类 */\n.font-weight-bolder {\n  font-weight: 700 !important;\n}\n\n.font-weight-bold {\n  font-weight: 600 !important;\n}\n\n.text-center {\n  text-align: center;\n}\n\n.text-sm {\n  font-size: 0.875rem;\n}\n\n.opacity-8 {\n  opacity: 0.8;\n}\n\n.mb-0 {\n  margin-bottom: 0;\n}\n\n.mb-2 {\n  margin-bottom: 0.5rem;\n}\n\n.mb-3 {\n  margin-bottom: 1rem;\n}\n\n.py-3 {\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n}\n\n.h-100 {\n  height: 100%;\n}\n\n/* 响应式设计 */\n@media (max-width: 767px) {\n  .counter-number {\n    font-size: 2.5rem;\n  }\n  \n  .counter-title {\n    font-size: 1rem;\n  }\n  \n  .counter-description {\n    font-size: 0.8rem;\n  }\n  \n  .divider-vertical {\n    display: none;\n  }\n}\n\n/* 动画效果 */\n.counter-number-display {\n  transition: all 0.3s ease;\n}\n\n.counter-card:hover .counter-number-display {\n  transform: scale(1.05);\n}\n\n/* 深色模式适配 */\n@media (prefers-color-scheme: dark) {\n  .counter-title {\n    color: #ffffff;\n  }\n  \n  .counter-description {\n    color: rgba(255, 255, 255, 0.7);\n  }\n}\n</style>",
+      "start": 1762413664009,
+      "end": 1762413664255,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413664255,
+      "end": 1762413664255,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413664255,
+      "end": 1762413664255,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413664255,
+      "end": 1762413664255,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1762413664255,
+      "end": 1762413664255,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1762413664255,
+      "end": 1762413664255,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413664255,
+      "end": 1762413664255,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413664255,
+      "end": 1762413664255,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/home/user/NTE-company-website/components/DefaultCounterCard.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/home/user/NTE-company-website/components/DefaultCounterCard.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/home/user/NTE-company-website/components/DefaultCounterCard.vue?vue&type=style&index=0&scoped=e6b0019f&lang.css\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-e6b0019f\"]]);\n",
+      "start": 1762413664255,
+      "end": 1762413664270,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413664271,
+      "end": 1762413664271,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413664271,
+      "end": 1762413664271,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413664271,
+      "end": 1762413664271,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1762413664271,
+      "end": 1762413664271,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413664271,
+      "end": 1762413664271,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413664271,
+      "end": 1762413664271,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413664271,
+      "end": 1762413664271,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413664271,
+      "end": 1762413664271,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1762413664271,
+      "end": 1762413664271,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413664271,
+      "end": 1762413664271,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413664271,
+      "end": 1762413664271,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413664271,
+      "end": 1762413664271,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413664271,
+      "end": 1762413664271,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413664272,
+      "end": 1762413664272,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413664272,
+      "end": 1762413664272,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413664272,
+      "end": 1762413664272,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413664272,
+      "end": 1762413664272,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413664272,
+      "end": 1762413664272,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413664274,
+      "end": 1762413664274,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1762413664277,
+      "end": 1762413664279,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1762413664283,
+      "end": 1762413664283,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413664283,
+      "end": 1762413664283,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413664283,
+      "end": 1762413664283,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413664283,
+      "end": 1762413664283,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413664283,
+      "end": 1762413664283,
+      "order": "normal"
+    }
+  ]
+}

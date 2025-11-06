@@ -1,0 +1,210 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/node_modules/vuetify/lib/composables/mask/mask.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "// Utilities\nimport { computed } from 'vue';\nimport { isObject, propsFactory } from \"../../util/index.js\"; // Types\nexport const makeMaskProps = propsFactory({\n  mask: [String, Object]\n}, 'mask');\nexport const defaultDelimiters = /[-!$%^&*()_+|~=`{}[\\]:\";'<>?,./\\\\ ]/;\nconst presets = {\n  'credit-card': '#### - #### - #### - ####',\n  date: '##/##/####',\n  'date-time': '##/##/#### ##:##',\n  'iso-date': '####-##-##',\n  'iso-date-time': '####-##-## ##:##',\n  phone: '(###) ### - ####',\n  social: '###-##-####',\n  time: '##:##',\n  'time-with-seconds': '##:##:##'\n};\nexport function isMaskDelimiter(char) {\n  return char ? defaultDelimiters.test(char) : false;\n}\nconst defaultTokens = {\n  '#': {\n    pattern: /[0-9]/\n  },\n  A: {\n    pattern: /[A-Z]/i,\n    convert: v => v.toUpperCase()\n  },\n  a: {\n    pattern: /[a-z]/i,\n    convert: v => v.toLowerCase()\n  },\n  N: {\n    pattern: /[0-9A-Z]/i,\n    convert: v => v.toUpperCase()\n  },\n  n: {\n    pattern: /[0-9a-z]/i,\n    convert: v => v.toLowerCase()\n  },\n  X: {\n    pattern: defaultDelimiters\n  }\n};\nexport function useMask(props) {\n  const mask = computed(() => {\n    if (typeof props.mask === 'string') {\n      if (props.mask in presets) return presets[props.mask];\n      return props.mask;\n    }\n    return props.mask?.mask ?? '';\n  });\n  const tokens = computed(() => {\n    return {\n      ...defaultTokens,\n      ...(isObject(props.mask) ? props.mask.tokens : null)\n    };\n  });\n  function isMask(char) {\n    return char in tokens.value;\n  }\n  function maskValidates(mask, char) {\n    if (char == null || !isMask(mask)) return false;\n    const item = tokens.value[mask];\n    if (item.pattern) return item.pattern.test(char);\n    return item.test(char);\n  }\n  function convert(mask, char) {\n    const item = tokens.value[mask];\n    return item.convert ? item.convert(char) : char;\n  }\n  function maskText(text) {\n    const trimmedText = text?.trim().replace(/\\s+/g, ' ');\n    if (trimmedText == null) return '';\n    if (!mask.value.length || !trimmedText.length) return trimmedText;\n    let textIndex = 0;\n    let maskIndex = 0;\n    let newText = '';\n    while (maskIndex < mask.value.length) {\n      const mchar = mask.value[maskIndex];\n      const tchar = trimmedText[textIndex];\n\n      // Escaped character in mask, the next mask character is inserted\n      if (mchar === '\\\\') {\n        newText += mask.value[maskIndex + 1];\n        maskIndex += 2;\n        continue;\n      }\n      if (!isMask(mchar)) {\n        newText += mchar;\n        if (tchar === mchar) {\n          textIndex++;\n        }\n      } else if (maskValidates(mchar, tchar)) {\n        newText += convert(mchar, tchar);\n        textIndex++;\n      } else {\n        break;\n      }\n      maskIndex++;\n    }\n    return newText;\n  }\n  function unmaskText(text) {\n    if (text == null) return null;\n    if (!mask.value.length || !text.length) return text;\n    let textIndex = 0;\n    let maskIndex = 0;\n    let newText = '';\n    while (true) {\n      const mchar = mask.value[maskIndex];\n      const tchar = text[textIndex];\n      if (tchar == null) break;\n      if (mchar == null) {\n        newText += tchar;\n        textIndex++;\n        continue;\n      }\n\n      // Escaped character in mask, skip the next input character\n      if (mchar === '\\\\') {\n        if (tchar === mask.value[maskIndex + 1]) {\n          textIndex++;\n        }\n        maskIndex += 2;\n        continue;\n      }\n      if (maskValidates(mchar, tchar)) {\n        // masked char\n        newText += tchar;\n        textIndex++;\n        maskIndex++;\n        continue;\n      } else if (mchar !== tchar) {\n        // input doesn't match mask, skip forward until it does\n        while (true) {\n          const mchar = mask.value[maskIndex++];\n          if (mchar == null || maskValidates(mchar, tchar)) break;\n        }\n        continue;\n      }\n      textIndex++;\n      maskIndex++;\n    }\n    return newText;\n  }\n  function isValid(text) {\n    if (!text) return false;\n    return unmaskText(text) === unmaskText(maskText(text));\n  }\n  function isComplete(text) {\n    if (!text) return false;\n    const maskedText = maskText(text);\n    return maskedText.length === mask.value.length && isValid(text);\n  }\n  return {\n    isValid,\n    isComplete,\n    mask: maskText,\n    unmask: unmaskText\n  };\n}\n//# sourceMappingURL=mask.js.map",
+      "start": 1762413665503,
+      "end": 1762413665528,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413665528,
+      "end": 1762413665528,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413665528,
+      "end": 1762413665528,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413665528,
+      "end": 1762413665528,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1762413665528,
+      "end": 1762413665528,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1762413665528,
+      "end": 1762413665528,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413665528,
+      "end": 1762413665528,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413665528,
+      "end": 1762413665528,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1762413665528,
+      "end": 1762413665529,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413665529,
+      "end": 1762413665529,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413665529,
+      "end": 1762413665529,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413665529,
+      "end": 1762413665529,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1762413665529,
+      "end": 1762413665529,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413665529,
+      "end": 1762413665529,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413665529,
+      "end": 1762413665529,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413665529,
+      "end": 1762413665529,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413665529,
+      "end": 1762413665529,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1762413665529,
+      "end": 1762413665529,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413665529,
+      "end": 1762413665529,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413665529,
+      "end": 1762413665529,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413665529,
+      "end": 1762413665529,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413665529,
+      "end": 1762413665529,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413665529,
+      "end": 1762413665529,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413665529,
+      "end": 1762413665529,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413665529,
+      "end": 1762413665530,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413665530,
+      "end": 1762413665530,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413665530,
+      "end": 1762413665530,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413665530,
+      "end": 1762413665530,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1762413665530,
+      "end": 1762413665530,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1762413665530,
+      "end": 1762413665530,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413665530,
+      "end": 1762413665530,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413665530,
+      "end": 1762413665530,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413665530,
+      "end": 1762413665530,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413665530,
+      "end": 1762413665530,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,223 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/pages/contact.vue?macro=true",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\n  <div class=\"anthropic-theme contact-page\">\n    <!-- Hero Section - Anthropic Style -->\n    <section class=\"contact-hero-section\">\n      <div class=\"custom-container\">\n        <div class=\"hero-content\">\n          <h1 class=\"hero-title\">お問い合わせ</h1>\n          <p class=\"hero-description\">\n            NO TRACE EXPLORERへのお問い合わせ、ご相談はこちらから\n          </p>\n        </div>\n      </div>\n    </section>\n\n    <!-- Contact Form Section -->\n    <section class=\"contact-form-section\">\n      <div class=\"custom-container\">\n        <div class=\"form-wrapper\">\n          <div class=\"form-header\">\n            <h2 class=\"section-title\">お気軽にお問い合わせください</h2>\n            <p class=\"section-description\">\n              お客様のご要望をお聞かせください。専門スタッフが丁寧にご対応いたします。\n            </p>\n          </div>\n          \n          <form class=\"contact-form\" @submit.prevent=\"submitForm\">\n            <div class=\"form-row\">\n              <div class=\"form-group\">\n                <label class=\"form-label\" for=\"firstName\">姓 *</label>\n                <input\n                  id=\"firstName\"\n                  v-model=\"form.firstName\"\n                  type=\"text\"\n                  class=\"form-input\"\n                  :class=\"{ 'form-input-error': errors.firstName }\"\n                  required\n                />\n                <span v-if=\"errors.firstName\" class=\"error-message\">{{ errors.firstName }}</span>\n              </div>\n              <div class=\"form-group\">\n                <label class=\"form-label\" for=\"lastName\">名 *</label>\n                <input\n                  id=\"lastName\"\n                  v-model=\"form.lastName\"\n                  type=\"text\"\n                  class=\"form-input\"\n                  :class=\"{ 'form-input-error': errors.lastName }\"\n                  required\n                />\n                <span v-if=\"errors.lastName\" class=\"error-message\">{{ errors.lastName }}</span>\n              </div>\n            </div>\n            \n            <div class=\"form-group\">\n              <label class=\"form-label\" for=\"email\">メールアドレス *</label>\n              <input\n                id=\"email\"\n                v-model=\"form.email\"\n                type=\"email\"\n                class=\"form-input\"\n                :class=\"{ 'form-input-error': errors.email }\"\n                required\n              />\n              <span v-if=\"errors.email\" class=\"error-message\">{{ errors.email }}</span>\n            </div>\n            \n            <div class=\"form-group\">\n              <label class=\"form-label\" for=\"company\">会社名・組織名</label>\n              <input\n                id=\"company\"\n                v-model=\"form.company\"\n                type=\"text\"\n                class=\"form-input\"\n              />\n            </div>\n            \n            <div class=\"form-group\">\n              <label class=\"form-label\" for=\"category\">お問い合わせ種別 *</label>\n              <select\n                id=\"category\"\n                v-model=\"form.category\"\n                class=\"form-select\"\n                :class=\"{ 'form-input-error': errors.category }\"\n                required\n              >\n                <option value=\"\">選択してください</option>\n                <option v-for=\"category in categories\" :key=\"category\" :value=\"category\">\n                  {{ category }}\n                </option>\n              </select>\n              <span v-if=\"errors.category\" class=\"error-message\">{{ errors.category }}</span>\n            </div>\n            \n            <div class=\"form-group\">\n              <label class=\"form-label\" for=\"message\">お問い合わせ内容 *</label>\n              <textarea\n                id=\"message\"\n                v-model=\"form.message\"\n                class=\"form-textarea\"\n                :class=\"{ 'form-input-error': errors.message }\"\n                rows=\"5\"\n                required\n              ></textarea>\n              <span v-if=\"errors.message\" class=\"error-message\">{{ errors.message }}</span>\n            </div>\n            \n            <div class=\"form-group\">\n              <label class=\"checkbox-label\">\n                <input\n                  v-model=\"form.agreement\"\n                  type=\"checkbox\"\n                  class=\"form-checkbox\"\n                  required\n                />\n                <span class=\"checkbox-text\">\n                  <a href=\"#\" class=\"privacy-link\">プライバシーポリシー</a>に同意します\n                </span>\n              </label>\n              <span v-if=\"errors.agreement\" class=\"error-message\">{{ errors.agreement }}</span>\n            </div>\n            \n            <div class=\"form-submit\">\n              <button\n                type=\"submit\"\n                class=\"submit-button\"\n                :disabled=\"loading\"\n              >\n                <span v-if=\"loading\">送信中...</span>\n                <span v-else>送信する</span>\n              </button>\n            </div>\n          </form>\n        </div>\n      </div>\n    </section>\n\n    <!-- Contact Info Section -->\n    <section class=\"contact-info-section\">\n      <div class=\"custom-container\">\n        <div class=\"section-header\">\n          <h2 class=\"section-title\">お問い合わせ先</h2>\n          <p class=\"section-description\">\n            その他のお問い合わせ方法\n          </p>\n        </div>\n        \n        <div class=\"contact-cards\">\n          <div \n            v-for=\"contact in contactInfo\"\n            :key=\"contact.title\"\n            class=\"contact-card\"\n          >\n            <div class=\"contact-icon\">\n              <v-icon \n                :icon=\"getContactIcon(contact.type)\"\n                size=\"32\"\n                color=\"#E17B47\"\n                class=\"contact-icon-mdi\"\n              />\n            </div>\n            <h3 class=\"contact-title\">{{ contact.title }}</h3>\n            <div class=\"contact-details\">\n              <div v-for=\"item in contact.details\" :key=\"item\" class=\"contact-detail\">\n                {{ item }}\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </section>\n  </div>\n</template>\n\n<script setup lang=\"ts\">\n// SEO設定\nconst { setSEO } = useSEO()\nsetSEO('contact')\n\n// 响应式数据\nconst loading = ref(false)\nconst errors = ref({\n  firstName: '',\n  lastName: '',\n  email: '',\n  category: '',\n  message: '',\n  agreement: ''\n})\n\nconst form = ref({\n  firstName: '',\n  lastName: '',\n  email: '',\n  company: '',\n  category: '',\n  message: '',\n  agreement: false\n})\n\n// Helper function for contact icons\nconst getContactIcon = (type: string) => {\n  const iconMap: Record<string, string> = {\n    email: 'mdi-email',\n    office: 'mdi-office-building',\n    hours: 'mdi-clock-outline'\n  }\n  return iconMap[type] || 'mdi-phone'\n}\n\n// 問い合わせカテゴリ\nconst categories = [\n  'サービスに関するお問い合わせ',\n  'コーヒー事業について',\n  '展示・イベント運営について',\n  'LAB・研究開発について',\n  'クラブ・コミュニティについて',\n  '採用について',\n  'その他'\n]\n\n// 連絡先情報\nconst contactInfo = [\n  {\n    title: 'Email',\n    type: 'email',\n    details: [\n      'info@no-trace.jp',\n      'support@no-trace.jp'\n    ]\n  },\n  {\n    title: 'Office',\n    type: 'office',\n    details: [\n      '東京都渋谷区',\n      '(設立準備中につき詳細は後日公開)'\n    ]\n  },\n  {\n    title: 'Business Hours',\n    type: 'hours',\n    details: [\n      '平日 9:00-18:00',\n      '土日祝日休業'\n    ]\n  }\n]\n\n// フォームバリデーション\nconst validateForm = () => {\n  errors.value = {\n    firstName: '',\n    lastName: '',\n    email: '',\n    category: '',\n    message: '',\n    agreement: ''\n  }\n\n  let isValid = true\n\n  if (!form.value.firstName) {\n    errors.value.firstName = '姓を入力してください'\n    isValid = false\n  } else if (form.value.firstName.length > 50) {\n    errors.value.firstName = '50文字以内で入力してください'\n    isValid = false\n  }\n\n  if (!form.value.lastName) {\n    errors.value.lastName = '名を入力してください'\n    isValid = false\n  } else if (form.value.lastName.length > 50) {\n    errors.value.lastName = '50文字以内で入力してください'\n    isValid = false\n  }\n\n  if (!form.value.email) {\n    errors.value.email = 'メールアドレスを入力してください'\n    isValid = false\n  } else if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(form.value.email)) {\n    errors.value.email = '正しいメールアドレスを入力してください'\n    isValid = false\n  }\n\n  if (!form.value.category) {\n    errors.value.category = 'お問い合わせ種別を選択してください'\n    isValid = false\n  }\n\n  if (!form.value.message) {\n    errors.value.message = 'お問い合わせ内容を入力してください'\n    isValid = false\n  } else if (form.value.message.length > 1000) {\n    errors.value.message = '1000文字以内で入力してください'\n    isValid = false\n  }\n\n  if (!form.value.agreement) {\n    errors.value.agreement = 'プライバシーポリシーに同意してください'\n    isValid = false\n  }\n\n  return isValid\n}\n\n// 表单提交\nconst submitForm = async () => {\n  if (!validateForm()) {\n    return\n  }\n\n  loading.value = true\n  \n  try {\n    // ここで実際のAPI呼び出しを行う\n    await new Promise(resolve => setTimeout(resolve, 2000)) // 模拟API调用\n    \n    // 成功処理\n    alert('お問い合わせを受け付けました。ありがとうございます。')\n    \n    // フォームリセット\n    form.value = {\n      firstName: '',\n      lastName: '',\n      email: '',\n      company: '',\n      category: '',\n      message: '',\n      agreement: false\n    }\n    \n    // エラーメッセージクリア\n    errors.value = {\n      firstName: '',\n      lastName: '',\n      email: '',\n      category: '',\n      message: '',\n      agreement: ''\n    }\n  } catch (error) {\n    // エラー処理\n    alert('送信に失敗しました。もう一度お試しください。')\n  } finally {\n    loading.value = false\n  }\n}\n</script>\n\n<style scoped>\n/* Anthropic Theme Variables */\n.anthropic-theme {\n  background-color: #FAF9F7;\n  min-height: 100vh;\n}\n\n/* Custom Container */\n.custom-container {\n  max-width: 1200px;\n  margin: 0 auto;\n  padding: 0 24px;\n}\n\n/* Hero Section */\n.contact-hero-section {\n  padding: 80px 0 60px 0;\n  background-color: #FAF9F7;\n  border-bottom: 1px solid #E5E5E5;\n}\n\n.hero-content {\n  text-align: center;\n  max-width: 600px;\n  margin: 0 auto;\n}\n\n.hero-title {\n  font-size: 3.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 1.5rem;\n  line-height: 1.2;\n}\n\n.hero-description {\n  font-size: 1.25rem;\n  color: #666666;\n  line-height: 1.6;\n  margin: 0;\n}\n\n/* Contact Form Section */\n.contact-form-section {\n  padding: 80px 0;\n  background-color: #FAF9F7;\n}\n\n.form-wrapper {\n  max-width: 700px;\n  margin: 0 auto;\n  background: #FFFFFF;\n  border-radius: 16px;\n  padding: 3rem;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);\n  border: 1px solid #E5E5E5;\n}\n\n.form-header {\n  text-align: center;\n  margin-bottom: 3rem;\n}\n\n.section-title {\n  font-size: 2.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 1rem;\n  line-height: 1.3;\n}\n\n.section-description {\n  font-size: 1.125rem;\n  color: #666666;\n  line-height: 1.6;\n  margin: 0;\n}\n\n/* Form Styles */\n.contact-form {\n  display: flex;\n  flex-direction: column;\n  gap: 1.5rem;\n}\n\n.form-row {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 1.5rem;\n}\n\n.form-group {\n  display: flex;\n  flex-direction: column;\n  gap: 0.5rem;\n}\n\n.form-label {\n  font-size: 0.875rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 0.25rem;\n}\n\n.form-input,\n.form-select,\n.form-textarea {\n  padding: 0.875rem 1rem;\n  border: 1px solid #E5E5E5;\n  border-radius: 8px;\n  font-size: 1rem;\n  color: #1A1A1A;\n  background: #FFFFFF;\n  transition: all 0.3s ease;\n}\n\n.form-input:focus,\n.form-select:focus,\n.form-textarea:focus {\n  outline: none;\n  border-color: #E17B47;\n  box-shadow: 0 0 0 3px rgba(225, 123, 71, 0.1);\n}\n\n.form-input-error {\n  border-color: #dc3545;\n}\n\n.form-textarea {\n  resize: vertical;\n  min-height: 120px;\n}\n\n.form-select {\n  cursor: pointer;\n}\n\n.error-message {\n  font-size: 0.875rem;\n  color: #dc3545;\n  margin-top: 0.25rem;\n}\n\n/* Checkbox Styles */\n.checkbox-label {\n  display: flex;\n  align-items: flex-start;\n  gap: 0.75rem;\n  cursor: pointer;\n  margin-top: 0.5rem;\n}\n\n.form-checkbox {\n  width: 18px;\n  height: 18px;\n  accent-color: #E17B47;\n  margin-top: 2px;\n  flex-shrink: 0;\n}\n\n.checkbox-text {\n  font-size: 0.875rem;\n  color: #333333;\n  line-height: 1.5;\n}\n\n.privacy-link {\n  color: #E17B47;\n  text-decoration: none;\n  font-weight: 500;\n}\n\n.privacy-link:hover {\n  text-decoration: underline;\n}\n\n/* Submit Button */\n.form-submit {\n  margin-top: 1rem;\n}\n\n.submit-button {\n  width: 100%;\n  background: #E17B47;\n  color: white;\n  border: none;\n  padding: 1rem 2rem;\n  border-radius: 8px;\n  font-size: 1rem;\n  font-weight: 500;\n  cursor: pointer;\n  transition: all 0.3s ease;\n}\n\n.submit-button:hover:not(:disabled) {\n  background: #1A1A1A;\n  transform: translateY(-1px);\n}\n\n.submit-button:disabled {\n  opacity: 0.6;\n  cursor: not-allowed;\n  transform: none;\n}\n\n/* Contact Info Section */\n.contact-info-section {\n  padding: 80px 0;\n  background-color: #F0EDE8;\n}\n\n.section-header {\n  text-align: center;\n  margin-bottom: 4rem;\n  max-width: 600px;\n  margin-left: auto;\n  margin-right: auto;\n}\n\n.contact-cards {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));\n  gap: 2rem;\n}\n\n.contact-card {\n  background: #FFFFFF;\n  border-radius: 16px;\n  padding: 2.5rem;\n  text-align: center;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);\n  border: 1px solid #E5E5E5;\n  transition: all 0.3s ease;\n}\n\n.contact-card:hover {\n  transform: translateY(-4px);\n  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);\n  border-color: #E17B47;\n}\n\n.contact-icon {\n  margin-bottom: 1.5rem;\n}\n\n.icon-emoji {\n  font-size: 3rem;\n}\n\n.contact-title {\n  font-size: 1.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 1.5rem;\n}\n\n.contact-details {\n  display: flex;\n  flex-direction: column;\n  gap: 0.5rem;\n}\n\n.contact-detail {\n  color: #333333;\n  line-height: 1.5;\n  font-size: 1rem;\n}\n\n/* Responsive Design */\n@media (max-width: 768px) {\n  .custom-container {\n    padding: 0 16px;\n  }\n  \n  .contact-hero-section,\n  .contact-form-section,\n  .contact-info-section {\n    padding: 60px 0;\n  }\n  \n  .hero-title {\n    font-size: 2.5rem;\n  }\n  \n  .section-title {\n    font-size: 2rem;\n  }\n  \n  .form-wrapper {\n    padding: 2rem;\n  }\n  \n  .form-row {\n    grid-template-columns: 1fr;\n    gap: 1rem;\n  }\n  \n  .contact-cards {\n    grid-template-columns: 1fr;\n  }\n}\n\n@media (max-width: 480px) {\n  .hero-title {\n    font-size: 2rem;\n  }\n  \n  .section-title {\n    font-size: 1.75rem;\n  }\n  \n  .form-wrapper {\n    padding: 1.5rem;\n  }\n}\n</style>",
+      "start": 1762413661448,
+      "end": 1762413661849,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413661849,
+      "end": 1762413661849,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413661850,
+      "end": 1762413661850,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413661850,
+      "end": 1762413661850,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1762413661850,
+      "end": 1762413661850,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1762413661850,
+      "end": 1762413661850,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413661850,
+      "end": 1762413661850,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413661850,
+      "end": 1762413661850,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/home/user/NTE-company-website/pages/contact.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/home/user/NTE-company-website/pages/contact.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/home/user/NTE-company-website/pages/contact.vue?vue&type=style&index=0&scoped=7d385cbc&lang.css\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-7d385cbc\"]]);\n",
+      "start": 1762413661850,
+      "end": 1762413662268,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413662269,
+      "end": 1762413662269,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413662269,
+      "end": 1762413662269,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413662269,
+      "end": 1762413662269,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1762413662269,
+      "end": 1762413662269,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413662269,
+      "end": 1762413662269,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413662270,
+      "end": 1762413662270,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413662270,
+      "end": 1762413662270,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413662270,
+      "end": 1762413662270,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1762413662270,
+      "end": 1762413662270,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413662270,
+      "end": 1762413662270,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413662270,
+      "end": 1762413662270,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413662270,
+      "end": 1762413662270,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413662271,
+      "end": 1762413662271,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413662271,
+      "end": 1762413662271,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413662271,
+      "end": 1762413662271,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413662271,
+      "end": 1762413662271,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413662271,
+      "end": 1762413662272,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413662273,
+      "end": 1762413662273,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "result": "export { default } from \"/home/user/NTE-company-website/pages/contact.vue?macro=true&vue&type=script&setup=true&lang.ts\"",
+      "start": 1762413662277,
+      "end": 1762413662277,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          ""
+        ],
+        "names": [],
+        "mappings": "AAAA"
+      }
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1762413662280,
+      "end": 1762413662281,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1762413662282,
+      "end": 1762413662282,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413662282,
+      "end": 1762413662282,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413662283,
+      "end": 1762413662283,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413662283,
+      "end": 1762413662283,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413662283,
+      "end": 1762413662283,
+      "order": "normal"
+    }
+  ]
+}

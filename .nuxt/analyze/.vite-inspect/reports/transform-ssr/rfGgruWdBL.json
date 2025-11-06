@@ -1,0 +1,294 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/app.vue?vue&type=style&index=0&lang.css",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "\n/* 全局样式 */\nhtml {\n  scroll-behavior: smooth;\n}\n\nbody {\n  font-family: 'Roboto', 'Noto Sans JP', sans-serif;\n}\n\n/* Vuetify主题样式覆盖 */\n.v-application {\n  font-family: 'Roboto', 'Noto Sans JP', sans-serif !important;\n}\n\n/* 保持现有的特殊效果 */\n.glow-title {\n  font-size: 2.0rem;\n  font-weight: 600;\n  color: #344767;\n  letter-spacing: -0.5px;\n  text-shadow: \n    0 0 5px rgba(128, 128, 128, 0.15),\n    0 0 10px rgba(128, 128, 128, 0.1),\n    0 0 15px rgba(128, 128, 128, 0.05);\n  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));\n}\n\n/* 渐变样式 */\n.bg-gradient-primary {\n  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;\n}\n\n/* 响应式设计 */\n@media (max-width: 768px) {\n  .glow-title {\n    font-size: 1.4rem;\n  }\n}\n\n@media (max-width: 480px) {\n  .glow-title {\n    font-size: 1.2rem;\n  }\n}\n",
+      "start": 1762413667144,
+      "end": 1762413667145,
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/home/user/NTE-company-website/app.vue"
+        ],
+        "names": [],
+        "mappings": "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AC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1E;;AAEA,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC;AACV,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;EACxB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;IACV,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;EACnB;AACF;;AAEA,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;EACxB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;IACV,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;EACnB;AACF",
+        "file": "/home/user/NTE-company-website/app.vue",
+        "sourceRoot": "",
+        "sourcesContent": [
+          "<template>\n  <div id=\"app\">\n    <NuxtLoadingIndicator />\n    <NuxtLayout>\n      <NuxtPage />\n    </NuxtLayout>\n  </div>\n</template>\n\n<script setup lang=\"ts\">\n// 应用级配置\nuseSeoMeta({\n  titleTemplate: '%s | NO TRACE EXPLORER',\n  ogSiteName: 'NO TRACE EXPLORER'\n})\n</script>\n\n<style>\n/* 全局样式 */\nhtml {\n  scroll-behavior: smooth;\n}\n\nbody {\n  font-family: 'Roboto', 'Noto Sans JP', sans-serif;\n}\n\n/* Vuetify主题样式覆盖 */\n.v-application {\n  font-family: 'Roboto', 'Noto Sans JP', sans-serif !important;\n}\n\n/* 保持现有的特殊效果 */\n.glow-title {\n  font-size: 2.0rem;\n  font-weight: 600;\n  color: #344767;\n  letter-spacing: -0.5px;\n  text-shadow: \n    0 0 5px rgba(128, 128, 128, 0.15),\n    0 0 10px rgba(128, 128, 128, 0.1),\n    0 0 15px rgba(128, 128, 128, 0.05);\n  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));\n}\n\n/* 渐变样式 */\n.bg-gradient-primary {\n  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;\n}\n\n/* 响应式设计 */\n@media (max-width: 768px) {\n  .glow-title {\n    font-size: 1.4rem;\n  }\n}\n\n@media (max-width: 480px) {\n  .glow-title {\n    font-size: 1.2rem;\n  }\n}\n</style>"
+        ]
+      }
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413667146,
+      "end": 1762413667146,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413667146,
+      "end": 1762413667146,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413667146,
+      "end": 1762413667146,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413667146,
+      "end": 1762413667146,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413667146,
+      "end": 1762413667146,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": "html{scroll-behavior:smooth}body{font-family:Roboto,Noto Sans JP,sans-serif}.v-application{font-family:Roboto,Noto Sans JP,sans-serif!important}.glow-title{color:#344767;filter:drop-shadow(0 2px 4px rgba(0,0,0,.08));font-size:2rem;font-weight:600;letter-spacing:-.5px;text-shadow:0 0 5px hsla(0,0%,50%,.15),0 0 10px hsla(0,0%,50%,.1),0 0 15px hsla(0,0%,50%,.05)}.bg-gradient-primary{background:linear-gradient(135deg,#667eea,#764ba2)!important}@media (max-width:768px){.glow-title{font-size:1.4rem}}@media (max-width:480px){.glow-title{font-size:1.2rem}}",
+      "start": 1762413667146,
+      "end": 1762413667150,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "/home/user/NTE-company-website/app.vue",
+        "mappings": "AAEA,KACE,sBACF,CAEA,KACE,0CACF,CAGA,eACE,oDACF,CAGA,YAGE,aAAc,CAMd,6CAAkD,CARlD,cAAiB,CACjB,eAAgB,CAEhB,oBAAsB,CACtB,6FAKF,CAGA,qBACE,4DACF,CAGA,yBACE,YACE,gBACF,CACF,CAEA,yBACE,YACE,gBACF,CACF",
+        "names": [],
+        "sources": [
+          "/home/user/NTE-company-website/app.vue"
+        ],
+        "sourcesContent": [
+          "\n/* 全局样式 */\nhtml {\n  scroll-behavior: smooth;\n}\n\nbody {\n  font-family: 'Roboto', 'Noto Sans JP', sans-serif;\n}\n\n/* Vuetify主题样式覆盖 */\n.v-application {\n  font-family: 'Roboto', 'Noto Sans JP', sans-serif !important;\n}\n\n/* 保持现有的特殊效果 */\n.glow-title {\n  font-size: 2.0rem;\n  font-weight: 600;\n  color: #344767;\n  letter-spacing: -0.5px;\n  text-shadow: \n    0 0 5px rgba(128, 128, 128, 0.15),\n    0 0 10px rgba(128, 128, 128, 0.1),\n    0 0 15px rgba(128, 128, 128, 0.05);\n  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));\n}\n\n/* 渐变样式 */\n.bg-gradient-primary {\n  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;\n}\n\n/* 响应式设计 */\n@media (max-width: 768px) {\n  .glow-title {\n    font-size: 1.4rem;\n  }\n}\n\n@media (max-width: 480px) {\n  .glow-title {\n    font-size: 1.2rem;\n  }\n}\n"
+        ],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1762413667151,
+      "end": 1762413667151,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413667161,
+      "end": 1762413667163,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413667181,
+      "end": 1762413667183,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "html{scroll-behavior:smooth}body{font-family:Roboto,Noto Sans JP,sans-serif}.v-application{font-family:Roboto,Noto Sans JP,sans-serif!important}.glow-title{color:#344767;filter:drop-shadow(0 2px 4px rgba(0,0,0,.08));font-size:2rem;font-weight:600;letter-spacing:-.5px;text-shadow:0 0 5px hsla(0,0%,50%,.15),0 0 10px hsla(0,0%,50%,.1),0 0 15px hsla(0,0%,50%,.05)}.bg-gradient-primary{background:linear-gradient(135deg,#667eea,#764ba2)!important}@media (max-width:768px){.glow-title{font-size:1.4rem}}@media (max-width:480px){.glow-title{font-size:1.2rem}}",
+      "start": 1762413667211,
+      "end": 1762413667224,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "/home/user/NTE-company-website/app.vue",
+        "mappings": "AAAA,KAAK,sBAAsB,CAAC,KAAK,0CAA0C,CAAC,eAAe,oDAAoD,CAAC,YAAY,aAAa,CAAC,6CAA6C,CAAC,cAAc,CAAC,eAAe,CAAC,oBAAoB,CAAC,6FAA6F,CAAC,qBAAqB,4DAA4D,CAAC,yBAAyB,YAAY,gBAAgB,CAAC,CAAC,yBAAyB,YAAY,gBAAgB,CAAC",
+        "names": [],
+        "sources": [
+          "/home/user/NTE-company-website/app.vue"
+        ],
+        "sourcesContent": [
+          null
+        ],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413667240,
+      "end": 1762413667291,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413667319,
+      "end": 1762413667319,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413667319,
+      "end": 1762413667324,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413667325,
+      "end": 1762413667325,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413667325,
+      "end": 1762413667325,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413667325,
+      "end": 1762413667325,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413667326,
+      "end": 1762413667326,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413667326,
+      "end": 1762413667326,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413667383,
+      "end": 1762413667383,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413667383,
+      "end": 1762413667383,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "export default ''",
+      "start": 1762413667383,
+      "end": 1762413667384,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413667384,
+      "end": 1762413667384,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413667384,
+      "end": 1762413667384,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413667385,
+      "end": 1762413667385,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413667385,
+      "end": 1762413667385,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413667386,
+      "end": 1762413667386,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413667386,
+      "end": 1762413667386,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413667386,
+      "end": 1762413667386,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413667386,
+      "end": 1762413667386,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413667389,
+      "end": 1762413667389,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413667389,
+      "end": 1762413667389,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413667390,
+      "end": 1762413667391,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413667390,
+      "end": 1762413667391,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413667392,
+      "end": 1762413667392,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413667392,
+      "end": 1762413667392,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1762413667403,
+      "end": 1762413667403,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413667404,
+      "end": 1762413667404,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413667404,
+      "end": 1762413667404,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413667406,
+      "end": 1762413667406,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413667407,
+      "end": 1762413667407,
+      "order": "normal"
+    }
+  ]
+}

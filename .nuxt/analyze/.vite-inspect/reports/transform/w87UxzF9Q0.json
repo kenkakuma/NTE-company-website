@@ -1,0 +1,210 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/node_modules/vuetify/lib/util/easing.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "// Utilities\nimport { computed, shallowRef, toValue, watch } from 'vue';\nimport { clamp } from \"./helpers.js\";\nimport { PREFERS_REDUCED_MOTION } from \"./globals.js\"; // Types\nexport const standardEasing = 'cubic-bezier(0.4, 0, 0.2, 1)';\nexport const deceleratedEasing = 'cubic-bezier(0.0, 0, 0.2, 1)'; // Entering\nexport const acceleratedEasing = 'cubic-bezier(0.4, 0, 1, 1)'; // Leaving\n\nexport const easingPatterns = {\n  linear: t => t,\n  easeInQuad: t => t ** 2,\n  easeOutQuad: t => t * (2 - t),\n  easeInOutQuad: t => t < 0.5 ? 2 * t ** 2 : -1 + (4 - 2 * t) * t,\n  easeInCubic: t => t ** 3,\n  easeOutCubic: t => --t ** 3 + 1,\n  easeInOutCubic: t => t < 0.5 ? 4 * t ** 3 : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1,\n  easeInQuart: t => t ** 4,\n  easeOutQuart: t => 1 - --t ** 4,\n  easeInOutQuart: t => t < 0.5 ? 8 * t ** 4 : 1 - 8 * --t ** 4,\n  easeInQuint: t => t ** 5,\n  easeOutQuint: t => 1 + --t ** 5,\n  easeInOutQuint: t => t < 0.5 ? 16 * t ** 5 : 1 + 16 * --t ** 5,\n  instant: t => 1\n};\nexport function useTransition(source, options) {\n  const defaultTransition = {\n    duration: 300,\n    transition: easingPatterns.easeInOutCubic\n  };\n  let raf = -1;\n  const outputRef = shallowRef(toValue(source));\n  watch(() => toValue(source), async to => {\n    cancelAnimationFrame(raf);\n    const easing = {\n      ...defaultTransition,\n      ...toValue(options)\n    };\n    await executeTransition(outputRef, outputRef.value, to, easing);\n  });\n  function executeTransition(out, from, to, options) {\n    const startTime = performance.now();\n    const ease = PREFERS_REDUCED_MOTION() ? easingPatterns.instant : options.transition ?? easingPatterns.easeInOutCubic;\n    return new Promise(resolve => {\n      raf = requestAnimationFrame(function step(currentTime) {\n        const timeElapsed = currentTime - startTime;\n        const progress = timeElapsed / options.duration;\n        out.value = from + (to - from) * ease(clamp(progress, 0, 1));\n        if (progress < 1) {\n          raf = requestAnimationFrame(step);\n        } else {\n          out.value = to;\n          resolve();\n        }\n      });\n    });\n  }\n  return computed(() => outputRef.value);\n}\n//# sourceMappingURL=easing.js.map",
+      "start": 1762413665351,
+      "end": 1762413665476,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413665476,
+      "end": 1762413665476,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413665476,
+      "end": 1762413665476,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413665476,
+      "end": 1762413665476,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1762413665476,
+      "end": 1762413665476,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1762413665476,
+      "end": 1762413665476,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413665477,
+      "end": 1762413665477,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413665477,
+      "end": 1762413665477,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1762413665477,
+      "end": 1762413665477,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413665477,
+      "end": 1762413665477,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413665477,
+      "end": 1762413665477,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413665477,
+      "end": 1762413665477,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1762413665477,
+      "end": 1762413665477,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413665477,
+      "end": 1762413665477,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413665477,
+      "end": 1762413665477,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413665477,
+      "end": 1762413665477,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413665477,
+      "end": 1762413665477,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1762413665477,
+      "end": 1762413665477,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413665477,
+      "end": 1762413665477,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413665477,
+      "end": 1762413665477,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413665477,
+      "end": 1762413665477,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413665477,
+      "end": 1762413665477,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413665477,
+      "end": 1762413665477,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413665477,
+      "end": 1762413665477,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413665477,
+      "end": 1762413665477,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413665477,
+      "end": 1762413665478,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413665478,
+      "end": 1762413665478,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413665478,
+      "end": 1762413665478,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1762413665478,
+      "end": 1762413665478,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1762413665478,
+      "end": 1762413665478,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413665478,
+      "end": 1762413665478,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413665478,
+      "end": 1762413665478,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413665478,
+      "end": 1762413665478,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413665478,
+      "end": 1762413665478,
+      "order": "normal"
+    }
+  ]
+}

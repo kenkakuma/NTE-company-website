@@ -1,0 +1,256 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/components/ImageManager.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<!-- 图片管理组件 -->\n<template>\n  <div class=\"image-manager\">\n    <!-- 工具栏 -->\n    <div class=\"toolbar\">\n      <div class=\"toolbar-section\">\n        <v-text-field\n          v-model=\"searchQuery\"\n          label=\"搜索图片\"\n          prepend-icon=\"mdi-magnify\"\n          variant=\"outlined\"\n          density=\"compact\"\n          class=\"search-field\"\n          clearable\n        />\n        \n        <v-select\n          v-model=\"selectedCategory\"\n          label=\"筛选分类\"\n          :items=\"categoryFilterOptions\"\n          item-value=\"value\"\n          item-title=\"title\"\n          variant=\"outlined\"\n          density=\"compact\"\n          class=\"category-filter\"\n          clearable\n        />\n      </div>\n      \n      <div class=\"toolbar-actions\">\n        <v-btn\n          v-if=\"selectedImages.length > 0\"\n          color=\"error\"\n          variant=\"outlined\"\n          @click=\"confirmBatchDelete\"\n          class=\"mr-2\"\n        >\n          <v-icon start>mdi-delete</v-icon>\n          删除选中 ({{ selectedImages.length }})\n        </v-btn>\n        \n        <v-btn\n          color=\"primary\"\n          @click=\"showUploader = true\"\n        >\n          <v-icon start>mdi-upload</v-icon>\n          上传图片\n        </v-btn>\n      </div>\n    </div>\n\n    <!-- 统计信息 -->\n    <div class=\"stats-bar\">\n      <div class=\"stat-item\">\n        <v-icon>mdi-image</v-icon>\n        <span>{{ displayedImages.length }} / {{ totalImages }} 张图片</span>\n      </div>\n      <div class=\"stat-item\">\n        <v-icon>mdi-harddisk</v-icon>\n        <span>{{ formatFileSize(totalSize) }}</span>\n      </div>\n      <div class=\"stat-item\">\n        <v-icon>mdi-folder</v-icon>\n        <span>{{ categories.length }} 个分类</span>\n      </div>\n    </div>\n\n    <!-- 图片网格 -->\n    <div class=\"image-grid\">\n      <div\n        v-for=\"image in displayedImages\"\n        :key=\"image.id\"\n        class=\"image-item\"\n        :class=\"{ 'selected': selectedImages.includes(image.id) }\"\n        @click=\"toggleSelection(image.id)\"\n      >\n        <!-- 选择框 -->\n        <div class=\"image-checkbox\">\n          <v-checkbox\n            :model-value=\"selectedImages.includes(image.id)\"\n            @update:model-value=\"toggleSelection(image.id)\"\n            density=\"compact\"\n            hide-details\n          />\n        </div>\n\n        <!-- 图片预览 -->\n        <div class=\"image-preview\" @click.stop=\"openPreview(image)\">\n          <img :src=\"image.url\" :alt=\"image.originalName\" />\n          <div class=\"image-overlay\">\n            <v-btn\n              icon=\"mdi-eye\"\n              size=\"small\"\n              variant=\"text\"\n              color=\"white\"\n            />\n          </div>\n        </div>\n\n        <!-- 图片信息 -->\n        <div class=\"image-info\">\n          <div class=\"image-name\" :title=\"image.originalName\">\n            {{ image.originalName }}\n          </div>\n          <div class=\"image-meta\">\n            <span class=\"image-size\">{{ formatFileSize(image.size) }}</span>\n            <span class=\"image-category\">{{ getCategoryName(image.category) }}</span>\n          </div>\n          <div class=\"image-tags\" v-if=\"image.tags.length > 0\">\n            <v-chip\n              v-for=\"tag in image.tags\"\n              :key=\"tag\"\n              size=\"x-small\"\n              variant=\"outlined\"\n              class=\"mr-1\"\n            >\n              {{ tag }}\n            </v-chip>\n          </div>\n        </div>\n\n        <!-- 操作按钮 -->\n        <div class=\"image-actions\">\n          <v-btn\n            icon=\"mdi-content-copy\"\n            size=\"small\"\n            variant=\"text\"\n            @click.stop=\"copyUrl(image.url)\"\n            title=\"复制链接\"\n          />\n          <v-btn\n            icon=\"mdi-pencil\"\n            size=\"small\"\n            variant=\"text\"\n            @click.stop=\"editImage(image)\"\n            title=\"编辑\"\n          />\n          <v-btn\n            icon=\"mdi-delete\"\n            size=\"small\"\n            variant=\"text\"\n            color=\"error\"\n            @click.stop=\"confirmDelete(image)\"\n            title=\"删除\"\n          />\n        </div>\n      </div>\n    </div>\n\n    <!-- 空状态 -->\n    <div v-if=\"displayedImages.length === 0 && !loading\" class=\"empty-state\">\n      <v-icon size=\"64\" color=\"grey\">mdi-image-off</v-icon>\n      <h3>{{ searchQuery || selectedCategory ? '未找到图片' : '还没有图片' }}</h3>\n      <p>{{ searchQuery || selectedCategory ? '请尝试调整搜索条件' : '点击上传按钮开始添加图片' }}</p>\n    </div>\n\n    <!-- 加载状态 -->\n    <div v-if=\"loading\" class=\"loading-state\">\n      <v-progress-circular indeterminate color=\"primary\" />\n      <p>加载中...</p>\n    </div>\n\n    <!-- 上传对话框 -->\n    <v-dialog v-model=\"showUploader\" max-width=\"800\">\n      <v-card>\n        <v-card-title class=\"d-flex align-center\">\n          <v-icon start>mdi-upload</v-icon>\n          上传图片\n        </v-card-title>\n        <v-card-text>\n          <ImageUploader\n            :default-category=\"selectedCategory || 'general'\"\n            @upload=\"handleUpload\"\n            @error=\"handleUploadError\"\n          />\n        </v-card-text>\n        <v-card-actions>\n          <v-spacer />\n          <v-btn @click=\"showUploader = false\">关闭</v-btn>\n        </v-card-actions>\n      </v-card>\n    </v-dialog>\n\n    <!-- 图片预览对话框 -->\n    <v-dialog v-model=\"showPreview\" max-width=\"1000\">\n      <v-card v-if=\"previewImage\">\n        <v-card-title class=\"d-flex align-center justify-space-between\">\n          <span>{{ previewImage.originalName }}</span>\n          <v-btn icon=\"mdi-close\" variant=\"text\" @click=\"showPreview = false\" />\n        </v-card-title>\n        <v-card-text>\n          <div class=\"preview-content\">\n            <div class=\"preview-image\">\n              <img :src=\"previewImage.url\" :alt=\"previewImage.originalName\" />\n            </div>\n            <div class=\"preview-details\">\n              <div class=\"detail-item\">\n                <strong>文件名:</strong> {{ previewImage.filename }}\n              </div>\n              <div class=\"detail-item\">\n                <strong>大小:</strong> {{ formatFileSize(previewImage.size) }}\n              </div>\n              <div class=\"detail-item\">\n                <strong>类型:</strong> {{ previewImage.type }}\n              </div>\n              <div class=\"detail-item\">\n                <strong>分类:</strong> {{ getCategoryName(previewImage.category) }}\n              </div>\n              <div class=\"detail-item\">\n                <strong>上传时间:</strong> {{ formatDate(previewImage.uploadDate) }}\n              </div>\n              <div class=\"detail-item\" v-if=\"previewImage.tags.length > 0\">\n                <strong>标签:</strong>\n                <v-chip\n                  v-for=\"tag in previewImage.tags\"\n                  :key=\"tag\"\n                  size=\"small\"\n                  class=\"ml-1\"\n                >\n                  {{ tag }}\n                </v-chip>\n              </div>\n              <div class=\"detail-item\" v-if=\"previewImage.description\">\n                <strong>描述:</strong> {{ previewImage.description }}\n              </div>\n            </div>\n          </div>\n        </v-card-text>\n        <v-card-actions>\n          <v-btn @click=\"copyUrl(previewImage.url)\">复制链接</v-btn>\n          <v-btn @click=\"editImage(previewImage)\">编辑</v-btn>\n          <v-spacer />\n          <v-btn color=\"error\" @click=\"confirmDelete(previewImage)\">删除</v-btn>\n        </v-card-actions>\n      </v-card>\n    </v-dialog>\n\n    <!-- 编辑对话框 -->\n    <v-dialog v-model=\"showEdit\" max-width=\"600\">\n      <v-card v-if=\"editingImage\">\n        <v-card-title>编辑图片</v-card-title>\n        <v-card-text>\n          <v-text-field\n            v-model=\"editForm.filename\"\n            label=\"文件名\"\n            variant=\"outlined\"\n            class=\"mb-3\"\n          />\n          <v-select\n            v-model=\"editForm.category\"\n            label=\"分类\"\n            :items=\"categoryOptions\"\n            item-value=\"value\"\n            item-title=\"title\"\n            variant=\"outlined\"\n            class=\"mb-3\"\n          />\n          <v-text-field\n            v-model=\"editForm.tagsStr\"\n            label=\"标签 (用逗号分隔)\"\n            variant=\"outlined\"\n            class=\"mb-3\"\n          />\n          <v-textarea\n            v-model=\"editForm.description\"\n            label=\"描述\"\n            variant=\"outlined\"\n            rows=\"3\"\n          />\n        </v-card-text>\n        <v-card-actions>\n          <v-spacer />\n          <v-btn @click=\"showEdit = false\">取消</v-btn>\n          <v-btn color=\"primary\" @click=\"saveEdit\">保存</v-btn>\n        </v-card-actions>\n      </v-card>\n    </v-dialog>\n\n    <!-- 删除确认对话框 -->\n    <v-dialog v-model=\"showDeleteConfirm\" max-width=\"400\">\n      <v-card>\n        <v-card-title>确认删除</v-card-title>\n        <v-card-text>\n          {{ deleteConfirmText }}\n        </v-card-text>\n        <v-card-actions>\n          <v-spacer />\n          <v-btn @click=\"showDeleteConfirm = false\">取消</v-btn>\n          <v-btn color=\"error\" @click=\"performDelete\">删除</v-btn>\n        </v-card-actions>\n      </v-card>\n    </v-dialog>\n\n    <!-- 消息提示 -->\n    <v-snackbar\n      v-model=\"showMessage\"\n      :color=\"messageType\"\n      :timeout=\"3000\"\n    >\n      {{ message }}\n      <template v-slot:actions>\n        <v-btn variant=\"text\" @click=\"showMessage = false\">关闭</v-btn>\n      </template>\n    </v-snackbar>\n  </div>\n</template>\n\n<script setup lang=\"ts\">\nimport type { ImageAsset } from '~/types/image'\nimport { useImageManager } from '~/composables/useImageManager'\nimport ImageUploader from './ImageUploader.vue'\n\n// Composables\nconst { \n  categories, \n  loading, \n  deleteImage, \n  deleteImages, \n  updateImage,\n  filterImages,\n  categoryOptions,\n  totalSize,\n  imageCount\n} = useImageManager()\n\n// 响应式状态\nconst searchQuery = ref('')\nconst selectedCategory = ref<string | null>(null)\nconst selectedImages = ref<string[]>([])\nconst showUploader = ref(false)\nconst showPreview = ref(false)\nconst showEdit = ref(false)\nconst showDeleteConfirm = ref(false)\nconst previewImage = ref<ImageAsset | null>(null)\nconst editingImage = ref<ImageAsset | null>(null)\nconst deleteTarget = ref<string | string[] | null>(null)\n\n// 消息提示\nconst showMessage = ref(false)\nconst message = ref('')\nconst messageType = ref<'success' | 'error' | 'warning'>('success')\n\n// 编辑表单\nconst editForm = ref({\n  filename: '',\n  category: '',\n  tagsStr: '',\n  description: ''\n})\n\n// 计算属性\nconst totalImages = computed(() => imageCount.value)\n\nconst categoryFilterOptions = computed(() => [\n  { value: null, title: '所有分类' },\n  ...categoryOptions.value\n])\n\nconst displayedImages = computed(() => {\n  const filter: any = {}\n  if (selectedCategory.value) filter.category = selectedCategory.value\n  if (searchQuery.value) filter.search = searchQuery.value\n  return filterImages(filter)\n})\n\nconst deleteConfirmText = computed(() => {\n  if (Array.isArray(deleteTarget.value)) {\n    return `确定要删除选中的 ${deleteTarget.value.length} 张图片吗？此操作不可撤销。`\n  }\n  return '确定要删除这张图片吗？此操作不可撤销。'\n})\n\n// 方法\nconst formatFileSize = (bytes: number): string => {\n  if (bytes === 0) return '0 B'\n  const k = 1024\n  const sizes = ['B', 'KB', 'MB', 'GB']\n  const i = Math.floor(Math.log(bytes) / Math.log(k))\n  return `${parseFloat((bytes / Math.pow(k, i)).toFixed(2))} ${sizes[i]}`\n}\n\nconst formatDate = (dateString: string): string => {\n  const date = new Date(dateString)\n  return date.toLocaleDateString('zh-CN', {\n    year: 'numeric',\n    month: 'short',\n    day: 'numeric',\n    hour: '2-digit',\n    minute: '2-digit'\n  })\n}\n\nconst getCategoryName = (categoryId: string): string => {\n  const category = categories.value.find(cat => cat.id === categoryId)\n  return category?.name || '未知分类'\n}\n\nconst toggleSelection = (id: string) => {\n  const index = selectedImages.value.indexOf(id)\n  if (index > -1) {\n    selectedImages.value.splice(index, 1)\n  } else {\n    selectedImages.value.push(id)\n  }\n}\n\nconst openPreview = (image: ImageAsset) => {\n  previewImage.value = image\n  showPreview.value = true\n}\n\nconst editImage = (image: ImageAsset) => {\n  editingImage.value = image\n  editForm.value = {\n    filename: image.filename,\n    category: image.category,\n    tagsStr: image.tags.join(', '),\n    description: image.description || ''\n  }\n  showEdit.value = true\n}\n\nconst saveEdit = () => {\n  if (!editingImage.value) return\n  \n  const tags = editForm.value.tagsStr\n    .split(',')\n    .map(tag => tag.trim())\n    .filter(Boolean)\n  \n  const updateData: any = {\n    filename: editForm.value.filename,\n    category: editForm.value.category,\n    tags\n  }\n  if (editForm.value.description) updateData.description = editForm.value.description\n  \n  const success = updateImage(editingImage.value.id, updateData)\n  \n  if (success) {\n    showMessage.value = true\n    message.value = '图片信息已更新'\n    messageType.value = 'success'\n    showEdit.value = false\n  } else {\n    showMessage.value = true\n    message.value = '更新失败'\n    messageType.value = 'error'\n  }\n}\n\nconst confirmDelete = (image: ImageAsset) => {\n  deleteTarget.value = image.id\n  showDeleteConfirm.value = true\n}\n\nconst confirmBatchDelete = () => {\n  deleteTarget.value = [...selectedImages.value]\n  showDeleteConfirm.value = true\n}\n\nconst performDelete = () => {\n  if (Array.isArray(deleteTarget.value)) {\n    const deletedCount = deleteImages(deleteTarget.value)\n    selectedImages.value = []\n    showMessage.value = true\n    message.value = `已删除 ${deletedCount} 张图片`\n    messageType.value = 'success'\n  } else if (deleteTarget.value) {\n    const success = deleteImage(deleteTarget.value)\n    if (success) {\n      showMessage.value = true\n      message.value = '图片已删除'\n      messageType.value = 'success'\n    } else {\n      showMessage.value = true\n      message.value = '删除失败'\n      messageType.value = 'error'\n    }\n  }\n  \n  showDeleteConfirm.value = false\n  showPreview.value = false\n  deleteTarget.value = null\n}\n\nconst copyUrl = async (url: string) => {\n  try {\n    await navigator.clipboard.writeText(url)\n    showMessage.value = true\n    message.value = '链接已复制到剪贴板'\n    messageType.value = 'success'\n  } catch (err) {\n    showMessage.value = true\n    message.value = '复制失败'\n    messageType.value = 'error'\n  }\n}\n\nconst handleUpload = (uploadedImages: ImageAsset[]) => {\n  showMessage.value = true\n  message.value = `成功上传 ${uploadedImages.length} 张图片`\n  messageType.value = 'success'\n  selectedImages.value = []\n}\n\nconst handleUploadError = (error: string) => {\n  showMessage.value = true\n  message.value = error\n  messageType.value = 'error'\n}\n\n// 清空选择\nwatch([searchQuery, selectedCategory], () => {\n  selectedImages.value = []\n})\n</script>\n\n<style scoped>\n.image-manager {\n  width: 100%;\n}\n\n.toolbar {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 1rem;\n  gap: 1rem;\n}\n\n.toolbar-section {\n  display: flex;\n  gap: 1rem;\n  flex: 1;\n}\n\n.search-field {\n  max-width: 300px;\n}\n\n.category-filter {\n  max-width: 200px;\n}\n\n.toolbar-actions {\n  display: flex;\n  gap: 0.5rem;\n}\n\n.stats-bar {\n  display: flex;\n  gap: 2rem;\n  padding: 1rem;\n  background: #F8F9FA;\n  border-radius: 8px;\n  margin-bottom: 1.5rem;\n}\n\n.stat-item {\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n  color: #666666;\n  font-size: 0.9rem;\n}\n\n.image-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));\n  gap: 1.5rem;\n}\n\n.image-item {\n  background: white;\n  border-radius: 12px;\n  border: 2px solid #E0E0E0;\n  overflow: hidden;\n  transition: all 0.3s ease;\n  cursor: pointer;\n  position: relative;\n}\n\n.image-item:hover {\n  border-color: #667eea;\n  transform: translateY(-2px);\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);\n}\n\n.image-item.selected {\n  border-color: #667eea;\n  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.3);\n}\n\n.image-checkbox {\n  position: absolute;\n  top: 8px;\n  left: 8px;\n  z-index: 2;\n  background: rgba(255, 255, 255, 0.9);\n  border-radius: 4px;\n}\n\n.image-preview {\n  position: relative;\n  height: 200px;\n  overflow: hidden;\n}\n\n.image-preview img {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n}\n\n.image-overlay {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background: rgba(0, 0, 0, 0.5);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  opacity: 0;\n  transition: opacity 0.3s ease;\n}\n\n.image-preview:hover .image-overlay {\n  opacity: 1;\n}\n\n.image-info {\n  padding: 1rem;\n}\n\n.image-name {\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 0.5rem;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n.image-meta {\n  display: flex;\n  justify-content: space-between;\n  color: #666666;\n  font-size: 0.875rem;\n  margin-bottom: 0.5rem;\n}\n\n.image-tags {\n  margin-top: 0.5rem;\n}\n\n.image-actions {\n  display: flex;\n  justify-content: flex-end;\n  gap: 0.25rem;\n  padding: 0.5rem 1rem;\n  background: #F8F9FA;\n  border-top: 1px solid #E0E0E0;\n}\n\n.empty-state {\n  text-align: center;\n  padding: 4rem 2rem;\n  color: #666666;\n}\n\n.empty-state h3 {\n  margin: 1rem 0 0.5rem;\n  font-weight: 500;\n}\n\n.loading-state {\n  text-align: center;\n  padding: 4rem 2rem;\n  color: #666666;\n}\n\n.loading-state p {\n  margin-top: 1rem;\n}\n\n.preview-content {\n  display: flex;\n  gap: 2rem;\n}\n\n.preview-image {\n  flex: 1;\n  text-align: center;\n}\n\n.preview-image img {\n  max-width: 100%;\n  max-height: 400px;\n  border-radius: 8px;\n}\n\n.preview-details {\n  flex: 1;\n}\n\n.detail-item {\n  margin-bottom: 1rem;\n  padding-bottom: 0.5rem;\n  border-bottom: 1px solid #E0E0E0;\n}\n\n.detail-item:last-child {\n  border-bottom: none;\n}\n\n/* 响应式设计 */\n@media (max-width: 768px) {\n  .toolbar {\n    flex-direction: column;\n    align-items: stretch;\n  }\n  \n  .toolbar-section {\n    flex-direction: column;\n  }\n  \n  .search-field,\n  .category-filter {\n    max-width: none;\n  }\n  \n  .stats-bar {\n    flex-direction: column;\n    gap: 1rem;\n  }\n  \n  .image-grid {\n    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));\n    gap: 1rem;\n  }\n  \n  .preview-content {\n    flex-direction: column;\n  }\n}\n</style>",
+      "start": 1762413667043,
+      "end": 1762413668095,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413668095,
+      "end": 1762413668095,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413668095,
+      "end": 1762413668095,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413668095,
+      "end": 1762413668095,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413668095,
+      "end": 1762413668095,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413668095,
+      "end": 1762413668095,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1762413668095,
+      "end": 1762413668095,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1762413668095,
+      "end": 1762413668095,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413668095,
+      "end": 1762413668095,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413668095,
+      "end": 1762413668096,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/home/user/NTE-company-website/components/ImageManager.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/home/user/NTE-company-website/components/ImageManager.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/home/user/NTE-company-website/components/ImageManager.vue?vue&type=style&index=0&scoped=12d3a28e&lang.css\";\nimport { useSSRContext as __vite_useSSRContext } from \"vue\";\nconst _sfc_setup = _sfc_main.setup;\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext();\n  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add(\"components/ImageManager.vue\");\n  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;\n};\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-12d3a28e\"]]);\n",
+      "start": 1762413668096,
+      "end": 1762413668260,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413668260,
+      "end": 1762413668260,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413668260,
+      "end": 1762413668260,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413668260,
+      "end": 1762413668260,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413668260,
+      "end": 1762413668260,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413668260,
+      "end": 1762413668260,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413668260,
+      "end": 1762413668260,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413668260,
+      "end": 1762413668260,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413668260,
+      "end": 1762413668261,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413668261,
+      "end": 1762413668261,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413668261,
+      "end": 1762413668261,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1762413668261,
+      "end": 1762413668261,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413668261,
+      "end": 1762413668261,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413668261,
+      "end": 1762413668261,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413668261,
+      "end": 1762413668261,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413668261,
+      "end": 1762413668261,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413668261,
+      "end": 1762413668261,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413668261,
+      "end": 1762413668261,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413668261,
+      "end": 1762413668261,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413668261,
+      "end": 1762413668261,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413668261,
+      "end": 1762413668262,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413668261,
+      "end": 1762413668262,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413668262,
+      "end": 1762413668262,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413668262,
+      "end": 1762413668262,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413668262,
+      "end": 1762413668262,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413668262,
+      "end": 1762413668262,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1762413668262,
+      "end": 1762413668262,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413668262,
+      "end": 1762413668262,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413668263,
+      "end": 1762413668263,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413668263,
+      "end": 1762413668263,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413668263,
+      "end": 1762413668263,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,256 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/layouts/default.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\n  <v-app class=\"app-container\">\n    <!-- 现代化导航栏 -->\n    <v-app-bar\n      :elevation=\"scrolled ? 4 : 0\"\n      :color=\"scrolled ? 'white' : 'transparent'\"\n      :theme=\"scrolled ? 'light' : 'dark'\"\n      app\n      height=\"80\"\n      class=\"app-navigation\"\n      :class=\"{ 'nav-scrolled': scrolled }\"\n    >\n      <v-container class=\"d-flex align-center\">\n        <!-- 品牌Logo -->\n        <nuxt-link to=\"/\" class=\"brand-link text-decoration-none\">\n          <div class=\"brand-container\">\n            <h1 class=\"brand-title d-none d-md-block\">\n              NO TRACE EXPLORER | 無迹探索株式会社\n            </h1>\n            <h1 class=\"brand-title-mobile d-block d-md-none\">\n              NTE\n            </h1>\n          </div>\n        </nuxt-link>\n\n        <v-spacer />\n\n        <!-- 桌面端导航菜单 -->\n        <div class=\"d-none d-lg-flex navigation-menu\">\n          <v-btn\n            v-for=\"(item, index) in navItems\"\n            :key=\"item.to\"\n            :to=\"item.to\"\n            variant=\"text\"\n            class=\"nav-btn mx-1\"\n            :class=\"{ \n              'nav-btn-active': $route.path === item.to,\n              'has-divider': index < navItems.length - 1\n            }\"\n          >\n            <v-icon v-if=\"item.icon\" :icon=\"item.icon\" start size=\"small\" />\n            {{ item.title }}\n          </v-btn>\n          \n          <!-- Admin Settings Menu -->\n          <v-menu>\n            <template #activator=\"{ props }\">\n              <v-btn\n                icon=\"mdi-cog\"\n                variant=\"text\"\n                size=\"small\"\n                class=\"ml-2 admin-btn\"\n                title=\"管理システム\"\n                v-bind=\"props\"\n              />\n            </template>\n            <v-list>\n              <v-list-item to=\"/admin\" title=\"管理中心\">\n                <template #prepend>\n                  <v-icon icon=\"mdi-cog\" />\n                </template>\n                <v-list-item-title>管理中心</v-list-item-title>\n              </v-list-item>\n            </v-list>\n          </v-menu>\n        </div>\n\n        <!-- 移动端菜单按钮 -->\n        <v-app-bar-nav-icon\n          class=\"d-lg-none\"\n          @click=\"drawer = !drawer\"\n        />\n      </v-container>\n    </v-app-bar>\n\n    <!-- 移动端抽屉导航 -->\n    <v-navigation-drawer\n      v-model=\"drawer\"\n      temporary\n      location=\"right\"\n      width=\"300\"\n      class=\"mobile-nav-drawer\"\n    >\n      <v-list nav class=\"py-4\">\n        <v-list-item\n          prepend-icon=\"mdi-close\"\n          @click=\"drawer = false\"\n          class=\"mb-4\"\n        >\n          <v-list-item-title class=\"text-h6\">メニュー</v-list-item-title>\n        </v-list-item>\n\n        <v-divider class=\"mb-4\" />\n\n        <v-list-item\n          v-for=\"item in navItems\"\n          :key=\"item.to\"\n          :to=\"item.to\"\n          @click=\"drawer = false\"\n          class=\"mobile-nav-item\"\n        >\n          <template #prepend>\n            <v-icon :icon=\"item.icon\" />\n          </template>\n          <v-list-item-title>{{ item.title }}</v-list-item-title>\n        </v-list-item>\n        \n        <v-divider class=\"my-2\" />\n        \n        <!-- Admin Link -->\n        <v-list-item\n          to=\"/admin\"\n          @click=\"drawer = false\"\n          class=\"mobile-nav-item\"\n        >\n          <template #prepend>\n            <v-icon icon=\"mdi-cog\" />\n          </template>\n          <v-list-item-title>管理中心</v-list-item-title>\n        </v-list-item>\n      </v-list>\n    </v-navigation-drawer>\n\n    <!-- Main Content -->\n    <v-main>\n      <slot />\n    </v-main>\n\n    <!-- 现代化页脚 -->\n    <v-footer class=\"app-footer\">\n      <v-container>\n        <v-row>\n          <!-- Company Info -->\n          <v-col cols=\"12\" md=\"4\" class=\"mb-4\">\n            <h3 class=\"text-h6 text-white mb-3\">\n              NO TRACE EXPLORER\n            </h3>\n            <p class=\"text-body-2 text-grey-lighten-1 mb-3\">\n              無迹探索株式会社\n            </p>\n            <p class=\"text-body-2 text-grey-lighten-2\">\n              革新的なソリューションで新たなビジネス価値を創造する企業です。\n            </p>\n          </v-col>\n\n          <!-- Quick Links -->\n          <v-col cols=\"12\" md=\"4\" class=\"mb-4\">\n            <h4 class=\"text-subtitle-1 text-white mb-3\">\n              クイックリンク\n            </h4>\n            <v-list class=\"bg-transparent\" density=\"compact\">\n              <v-list-item\n                v-for=\"item in navItems\"\n                :key=\"item.to\"\n                :to=\"item.to\"\n                class=\"text-grey-lighten-2 px-0\"\n              >\n                <v-list-item-title class=\"text-body-2\">\n                  {{ item.title }}\n                </v-list-item-title>\n              </v-list-item>\n            </v-list>\n          </v-col>\n\n          <!-- Contact Info -->\n          <v-col cols=\"12\" md=\"4\" class=\"mb-4\">\n            <h4 class=\"text-subtitle-1 text-white mb-3\">\n              お問い合わせ\n            </h4>\n            <div class=\"text-body-2 text-grey-lighten-2\">\n              <div class=\"d-flex align-center mb-2\">\n                <v-icon icon=\"mdi-email\" size=\"small\" class=\"mr-2\" />\n                info@no-trace.jp\n              </div>\n              <div class=\"d-flex align-center mb-2\">\n                <v-icon icon=\"mdi-web\" size=\"small\" class=\"mr-2\" />\n                https://no-trace.jp\n              </div>\n              <div class=\"d-flex align-center\">\n                <v-icon icon=\"mdi-map-marker\" size=\"small\" class=\"mr-2\" />\n                東京都渋谷区（設立準備中）\n              </div>\n            </div>\n          </v-col>\n        </v-row>\n\n        <v-divider class=\"my-4\" color=\"grey-darken-2\" />\n\n        <!-- Copyright -->\n        <v-row>\n          <v-col cols=\"12\" class=\"text-center\">\n            <p class=\"text-body-2 text-grey-lighten-1 mb-0\">\n              © {{ currentYear }} NO TRACE EXPLORER | 無迹探索株式会社. All rights reserved.\n            </p>\n          </v-col>\n        </v-row>\n      </v-container>\n    </v-footer>\n\n    <!-- 返回顶部按钮 -->\n    <v-btn\n      v-show=\"showBackToTop\"\n      icon=\"mdi-chevron-up\"\n      color=\"primary\"\n      size=\"large\"\n      class=\"back-to-top-btn\"\n      style=\"position: fixed; bottom: 2rem; right: 2rem; z-index: 1000;\"\n      @click=\"scrollToTop\"\n    />\n\n    <!-- PWA监控器 - 智能化PWA状态管理 -->\n    <PWAMonitor />\n\n    <!-- Analytics同意横幅 -->\n    <v-snackbar\n      v-model=\"showConsentBanner\"\n      :timeout=\"-1\"\n      location=\"bottom\"\n      color=\"grey-darken-4\"\n      class=\"consent-banner\"\n      multi-line\n    >\n      <div class=\"d-flex align-center\">\n        <v-icon icon=\"mdi-chart-line\" class=\"mr-3\" color=\"primary\" />\n        <div class=\"flex-grow-1\">\n          <div class=\"font-weight-medium text-white mb-1\">\n            サイト改善のためのデータ収集について\n          </div>\n          <div class=\"text-caption text-grey-lighten-2\">\n            当サイトではサービス向上のためGoogle Analyticsを使用しています。\n            匿名化されたアクセス情報の収集に同意いただけますか？\n          </div>\n        </div>\n      </div>\n      \n      <template #actions>\n        <div class=\"d-flex gap-2 mt-2\">\n          <v-btn\n            size=\"small\"\n            variant=\"outlined\"\n            color=\"grey-lighten-2\"\n            @click=\"denyAnalyticsConsent\"\n          >\n            拒否\n          </v-btn>\n          <v-btn\n            size=\"small\"\n            color=\"primary\"\n            @click=\"grantAnalyticsConsent\"\n          >\n            同意\n          </v-btn>\n        </div>\n      </template>\n    </v-snackbar>\n  </v-app>\n</template>\n\n<script setup lang=\"ts\">\nimport type { NavItem } from '~/types'\n\n// Analytics集成\nconst {\n  analyticsState,\n  grantConsent,\n  denyConsent,\n  trackPageView\n} = useAnalytics()\n\n// 响应式数据\nconst drawer = ref(false)\nconst scrolled = ref(false)\nconst showBackToTop = ref(false)\nconst showConsentBanner = ref(false)\n\n// 导航项目\nconst navItems: NavItem[] = [\n  { title: 'コーヒー', to: '/coffee', icon: 'mdi-coffee' },\n  { title: 'エキシビション', to: '/exhibition', icon: 'mdi-calendar-star' },\n  { title: 'ラボ', to: '/lab', icon: 'mdi-flask' },\n  { title: 'クラブ', to: '/club', icon: 'mdi-account-group' },\n  { title: '企業情報', to: '/about', icon: 'mdi-information' },\n  { title: 'お問い合わせ', to: '/contact', icon: 'mdi-email' }\n]\n\n// 当前年份\nconst currentYear = new Date().getFullYear()\n\n// 返回顶部\nconst scrollToTop = () => {\n  window.scrollTo({\n    top: 0,\n    behavior: 'smooth'\n  })\n}\n\n// Analytics同意处理\nconst grantAnalyticsConsent = () => {\n  grantConsent()\n  showConsentBanner.value = false\n  \n  // 立即跟踪当前页面\n  nextTick(() => {\n    trackPageView({})\n  })\n}\n\nconst denyAnalyticsConsent = () => {\n  denyConsent()\n  showConsentBanner.value = false\n}\n\n// 滚动监听和Analytics初始化\nonMounted(() => {\n  const handleScroll = () => {\n    scrolled.value = window.scrollY > 50\n    showBackToTop.value = window.scrollY > 300\n  }\n  \n  window.addEventListener('scroll', handleScroll)\n  \n  // 检查是否需要显示同意横幅\n  setTimeout(() => {\n    if (!analyticsState.isEnabled && analyticsState.consentSettings.analytics_storage === 'denied') {\n      const hasShownBanner = localStorage.getItem('analytics_banner_shown')\n      if (!hasShownBanner) {\n        showConsentBanner.value = true\n        localStorage.setItem('analytics_banner_shown', 'true')\n      }\n    }\n  }, 2000) // 2秒后显示，避免打扰用户\n  \n  onUnmounted(() => {\n    window.removeEventListener('scroll', handleScroll)\n  })\n})\n\n// 路由变化时跟踪页面视图\nconst router = useRouter()\nrouter.afterEach((to) => {\n  if (analyticsState.isEnabled) {\n    nextTick(() => {\n      trackPageView({\n        page_path: to.path,\n        page_title: document.title\n      })\n    })\n  }\n})\n</script>\n\n<style scoped>\n/* 全局应用容器样式 */\n.app-container {\n  background-color: #FAF9F7 !important;\n}\n\n/* 主内容区域背景色 */\n.app-container :deep(.v-main) {\n  background-color: #FAF9F7 !important;\n}\n\n/* 导航栏样式 */\n.app-navigation {\n  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n  backdrop-filter: blur(10px);\n}\n\n.nav-scrolled {\n  box-shadow: 0 2px 16px rgba(102, 126, 234, 0.1);\n  border-bottom: 1px solid rgba(102, 126, 234, 0.1);\n}\n\n/* 品牌样式 */\n.brand-link {\n  text-decoration: none;\n}\n\n.brand-container {\n  display: flex;\n  align-items: center;\n}\n\n.brand-title {\n  font-size: clamp(0.9rem, 2vw, 1.1rem);\n  font-weight: 600;\n  color: #1A1A1A;\n  letter-spacing: 0.02em;\n  line-height: 1.2;\n  margin: 0;\n  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n}\n\n\n.brand-title-mobile {\n  font-size: 1.0rem;\n  font-weight: 600;\n  color: #1A1A1A;\n  margin: 0;\n  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n}\n\n/* 导航菜单样式 */\n.navigation-menu {\n  gap: 0.5rem;\n  align-items: center;\n}\n\n.nav-btn {\n  font-weight: 500;\n  letter-spacing: 0.02em;\n  text-transform: none;\n  position: relative;\n  transition: all 0.3s ease;\n  border-radius: 8px;\n  padding: 0 16px;\n  height: 40px;\n}\n\n/* 菜单项分割线 */\n.nav-btn.has-divider::before {\n  content: '';\n  position: absolute;\n  right: -0.25rem;\n  top: 50%;\n  transform: translateY(-50%);\n  width: 1px;\n  height: 16px;\n  background: rgba(255, 255, 255, 0.3);\n  pointer-events: none;\n  z-index: 1;\n}\n\n/* 浅色主题下的分割线 */\n.v-app-bar.v-theme--light .nav-btn.has-divider::before {\n  background: rgba(0, 0, 0, 0.2);\n}\n\n/* 动态下划线特效 */\n.nav-btn::after {\n  content: '';\n  position: absolute;\n  bottom: -2px;\n  left: 50%;\n  width: 0;\n  height: 2px;\n  background: linear-gradient(90deg, rgb(var(--v-theme-primary)), rgb(var(--v-theme-secondary)));\n  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n  transform: translateX(-50%);\n  border-radius: 1px;\n}\n\n.nav-btn:hover::after,\n.nav-btn-active::after {\n  width: 80%;\n}\n\n.nav-btn:hover {\n  background: rgba(102, 126, 234, 0.08);\n  transform: translateY(-1px);\n}\n\n.nav-btn-active {\n  color: rgb(var(--v-theme-primary));\n  background: rgba(102, 126, 234, 0.1);\n}\n\n/* 移动端抽屉样式 */\n.mobile-nav-drawer :deep(.v-navigation-drawer__content) {\n  background: linear-gradient(\n    135deg,\n    rgba(102, 126, 234, 0.05) 0%,\n    rgba(118, 75, 162, 0.05) 100%\n  );\n}\n\n.mobile-nav-item {\n  margin: 0.5rem 1rem;\n  border-radius: 12px;\n  transition: all 0.3s ease;\n}\n\n.mobile-nav-item:hover {\n  background: rgba(102, 126, 234, 0.1);\n  transform: translateX(4px);\n}\n\n/* 页脚样式 */\n.app-footer {\n  background: linear-gradient(\n    135deg,\n    rgba(38, 38, 38, 1) 0%,\n    rgba(58, 58, 58, 1) 100%\n  );\n  color: white;\n  padding: 3rem 0 1.5rem;\n  margin-top: auto;\n}\n\n/* 页脚响应式设计 */\n@media (max-width: 991.98px) {\n  .app-footer {\n    padding: 2.5rem 0 1.5rem;\n  }\n}\n\n@media (max-width: 767.98px) {\n  .app-footer {\n    padding: 2rem 0 1rem;\n  }\n  \n  .app-footer .v-col {\n    margin-bottom: 1.5rem;\n  }\n}\n\n/* 响应式设计 - 统一断点标准 */\n/* 大桌面端 (≥1200px) */\n@media (min-width: 1200px) {\n  .brand-title {\n    font-size: 1.1rem;\n  }\n}\n\n/* 桌面端 (992px - 1199px) */\n@media (min-width: 992px) and (max-width: 1199.98px) {\n  .brand-title {\n    font-size: 1.0rem;\n  }\n}\n\n/* 平板端 (768px - 991px) */\n@media (min-width: 768px) and (max-width: 991.98px) {\n  .app-navigation {\n    height: 72px;\n  }\n  \n  .brand-title {\n    font-size: 0.95rem;\n  }\n}\n\n/* 移动端 (<768px) */\n@media (max-width: 767.98px) {\n  .app-navigation {\n    height: 64px;\n  }\n  \n  .brand-title-mobile {\n    font-size: 0.9rem;\n  }\n}\n\n/* 深色模式适配 */\n.v-theme--dark .nav-scrolled {\n  background: rgba(33, 33, 33, 0.95) !important;\n  border-bottom-color: rgba(102, 126, 234, 0.2);\n}\n\n.v-theme--dark .nav-btn:hover {\n  background: rgba(102, 126, 234, 0.15);\n}\n\n.v-theme--dark .nav-btn-active {\n  background: rgba(102, 126, 234, 0.2);\n}\n\n/* 返回顶部按钮样式 */\n.back-to-top-btn {\n  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);\n}\n\n.back-to-top-btn:hover {\n  transform: translateY(-2px);\n  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);\n}\n\n/* Analytics同意横幅样式 */\n.consent-banner :deep(.v-snackbar__wrapper) {\n  max-width: 800px;\n  margin: 0 auto;\n  border-radius: 12px;\n  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);\n  backdrop-filter: blur(10px);\n}\n\n.consent-banner :deep(.v-snackbar__content) {\n  padding: 1.5rem;\n}\n\n@media (max-width: 768px) {\n  .consent-banner :deep(.v-snackbar__wrapper) {\n    max-width: 95%;\n    margin: 0 2.5%;\n  }\n  \n  .consent-banner :deep(.v-snackbar__content) {\n    padding: 1rem;\n  }\n}\n</style>",
+      "start": 1762413668245,
+      "end": 1762413668739,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413668739,
+      "end": 1762413668739,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413668739,
+      "end": 1762413668739,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413668739,
+      "end": 1762413668739,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413668739,
+      "end": 1762413668739,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413668739,
+      "end": 1762413668739,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1762413668739,
+      "end": 1762413668739,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1762413668739,
+      "end": 1762413668739,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413668739,
+      "end": 1762413668739,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413668739,
+      "end": 1762413668739,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/home/user/NTE-company-website/layouts/default.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/home/user/NTE-company-website/layouts/default.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/home/user/NTE-company-website/layouts/default.vue?vue&type=style&index=0&scoped=c5bd86e6&lang.css\";\nimport { useSSRContext as __vite_useSSRContext } from \"vue\";\nconst _sfc_setup = _sfc_main.setup;\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext();\n  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add(\"layouts/default.vue\");\n  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;\n};\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-c5bd86e6\"]]);\n",
+      "start": 1762413668739,
+      "end": 1762413668785,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413668785,
+      "end": 1762413668785,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413668785,
+      "end": 1762413668785,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413668785,
+      "end": 1762413668785,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413668785,
+      "end": 1762413668785,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413668785,
+      "end": 1762413668785,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413668785,
+      "end": 1762413668785,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413668785,
+      "end": 1762413668785,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413668785,
+      "end": 1762413668785,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413668785,
+      "end": 1762413668795,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413668795,
+      "end": 1762413668795,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1762413668798,
+      "end": 1762413668798,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413668801,
+      "end": 1762413668801,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413668801,
+      "end": 1762413668801,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413668808,
+      "end": 1762413668808,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413668809,
+      "end": 1762413668809,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413668809,
+      "end": 1762413668809,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413668809,
+      "end": 1762413668809,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413668810,
+      "end": 1762413668810,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413668810,
+      "end": 1762413668810,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413668812,
+      "end": 1762413668812,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413668812,
+      "end": 1762413668812,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413668812,
+      "end": 1762413668812,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413668812,
+      "end": 1762413668812,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413668812,
+      "end": 1762413668812,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413668812,
+      "end": 1762413668812,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1762413668812,
+      "end": 1762413668812,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413668813,
+      "end": 1762413668813,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413668813,
+      "end": 1762413668813,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413668813,
+      "end": 1762413668813,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413668813,
+      "end": 1762413668813,
+      "order": "normal"
+    }
+  ]
+}

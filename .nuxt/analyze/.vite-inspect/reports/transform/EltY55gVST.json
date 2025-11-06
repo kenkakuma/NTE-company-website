@@ -1,0 +1,214 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/components/DeferredWrapper.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\n  <div ref=\"containerRef\" class=\"lazy-wrapper\">\n    <template v-if=\"isVisible\">\n      <slot />\n    </template>\n    <template v-else>\n      <!-- 加载占位符 -->\n      <div class=\"lazy-placeholder\">\n        <v-skeleton-loader\n          :type=\"skeletonType\"\n          :height=\"height\"\n          class=\"mx-auto\"\n        />\n      </div>\n    </template>\n  </div>\n</template>\n\n<script setup lang=\"ts\">\ninterface Props {\n  // 骨架屏类型\n  skeletonType: string\n  // 占位符高度\n  height: string | number\n  // 进入视窗的边距\n  rootMargin?: string\n  // 进入视窗的阈值\n  threshold?: number\n  // 是否一次性加载（默认true）\n  once?: boolean\n}\n\nconst props = withDefaults(defineProps<Props>(), {\n  skeletonType: 'card',\n  height: 200,\n  rootMargin: '50px',\n  threshold: 0.1,\n  once: true\n})\n\n// 响应式引用\nconst containerRef = ref<HTMLElement>()\nconst isVisible = ref(false)\n\n// 使用Intersection Observer进行懒加载\nonMounted(() => {\n  if (!containerRef.value) return\n\n  const observer = new IntersectionObserver(\n    (entries) => {\n      entries.forEach((entry) => {\n        if (entry.isIntersecting) {\n          isVisible.value = true\n          \n          // 如果是一次性加载，观察完成后断开连接\n          if (props.once) {\n            observer.disconnect()\n          }\n        } else if (!props.once) {\n          // 非一次性加载时，组件离开视窗后可以卸载\n          isVisible.value = false\n        }\n      })\n    },\n    {\n      rootMargin: props.rootMargin,\n      threshold: props.threshold\n    }\n  )\n\n  observer.observe(containerRef.value)\n\n  // 组件卸载时清理观察器\n  onUnmounted(() => {\n    observer.disconnect()\n  })\n})\n\n// 支持服务端渲染 - 在服务端直接显示内容\nif (process.server) {\n  isVisible.value = true\n}\n</script>\n\n<style scoped>\n.lazy-wrapper {\n  min-height: 100px;\n}\n\n.lazy-placeholder {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  min-height: inherit;\n}\n\n/* 骨架屏加载动画 */\n.lazy-placeholder :deep(.v-skeleton-loader) {\n  background: linear-gradient(\n    90deg, \n    transparent 0%, \n    rgba(102, 126, 234, 0.1) 50%, \n    transparent 100%\n  );\n  animation: shimmer 1.5s infinite;\n}\n\n@keyframes shimmer {\n  0% {\n    transform: translateX(-100%);\n  }\n  100% {\n    transform: translateX(100%);\n  }\n}\n</style>",
+      "start": 1762413662497,
+      "end": 1762413663406,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413663406,
+      "end": 1762413663406,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413663406,
+      "end": 1762413663406,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413663406,
+      "end": 1762413663406,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1762413663406,
+      "end": 1762413663406,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1762413663406,
+      "end": 1762413663406,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413663406,
+      "end": 1762413663406,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413663406,
+      "end": 1762413663406,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/home/user/NTE-company-website/components/DeferredWrapper.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/home/user/NTE-company-website/components/DeferredWrapper.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/home/user/NTE-company-website/components/DeferredWrapper.vue?vue&type=style&index=0&scoped=39c1e750&lang.css\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-39c1e750\"]]);\n",
+      "start": 1762413663406,
+      "end": 1762413663685,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413663685,
+      "end": 1762413663685,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413663685,
+      "end": 1762413663685,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413663685,
+      "end": 1762413663685,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1762413663685,
+      "end": 1762413663685,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413663686,
+      "end": 1762413663686,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413663686,
+      "end": 1762413663686,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413663686,
+      "end": 1762413663686,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413663687,
+      "end": 1762413663687,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1762413663687,
+      "end": 1762413663687,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413663687,
+      "end": 1762413663687,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413663688,
+      "end": 1762413663688,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413663688,
+      "end": 1762413663688,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413663688,
+      "end": 1762413663688,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413663688,
+      "end": 1762413663688,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413663688,
+      "end": 1762413663688,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413663689,
+      "end": 1762413663689,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413663689,
+      "end": 1762413663690,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413663691,
+      "end": 1762413663691,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413663697,
+      "end": 1762413663698,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1762413663702,
+      "end": 1762413663702,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1762413663715,
+      "end": 1762413663715,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413663719,
+      "end": 1762413663719,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413663720,
+      "end": 1762413663720,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413663720,
+      "end": 1762413663720,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413663720,
+      "end": 1762413663720,
+      "order": "normal"
+    }
+  ]
+}

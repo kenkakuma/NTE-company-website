@@ -1,0 +1,214 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/components/PresentationCounter.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\n  <section class=\"pt-3 pb-4\" id=\"count-stats\">\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col-lg-9 z-index-2 border-radius-xl mx-auto py-3\">\n          <div class=\"row\">\n            <div class=\"col-md-4 position-relative\">\n              <DefaultCounterCard\n                color=\"info\"\n                title=\"イノベーションプロジェクト\"\n                description=\"先進的な技術と創造的なアイデアで、新しい価値を創造しています\"\n                :count=\"50\"\n                suffix=\"+\"\n                :duration=\"3000\"\n                divider=\"vertical\"\n              />\n            </div>\n            <div class=\"col-md-4 position-relative\">\n              <DefaultCounterCard\n                color=\"primary\"\n                title=\"サービス領域\"\n                description=\"ラボ、珈琲、クラブの3つのコアサービスで多様なニーズに対応\"\n                :count=\"3\"\n                suffix=\"\"\n                :duration=\"3000\"\n                divider=\"vertical\"\n              />\n            </div>\n            <div class=\"col-md-4\">\n              <DefaultCounterCard\n                color=\"dark\"\n                title=\"年間実績\"\n                description=\"設立準備中でありながら、既に多数のプロジェクトを手がけています\"\n                :count=\"2025\"\n                :duration=\"3000\"\n              />\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </section>\n</template>\n\n<script setup lang=\"ts\">\nimport DefaultCounterCard from '~/components/DefaultCounterCard.vue'\n</script>\n\n<style scoped>\n/* Material Kit Pro 样式 */\n.container {\n  max-width: 1200px;\n}\n\n.border-radius-xl {\n  border-radius: 1rem;\n}\n\n.z-index-2 {\n  z-index: 2;\n}\n\n.position-relative {\n  position: relative;\n}\n\n.col-md-4 {\n  flex: 0 0 auto;\n  width: 33.33333333%;\n}\n\n@media (min-width: 768px) {\n  .col-md-4 {\n    flex: 0 0 auto;\n    width: 33.33333333%;\n  }\n}\n\n@media (max-width: 767px) {\n  .col-md-4 {\n    width: 100%;\n    margin-bottom: 2rem;\n  }\n}\n\n.pt-3 {\n  padding-top: 1rem;\n}\n\n.pb-4 {\n  padding-bottom: 1.5rem;\n}\n\n.py-3 {\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n}\n\n.mx-auto {\n  margin-left: auto;\n  margin-right: auto;\n}\n\n.row {\n  display: flex;\n  flex-wrap: wrap;\n  margin-right: -0.75rem;\n  margin-left: -0.75rem;\n}\n\n.col-lg-9 {\n  flex: 0 0 auto;\n  width: 75%;\n}\n\n@media (min-width: 992px) {\n  .col-lg-9 {\n    flex: 0 0 auto;\n    width: 75%;\n  }\n}\n\n@media (max-width: 991px) {\n  .col-lg-9 {\n    width: 100%;\n  }\n}\n</style>",
+      "start": 1762413662476,
+      "end": 1762413663397,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413663397,
+      "end": 1762413663397,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413663397,
+      "end": 1762413663397,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413663397,
+      "end": 1762413663397,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1762413663397,
+      "end": 1762413663397,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1762413663397,
+      "end": 1762413663397,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413663397,
+      "end": 1762413663397,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413663397,
+      "end": 1762413663397,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/home/user/NTE-company-website/components/PresentationCounter.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/home/user/NTE-company-website/components/PresentationCounter.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/home/user/NTE-company-website/components/PresentationCounter.vue?vue&type=style&index=0&scoped=68f52405&lang.css\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-68f52405\"]]);\n",
+      "start": 1762413663397,
+      "end": 1762413663685,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413663685,
+      "end": 1762413663685,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413663685,
+      "end": 1762413663685,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413663685,
+      "end": 1762413663685,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1762413663685,
+      "end": 1762413663685,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413663686,
+      "end": 1762413663686,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413663686,
+      "end": 1762413663686,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413663686,
+      "end": 1762413663686,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413663686,
+      "end": 1762413663687,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1762413663687,
+      "end": 1762413663687,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413663687,
+      "end": 1762413663687,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413663688,
+      "end": 1762413663688,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413663688,
+      "end": 1762413663688,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413663688,
+      "end": 1762413663688,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413663688,
+      "end": 1762413663688,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413663688,
+      "end": 1762413663688,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413663689,
+      "end": 1762413663689,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413663689,
+      "end": 1762413663690,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413663691,
+      "end": 1762413663691,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413663697,
+      "end": 1762413663698,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1762413663702,
+      "end": 1762413663702,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1762413663715,
+      "end": 1762413663715,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413663719,
+      "end": 1762413663719,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413663719,
+      "end": 1762413663720,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413663720,
+      "end": 1762413663720,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413663720,
+      "end": 1762413663720,
+      "order": "normal"
+    }
+  ]
+}

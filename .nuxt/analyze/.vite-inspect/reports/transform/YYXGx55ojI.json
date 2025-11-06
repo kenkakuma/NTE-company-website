@@ -1,0 +1,214 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/pages/admin/index.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<!-- 统一管理中心 -->\n<!-- Author: Claude AI Assistant -->\n<!-- Date: 2025-07-09 -->\n<!-- Description: Unified admin dashboard with all management features -->\n\n<template>\n  <div class=\"admin-dashboard\">\n    <!-- App Bar -->\n    <v-app-bar \n      color=\"primary\" \n      density=\"comfortable\"\n      elevation=\"2\"\n      app\n    >\n      <template v-slot:prepend>\n        <v-app-bar-nav-icon @click=\"drawer = !drawer\" />\n      </template>\n      \n      <v-toolbar-title class=\"toolbar-title\">\n        <v-icon start>mdi-cog</v-icon>\n        NO TRACE EXPLORER 管理中心\n      </v-toolbar-title>\n      \n      <v-spacer />\n      \n      <v-btn \n        icon=\"mdi-home\"\n        @click=\"goHome\"\n        title=\"返回首页\"\n      />\n      \n      <v-btn \n        icon=\"mdi-refresh\"\n        @click=\"refreshData\"\n        title=\"刷新数据\"\n      />\n    </v-app-bar>\n\n    <!-- Navigation Drawer -->\n    <v-navigation-drawer\n      v-model=\"drawer\"\n      app\n      width=\"280\"\n      color=\"grey-lighten-5\"\n    >\n      <div class=\"drawer-header\">\n        <div class=\"user-info\">\n          <v-avatar color=\"primary\" size=\"48\">\n            <v-icon>mdi-account</v-icon>\n          </v-avatar>\n          <div class=\"user-details\">\n            <div class=\"user-name\">管理员</div>\n            <div class=\"user-role\">系统管理员</div>\n          </div>\n        </div>\n      </div>\n      \n      <v-divider />\n      \n      <v-list nav density=\"compact\">\n        <v-list-item\n          v-for=\"item in navigationItems\"\n          :key=\"item.value\"\n          :prepend-icon=\"item.icon\"\n          :title=\"item.title\"\n          :subtitle=\"item.subtitle\"\n          :active=\"activeTab === item.value\"\n          @click=\"activeTab = item.value\"\n          class=\"nav-item\"\n        >\n          <template v-slot:append v-if=\"item.badge\">\n            <v-badge \n              :content=\"item.badge\"\n              color=\"error\"\n              inline\n            />\n          </template>\n        </v-list-item>\n      </v-list>\n      \n      <v-divider class=\"my-3\" />\n      \n      <v-list nav density=\"compact\">\n        <v-list-subheader>系统设置</v-list-subheader>\n        <v-list-item\n          prepend-icon=\"mdi-backup-restore\"\n          title=\"数据备份\"\n          @click=\"backupData\"\n        />\n        <v-list-item\n          prepend-icon=\"mdi-delete-sweep\"\n          title=\"清理缓存\"\n          @click=\"clearCache\"\n        />\n        <v-list-item\n          prepend-icon=\"mdi-information\"\n          title=\"系统信息\"\n          @click=\"showSystemInfo\"\n        />\n      </v-list>\n    </v-navigation-drawer>\n\n    <!-- Main Content -->\n    <v-main>\n      <div class=\"main-content\">\n        <!-- Tab Headers -->\n        <div class=\"tab-headers\">\n          <div class=\"tab-header-content\">\n            <h1 class=\"page-title\">\n              <v-icon start>{{ currentTabIcon }}</v-icon>\n              {{ currentTabTitle }}\n            </h1>\n            <p class=\"page-subtitle\">{{ currentTabSubtitle }}</p>\n          </div>\n        </div>\n\n        <!-- Tab Content -->\n        <div class=\"tab-content\">\n          <!-- 文章管理 -->\n          <div v-show=\"activeTab === 'articles'\" class=\"tab-panel\">\n            <ArticleManager />\n          </div>\n\n          <!-- 图片管理 -->\n          <div v-show=\"activeTab === 'images'\" class=\"tab-panel\">\n            <ImageManager />\n          </div>\n\n          <!-- 首页管理 -->\n          <div v-show=\"activeTab === 'homepage'\" class=\"tab-panel\">\n            <HomepageManager />\n          </div>\n\n          <!-- 数据分析 -->\n          <div v-show=\"activeTab === 'analytics'\" class=\"tab-panel\">\n            <AnalyticsManager />\n          </div>\n        </div>\n      </div>\n    </v-main>\n\n    <!-- 系统信息对话框 -->\n    <v-dialog v-model=\"showSystemDialog\" max-width=\"600\">\n      <v-card>\n        <v-card-title class=\"d-flex align-center\">\n          <v-icon start>mdi-information</v-icon>\n          系统信息\n        </v-card-title>\n        <v-card-text>\n          <div class=\"system-info\">\n            <div class=\"info-item\">\n              <strong>系统版本:</strong> NO TRACE EXPLORER v2.5.1\n            </div>\n            <div class=\"info-item\">\n              <strong>构建时间:</strong> {{ buildTime }}\n            </div>\n            <div class=\"info-item\">\n              <strong>技术栈:</strong> Nuxt 3.17.6 + Vuetify 3.4.0 + TypeScript\n            </div>\n            <div class=\"info-item\">\n              <strong>存储使用:</strong> {{ storageUsage }}\n            </div>\n            <div class=\"info-item\">\n              <strong>浏览器:</strong> {{ userAgent }}\n            </div>\n          </div>\n        </v-card-text>\n        <v-card-actions>\n          <v-spacer />\n          <v-btn @click=\"showSystemDialog = false\">关闭</v-btn>\n        </v-card-actions>\n      </v-card>\n    </v-dialog>\n\n    <!-- 消息提示 -->\n    <v-snackbar\n      v-model=\"showMessage\"\n      :color=\"messageType\"\n      :timeout=\"3000\"\n      location=\"top\"\n    >\n      {{ message }}\n      <template v-slot:actions>\n        <v-btn variant=\"text\" @click=\"showMessage = false\">关闭</v-btn>\n      </template>\n    </v-snackbar>\n  </div>\n</template>\n\n<script setup lang=\"ts\">\nimport { ref, computed, onMounted, watch } from 'vue'\nimport { useRouter } from 'vue-router'\nimport ArticleManager from '~/components/ArticleManager.vue'\nimport ImageManager from '~/components/ImageManager.vue'\nimport HomepageManager from '~/components/HomepageManager.vue'\nimport AnalyticsManager from '~/components/AnalyticsManager.vue'\n\n// 路由\nconst router = useRouter()\n\n// 响应式状态\nconst drawer = ref(true)\nconst activeTab = ref('articles')\nconst showSystemDialog = ref(false)\nconst showMessage = ref(false)\nconst message = ref('')\nconst messageType = ref<'success' | 'error' | 'warning'>('success')\n\n// 导航项目\nconst navigationItems = [\n  {\n    value: 'articles',\n    title: '文章管理',\n    subtitle: '管理企业新闻和文章',\n    icon: 'mdi-newspaper',\n    badge: null\n  },\n  {\n    value: 'images',\n    title: '图片管理',\n    subtitle: '上传和管理图片素材',\n    icon: 'mdi-image-multiple',\n    badge: null\n  },\n  {\n    value: 'homepage',\n    title: '首页管理',\n    subtitle: '管理首页内容和背景',\n    icon: 'mdi-home-variant',\n    badge: null\n  },\n  {\n    value: 'analytics',\n    title: '数据分析',\n    subtitle: '查看网站统计数据',\n    icon: 'mdi-chart-line',\n    badge: null\n  }\n]\n\n// 计算属性\nconst currentTabIcon = computed(() => {\n  const item = navigationItems.find(nav => nav.value === activeTab.value)\n  return item?.icon || 'mdi-cog'\n})\n\nconst currentTabTitle = computed(() => {\n  const item = navigationItems.find(nav => nav.value === activeTab.value)\n  return item?.title || '管理中心'\n})\n\nconst currentTabSubtitle = computed(() => {\n  const item = navigationItems.find(nav => nav.value === activeTab.value)\n  return item?.subtitle || ''\n})\n\nconst buildTime = computed(() => {\n  return new Date().toLocaleString('zh-CN')\n})\n\nconst storageUsage = computed(() => {\n  try {\n    let totalSize = 0\n    for (let key in localStorage) {\n      if (localStorage.hasOwnProperty(key)) {\n        totalSize += localStorage.getItem(key)?.length || 0\n      }\n    }\n    return `${(totalSize / 1024).toFixed(2)} KB`\n  } catch (error) {\n    return '无法获取'\n  }\n})\n\nconst userAgent = computed(() => {\n  return navigator.userAgent.split(' ').slice(0, 3).join(' ')\n})\n\n// 方法\nconst goHome = () => {\n  router.push('/')\n}\n\nconst refreshData = () => {\n  // 刷新当前页面数据\n  window.location.reload()\n}\n\nconst backupData = () => {\n  try {\n    const data = {\n      articles: localStorage.getItem('notrace_articles'),\n      images: localStorage.getItem('notrace_images'),\n      homepage: localStorage.getItem('notrace_homepage'),\n      analytics: localStorage.getItem('notrace_analytics'),\n      timestamp: new Date().toISOString()\n    }\n    \n    const dataStr = JSON.stringify(data, null, 2)\n    const blob = new Blob([dataStr], { type: 'application/json' })\n    const url = URL.createObjectURL(blob)\n    \n    const a = document.createElement('a')\n    a.href = url\n    a.download = `notrace-backup-${new Date().toISOString().split('T')[0]}.json`\n    a.click()\n    \n    URL.revokeObjectURL(url)\n    \n    showMessage.value = true\n    message.value = '数据备份已下载'\n    messageType.value = 'success'\n  } catch (error) {\n    showMessage.value = true\n    message.value = '备份失败'\n    messageType.value = 'error'\n  }\n}\n\nconst clearCache = () => {\n  try {\n    // 清理缓存但保留重要数据\n    const keysToKeep = [\n      'notrace_articles',\n      'notrace_images', \n      'notrace_homepage',\n      'notrace_image_categories'\n    ]\n    \n    const keysToRemove = []\n    for (let key in localStorage) {\n      if (key.startsWith('notrace_') && !keysToKeep.includes(key)) {\n        keysToRemove.push(key)\n      }\n    }\n    \n    keysToRemove.forEach(key => {\n      localStorage.removeItem(key)\n    })\n    \n    showMessage.value = true\n    message.value = `已清理 ${keysToRemove.length} 个缓存项`\n    messageType.value = 'success'\n  } catch (error) {\n    showMessage.value = true\n    message.value = '清理缓存失败'\n    messageType.value = 'error'\n  }\n}\n\nconst showSystemInfo = () => {\n  showSystemDialog.value = true\n}\n\n// 生命周期\nonMounted(() => {\n  // 检查URL参数以确定初始tab\n  const urlParams = new URLSearchParams(window.location.search)\n  const tab = urlParams.get('tab')\n  if (tab && navigationItems.some(item => item.value === tab)) {\n    activeTab.value = tab\n  }\n})\n\n// 监听tab变化，更新URL\nwatch(activeTab, (newTab) => {\n  const url = new URL(window.location.href)\n  url.searchParams.set('tab', newTab)\n  window.history.replaceState({}, '', url.toString())\n})\n\n// SEO配置\nuseHead({\n  title: 'NO TRACE EXPLORER 管理中心',\n  meta: [\n    { name: 'description', content: 'NO TRACE EXPLORER 企业网站管理中心' },\n    { name: 'robots', content: 'noindex, nofollow' }\n  ]\n})\n</script>\n\n<style scoped>\n.admin-dashboard {\n  min-height: 100vh;\n  background: #F5F5F5;\n}\n\n.toolbar-title {\n  font-weight: 500;\n  font-size: 1.1rem;\n}\n\n.drawer-header {\n  padding: 1rem;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.12);\n}\n\n.user-info {\n  display: flex;\n  align-items: center;\n  gap: 1rem;\n}\n\n.user-details {\n  flex: 1;\n}\n\n.user-name {\n  font-weight: 500;\n  color: #1A1A1A;\n}\n\n.user-role {\n  font-size: 0.875rem;\n  color: #666666;\n}\n\n.nav-item {\n  margin: 0.25rem 0;\n  border-radius: 8px;\n}\n\n.main-content {\n  max-width: 1400px;\n  margin: 0 auto;\n  padding: 0;\n}\n\n.tab-headers {\n  background: white;\n  border-bottom: 1px solid #E0E0E0;\n  position: sticky;\n  top: 64px;\n  z-index: 5;\n}\n\n.tab-header-content {\n  padding: 2rem 2rem 1.5rem;\n}\n\n.page-title {\n  font-size: 1.75rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 0.5rem;\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n}\n\n.page-subtitle {\n  color: #666666;\n  font-size: 1rem;\n  margin: 0;\n}\n\n.tab-content {\n  background: white;\n  min-height: calc(100vh - 120px);\n}\n\n.tab-panel {\n  padding: 2rem;\n}\n\n.system-info {\n  padding: 1rem 0;\n}\n\n.info-item {\n  padding: 0.75rem 0;\n  border-bottom: 1px solid #F0F0F0;\n}\n\n.info-item:last-child {\n  border-bottom: none;\n}\n\n/* 响应式设计 */\n@media (max-width: 768px) {\n  .tab-header-content {\n    padding: 1.5rem 1rem 1rem;\n  }\n  \n  .page-title {\n    font-size: 1.5rem;\n  }\n  \n  .tab-panel {\n    padding: 1rem;\n  }\n}\n\n/* 深色主题支持 */\n.v-theme--dark .admin-dashboard {\n  background: #121212;\n}\n\n.v-theme--dark .tab-headers {\n  background: #1E1E1E;\n  border-bottom-color: #333333;\n}\n\n.v-theme--dark .tab-content {\n  background: #1E1E1E;\n}\n\n.v-theme--dark .page-title {\n  color: #FFFFFF;\n}\n\n.v-theme--dark .page-subtitle {\n  color: #CCCCCC;\n}\n\n.v-theme--dark .info-item {\n  border-bottom-color: #333333;\n}\n</style>",
+      "start": 1762413661622,
+      "end": 1762413661917,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413661918,
+      "end": 1762413661918,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413661918,
+      "end": 1762413661918,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413661918,
+      "end": 1762413661918,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1762413661918,
+      "end": 1762413661918,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1762413661918,
+      "end": 1762413661918,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413661918,
+      "end": 1762413661918,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413661918,
+      "end": 1762413661918,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/home/user/NTE-company-website/pages/admin/index.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/home/user/NTE-company-website/pages/admin/index.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/home/user/NTE-company-website/pages/admin/index.vue?vue&type=style&index=0&scoped=e65f7d52&lang.css\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-e65f7d52\"]]);\n",
+      "start": 1762413661918,
+      "end": 1762413662534,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413662534,
+      "end": 1762413662534,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413662534,
+      "end": 1762413662534,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413662534,
+      "end": 1762413662534,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1762413662534,
+      "end": 1762413662534,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413662535,
+      "end": 1762413662535,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413662535,
+      "end": 1762413662535,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413662535,
+      "end": 1762413662535,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413662535,
+      "end": 1762413662535,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1762413662535,
+      "end": 1762413662535,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413662536,
+      "end": 1762413662536,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413662536,
+      "end": 1762413662536,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413662536,
+      "end": 1762413662536,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413662536,
+      "end": 1762413662536,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413662536,
+      "end": 1762413662536,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413662536,
+      "end": 1762413662536,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413662537,
+      "end": 1762413662537,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413662538,
+      "end": 1762413662540,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413662540,
+      "end": 1762413662540,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413662542,
+      "end": 1762413662542,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1762413662543,
+      "end": 1762413662544,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1762413662544,
+      "end": 1762413662544,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413662545,
+      "end": 1762413662545,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413662546,
+      "end": 1762413662546,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413662546,
+      "end": 1762413662546,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413662547,
+      "end": 1762413662547,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,221 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/components/HomepageManager.vue?vue&type=style&index=0&scoped=50847e32&lang.css",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "\n.homepage-manager {\n  width: 100%;\n}\n\n.tab-content {\n  padding: 0;\n}\n\n.content-header {\n  margin-bottom: 2rem;\n}\n\n.section-title {\n  font-size: 1.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 0.5rem;\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n}\n\n.section-description {\n  color: #666666;\n  margin: 0;\n}\n\n.current-background {\n  margin-bottom: 1.5rem;\n}\n\n.background-preview {\n  position: relative;\n  width: 100%;\n  height: 200px;\n  border-radius: 8px;\n  overflow: hidden;\n  margin-bottom: 1rem;\n}\n\n.preview-image {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n}\n\n.preview-overlay {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background: rgba(0, 0, 0, 0.3);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  opacity: 0;\n  transition: opacity 0.3s;\n}\n\n.background-preview:hover .preview-overlay {\n  opacity: 1;\n}\n\n.background-info h4 {\n  color: #1A1A1A;\n  margin-bottom: 0.5rem;\n}\n\n.background-info p {\n  color: #666666;\n  margin: 0;\n}\n\n.preset-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));\n  gap: 1rem;\n}\n\n.preset-item {\n  position: relative;\n  height: 80px;\n  border-radius: 8px;\n  overflow: hidden;\n  cursor: pointer;\n  border: 2px solid transparent;\n  transition: all 0.3s;\n}\n\n.preset-item:hover {\n  border-color: #667eea;\n}\n\n.preset-item.active {\n  border-color: #667eea;\n}\n\n.preset-item img {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n}\n\n.preset-overlay {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background: rgba(102, 126, 234, 0.8);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  opacity: 0;\n  transition: opacity 0.3s;\n}\n\n.preset-item.active .preset-overlay {\n  opacity: 1;\n}\n\n.button-settings h4 {\n  color: #1A1A1A;\n  font-weight: 500;\n}\n\n.partners-grid {\n  display: grid;\n  gap: 1rem;\n}\n\n.partner-item {\n  display: flex;\n  align-items: center;\n  gap: 1rem;\n  padding: 1rem;\n  border: 1px solid #E0E0E0;\n  border-radius: 8px;\n}\n\n.partner-logo {\n  width: 60px;\n  height: 60px;\n  border-radius: 8px;\n  overflow: hidden;\n  flex-shrink: 0;\n}\n\n.partner-logo img {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n}\n\n.partner-info {\n  flex: 1;\n}\n\n.partner-info h4 {\n  color: #1A1A1A;\n  margin-bottom: 0.25rem;\n}\n\n.partner-info p {\n  color: #666666;\n  margin-bottom: 0.25rem;\n}\n\n.partner-link {\n  color: #667eea;\n  text-decoration: none;\n  font-size: 0.875rem;\n}\n\n.partner-actions {\n  display: flex;\n  gap: 0.25rem;\n}\n\n.empty-state {\n  text-align: center;\n  padding: 3rem;\n  color: #666666;\n}\n\n.empty-state h3 {\n  margin: 1rem 0 0.5rem;\n}\n\n.logo-preview {\n  margin-top: 1rem;\n  text-align: center;\n}\n\n.preview-logo {\n  max-width: 150px;\n  max-height: 100px;\n  border-radius: 8px;\n  border: 1px solid #E0E0E0;\n}\n\n/* 响应式设计 */\n@media (max-width: 768px) {\n  .preset-grid {\n    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));\n  }\n  \n  .preset-item {\n    height: 60px;\n  }\n  \n  .partner-item {\n    flex-direction: column;\n    align-items: flex-start;\n  }\n  \n  .partner-logo {\n    width: 80px;\n    height: 80px;\n  }\n}\n",
+      "start": 1762413664046,
+      "end": 1762413664046
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413664046,
+      "end": 1762413664046,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413664047,
+      "end": 1762413664047,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413664048,
+      "end": 1762413664048,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": ".homepage-manager{width:100%}.tab-content{padding:0}.content-header{margin-bottom:2rem}.section-title{align-items:center;color:#1a1a1a;display:flex;font-size:1.5rem;font-weight:500;gap:.5rem;margin-bottom:.5rem}.section-description{color:#666;margin:0}.current-background{margin-bottom:1.5rem}.background-preview{border-radius:8px;height:200px;margin-bottom:1rem;overflow:hidden;position:relative;width:100%}.preview-image{height:100%;-o-object-fit:cover;object-fit:cover;width:100%}.preview-overlay{align-items:center;background:rgba(0,0,0,.3);bottom:0;display:flex;justify-content:center;left:0;opacity:0;position:absolute;right:0;top:0;transition:opacity .3s}.background-preview:hover .preview-overlay{opacity:1}.background-info h4{color:#1a1a1a;margin-bottom:.5rem}.background-info p{color:#666;margin:0}.preset-grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(120px,1fr))}.preset-item{border:2px solid transparent;border-radius:8px;cursor:pointer;height:80px;overflow:hidden;position:relative;transition:all .3s}.preset-item.active,.preset-item:hover{border-color:#667eea}.preset-item img{height:100%;-o-object-fit:cover;object-fit:cover;width:100%}.preset-overlay{align-items:center;background:rgba(102,126,234,.8);bottom:0;display:flex;justify-content:center;left:0;opacity:0;position:absolute;right:0;top:0;transition:opacity .3s}.preset-item.active .preset-overlay{opacity:1}.button-settings h4{color:#1a1a1a;font-weight:500}.partners-grid{display:grid;gap:1rem}.partner-item{align-items:center;border:1px solid #e0e0e0;border-radius:8px;display:flex;gap:1rem;padding:1rem}.partner-logo{border-radius:8px;flex-shrink:0;height:60px;overflow:hidden;width:60px}.partner-logo img{height:100%;-o-object-fit:cover;object-fit:cover;width:100%}.partner-info{flex:1}.partner-info h4{color:#1a1a1a;margin-bottom:.25rem}.partner-info p{color:#666;margin-bottom:.25rem}.partner-link{color:#667eea;font-size:.875rem;text-decoration:none}.partner-actions{display:flex;gap:.25rem}.empty-state{color:#666;padding:3rem;text-align:center}.empty-state h3{margin:1rem 0 .5rem}.logo-preview{margin-top:1rem;text-align:center}.preview-logo{border:1px solid #e0e0e0;border-radius:8px;max-height:100px;max-width:150px}@media (max-width:768px){.preset-grid{grid-template-columns:repeat(auto-fit,minmax(100px,1fr))}.preset-item{height:60px}.partner-item{align-items:flex-start;flex-direction:column}.partner-logo{height:80px;width:80px}}",
+      "start": 1762413664048,
+      "end": 1762413664084,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1762413664084,
+      "end": 1762413664084,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413664084,
+      "end": 1762413664084,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413664084,
+      "end": 1762413664084,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": ".homepage-manager[data-v-50847e32]{width:100%}.tab-content[data-v-50847e32]{padding:0}.content-header[data-v-50847e32]{margin-bottom:2rem}.section-title[data-v-50847e32]{align-items:center;color:#1a1a1a;display:flex;font-size:1.5rem;font-weight:500;gap:.5rem;margin-bottom:.5rem}.section-description[data-v-50847e32]{color:#666;margin:0}.current-background[data-v-50847e32]{margin-bottom:1.5rem}.background-preview[data-v-50847e32]{border-radius:8px;height:200px;margin-bottom:1rem;overflow:hidden;position:relative;width:100%}.preview-image[data-v-50847e32]{height:100%;-o-object-fit:cover;object-fit:cover;width:100%}.preview-overlay[data-v-50847e32]{align-items:center;background:rgba(0,0,0,.3);bottom:0;display:flex;justify-content:center;left:0;opacity:0;position:absolute;right:0;top:0;transition:opacity .3s}.background-preview:hover .preview-overlay[data-v-50847e32]{opacity:1}.background-info h4[data-v-50847e32]{color:#1a1a1a;margin-bottom:.5rem}.background-info p[data-v-50847e32]{color:#666;margin:0}.preset-grid[data-v-50847e32]{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(120px,1fr))}.preset-item[data-v-50847e32]{border:2px solid transparent;border-radius:8px;cursor:pointer;height:80px;overflow:hidden;position:relative;transition:all .3s}.preset-item.active[data-v-50847e32],.preset-item[data-v-50847e32]:hover{border-color:#667eea}.preset-item img[data-v-50847e32]{height:100%;-o-object-fit:cover;object-fit:cover;width:100%}.preset-overlay[data-v-50847e32]{align-items:center;background:rgba(102,126,234,.8);bottom:0;display:flex;justify-content:center;left:0;opacity:0;position:absolute;right:0;top:0;transition:opacity .3s}.preset-item.active .preset-overlay[data-v-50847e32]{opacity:1}.button-settings h4[data-v-50847e32]{color:#1a1a1a;font-weight:500}.partners-grid[data-v-50847e32]{display:grid;gap:1rem}.partner-item[data-v-50847e32]{align-items:center;border:1px solid #e0e0e0;border-radius:8px;display:flex;gap:1rem;padding:1rem}.partner-logo[data-v-50847e32]{border-radius:8px;flex-shrink:0;height:60px;overflow:hidden;width:60px}.partner-logo img[data-v-50847e32]{height:100%;-o-object-fit:cover;object-fit:cover;width:100%}.partner-info[data-v-50847e32]{flex:1}.partner-info h4[data-v-50847e32]{color:#1a1a1a;margin-bottom:.25rem}.partner-info p[data-v-50847e32]{color:#666;margin-bottom:.25rem}.partner-link[data-v-50847e32]{color:#667eea;font-size:.875rem;text-decoration:none}.partner-actions[data-v-50847e32]{display:flex;gap:.25rem}.empty-state[data-v-50847e32]{color:#666;padding:3rem;text-align:center}.empty-state h3[data-v-50847e32]{margin:1rem 0 .5rem}.logo-preview[data-v-50847e32]{margin-top:1rem;text-align:center}.preview-logo[data-v-50847e32]{border:1px solid #e0e0e0;border-radius:8px;max-height:100px;max-width:150px}@media (max-width:768px){.preset-grid[data-v-50847e32]{grid-template-columns:repeat(auto-fit,minmax(100px,1fr))}.preset-item[data-v-50847e32]{height:60px}.partner-item[data-v-50847e32]{align-items:flex-start;flex-direction:column}.partner-logo[data-v-50847e32]{height:80px;width:80px}}",
+      "start": 1762413664088,
+      "end": 1762413664092,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413664092,
+      "end": 1762413664092,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413664092,
+      "end": 1762413664092,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413664092,
+      "end": 1762413664092,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1762413664092,
+      "end": 1762413664092,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413664092,
+      "end": 1762413664092,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413664092,
+      "end": 1762413664092,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413664092,
+      "end": 1762413664092,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413664092,
+      "end": 1762413664092,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "export default ''",
+      "start": 1762413664092,
+      "end": 1762413664092,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413664092,
+      "end": 1762413664092,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413664092,
+      "end": 1762413664092,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413664092,
+      "end": 1762413664092,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413664093,
+      "end": 1762413664093,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413664093,
+      "end": 1762413664093,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413664093,
+      "end": 1762413664093,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413664093,
+      "end": 1762413664093,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413664093,
+      "end": 1762413664093,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413664093,
+      "end": 1762413664093,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413664093,
+      "end": 1762413664093,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1762413664093,
+      "end": 1762413664093,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1762413664093,
+      "end": 1762413664093,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413664093,
+      "end": 1762413664093,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413664093,
+      "end": 1762413664093,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413664093,
+      "end": 1762413664093,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413664093,
+      "end": 1762413664093,
+      "order": "normal"
+    }
+  ]
+}

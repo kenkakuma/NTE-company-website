@@ -1,0 +1,210 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/node_modules/vuetify/lib/composables/hotkey/hotkey.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "// Composables\nimport { splitKeyCombination, splitKeySequence } from \"./hotkey-parsing.js\"; // Utilities\nimport { onBeforeUnmount, toValue, watch } from 'vue';\nimport { IN_BROWSER } from \"../../util/index.js\";\nimport { getCurrentInstance } from \"../../util/getCurrentInstance.js\"; // Types\nexport function useHotkey(keys, callback) {\n  let options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};\n  if (!IN_BROWSER) return function () {};\n  const {\n    event = 'keydown',\n    inputs = false,\n    preventDefault = true,\n    sequenceTimeout = 1000\n  } = options;\n  const isMac = navigator?.userAgent?.includes('Macintosh') ?? false;\n  let timeout = 0;\n  let keyGroups;\n  let isSequence = false;\n  let groupIndex = 0;\n  function clearTimer() {\n    if (!timeout) return;\n    clearTimeout(timeout);\n    timeout = 0;\n  }\n  function isInputFocused() {\n    if (toValue(inputs)) return false;\n    const activeElement = document.activeElement;\n    return activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA' || activeElement.isContentEditable || activeElement.contentEditable === 'true');\n  }\n  function resetSequence() {\n    groupIndex = 0;\n    clearTimer();\n  }\n  function handler(e) {\n    const group = keyGroups[groupIndex];\n    if (!group || isInputFocused()) return;\n    if (!matchesKeyGroup(e, group)) {\n      if (isSequence) resetSequence();\n      return;\n    }\n    if (toValue(preventDefault)) e.preventDefault();\n    if (!isSequence) {\n      callback(e);\n      return;\n    }\n    clearTimer();\n    groupIndex++;\n    if (groupIndex === keyGroups.length) {\n      callback(e);\n      resetSequence();\n      return;\n    }\n    timeout = window.setTimeout(resetSequence, toValue(sequenceTimeout));\n  }\n  function cleanup() {\n    window.removeEventListener(toValue(event), handler);\n    clearTimer();\n  }\n  watch(() => toValue(keys), function (unrefKeys) {\n    cleanup();\n    if (unrefKeys) {\n      const groups = splitKeySequence(unrefKeys.toLowerCase());\n      isSequence = groups.length > 1;\n      keyGroups = groups;\n      resetSequence();\n      window.addEventListener(toValue(event), handler);\n    }\n  }, {\n    immediate: true\n  });\n\n  // Watch for changes in the event type to re-register the listener\n  watch(() => toValue(event), function (newEvent, oldEvent) {\n    if (oldEvent && keyGroups && keyGroups.length > 0) {\n      window.removeEventListener(oldEvent, handler);\n      window.addEventListener(newEvent, handler);\n    }\n  });\n  try {\n    getCurrentInstance('useHotkey');\n    onBeforeUnmount(cleanup);\n  } catch {\n    // Not in Vue setup context\n  }\n  function parseKeyGroup(group) {\n    const MODIFIERS = ['ctrl', 'shift', 'alt', 'meta', 'cmd'];\n\n    // Use the shared combination splitting logic\n    const parts = splitKeyCombination(group.toLowerCase());\n\n    // If the combination is invalid, return empty result\n    if (parts.length === 0) {\n      return {\n        modifiers: Object.fromEntries(MODIFIERS.map(m => [m, false])),\n        actualKey: undefined\n      };\n    }\n    const modifiers = Object.fromEntries(MODIFIERS.map(m => [m, false]));\n    let actualKey;\n    for (const part of parts) {\n      if (MODIFIERS.includes(part)) {\n        modifiers[part] = true;\n      } else {\n        actualKey = part;\n      }\n    }\n    return {\n      modifiers,\n      actualKey\n    };\n  }\n  function matchesKeyGroup(e, group) {\n    const {\n      modifiers,\n      actualKey\n    } = parseKeyGroup(group);\n    const expectCtrl = modifiers.ctrl || !isMac && (modifiers.cmd || modifiers.meta);\n    const expectMeta = isMac && (modifiers.cmd || modifiers.meta);\n    return e.ctrlKey === expectCtrl && e.metaKey === expectMeta && e.shiftKey === modifiers.shift && e.altKey === modifiers.alt && e.key.toLowerCase() === actualKey?.toLowerCase();\n  }\n  return cleanup;\n}\n//# sourceMappingURL=hotkey.js.map",
+      "start": 1762413665505,
+      "end": 1762413665534,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413665534,
+      "end": 1762413665534,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413665534,
+      "end": 1762413665534,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413665534,
+      "end": 1762413665534,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1762413665534,
+      "end": 1762413665534,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1762413665534,
+      "end": 1762413665534,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413665534,
+      "end": 1762413665534,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413665534,
+      "end": 1762413665534,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1762413665534,
+      "end": 1762413665534,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413665534,
+      "end": 1762413665534,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413665534,
+      "end": 1762413665534,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413665534,
+      "end": 1762413665534,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1762413665534,
+      "end": 1762413665534,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413665534,
+      "end": 1762413665534,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413665534,
+      "end": 1762413665534,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413665534,
+      "end": 1762413665534,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413665534,
+      "end": 1762413665534,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1762413665534,
+      "end": 1762413665534,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413665534,
+      "end": 1762413665534,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413665534,
+      "end": 1762413665534,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413665534,
+      "end": 1762413665534,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413665534,
+      "end": 1762413665535,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413665535,
+      "end": 1762413665535,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413665535,
+      "end": 1762413665535,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413665535,
+      "end": 1762413665535,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413665535,
+      "end": 1762413665535,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413665535,
+      "end": 1762413665535,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413665535,
+      "end": 1762413665535,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1762413665535,
+      "end": 1762413665535,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1762413665535,
+      "end": 1762413665535,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413665535,
+      "end": 1762413665535,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413665535,
+      "end": 1762413665535,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413665535,
+      "end": 1762413665535,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413665535,
+      "end": 1762413665535,
+      "order": "normal"
+    }
+  ]
+}

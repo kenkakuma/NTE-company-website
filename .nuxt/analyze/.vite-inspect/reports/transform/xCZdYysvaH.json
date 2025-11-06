@@ -1,0 +1,221 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/pages/about.vue?vue&type=style&index=0&scoped=a2b542a9&lang.css",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "\n/* Anthropic Theme Variables */\n.anthropic-theme {\n  background-color: #FAF9F7;\n  min-height: 100vh;\n}\n\n/* Custom Container */\n.custom-container {\n  max-width: 1200px;\n  margin: 0 auto;\n  padding: 0 24px;\n}\n\n/* Hero Section */\n.about-hero-section {\n  padding: 80px 0 60px 0;\n  background-color: #FAF9F7;\n  border-bottom: 1px solid #E5E5E5;\n}\n\n.hero-content {\n  text-align: center;\n  max-width: 600px;\n  margin: 0 auto;\n}\n\n.hero-title {\n  font-size: 3.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 1.5rem;\n  line-height: 1.2;\n}\n\n.hero-description {\n  font-size: 1.25rem;\n  color: #666666;\n  line-height: 1.6;\n  margin: 0;\n}\n\n/* Articles Section */\n.articles-section {\n  padding: 80px 0;\n  background-color: #FAF9F7;\n}\n\n.articles-grid {\n  display: flex;\n  flex-direction: column;\n  gap: 1.5rem;\n}\n\n/* Article Card */\n.article-card {\n  display: flex;\n  background: #FFFFFF;\n  border-radius: 16px;\n  padding: 2rem;\n  cursor: pointer;\n  transition: all 0.3s ease;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);\n  border: 1px solid #E5E5E5;\n}\n\n.article-card:hover {\n  transform: translateY(-4px);\n  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);\n  border-color: #E17B47;\n}\n\n.article-date-badge {\n  flex-shrink: 0;\n  background: #1A1A1A;\n  color: white;\n  border-radius: 12px;\n  padding: 1rem;\n  text-align: center;\n  margin-right: 2rem;\n  min-width: 80px;\n  height: fit-content;\n}\n\n.month {\n  font-size: 0.875rem;\n  font-weight: 500;\n  margin-bottom: 0.25rem;\n}\n\n.day {\n  font-size: 1.5rem;\n  font-weight: 600;\n}\n\n.article-content {\n  flex: 1;\n}\n\n.article-header {\n  display: flex;\n  align-items: flex-start;\n  justify-content: space-between;\n  margin-bottom: 1rem;\n}\n\n.article-title {\n  font-size: 1.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  line-height: 1.4;\n  margin: 0;\n  flex: 1;\n  margin-right: 1rem;\n}\n\n.article-arrow {\n  color: #E17B47;\n  font-size: 1.5rem;\n  font-weight: 600;\n  opacity: 0.7;\n  transition: all 0.3s ease;\n}\n\n.article-card:hover .article-arrow {\n  opacity: 1;\n  transform: translateX(4px);\n}\n\n.article-meta {\n  display: flex;\n  align-items: center;\n  gap: 1rem;\n  margin-bottom: 1rem;\n}\n\n.article-category {\n  background: #E17B47;\n  color: white;\n  padding: 0.25rem 0.75rem;\n  border-radius: 20px;\n  font-size: 0.875rem;\n  font-weight: 500;\n}\n\n.article-info {\n  color: #666666;\n  font-size: 0.875rem;\n}\n\n.article-excerpt {\n  color: #333333;\n  line-height: 1.6;\n  margin: 0;\n  font-size: 1rem;\n}\n\n/* Article Detail */\n.article-detail {\n  max-width: 800px;\n  margin: 0 auto;\n}\n\n.back-button {\n  background: none;\n  border: none;\n  color: #E17B47;\n  font-size: 1rem;\n  cursor: pointer;\n  margin-bottom: 2rem;\n  transition: color 0.3s ease;\n}\n\n.back-button:hover {\n  color: #1A1A1A;\n}\n\n.article-detail-card {\n  background: #FFFFFF;\n  border-radius: 16px;\n  padding: 3rem;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);\n  border: 1px solid #E5E5E5;\n}\n\n.article-detail-header {\n  margin-bottom: 2rem;\n  padding-bottom: 2rem;\n  border-bottom: 1px solid #E5E5E5;\n}\n\n.article-detail-meta {\n  display: flex;\n  align-items: center;\n  gap: 1rem;\n  margin-bottom: 1.5rem;\n}\n\n.detail-category {\n  background: #E17B47;\n  color: white;\n  padding: 0.5rem 1rem;\n  border-radius: 20px;\n  font-size: 0.875rem;\n  font-weight: 500;\n}\n\n.detail-info {\n  color: #666666;\n  font-size: 0.875rem;\n}\n\n.article-detail-title {\n  font-size: 2.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  line-height: 1.3;\n  margin: 0;\n}\n\n.article-detail-content {\n  line-height: 1.8;\n  color: #333333;\n  margin-bottom: 3rem;\n  font-size: 1.125rem;\n}\n\n.article-detail-content :deep(h3) {\n  margin: 2rem 0 1rem 0;\n  color: #1A1A1A;\n  font-weight: 500;\n}\n\n.article-detail-content :deep(ul) {\n  margin: 1rem 0;\n  padding-left: 1.5rem;\n}\n\n.article-detail-content :deep(li) {\n  margin-bottom: 0.5rem;\n}\n\n.article-tags {\n  display: flex;\n  align-items: center;\n  gap: 1rem;\n  padding-top: 2rem;\n  border-top: 1px solid #E5E5E5;\n}\n\n.tags-label {\n  color: #666666;\n  font-weight: 500;\n}\n\n.tags-list {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 0.5rem;\n}\n\n.tag-item {\n  background: #F0EDE8;\n  color: #333333;\n  padding: 0.25rem 0.75rem;\n  border-radius: 20px;\n  font-size: 0.875rem;\n  border: 1px solid #E5E5E5;\n}\n\n/* Responsive Design */\n@media (max-width: 768px) {\n  .custom-container {\n    padding: 0 16px;\n  }\n  \n  .about-hero-section {\n    padding: 60px 0 40px 0;\n  }\n  \n  .hero-title {\n    font-size: 2.5rem;\n  }\n  \n  .hero-description {\n    font-size: 1.125rem;\n  }\n  \n  .articles-section {\n    padding: 60px 0;\n  }\n  \n  .article-card {\n    flex-direction: column;\n    padding: 1.5rem;\n  }\n  \n  .article-date-badge {\n    margin-right: 0;\n    margin-bottom: 1rem;\n    align-self: flex-start;\n  }\n  \n  .article-detail-card {\n    padding: 2rem;\n  }\n  \n  .article-detail-title {\n    font-size: 2rem;\n  }\n  \n  .article-detail-content {\n    font-size: 1rem;\n  }\n  \n  .article-tags {\n    flex-direction: column;\n    align-items: flex-start;\n    gap: 0.75rem;\n  }\n}\n",
+      "start": 1762413662657,
+      "end": 1762413662657
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413662712,
+      "end": 1762413662713,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413662720,
+      "end": 1762413662722,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413662731,
+      "end": 1762413662731,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": ".anthropic-theme{background-color:#faf9f7;min-height:100vh}.custom-container{margin:0 auto;max-width:1200px;padding:0 24px}.about-hero-section{background-color:#faf9f7;border-bottom:1px solid #e5e5e5;padding:80px 0 60px}.hero-content{margin:0 auto;max-width:600px;text-align:center}.hero-title{color:#1a1a1a;font-size:3.5rem;font-weight:500;line-height:1.2;margin-bottom:1.5rem}.hero-description{color:#666;font-size:1.25rem;line-height:1.6;margin:0}.articles-section{background-color:#faf9f7;padding:80px 0}.articles-grid{display:flex;flex-direction:column;gap:1.5rem}.article-card{background:#fff;border:1px solid #e5e5e5;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,.04);cursor:pointer;display:flex;padding:2rem;transition:all .3s ease}.article-card:hover{border-color:#e17b47;box-shadow:0 8px 32px rgba(0,0,0,.12);transform:translateY(-4px)}.article-date-badge{background:#1a1a1a;border-radius:12px;color:#fff;flex-shrink:0;height:-moz-fit-content;height:fit-content;margin-right:2rem;min-width:80px;padding:1rem;text-align:center}.month{font-size:.875rem;font-weight:500;margin-bottom:.25rem}.day{font-size:1.5rem;font-weight:600}.article-content{flex:1}.article-header{align-items:flex-start;display:flex;justify-content:space-between;margin-bottom:1rem}.article-title{color:#1a1a1a;flex:1;font-size:1.5rem;font-weight:500;line-height:1.4;margin:0 1rem 0 0}.article-arrow{color:#e17b47;font-size:1.5rem;font-weight:600;opacity:.7;transition:all .3s ease}.article-card:hover .article-arrow{opacity:1;transform:translateX(4px)}.article-meta{align-items:center;display:flex;gap:1rem;margin-bottom:1rem}.article-category{background:#e17b47;border-radius:20px;color:#fff;font-size:.875rem;font-weight:500;padding:.25rem .75rem}.article-info{color:#666;font-size:.875rem}.article-excerpt{color:#333;font-size:1rem;line-height:1.6;margin:0}.article-detail{margin:0 auto;max-width:800px}.back-button{background:none;border:none;color:#e17b47;cursor:pointer;font-size:1rem;margin-bottom:2rem;transition:color .3s ease}.back-button:hover{color:#1a1a1a}.article-detail-card{background:#fff;border:1px solid #e5e5e5;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,.04);padding:3rem}.article-detail-header{border-bottom:1px solid #e5e5e5;margin-bottom:2rem;padding-bottom:2rem}.article-detail-meta{align-items:center;display:flex;gap:1rem;margin-bottom:1.5rem}.detail-category{background:#e17b47;border-radius:20px;color:#fff;font-size:.875rem;font-weight:500;padding:.5rem 1rem}.detail-info{color:#666;font-size:.875rem}.article-detail-title{color:#1a1a1a;font-size:2.5rem;font-weight:500;line-height:1.3;margin:0}.article-detail-content{color:#333;font-size:1.125rem;line-height:1.8;margin-bottom:3rem}.article-detail-content :deep(h3){color:#1a1a1a;font-weight:500;margin:2rem 0 1rem}.article-detail-content :deep(ul){margin:1rem 0;padding-left:1.5rem}.article-detail-content :deep(li){margin-bottom:.5rem}.article-tags{align-items:center;border-top:1px solid #e5e5e5;display:flex;gap:1rem;padding-top:2rem}.tags-label{color:#666;font-weight:500}.tags-list{display:flex;flex-wrap:wrap;gap:.5rem}.tag-item{background:#f0ede8;border:1px solid #e5e5e5;border-radius:20px;color:#333;font-size:.875rem;padding:.25rem .75rem}@media (max-width:768px){.custom-container{padding:0 16px}.about-hero-section{padding:60px 0 40px}.hero-title{font-size:2.5rem}.hero-description{font-size:1.125rem}.articles-section{padding:60px 0}.article-card{flex-direction:column;padding:1.5rem}.article-date-badge{align-self:flex-start;margin-bottom:1rem;margin-right:0}.article-detail-card{padding:2rem}.article-detail-title{font-size:2rem}.article-detail-content{font-size:1rem}.article-tags{align-items:flex-start;flex-direction:column;gap:.75rem}}",
+      "start": 1762413662749,
+      "end": 1762413662788,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1762413662799,
+      "end": 1762413662799,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413662801,
+      "end": 1762413662801,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413662802,
+      "end": 1762413662802,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": ".anthropic-theme[data-v-a2b542a9]{background-color:#faf9f7;min-height:100vh}.custom-container[data-v-a2b542a9]{margin:0 auto;max-width:1200px;padding:0 24px}.about-hero-section[data-v-a2b542a9]{background-color:#faf9f7;border-bottom:1px solid #e5e5e5;padding:80px 0 60px}.hero-content[data-v-a2b542a9]{margin:0 auto;max-width:600px;text-align:center}.hero-title[data-v-a2b542a9]{color:#1a1a1a;font-size:3.5rem;font-weight:500;line-height:1.2;margin-bottom:1.5rem}.hero-description[data-v-a2b542a9]{color:#666;font-size:1.25rem;line-height:1.6;margin:0}.articles-section[data-v-a2b542a9]{background-color:#faf9f7;padding:80px 0}.articles-grid[data-v-a2b542a9]{display:flex;flex-direction:column;gap:1.5rem}.article-card[data-v-a2b542a9]{background:#fff;border:1px solid #e5e5e5;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,.04);cursor:pointer;display:flex;padding:2rem;transition:all .3s ease}.article-card[data-v-a2b542a9]:hover{border-color:#e17b47;box-shadow:0 8px 32px rgba(0,0,0,.12);transform:translateY(-4px)}.article-date-badge[data-v-a2b542a9]{background:#1a1a1a;border-radius:12px;color:#fff;flex-shrink:0;height:-moz-fit-content;height:fit-content;margin-right:2rem;min-width:80px;padding:1rem;text-align:center}.month[data-v-a2b542a9]{font-size:.875rem;font-weight:500;margin-bottom:.25rem}.day[data-v-a2b542a9]{font-size:1.5rem;font-weight:600}.article-content[data-v-a2b542a9]{flex:1}.article-header[data-v-a2b542a9]{align-items:flex-start;display:flex;justify-content:space-between;margin-bottom:1rem}.article-title[data-v-a2b542a9]{color:#1a1a1a;flex:1;font-size:1.5rem;font-weight:500;line-height:1.4;margin:0 1rem 0 0}.article-arrow[data-v-a2b542a9]{color:#e17b47;font-size:1.5rem;font-weight:600;opacity:.7;transition:all .3s ease}.article-card:hover .article-arrow[data-v-a2b542a9]{opacity:1;transform:translateX(4px)}.article-meta[data-v-a2b542a9]{align-items:center;display:flex;gap:1rem;margin-bottom:1rem}.article-category[data-v-a2b542a9]{background:#e17b47;border-radius:20px;color:#fff;font-size:.875rem;font-weight:500;padding:.25rem .75rem}.article-info[data-v-a2b542a9]{color:#666;font-size:.875rem}.article-excerpt[data-v-a2b542a9]{color:#333;font-size:1rem;line-height:1.6;margin:0}.article-detail[data-v-a2b542a9]{margin:0 auto;max-width:800px}.back-button[data-v-a2b542a9]{background:none;border:none;color:#e17b47;cursor:pointer;font-size:1rem;margin-bottom:2rem;transition:color .3s ease}.back-button[data-v-a2b542a9]:hover{color:#1a1a1a}.article-detail-card[data-v-a2b542a9]{background:#fff;border:1px solid #e5e5e5;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,.04);padding:3rem}.article-detail-header[data-v-a2b542a9]{border-bottom:1px solid #e5e5e5;margin-bottom:2rem;padding-bottom:2rem}.article-detail-meta[data-v-a2b542a9]{align-items:center;display:flex;gap:1rem;margin-bottom:1.5rem}.detail-category[data-v-a2b542a9]{background:#e17b47;border-radius:20px;color:#fff;font-size:.875rem;font-weight:500;padding:.5rem 1rem}.detail-info[data-v-a2b542a9]{color:#666;font-size:.875rem}.article-detail-title[data-v-a2b542a9]{color:#1a1a1a;font-size:2.5rem;font-weight:500;line-height:1.3;margin:0}.article-detail-content[data-v-a2b542a9]{color:#333;font-size:1.125rem;line-height:1.8;margin-bottom:3rem}.article-detail-content[data-v-a2b542a9] h3{color:#1a1a1a;font-weight:500;margin:2rem 0 1rem}.article-detail-content[data-v-a2b542a9] ul{margin:1rem 0;padding-left:1.5rem}.article-detail-content[data-v-a2b542a9] li{margin-bottom:.5rem}.article-tags[data-v-a2b542a9]{align-items:center;border-top:1px solid #e5e5e5;display:flex;gap:1rem;padding-top:2rem}.tags-label[data-v-a2b542a9]{color:#666;font-weight:500}.tags-list[data-v-a2b542a9]{display:flex;flex-wrap:wrap;gap:.5rem}.tag-item[data-v-a2b542a9]{background:#f0ede8;border:1px solid #e5e5e5;border-radius:20px;color:#333;font-size:.875rem;padding:.25rem .75rem}@media (max-width:768px){.custom-container[data-v-a2b542a9]{padding:0 16px}.about-hero-section[data-v-a2b542a9]{padding:60px 0 40px}.hero-title[data-v-a2b542a9]{font-size:2.5rem}.hero-description[data-v-a2b542a9]{font-size:1.125rem}.articles-section[data-v-a2b542a9]{padding:60px 0}.article-card[data-v-a2b542a9]{flex-direction:column;padding:1.5rem}.article-date-badge[data-v-a2b542a9]{align-self:flex-start;margin-bottom:1rem;margin-right:0}.article-detail-card[data-v-a2b542a9]{padding:2rem}.article-detail-title[data-v-a2b542a9]{font-size:2rem}.article-detail-content[data-v-a2b542a9]{font-size:1rem}.article-tags[data-v-a2b542a9]{align-items:flex-start;flex-direction:column;gap:.75rem}}",
+      "start": 1762413662802,
+      "end": 1762413662808,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413662808,
+      "end": 1762413662808,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413662809,
+      "end": 1762413662809,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413662809,
+      "end": 1762413662809,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1762413662813,
+      "end": 1762413662813,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413662814,
+      "end": 1762413662814,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413662816,
+      "end": 1762413662817,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413662823,
+      "end": 1762413662824,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413662826,
+      "end": 1762413662826,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "export default ''",
+      "start": 1762413662826,
+      "end": 1762413662826,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413662826,
+      "end": 1762413662826,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413662830,
+      "end": 1762413662831,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413662836,
+      "end": 1762413662836,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413662841,
+      "end": 1762413662841,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413662845,
+      "end": 1762413662845,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413662846,
+      "end": 1762413662846,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413662846,
+      "end": 1762413662846,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413662850,
+      "end": 1762413662851,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413662853,
+      "end": 1762413662853,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413662858,
+      "end": 1762413662858,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1762413662868,
+      "end": 1762413662869,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1762413662870,
+      "end": 1762413662870,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413662870,
+      "end": 1762413662870,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413662873,
+      "end": 1762413662876,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413662879,
+      "end": 1762413662881,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413662890,
+      "end": 1762413662890,
+      "order": "normal"
+    }
+  ]
+}

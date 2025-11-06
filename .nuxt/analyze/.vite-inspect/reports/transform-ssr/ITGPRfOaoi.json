@@ -1,0 +1,294 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/components/ImageUploader.vue?vue&type=style&index=0&scoped=2a917647&lang.css",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "\n.image-uploader {\n  width: 100%;\n}\n\n.upload-area {\n  border: 2px dashed #E0E0E0;\n  border-radius: 12px;\n  padding: 3rem 2rem;\n  text-align: center;\n  cursor: pointer;\n  transition: all 0.3s ease;\n  background: #FAFAFA;\n  position: relative;\n}\n\n.upload-area:hover {\n  border-color: #667eea;\n  background: #F5F7FF;\n}\n\n.upload-area.drag-over {\n  border-color: #667eea;\n  background: #F0F4FF;\n  transform: scale(1.02);\n}\n\n.upload-area.uploading {\n  pointer-events: none;\n  opacity: 0.7;\n}\n\n.upload-content {\n  position: relative;\n  z-index: 1;\n}\n\n.upload-icon {\n  margin-bottom: 1rem;\n  transition: transform 0.3s ease;\n}\n\n.drag-over .upload-icon {\n  transform: scale(1.2);\n}\n\n.upload-title {\n  font-size: 1.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 0.5rem;\n}\n\n.upload-description {\n  color: #666666;\n  margin-bottom: 1rem;\n  font-size: 1rem;\n}\n\n.upload-info {\n  margin-top: 1rem;\n}\n\n.info-text {\n  color: #888888;\n  font-size: 0.875rem;\n  margin: 0.25rem 0;\n}\n\n.upload-progress {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background: rgba(255, 255, 255, 0.95);\n  padding: 1rem;\n  border-radius: 0 0 12px 12px;\n}\n\n.progress-text {\n  margin-top: 0.5rem;\n  color: #667eea;\n  font-weight: 500;\n}\n\n.upload-options {\n  margin-top: 2rem;\n  padding: 1.5rem;\n  background: #F8F9FA;\n  border-radius: 8px;\n}\n\n.upload-results {\n  margin-top: 2rem;\n  padding: 1.5rem;\n  background: #F0F8FF;\n  border-radius: 8px;\n  border: 1px solid #E3F2FD;\n}\n\n.results-title {\n  color: #1976D2;\n  font-weight: 500;\n  margin-bottom: 1rem;\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n}\n\n.results-grid {\n  display: grid;\n  gap: 1rem;\n  margin-bottom: 1.5rem;\n}\n\n.result-item {\n  display: flex;\n  align-items: center;\n  gap: 1rem;\n  padding: 0.75rem;\n  background: white;\n  border-radius: 8px;\n  border: 1px solid #E0E0E0;\n}\n\n.result-image {\n  width: 50px;\n  height: 50px;\n  border-radius: 6px;\n  overflow: hidden;\n  flex-shrink: 0;\n}\n\n.result-image img {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n}\n\n.result-info {\n  flex: 1;\n}\n\n.result-name {\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 0.25rem;\n}\n\n.result-size {\n  color: #666666;\n  font-size: 0.875rem;\n  margin: 0;\n}\n\n.results-actions {\n  text-align: right;\n}\n\n/* 响应式设计 */\n@media (max-width: 768px) {\n  .upload-area {\n    padding: 2rem 1rem;\n  }\n  \n  .upload-title {\n    font-size: 1.25rem;\n  }\n  \n  .upload-options {\n    padding: 1rem;\n  }\n  \n  .upload-results {\n    padding: 1rem;\n  }\n}\n",
+      "start": 1762413668849,
+      "end": 1762413668849,
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/home/user/NTE-company-website/components/ImageUploader.vue"
+        ],
+        "names": [],
+        "mappings": "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",
+        "file": "/home/user/NTE-company-website/components/ImageUploader.vue",
+        "sourceRoot": "",
+        "sourcesContent": [
+          "<!-- 图片上传组件 -->\n<template>\n  <div class=\"image-uploader\">\n    <!-- 拖拽上传区域 -->\n    <div \n      class=\"upload-area\"\n      :class=\"{ \n        'drag-over': isDragOver,\n        'uploading': loading \n      }\"\n      @drop.prevent=\"handleDrop\"\n      @dragover.prevent=\"isDragOver = true\"\n      @dragleave=\"isDragOver = false\"\n      @click=\"triggerFileInput\"\n    >\n      <div class=\"upload-content\">\n        <v-icon \n          size=\"64\" \n          color=\"primary\"\n          class=\"upload-icon\"\n        >\n          {{ isDragOver ? 'mdi-cloud-upload' : 'mdi-image-plus' }}\n        </v-icon>\n        \n        <h3 class=\"upload-title\">\n          {{ isDragOver ? '释放以上传图片' : '拖拽图片到此处' }}\n        </h3>\n        \n        <p class=\"upload-description\">\n          或点击选择文件上传\n        </p>\n        \n        <div class=\"upload-info\">\n          <p class=\"info-text\">\n            支持格式: JPG, PNG, WEBP, SVG\n          </p>\n          <p class=\"info-text\">\n            最大大小: 5MB\n          </p>\n        </div>\n      </div>\n      \n      <!-- 进度条 -->\n      <div v-if=\"loading\" class=\"upload-progress\">\n        <v-progress-linear\n          indeterminate\n          color=\"primary\"\n          height=\"4\"\n        />\n        <p class=\"progress-text\">正在上传...</p>\n      </div>\n    </div>\n\n    <!-- 文件输入 -->\n    <input\n      ref=\"fileInput\"\n      type=\"file\"\n      multiple\n      accept=\"image/*\"\n      style=\"display: none\"\n      @change=\"handleFileSelect\"\n    >\n\n    <!-- 上传选项 -->\n    <div class=\"upload-options\">\n      <v-row>\n        <v-col cols=\"12\" md=\"6\">\n          <v-select\n            v-model=\"selectedCategory\"\n            label=\"选择分类\"\n            :items=\"categoryOptions\"\n            item-value=\"value\"\n            item-title=\"title\"\n            prepend-icon=\"mdi-folder\"\n            variant=\"outlined\"\n            density=\"compact\"\n          />\n        </v-col>\n        \n        <v-col cols=\"12\" md=\"6\">\n          <v-text-field\n            v-model=\"tags\"\n            label=\"标签 (用逗号分隔)\"\n            prepend-icon=\"mdi-tag-multiple\"\n            variant=\"outlined\"\n            density=\"compact\"\n            placeholder=\"例如: logo, 首页, 背景\"\n          />\n        </v-col>\n      </v-row>\n      \n      <v-row>\n        <v-col cols=\"12\">\n          <v-text-field\n            v-model=\"description\"\n            label=\"描述\"\n            prepend-icon=\"mdi-text\"\n            variant=\"outlined\"\n            density=\"compact\"\n            placeholder=\"简单描述这张图片...\"\n          />\n        </v-col>\n      </v-row>\n    </div>\n\n    <!-- 上传结果 -->\n    <div v-if=\"uploadResults.length > 0\" class=\"upload-results\">\n      <h4 class=\"results-title\">\n        <v-icon start>mdi-check-circle</v-icon>\n        已上传 {{ uploadResults.length }} 个文件\n      </h4>\n      \n      <div class=\"results-grid\">\n        <div \n          v-for=\"result in uploadResults\" \n          :key=\"result.id\"\n          class=\"result-item\"\n        >\n          <div class=\"result-image\">\n            <img :src=\"result.url\" :alt=\"result.originalName\">\n          </div>\n          <div class=\"result-info\">\n            <p class=\"result-name\">{{ result.originalName }}</p>\n            <p class=\"result-size\">{{ formatFileSize(result.size) }}</p>\n          </div>\n          <v-btn\n            icon=\"mdi-close\"\n            size=\"small\"\n            variant=\"text\"\n            @click=\"removeResult(result.id)\"\n          />\n        </div>\n      </div>\n      \n      <div class=\"results-actions\">\n        <v-btn\n          color=\"primary\"\n          @click=\"clearResults\"\n        >\n          清除列表\n        </v-btn>\n      </div>\n    </div>\n\n    <!-- 错误信息 -->\n    <v-alert\n      v-if=\"error\"\n      type=\"error\"\n      closable\n      @click:close=\"error = ''\"\n      class=\"mt-4\"\n    >\n      {{ error }}\n    </v-alert>\n  </div>\n</template>\n\n<script setup lang=\"ts\">\nimport type { ImageAsset } from '~/types/image'\nimport { useImageManager } from '~/composables/useImageManager'\n\n// Props\ninterface Props {\n  defaultCategory?: string\n  maxFiles?: number\n  showOptions?: boolean\n}\n\nconst props = withDefaults(defineProps<Props>(), {\n  defaultCategory: 'general',\n  maxFiles: 10,\n  showOptions: true\n})\n\n// Emits\nconst emit = defineEmits<{\n  upload: [images: ImageAsset[]]\n  error: [message: string]\n}>()\n\n// Composables\nconst { uploadImages, categoryOptions, validateFile } = useImageManager()\n\n// 响应式状态\nconst isDragOver = ref(false)\nconst loading = ref(false)\nconst error = ref('')\nconst uploadResults = ref<ImageAsset[]>([])\n\n// 上传选项\nconst selectedCategory = ref(props.defaultCategory)\nconst tags = ref('')\nconst description = ref('')\n\n// 文件输入引用\nconst fileInput = ref<HTMLInputElement>()\n\n// 格式化文件大小\nconst formatFileSize = (bytes: number): string => {\n  if (bytes === 0) return '0 B'\n  const k = 1024\n  const sizes = ['B', 'KB', 'MB', 'GB']\n  const i = Math.floor(Math.log(bytes) / Math.log(k))\n  return `${parseFloat((bytes / Math.pow(k, i)).toFixed(2))} ${sizes[i]}`\n}\n\n// 处理文件选择\nconst handleFileSelect = (event: Event) => {\n  const target = event.target as HTMLInputElement\n  const files = target.files\n  if (files) {\n    handleFiles(Array.from(files))\n  }\n}\n\n// 处理拖拽放置\nconst handleDrop = (event: DragEvent) => {\n  isDragOver.value = false\n  const files = event.dataTransfer?.files\n  if (files) {\n    handleFiles(Array.from(files))\n  }\n}\n\n// 处理文件\nconst handleFiles = async (files: File[]) => {\n  error.value = ''\n  \n  // 检查文件数量\n  if (files.length > props.maxFiles) {\n    error.value = `最多只能上传 ${props.maxFiles} 个文件`\n    return\n  }\n\n  // 验证文件\n  const validFiles: File[] = []\n  for (const file of files) {\n    const validationError = validateFile(file)\n    if (validationError) {\n      error.value = validationError\n      return\n    }\n    validFiles.push(file)\n  }\n\n  if (validFiles.length === 0) return\n\n  try {\n    loading.value = true\n    \n    // 准备上传选项\n    const uploadOptions: any = {\n      category: selectedCategory.value,\n      tags: tags.value.split(',').map(tag => tag.trim()).filter(Boolean)\n    }\n    if (description.value) uploadOptions.description = description.value\n\n    // 上传文件\n    const results = await uploadImages(validFiles, uploadOptions)\n    \n    // 更新结果\n    uploadResults.value.push(...results)\n    \n    // 发出事件\n    emit('upload', results)\n    \n    // 清空输入\n    if (fileInput.value) {\n      fileInput.value.value = ''\n    }\n    \n  } catch (err) {\n    const message = err instanceof Error ? err.message : '上传失败'\n    error.value = message\n    emit('error', message)\n  } finally {\n    loading.value = false\n  }\n}\n\n// 触发文件输入\nconst triggerFileInput = () => {\n  if (loading.value) return\n  fileInput.value?.click()\n}\n\n// 移除结果\nconst removeResult = (id: string) => {\n  const index = uploadResults.value.findIndex(r => r.id === id)\n  if (index !== -1) {\n    uploadResults.value.splice(index, 1)\n  }\n}\n\n// 清除结果\nconst clearResults = () => {\n  uploadResults.value = []\n}\n\n// 监听分类变化\nwatch(selectedCategory, (newValue) => {\n  if (newValue !== props.defaultCategory) {\n    selectedCategory.value = newValue\n  }\n})\n</script>\n\n<style scoped>\n.image-uploader {\n  width: 100%;\n}\n\n.upload-area {\n  border: 2px dashed #E0E0E0;\n  border-radius: 12px;\n  padding: 3rem 2rem;\n  text-align: center;\n  cursor: pointer;\n  transition: all 0.3s ease;\n  background: #FAFAFA;\n  position: relative;\n}\n\n.upload-area:hover {\n  border-color: #667eea;\n  background: #F5F7FF;\n}\n\n.upload-area.drag-over {\n  border-color: #667eea;\n  background: #F0F4FF;\n  transform: scale(1.02);\n}\n\n.upload-area.uploading {\n  pointer-events: none;\n  opacity: 0.7;\n}\n\n.upload-content {\n  position: relative;\n  z-index: 1;\n}\n\n.upload-icon {\n  margin-bottom: 1rem;\n  transition: transform 0.3s ease;\n}\n\n.drag-over .upload-icon {\n  transform: scale(1.2);\n}\n\n.upload-title {\n  font-size: 1.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 0.5rem;\n}\n\n.upload-description {\n  color: #666666;\n  margin-bottom: 1rem;\n  font-size: 1rem;\n}\n\n.upload-info {\n  margin-top: 1rem;\n}\n\n.info-text {\n  color: #888888;\n  font-size: 0.875rem;\n  margin: 0.25rem 0;\n}\n\n.upload-progress {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background: rgba(255, 255, 255, 0.95);\n  padding: 1rem;\n  border-radius: 0 0 12px 12px;\n}\n\n.progress-text {\n  margin-top: 0.5rem;\n  color: #667eea;\n  font-weight: 500;\n}\n\n.upload-options {\n  margin-top: 2rem;\n  padding: 1.5rem;\n  background: #F8F9FA;\n  border-radius: 8px;\n}\n\n.upload-results {\n  margin-top: 2rem;\n  padding: 1.5rem;\n  background: #F0F8FF;\n  border-radius: 8px;\n  border: 1px solid #E3F2FD;\n}\n\n.results-title {\n  color: #1976D2;\n  font-weight: 500;\n  margin-bottom: 1rem;\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n}\n\n.results-grid {\n  display: grid;\n  gap: 1rem;\n  margin-bottom: 1.5rem;\n}\n\n.result-item {\n  display: flex;\n  align-items: center;\n  gap: 1rem;\n  padding: 0.75rem;\n  background: white;\n  border-radius: 8px;\n  border: 1px solid #E0E0E0;\n}\n\n.result-image {\n  width: 50px;\n  height: 50px;\n  border-radius: 6px;\n  overflow: hidden;\n  flex-shrink: 0;\n}\n\n.result-image img {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n}\n\n.result-info {\n  flex: 1;\n}\n\n.result-name {\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 0.25rem;\n}\n\n.result-size {\n  color: #666666;\n  font-size: 0.875rem;\n  margin: 0;\n}\n\n.results-actions {\n  text-align: right;\n}\n\n/* 响应式设计 */\n@media (max-width: 768px) {\n  .upload-area {\n    padding: 2rem 1rem;\n  }\n  \n  .upload-title {\n    font-size: 1.25rem;\n  }\n  \n  .upload-options {\n    padding: 1rem;\n  }\n  \n  .upload-results {\n    padding: 1rem;\n  }\n}\n</style>"
+        ]
+      }
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413668849,
+      "end": 1762413668849,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413668849,
+      "end": 1762413668849,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413668849,
+      "end": 1762413668849,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413668849,
+      "end": 1762413668849,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413668849,
+      "end": 1762413668849,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": ".image-uploader{width:100%}.upload-area{background:#fafafa;border:2px dashed #e0e0e0;border-radius:12px;cursor:pointer;padding:3rem 2rem;position:relative;text-align:center;transition:all .3s ease}.upload-area:hover{background:#f5f7ff;border-color:#667eea}.upload-area.drag-over{background:#f0f4ff;border-color:#667eea;transform:scale(1.02)}.upload-area.uploading{opacity:.7;pointer-events:none}.upload-content{position:relative;z-index:1}.upload-icon{margin-bottom:1rem;transition:transform .3s ease}.drag-over .upload-icon{transform:scale(1.2)}.upload-title{color:#1a1a1a;font-size:1.5rem;font-weight:500;margin-bottom:.5rem}.upload-description{color:#666;font-size:1rem;margin-bottom:1rem}.upload-info{margin-top:1rem}.info-text{color:#888;font-size:.875rem;margin:.25rem 0}.upload-progress{background:hsla(0,0%,100%,.95);border-radius:0 0 12px 12px;bottom:0;left:0;padding:1rem;position:absolute;right:0}.progress-text{color:#667eea;font-weight:500;margin-top:.5rem}.upload-options{background:#f8f9fa}.upload-options,.upload-results{border-radius:8px;margin-top:2rem;padding:1.5rem}.upload-results{background:#f0f8ff;border:1px solid #e3f2fd}.results-title{align-items:center;color:#1976d2;display:flex;font-weight:500;gap:.5rem;margin-bottom:1rem}.results-grid{display:grid;gap:1rem;margin-bottom:1.5rem}.result-item{align-items:center;background:#fff;border:1px solid #e0e0e0;border-radius:8px;display:flex;gap:1rem;padding:.75rem}.result-image{border-radius:6px;flex-shrink:0;height:50px;overflow:hidden;width:50px}.result-image img{height:100%;-o-object-fit:cover;object-fit:cover;width:100%}.result-info{flex:1}.result-name{color:#1a1a1a;font-weight:500;margin-bottom:.25rem}.result-size{color:#666;font-size:.875rem;margin:0}.results-actions{text-align:right}@media (max-width:768px){.upload-area{padding:2rem 1rem}.upload-title{font-size:1.25rem}.upload-options,.upload-results{padding:1rem}}",
+      "start": 1762413668849,
+      "end": 1762413668857,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "/home/user/NTE-company-website/components/ImageUploader.vue",
+        "mappings": "AACA,gBACE,UACF,CAEA,aAOE,kBAAmB,CANnB,yBAA0B,CAC1B,kBAAmB,CAGnB,cAAe,CAFf,iBAAkB,CAKlB,iBAAkB,CAJlB,iBAAkB,CAElB,uBAGF,CAEA,mBAEE,kBAAmB,CADnB,oBAEF,CAEA,uBAEE,kBAAmB,CADnB,oBAAqB,CAErB,qBACF,CAEA,uBAEE,UAAY,CADZ,mBAEF,CAEA,gBACE,iBAAkB,CAClB,SACF,CAEA,aACE,kBAAmB,CACnB,6BACF,CAEA,wBACE,oBACF,CAEA,cAGE,aAAc,CAFd,gBAAiB,CACjB,eAAgB,CAEhB,mBACF,CAEA,oBACE,UAAc,CAEd,cAAe,CADf,kBAEF,CAEA,aACE,eACF,CAEA,WACE,UAAc,CACd,iBAAmB,CACnB,eACF,CAEA,iBAKE,8BAAqC,CAErC,2BAA4B,CAL5B,QAAS,CACT,MAAO,CAGP,YAAa,CALb,iBAAkB,CAGlB,OAIF,CAEA,eAEE,aAAc,CACd,eAAgB,CAFhB,gBAGF,CAEA,gBAGE,kBAEF,CAEA,gCAHE,iBAAkB,CAHlB,eAAgB,CAChB,cAWF,CANA,gBAGE,kBAAmB,CAEnB,wBACF,CAEA,eAKE,kBAAmB,CAJnB,aAAc,CAGd,YAAa,CAFb,eAAgB,CAIhB,SAAW,CAHX,kBAIF,CAEA,cACE,YAAa,CACb,QAAS,CACT,oBACF,CAEA,aAEE,kBAAmB,CAGnB,eAAiB,CAEjB,wBAAyB,CADzB,iBAAkB,CALlB,YAAa,CAEb,QAAS,CACT,cAIF,CAEA,cAGE,iBAAkB,CAElB,aAAc,CAHd,WAAY,CAEZ,eAAgB,CAHhB,UAKF,CAEA,kBAEE,WAAY,CACZ,mBAAiB,CAAjB,gBAAiB,CAFjB,UAGF,CAEA,aACE,MACF,CAEA,aAEE,aAAc,CADd,eAAgB,CAEhB,oBACF,CAEA,aACE,UAAc,CACd,iBAAmB,CACnB,QACF,CAEA,iBACE,gBACF,CAGA,yBACE,aACE,iBACF,CAEA,cACE,iBACF,CAMA,gCACE,YACF,CACF",
+        "names": [],
+        "sources": [
+          "/home/user/NTE-company-website/components/ImageUploader.vue"
+        ],
+        "sourcesContent": [
+          "\n.image-uploader {\n  width: 100%;\n}\n\n.upload-area {\n  border: 2px dashed #E0E0E0;\n  border-radius: 12px;\n  padding: 3rem 2rem;\n  text-align: center;\n  cursor: pointer;\n  transition: all 0.3s ease;\n  background: #FAFAFA;\n  position: relative;\n}\n\n.upload-area:hover {\n  border-color: #667eea;\n  background: #F5F7FF;\n}\n\n.upload-area.drag-over {\n  border-color: #667eea;\n  background: #F0F4FF;\n  transform: scale(1.02);\n}\n\n.upload-area.uploading {\n  pointer-events: none;\n  opacity: 0.7;\n}\n\n.upload-content {\n  position: relative;\n  z-index: 1;\n}\n\n.upload-icon {\n  margin-bottom: 1rem;\n  transition: transform 0.3s ease;\n}\n\n.drag-over .upload-icon {\n  transform: scale(1.2);\n}\n\n.upload-title {\n  font-size: 1.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 0.5rem;\n}\n\n.upload-description {\n  color: #666666;\n  margin-bottom: 1rem;\n  font-size: 1rem;\n}\n\n.upload-info {\n  margin-top: 1rem;\n}\n\n.info-text {\n  color: #888888;\n  font-size: 0.875rem;\n  margin: 0.25rem 0;\n}\n\n.upload-progress {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background: rgba(255, 255, 255, 0.95);\n  padding: 1rem;\n  border-radius: 0 0 12px 12px;\n}\n\n.progress-text {\n  margin-top: 0.5rem;\n  color: #667eea;\n  font-weight: 500;\n}\n\n.upload-options {\n  margin-top: 2rem;\n  padding: 1.5rem;\n  background: #F8F9FA;\n  border-radius: 8px;\n}\n\n.upload-results {\n  margin-top: 2rem;\n  padding: 1.5rem;\n  background: #F0F8FF;\n  border-radius: 8px;\n  border: 1px solid #E3F2FD;\n}\n\n.results-title {\n  color: #1976D2;\n  font-weight: 500;\n  margin-bottom: 1rem;\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n}\n\n.results-grid {\n  display: grid;\n  gap: 1rem;\n  margin-bottom: 1.5rem;\n}\n\n.result-item {\n  display: flex;\n  align-items: center;\n  gap: 1rem;\n  padding: 0.75rem;\n  background: white;\n  border-radius: 8px;\n  border: 1px solid #E0E0E0;\n}\n\n.result-image {\n  width: 50px;\n  height: 50px;\n  border-radius: 6px;\n  overflow: hidden;\n  flex-shrink: 0;\n}\n\n.result-image img {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n}\n\n.result-info {\n  flex: 1;\n}\n\n.result-name {\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 0.25rem;\n}\n\n.result-size {\n  color: #666666;\n  font-size: 0.875rem;\n  margin: 0;\n}\n\n.results-actions {\n  text-align: right;\n}\n\n/* 响应式设计 */\n@media (max-width: 768px) {\n  .upload-area {\n    padding: 2rem 1rem;\n  }\n  \n  .upload-title {\n    font-size: 1.25rem;\n  }\n  \n  .upload-options {\n    padding: 1rem;\n  }\n  \n  .upload-results {\n    padding: 1rem;\n  }\n}\n"
+        ],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1762413668857,
+      "end": 1762413668857,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413668857,
+      "end": 1762413668857,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413668857,
+      "end": 1762413668857,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": ".image-uploader[data-v-2a917647]{width:100%}.upload-area[data-v-2a917647]{background:#fafafa;border:2px dashed #e0e0e0;border-radius:12px;cursor:pointer;padding:3rem 2rem;position:relative;text-align:center;transition:all .3s ease}.upload-area[data-v-2a917647]:hover{background:#f5f7ff;border-color:#667eea}.upload-area.drag-over[data-v-2a917647]{background:#f0f4ff;border-color:#667eea;transform:scale(1.02)}.upload-area.uploading[data-v-2a917647]{opacity:.7;pointer-events:none}.upload-content[data-v-2a917647]{position:relative;z-index:1}.upload-icon[data-v-2a917647]{margin-bottom:1rem;transition:transform .3s ease}.drag-over .upload-icon[data-v-2a917647]{transform:scale(1.2)}.upload-title[data-v-2a917647]{color:#1a1a1a;font-size:1.5rem;font-weight:500;margin-bottom:.5rem}.upload-description[data-v-2a917647]{color:#666;font-size:1rem;margin-bottom:1rem}.upload-info[data-v-2a917647]{margin-top:1rem}.info-text[data-v-2a917647]{color:#888;font-size:.875rem;margin:.25rem 0}.upload-progress[data-v-2a917647]{background:hsla(0,0%,100%,.95);border-radius:0 0 12px 12px;bottom:0;left:0;padding:1rem;position:absolute;right:0}.progress-text[data-v-2a917647]{color:#667eea;font-weight:500;margin-top:.5rem}.upload-options[data-v-2a917647]{background:#f8f9fa}.upload-options[data-v-2a917647],.upload-results[data-v-2a917647]{border-radius:8px;margin-top:2rem;padding:1.5rem}.upload-results[data-v-2a917647]{background:#f0f8ff;border:1px solid #e3f2fd}.results-title[data-v-2a917647]{align-items:center;color:#1976d2;display:flex;font-weight:500;gap:.5rem;margin-bottom:1rem}.results-grid[data-v-2a917647]{display:grid;gap:1rem;margin-bottom:1.5rem}.result-item[data-v-2a917647]{align-items:center;background:#fff;border:1px solid #e0e0e0;border-radius:8px;display:flex;gap:1rem;padding:.75rem}.result-image[data-v-2a917647]{border-radius:6px;flex-shrink:0;height:50px;overflow:hidden;width:50px}.result-image img[data-v-2a917647]{height:100%;-o-object-fit:cover;object-fit:cover;width:100%}.result-info[data-v-2a917647]{flex:1}.result-name[data-v-2a917647]{color:#1a1a1a;font-weight:500;margin-bottom:.25rem}.result-size[data-v-2a917647]{color:#666;font-size:.875rem;margin:0}.results-actions[data-v-2a917647]{text-align:right}@media (max-width:768px){.upload-area[data-v-2a917647]{padding:2rem 1rem}.upload-title[data-v-2a917647]{font-size:1.25rem}.upload-options[data-v-2a917647],.upload-results[data-v-2a917647]{padding:1rem}}",
+      "start": 1762413668857,
+      "end": 1762413668859,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "/home/user/NTE-company-website/components/ImageUploader.vue",
+        "mappings": "AAAA,iCAAgB,UAAU,CAAC,8BAAa,kBAAkB,CAAC,yBAAyB,CAAC,kBAAkB,CAAC,cAAc,CAAC,iBAAiB,CAAC,iBAAiB,CAAC,iBAAiB,CAAC,uBAAuB,CAAC,oCAAmB,kBAAkB,CAAC,oBAAoB,CAAC,wCAAuB,kBAAkB,CAAC,oBAAoB,CAAC,qBAAqB,CAAC,wCAAuB,UAAU,CAAC,mBAAmB,CAAC,iCAAgB,iBAAiB,CAAC,SAAS,CAAC,8BAAa,kBAAkB,CAAC,6BAA6B,CAAC,yCAAwB,oBAAoB,CAAC,+BAAc,aAAa,CAAC,gBAAgB,CAAC,eAAe,CAAC,mBAAmB,CAAC,qCAAoB,UAAU,CAAC,cAAc,CAAC,kBAAkB,CAAC,8BAAa,eAAe,CAAC,4BAAW,UAAU,CAAC,iBAAiB,CAAC,eAAe,CAAC,kCAAiB,8BAA8B,CAAC,2BAA2B,CAAC,QAAQ,CAAC,MAAM,CAAC,YAAY,CAAC,iBAAiB,CAAC,OAAO,CAAC,gCAAe,aAAa,CAAC,eAAe,CAAC,gBAAgB,CAAC,iCAAgB,kBAAkB,CAAC,kEAAgC,iBAAiB,CAAC,eAAe,CAAC,cAAc,CAAC,iCAAgB,kBAAkB,CAAC,wBAAwB,CAAC,gCAAe,kBAAkB,CAAC,aAAa,CAAC,YAAY,CAAC,eAAe,CAAC,SAAS,CAAC,kBAAkB,CAAC,+BAAc,YAAY,CAAC,QAAQ,CAAC,oBAAoB,CAAC,8BAAa,kBAAkB,CAAC,eAAe,CAAC,wBAAwB,CAAC,iBAAiB,CAAC,YAAY,CAAC,QAAQ,CAAC,cAAc,CAAC,+BAAc,iBAAiB,CAAC,aAAa,CAAC,WAAW,CAAC,eAAe,CAAC,UAAU,CAAC,mCAAkB,WAAW,CAAC,mBAAmB,CAAC,gBAAgB,CAAC,UAAU,CAAC,8BAAa,MAAM,CAAC,8BAAa,aAAa,CAAC,eAAe,CAAC,oBAAoB,CAAC,8BAAa,UAAU,CAAC,iBAAiB,CAAC,QAAQ,CAAC,kCAAiB,gBAAgB,CAAC,yBAAyB,8BAAa,iBAAiB,CAAC,+BAAc,iBAAiB,CAAC,kEAAgC,YAAY,CAAC",
+        "names": [],
+        "sources": [
+          "/home/user/NTE-company-website/components/ImageUploader.vue"
+        ],
+        "sourcesContent": [
+          null
+        ],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413668859,
+      "end": 1762413668859,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413668859,
+      "end": 1762413668859,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413668859,
+      "end": 1762413668859,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413668859,
+      "end": 1762413668859,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413668859,
+      "end": 1762413668859,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413668859,
+      "end": 1762413668859,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413668859,
+      "end": 1762413668859,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413668859,
+      "end": 1762413668859,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413668859,
+      "end": 1762413668859,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413668859,
+      "end": 1762413668859,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "export default ''",
+      "start": 1762413668859,
+      "end": 1762413668859,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413668859,
+      "end": 1762413668859,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413668859,
+      "end": 1762413668859,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413668859,
+      "end": 1762413668859,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413668859,
+      "end": 1762413668859,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413668859,
+      "end": 1762413668859,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413668859,
+      "end": 1762413668859,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413668859,
+      "end": 1762413668859,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413668859,
+      "end": 1762413668859,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413668859,
+      "end": 1762413668859,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413668859,
+      "end": 1762413668859,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413668859,
+      "end": 1762413668859,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413668859,
+      "end": 1762413668859,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413668859,
+      "end": 1762413668859,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413668859,
+      "end": 1762413668859,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1762413668859,
+      "end": 1762413668859,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413668859,
+      "end": 1762413668859,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413668860,
+      "end": 1762413668860,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413668860,
+      "end": 1762413668860,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413668860,
+      "end": 1762413668860,
+      "order": "normal"
+    }
+  ]
+}

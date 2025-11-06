@@ -1,0 +1,231 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/app.vue?vue&type=script&setup=true&lang.ts",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, withCtx as _withCtx, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\"\n\nconst _hoisted_1 = { id: \"app\" }\n\n\nexport default /*@__PURE__*/_defineComponent({\n  __name: 'app',\n  setup(__props) {\n\n// 应用级配置\nuseSeoMeta({\n  titleTemplate: '%s | NO TRACE EXPLORER',\n  ogSiteName: 'NO TRACE EXPLORER'\n})\n\nreturn (_ctx: any,_cache: any) => {\n  const _component_NuxtLoadingIndicator = _resolveComponent(\"NuxtLoadingIndicator\")!\n  const _component_NuxtPage = _resolveComponent(\"NuxtPage\")!\n  const _component_NuxtLayout = _resolveComponent(\"NuxtLayout\")!\n\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    _createVNode(_component_NuxtLoadingIndicator),\n    _createVNode(_component_NuxtLayout, null, {\n      default: _withCtx(() => [\n        _createVNode(_component_NuxtPage)\n      ]),\n      _: 1\n    })\n  ]))\n}\n}\n\n})",
+      "start": 1762413662643,
+      "end": 1762413662643
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413662643,
+      "end": 1762413662643,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413662644,
+      "end": 1762413662644,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413662644,
+      "end": 1762413662644,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1762413662644,
+      "end": 1762413662644,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, withCtx as _withCtx, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\";\nconst _hoisted_1 = { id: \"app\" };\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"app\",\n  setup(__props) {\n    useSeoMeta({\n      titleTemplate: \"%s | NO TRACE EXPLORER\",\n      ogSiteName: \"NO TRACE EXPLORER\"\n    });\n    return (_ctx, _cache) => {\n      const _component_NuxtLoadingIndicator = _resolveComponent(\"NuxtLoadingIndicator\");\n      const _component_NuxtPage = _resolveComponent(\"NuxtPage\");\n      const _component_NuxtLayout = _resolveComponent(\"NuxtLayout\");\n      return _openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n        _createVNode(_component_NuxtLoadingIndicator),\n        _createVNode(_component_NuxtLayout, null, {\n          default: _withCtx(() => [\n            _createVNode(_component_NuxtPage)\n          ]),\n          _: 1\n        })\n      ]);\n    };\n  }\n});\n",
+      "start": 1762413662644,
+      "end": 1762413663502,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/home/user/NTE-company-website/app.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from 'vue'\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, withCtx as _withCtx, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\"\n\nconst _hoisted_1 = { id: \"app\" }\n\n\nexport default /*@__PURE__*/_defineComponent({\n  __name: 'app',\n  setup(__props) {\n\n// 应用级配置\nuseSeoMeta({\n  titleTemplate: '%s | NO TRACE EXPLORER',\n  ogSiteName: 'NO TRACE EXPLORER'\n})\n\nreturn (_ctx: any,_cache: any) => {\n  const _component_NuxtLoadingIndicator = _resolveComponent(\"NuxtLoadingIndicator\")!\n  const _component_NuxtPage = _resolveComponent(\"NuxtPage\")!\n  const _component_NuxtLayout = _resolveComponent(\"NuxtLayout\")!\n\n  return (_openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n    _createVNode(_component_NuxtLoadingIndicator),\n    _createVNode(_component_NuxtLayout, null, {\n      default: _withCtx(() => [\n        _createVNode(_component_NuxtPage)\n      ]),\n      _: 1\n    })\n  ]))\n}\n}\n\n})"
+        ],
+        "mappings": "AAAA,SAAS,mBAAmB,wBAAwB;AACpD,SAAS,oBAAoB,mBAAmB,eAAe,cAAc,WAAW,UAAU,aAAa,YAAY,sBAAsB,2BAA2B;AAE5K,MAAM,aAAa,EAAE,IAAI,MAAM;AAG/B,eAA4B,iCAAiB;AAAA,EAC3C,QAAQ;AAAA,EACR,MAAM,SAAS;AAGjB,eAAW;AAAA,MACT,eAAe;AAAA,MACf,YAAY;AAAA,IACd,CAAC;AAED,WAAO,CAAC,MAAU,WAAgB;AAChC,YAAM,kCAAkC,kBAAkB,sBAAsB;AAChF,YAAM,sBAAsB,kBAAkB,UAAU;AACxD,YAAM,wBAAwB,kBAAkB,YAAY;AAE5D,aAAQ,WAAW,GAAG,oBAAoB,OAAO,YAAY;AAAA,QAC3D,aAAa,+BAA+B;AAAA,QAC5C,aAAa,uBAAuB,MAAM;AAAA,UACxC,SAAS,SAAS,MAAM;AAAA,YACtB,aAAa,mBAAmB;AAAA,UAClC,CAAC;AAAA,UACD,GAAG;AAAA,QACL,CAAC;AAAA,MACH,CAAC;AAAA,IACH;AAAA,EACA;AAEA,CAAC;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413663502,
+      "end": 1762413663502,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413663502,
+      "end": 1762413663502,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1762413663502,
+      "end": 1762413663502,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413663502,
+      "end": 1762413663502,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413663502,
+      "end": 1762413663502,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413663502,
+      "end": 1762413663502,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1762413663502,
+      "end": 1762413663502,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413663502,
+      "end": 1762413663502,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413663503,
+      "end": 1762413663503,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413663503,
+      "end": 1762413663503,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413663503,
+      "end": 1762413663503,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1762413663503,
+      "end": 1762413663503,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413663503,
+      "end": 1762413663503,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413663503,
+      "end": 1762413663503,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413663503,
+      "end": 1762413663503,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413663503,
+      "end": 1762413663503,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413663503,
+      "end": 1762413663503,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413663503,
+      "end": 1762413663503,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413663503,
+      "end": 1762413663503,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "result": "import { useSeoMeta } from '@unhead/vue';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, withCtx as _withCtx, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\";\nconst _hoisted_1 = { id: \"app\" };\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"app\",\n  setup(__props) {\n    useSeoMeta({\n      titleTemplate: \"%s | NO TRACE EXPLORER\",\n      ogSiteName: \"NO TRACE EXPLORER\"\n    });\n    return (_ctx, _cache) => {\n      const _component_NuxtLoadingIndicator = _resolveComponent(\"NuxtLoadingIndicator\");\n      const _component_NuxtPage = _resolveComponent(\"NuxtPage\");\n      const _component_NuxtLayout = _resolveComponent(\"NuxtLayout\");\n      return _openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n        _createVNode(_component_NuxtLoadingIndicator),\n        _createVNode(_component_NuxtLayout, null, {\n          default: _withCtx(() => [\n            _createVNode(_component_NuxtPage)\n          ]),\n          _: 1\n        })\n      ]);\n    };\n  }\n});\n",
+      "start": 1762413663503,
+      "end": 1762413663508,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          ""
+        ],
+        "names": [],
+        "mappings": ";AAAA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACzD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjL,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAChD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACf,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACf,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACN,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACvF,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC/D,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC5C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACZ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACb,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACT,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACR,CAAC,CAAC,CAAC,CAAC,CAAC;AACL,CAAC,CAAC;AACF,CAAC,CAAC;"
+      }
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413663508,
+      "end": 1762413663508,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413663509,
+      "end": 1762413663510,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1762413663510,
+      "end": 1762413663510,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1762413663510,
+      "end": 1762413663510,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "result": "import { default as __nuxt_component_0 } from \"/home/user/NTE-company-website/node_modules/nuxt/dist/app/components/nuxt-loading-indicator\";\nimport { default as __nuxt_component_1 } from \"/home/user/NTE-company-website/node_modules/nuxt/dist/pages/runtime/page\";\nimport { default as __nuxt_component_2 } from \"/home/user/NTE-company-website/node_modules/nuxt/dist/app/components/nuxt-layout\";\nimport { useSeoMeta } from '@unhead/vue';\nimport { defineComponent as _defineComponent } from \"vue\";\nimport { resolveComponent as _resolveComponent, createVNode as _createVNode, withCtx as _withCtx, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\";\nconst _hoisted_1 = { id: \"app\" };\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"app\",\n  setup(__props) {\n    useSeoMeta({\n      titleTemplate: \"%s | NO TRACE EXPLORER\",\n      ogSiteName: \"NO TRACE EXPLORER\"\n    });\n    return (_ctx, _cache) => {\n      const _component_NuxtLoadingIndicator = __nuxt_component_0;\n      const _component_NuxtPage = __nuxt_component_1;\n      const _component_NuxtLayout = __nuxt_component_2;\n      return _openBlock(), _createElementBlock(\"div\", _hoisted_1, [\n        _createVNode(_component_NuxtLoadingIndicator),\n        _createVNode(_component_NuxtLayout, null, {\n          default: _withCtx(() => [\n            _createVNode(_component_NuxtPage)\n          ]),\n          _: 1\n        })\n      ]);\n    };\n  }\n});\n",
+      "start": 1762413663510,
+      "end": 1762413663510,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413663510,
+      "end": 1762413663510,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413663510,
+      "end": 1762413663510,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413663510,
+      "end": 1762413663510,
+      "order": "normal"
+    }
+  ]
+}

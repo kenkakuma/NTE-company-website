@@ -1,0 +1,233 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/plugins/gtag.client.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "// Google Analytics 4 Plugin for Nuxt 3\n// Author: Claude AI Assistant\n// Date: 2025-07-01\n// Description: Google Analytics 4 integration with advanced event tracking and privacy controls\n\nexport default defineNuxtPlugin(() => {\n  const config = useRuntimeConfig()\n  \n  // Google Analytics Measurement ID from runtime config\n  const GA_MEASUREMENT_ID = config.public.googleAnalyticsId\n  \n  // Only load in production or when explicitly enabled\n  const isProduction = process.env.NODE_ENV === 'production'\n  const enableInDev = process.env.GA_DEBUG === 'true'\n  \n  if (!isProduction && !enableInDev) {\n    console.log('🔧 Google Analytics disabled in development mode')\n    return\n  }\n  \n  // Load Google Analytics script\n  useHead({\n    script: [\n      {\n        src: `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`,\n        async: true\n      }\n    ]\n  })\n  \n  // Initialize gtag\n  if (process.client) {\n    // @ts-ignore\n    window.dataLayer = window.dataLayer || []\n    // @ts-ignore\n    function gtag(...args: any[]) {\n      // @ts-ignore\n      window.dataLayer.push(arguments)\n    }\n    \n    // @ts-ignore\n    window.gtag = gtag\n    \n    // Configure Google Analytics\n    // @ts-ignore\n    gtag('js', new Date())\n    // @ts-ignore\n    gtag('config', GA_MEASUREMENT_ID, {\n      // Privacy settings\n      anonymize_ip: true,\n      cookie_flags: 'secure;samesite=strict',\n      \n      // Enhanced ecommerce and events\n      send_page_view: true,\n      allow_google_signals: false,\n      allow_ad_personalization_signals: false,\n      \n      // Custom dimensions for Japanese website\n      custom_map: {\n        'dimension1': 'page_language',\n        'dimension2': 'user_type',\n        'dimension3': 'content_category'\n      },\n      \n      // Enhanced measurement\n      enhanced_measurements: {\n        scrolls: true,\n        outbound_clicks: true,\n        site_search: false,\n        video_engagement: false,\n        file_downloads: true\n      }\n    })\n    \n    // Track PWA installation events\n    // @ts-ignore\n    gtag('config', GA_MEASUREMENT_ID, {\n      app_name: 'NO TRACE EXPLORER',\n      app_version: '2.3.0'\n    })\n    \n    console.log('📊 Google Analytics 4 initialized successfully')\n  }\n})",
+      "start": 1762413661150,
+      "end": 1762413661391,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413661391,
+      "end": 1762413661391,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413661391,
+      "end": 1762413661391,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413661391,
+      "end": 1762413661391,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1762413661391,
+      "end": 1762413661391,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "export default defineNuxtPlugin(() => {\n  const config = useRuntimeConfig();\n  const GA_MEASUREMENT_ID = config.public.googleAnalyticsId;\n  const isProduction = process.env.NODE_ENV === \"production\";\n  const enableInDev = process.env.GA_DEBUG === \"true\";\n  if (!isProduction && !enableInDev) {\n    console.log(\"🔧 Google Analytics disabled in development mode\");\n    return;\n  }\n  useHead({\n    script: [\n      {\n        src: `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`,\n        async: true\n      }\n    ]\n  });\n  if (process.client) {\n    let gtag = function(...args) {\n      window.dataLayer.push(arguments);\n    };\n    window.dataLayer = window.dataLayer || [];\n    window.gtag = gtag;\n    gtag(\"js\", /* @__PURE__ */ new Date());\n    gtag(\"config\", GA_MEASUREMENT_ID, {\n      // Privacy settings\n      anonymize_ip: true,\n      cookie_flags: \"secure;samesite=strict\",\n      // Enhanced ecommerce and events\n      send_page_view: true,\n      allow_google_signals: false,\n      allow_ad_personalization_signals: false,\n      // Custom dimensions for Japanese website\n      custom_map: {\n        \"dimension1\": \"page_language\",\n        \"dimension2\": \"user_type\",\n        \"dimension3\": \"content_category\"\n      },\n      // Enhanced measurement\n      enhanced_measurements: {\n        scrolls: true,\n        outbound_clicks: true,\n        site_search: false,\n        video_engagement: false,\n        file_downloads: true\n      }\n    });\n    gtag(\"config\", GA_MEASUREMENT_ID, {\n      app_name: \"NO TRACE EXPLORER\",\n      app_version: \"2.3.0\"\n    });\n    console.log(\"📊 Google Analytics 4 initialized successfully\");\n  }\n});\n",
+      "start": 1762413661391,
+      "end": 1762413661472,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/home/user/NTE-company-website/plugins/gtag.client.ts"
+        ],
+        "sourcesContent": [
+          "// Google Analytics 4 Plugin for Nuxt 3\n// Author: Claude AI Assistant\n// Date: 2025-07-01\n// Description: Google Analytics 4 integration with advanced event tracking and privacy controls\n\nexport default defineNuxtPlugin(() => {\n  const config = useRuntimeConfig()\n  \n  // Google Analytics Measurement ID from runtime config\n  const GA_MEASUREMENT_ID = config.public.googleAnalyticsId\n  \n  // Only load in production or when explicitly enabled\n  const isProduction = process.env.NODE_ENV === 'production'\n  const enableInDev = process.env.GA_DEBUG === 'true'\n  \n  if (!isProduction && !enableInDev) {\n    console.log('🔧 Google Analytics disabled in development mode')\n    return\n  }\n  \n  // Load Google Analytics script\n  useHead({\n    script: [\n      {\n        src: `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`,\n        async: true\n      }\n    ]\n  })\n  \n  // Initialize gtag\n  if (process.client) {\n    // @ts-ignore\n    window.dataLayer = window.dataLayer || []\n    // @ts-ignore\n    function gtag(...args: any[]) {\n      // @ts-ignore\n      window.dataLayer.push(arguments)\n    }\n    \n    // @ts-ignore\n    window.gtag = gtag\n    \n    // Configure Google Analytics\n    // @ts-ignore\n    gtag('js', new Date())\n    // @ts-ignore\n    gtag('config', GA_MEASUREMENT_ID, {\n      // Privacy settings\n      anonymize_ip: true,\n      cookie_flags: 'secure;samesite=strict',\n      \n      // Enhanced ecommerce and events\n      send_page_view: true,\n      allow_google_signals: false,\n      allow_ad_personalization_signals: false,\n      \n      // Custom dimensions for Japanese website\n      custom_map: {\n        'dimension1': 'page_language',\n        'dimension2': 'user_type',\n        'dimension3': 'content_category'\n      },\n      \n      // Enhanced measurement\n      enhanced_measurements: {\n        scrolls: true,\n        outbound_clicks: true,\n        site_search: false,\n        video_engagement: false,\n        file_downloads: true\n      }\n    })\n    \n    // Track PWA installation events\n    // @ts-ignore\n    gtag('config', GA_MEASUREMENT_ID, {\n      app_name: 'NO TRACE EXPLORER',\n      app_version: '2.3.0'\n    })\n    \n    console.log('📊 Google Analytics 4 initialized successfully')\n  }\n})"
+        ],
+        "mappings": "AAKA,eAAe,iBAAiB,MAAM;AACpC,QAAM,SAAS,iBAAiB;AAGhC,QAAM,oBAAoB,OAAO,OAAO;AAGxC,QAAM,eAAe,QAAQ,IAAI,aAAa;AAC9C,QAAM,cAAc,QAAQ,IAAI,aAAa;AAE7C,MAAI,CAAC,gBAAgB,CAAC,aAAa;AACjC,YAAQ,IAAI,kDAAkD;AAC9D;AAAA,EACF;AAGA,UAAQ;AAAA,IACN,QAAQ;AAAA,MACN;AAAA,QACE,KAAK,+CAA+C,iBAAiB;AAAA,QACrE,OAAO;AAAA,MACT;AAAA,IACF;AAAA,EACF,CAAC;AAGD,MAAI,QAAQ,QAAQ;AAIlB,QAAS,OAAT,YAAiB,MAAa;AAE5B,aAAO,UAAU,KAAK,SAAS;AAAA,IACjC;AALA,WAAO,YAAY,OAAO,aAAa,CAAC;AAQxC,WAAO,OAAO;AAId,SAAK,MAAM,oBAAI,KAAK,CAAC;AAErB,SAAK,UAAU,mBAAmB;AAAA;AAAA,MAEhC,cAAc;AAAA,MACd,cAAc;AAAA;AAAA,MAGd,gBAAgB;AAAA,MAChB,sBAAsB;AAAA,MACtB,kCAAkC;AAAA;AAAA,MAGlC,YAAY;AAAA,QACV,cAAc;AAAA,QACd,cAAc;AAAA,QACd,cAAc;AAAA,MAChB;AAAA;AAAA,MAGA,uBAAuB;AAAA,QACrB,SAAS;AAAA,QACT,iBAAiB;AAAA,QACjB,aAAa;AAAA,QACb,kBAAkB;AAAA,QAClB,gBAAgB;AAAA,MAClB;AAAA,IACF,CAAC;AAID,SAAK,UAAU,mBAAmB;AAAA,MAChC,UAAU;AAAA,MACV,aAAa;AAAA,IACf,CAAC;AAED,YAAQ,IAAI,gDAAgD;AAAA,EAC9D;AACF,CAAC;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413661472,
+      "end": 1762413661472,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413661472,
+      "end": 1762413661472,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1762413661472,
+      "end": 1762413661472,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413661472,
+      "end": 1762413661472,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413661472,
+      "end": 1762413661472,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413661472,
+      "end": 1762413661478,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1762413661478,
+      "end": 1762413661478,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413661478,
+      "end": 1762413661478,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413661478,
+      "end": 1762413661478,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413661478,
+      "end": 1762413661478,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "result": "export default defineNuxtPlugin(() => {\n  const config = useRuntimeConfig();\n  const GA_MEASUREMENT_ID = config.public.googleAnalyticsId;\n  const isProduction = \"production\" === \"production\";\n  const enableInDev = ({}).GA_DEBUG === \"true\";\n  if (!isProduction && !enableInDev) {\n    console.log(\"🔧 Google Analytics disabled in development mode\");\n    return;\n  }\n  useHead({\n    script: [\n      {\n        src: `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`,\n        async: true\n      }\n    ]\n  });\n  if (true) {\n    let gtag = function(...args) {\n      window.dataLayer.push(arguments);\n    };\n    window.dataLayer = window.dataLayer || [];\n    window.gtag = gtag;\n    gtag(\"js\", /* @__PURE__ */ new Date());\n    gtag(\"config\", GA_MEASUREMENT_ID, {\n      // Privacy settings\n      anonymize_ip: true,\n      cookie_flags: \"secure;samesite=strict\",\n      // Enhanced ecommerce and events\n      send_page_view: true,\n      allow_google_signals: false,\n      allow_ad_personalization_signals: false,\n      // Custom dimensions for Japanese website\n      custom_map: {\n        \"dimension1\": \"page_language\",\n        \"dimension2\": \"user_type\",\n        \"dimension3\": \"content_category\"\n      },\n      // Enhanced measurement\n      enhanced_measurements: {\n        scrolls: true,\n        outbound_clicks: true,\n        site_search: false,\n        video_engagement: false,\n        file_downloads: true\n      }\n    });\n    gtag(\"config\", GA_MEASUREMENT_ID, {\n      app_name: \"NO TRACE EXPLORER\",\n      app_version: \"2.3.0\"\n    });\n    console.log(\"📊 Google Analytics 4 initialized successfully\");\n  }\n});\n",
+      "start": 1762413661478,
+      "end": 1762413661479,
+      "order": "normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1762413661479,
+      "end": 1762413661479,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413661479,
+      "end": 1762413661479,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413661479,
+      "end": 1762413661479,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413661479,
+      "end": 1762413661479,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413661479,
+      "end": 1762413661479,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413661479,
+      "end": 1762413661479,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413661479,
+      "end": 1762413661479,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413661479,
+      "end": 1762413661480,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "result": "import { defineNuxtPlugin, useRuntimeConfig } from '#app/nuxt';\nimport { useHead } from '@unhead/vue';\nexport default defineNuxtPlugin(() => {\n  const config = useRuntimeConfig();\n  const GA_MEASUREMENT_ID = config.public.googleAnalyticsId;\n  const isProduction = \"production\" === \"production\";\n  const enableInDev = ({}).GA_DEBUG === \"true\";\n  if (!isProduction && !enableInDev) {\n    console.log(\"🔧 Google Analytics disabled in development mode\");\n    return;\n  }\n  useHead({\n    script: [\n      {\n        src: `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`,\n        async: true\n      }\n    ]\n  });\n  if (true) {\n    let gtag = function(...args) {\n      window.dataLayer.push(arguments);\n    };\n    window.dataLayer = window.dataLayer || [];\n    window.gtag = gtag;\n    gtag(\"js\", /* @__PURE__ */ new Date());\n    gtag(\"config\", GA_MEASUREMENT_ID, {\n      // Privacy settings\n      anonymize_ip: true,\n      cookie_flags: \"secure;samesite=strict\",\n      // Enhanced ecommerce and events\n      send_page_view: true,\n      allow_google_signals: false,\n      allow_ad_personalization_signals: false,\n      // Custom dimensions for Japanese website\n      custom_map: {\n        \"dimension1\": \"page_language\",\n        \"dimension2\": \"user_type\",\n        \"dimension3\": \"content_category\"\n      },\n      // Enhanced measurement\n      enhanced_measurements: {\n        scrolls: true,\n        outbound_clicks: true,\n        site_search: false,\n        video_engagement: false,\n        file_downloads: true\n      }\n    });\n    gtag(\"config\", GA_MEASUREMENT_ID, {\n      app_name: \"NO TRACE EXPLORER\",\n      app_version: \"2.3.0\"\n    });\n    console.log(\"📊 Google Analytics 4 initialized successfully\");\n  }\n});\n",
+      "start": 1762413661480,
+      "end": 1762413661494,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          ""
+        ],
+        "names": [],
+        "mappings": ";;AAAA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACtC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC3D,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACpD,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC9C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACV,CAAC,CAAC;AACF,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACV,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACZ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACN,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC/E,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACN,CAAC,CAAC,CAAC,CAAC;AACJ,CAAC,CAAC,CAAC,CAAC;AACJ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACZ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACtC,CAAC,CAAC,CAAC,CAAC,CAAC;AACL,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACtB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACtC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACxB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACxB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC5C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC9C,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAClB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACvC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACP,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC5B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACrB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC7B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC1B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC/B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AAC3B,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACN,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACN,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACtC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACnC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACzB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACN,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACjE,CAAC,CAAC;AACF,CAAC,CAAC;"
+      }
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413661494,
+      "end": 1762413661500,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413661500,
+      "end": 1762413661500,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1762413661500,
+      "end": 1762413661500,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1762413661500,
+      "end": 1762413661500,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413661500,
+      "end": 1762413661500,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413661501,
+      "end": 1762413661501,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413661501,
+      "end": 1762413661501,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413661501,
+      "end": 1762413661501,
+      "order": "normal"
+    }
+  ]
+}

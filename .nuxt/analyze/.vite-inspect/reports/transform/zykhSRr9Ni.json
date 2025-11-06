@@ -1,0 +1,221 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/components/PresentationCounter.vue?vue&type=script&setup=true&lang.ts",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "import { defineComponent as _defineComponent } from 'vue'\nimport { createVNode as _createVNode, createElementVNode as _createElementVNode, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\"\n\nconst _hoisted_1 = {\n  class: \"pt-3 pb-4\",\n  id: \"count-stats\"\n}\nconst _hoisted_2 = { class: \"container\" }\nconst _hoisted_3 = { class: \"row\" }\nconst _hoisted_4 = { class: \"col-lg-9 z-index-2 border-radius-xl mx-auto py-3\" }\nconst _hoisted_5 = { class: \"row\" }\nconst _hoisted_6 = { class: \"col-md-4 position-relative\" }\nconst _hoisted_7 = { class: \"col-md-4 position-relative\" }\nconst _hoisted_8 = { class: \"col-md-4\" }\n\nimport DefaultCounterCard from '~/components/DefaultCounterCard.vue'\n\nexport default /*@__PURE__*/_defineComponent({\n  __name: 'PresentationCounter',\n  setup(__props) {\n\n\nreturn (_ctx: any,_cache: any) => {\n  return (_openBlock(), _createElementBlock(\"section\", _hoisted_1, [\n    _createElementVNode(\"div\", _hoisted_2, [\n      _createElementVNode(\"div\", _hoisted_3, [\n        _createElementVNode(\"div\", _hoisted_4, [\n          _createElementVNode(\"div\", _hoisted_5, [\n            _createElementVNode(\"div\", _hoisted_6, [\n              _createVNode(DefaultCounterCard, {\n                color: \"info\",\n                title: \"イノベーションプロジェクト\",\n                description: \"先進的な技術と創造的なアイデアで、新しい価値を創造しています\",\n                count: 50,\n                suffix: \"+\",\n                duration: 3000,\n                divider: \"vertical\"\n              })\n            ]),\n            _createElementVNode(\"div\", _hoisted_7, [\n              _createVNode(DefaultCounterCard, {\n                color: \"primary\",\n                title: \"サービス領域\",\n                description: \"ラボ、珈琲、クラブの3つのコアサービスで多様なニーズに対応\",\n                count: 3,\n                suffix: \"\",\n                duration: 3000,\n                divider: \"vertical\"\n              })\n            ]),\n            _createElementVNode(\"div\", _hoisted_8, [\n              _createVNode(DefaultCounterCard, {\n                color: \"dark\",\n                title: \"年間実績\",\n                description: \"設立準備中でありながら、既に多数のプロジェクトを手がけています\",\n                count: 2025,\n                duration: 3000\n              })\n            ])\n          ])\n        ])\n      ])\n    ])\n  ]))\n}\n}\n\n})",
+      "start": 1762413663770,
+      "end": 1762413663770
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413663770,
+      "end": 1762413663770,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413663770,
+      "end": 1762413663770,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413663770,
+      "end": 1762413663770,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1762413663770,
+      "end": 1762413663770,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { defineComponent as _defineComponent } from \"vue\";\nimport { createVNode as _createVNode, createElementVNode as _createElementVNode, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\";\nconst _hoisted_1 = {\n  class: \"pt-3 pb-4\",\n  id: \"count-stats\"\n};\nconst _hoisted_2 = { class: \"container\" };\nconst _hoisted_3 = { class: \"row\" };\nconst _hoisted_4 = { class: \"col-lg-9 z-index-2 border-radius-xl mx-auto py-3\" };\nconst _hoisted_5 = { class: \"row\" };\nconst _hoisted_6 = { class: \"col-md-4 position-relative\" };\nconst _hoisted_7 = { class: \"col-md-4 position-relative\" };\nconst _hoisted_8 = { class: \"col-md-4\" };\nimport DefaultCounterCard from \"~/components/DefaultCounterCard.vue\";\nexport default /* @__PURE__ */ _defineComponent({\n  __name: \"PresentationCounter\",\n  setup(__props) {\n    return (_ctx, _cache) => {\n      return _openBlock(), _createElementBlock(\"section\", _hoisted_1, [\n        _createElementVNode(\"div\", _hoisted_2, [\n          _createElementVNode(\"div\", _hoisted_3, [\n            _createElementVNode(\"div\", _hoisted_4, [\n              _createElementVNode(\"div\", _hoisted_5, [\n                _createElementVNode(\"div\", _hoisted_6, [\n                  _createVNode(DefaultCounterCard, {\n                    color: \"info\",\n                    title: \"イノベーションプロジェクト\",\n                    description: \"先進的な技術と創造的なアイデアで、新しい価値を創造しています\",\n                    count: 50,\n                    suffix: \"+\",\n                    duration: 3e3,\n                    divider: \"vertical\"\n                  })\n                ]),\n                _createElementVNode(\"div\", _hoisted_7, [\n                  _createVNode(DefaultCounterCard, {\n                    color: \"primary\",\n                    title: \"サービス領域\",\n                    description: \"ラボ、珈琲、クラブの3つのコアサービスで多様なニーズに対応\",\n                    count: 3,\n                    suffix: \"\",\n                    duration: 3e3,\n                    divider: \"vertical\"\n                  })\n                ]),\n                _createElementVNode(\"div\", _hoisted_8, [\n                  _createVNode(DefaultCounterCard, {\n                    color: \"dark\",\n                    title: \"年間実績\",\n                    description: \"設立準備中でありながら、既に多数のプロジェクトを手がけています\",\n                    count: 2025,\n                    duration: 3e3\n                  })\n                ])\n              ])\n            ])\n          ])\n        ])\n      ]);\n    };\n  }\n});\n",
+      "start": 1762413663770,
+      "end": 1762413663972,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/home/user/NTE-company-website/components/PresentationCounter.vue?vue&type=script&setup=true&lang.ts"
+        ],
+        "sourcesContent": [
+          "import { defineComponent as _defineComponent } from 'vue'\nimport { createVNode as _createVNode, createElementVNode as _createElementVNode, openBlock as _openBlock, createElementBlock as _createElementBlock } from \"vue\"\n\nconst _hoisted_1 = {\n  class: \"pt-3 pb-4\",\n  id: \"count-stats\"\n}\nconst _hoisted_2 = { class: \"container\" }\nconst _hoisted_3 = { class: \"row\" }\nconst _hoisted_4 = { class: \"col-lg-9 z-index-2 border-radius-xl mx-auto py-3\" }\nconst _hoisted_5 = { class: \"row\" }\nconst _hoisted_6 = { class: \"col-md-4 position-relative\" }\nconst _hoisted_7 = { class: \"col-md-4 position-relative\" }\nconst _hoisted_8 = { class: \"col-md-4\" }\n\nimport DefaultCounterCard from '~/components/DefaultCounterCard.vue'\n\nexport default /*@__PURE__*/_defineComponent({\n  __name: 'PresentationCounter',\n  setup(__props) {\n\n\nreturn (_ctx: any,_cache: any) => {\n  return (_openBlock(), _createElementBlock(\"section\", _hoisted_1, [\n    _createElementVNode(\"div\", _hoisted_2, [\n      _createElementVNode(\"div\", _hoisted_3, [\n        _createElementVNode(\"div\", _hoisted_4, [\n          _createElementVNode(\"div\", _hoisted_5, [\n            _createElementVNode(\"div\", _hoisted_6, [\n              _createVNode(DefaultCounterCard, {\n                color: \"info\",\n                title: \"イノベーションプロジェクト\",\n                description: \"先進的な技術と創造的なアイデアで、新しい価値を創造しています\",\n                count: 50,\n                suffix: \"+\",\n                duration: 3000,\n                divider: \"vertical\"\n              })\n            ]),\n            _createElementVNode(\"div\", _hoisted_7, [\n              _createVNode(DefaultCounterCard, {\n                color: \"primary\",\n                title: \"サービス領域\",\n                description: \"ラボ、珈琲、クラブの3つのコアサービスで多様なニーズに対応\",\n                count: 3,\n                suffix: \"\",\n                duration: 3000,\n                divider: \"vertical\"\n              })\n            ]),\n            _createElementVNode(\"div\", _hoisted_8, [\n              _createVNode(DefaultCounterCard, {\n                color: \"dark\",\n                title: \"年間実績\",\n                description: \"設立準備中でありながら、既に多数のプロジェクトを手がけています\",\n                count: 2025,\n                duration: 3000\n              })\n            ])\n          ])\n        ])\n      ])\n    ])\n  ]))\n}\n}\n\n})"
+        ],
+        "mappings": "AAAA,SAAS,mBAAmB,wBAAwB;AACpD,SAAS,eAAe,cAAc,sBAAsB,qBAAqB,aAAa,YAAY,sBAAsB,2BAA2B;AAE3J,MAAM,aAAa;AAAA,EACjB,OAAO;AAAA,EACP,IAAI;AACN;AACA,MAAM,aAAa,EAAE,OAAO,YAAY;AACxC,MAAM,aAAa,EAAE,OAAO,MAAM;AAClC,MAAM,aAAa,EAAE,OAAO,mDAAmD;AAC/E,MAAM,aAAa,EAAE,OAAO,MAAM;AAClC,MAAM,aAAa,EAAE,OAAO,6BAA6B;AACzD,MAAM,aAAa,EAAE,OAAO,6BAA6B;AACzD,MAAM,aAAa,EAAE,OAAO,WAAW;AAEvC,OAAO,wBAAwB;AAE/B,eAA4B,iCAAiB;AAAA,EAC3C,QAAQ;AAAA,EACR,MAAM,SAAS;AAGjB,WAAO,CAAC,MAAU,WAAgB;AAChC,aAAQ,WAAW,GAAG,oBAAoB,WAAW,YAAY;AAAA,QAC/D,oBAAoB,OAAO,YAAY;AAAA,UACrC,oBAAoB,OAAO,YAAY;AAAA,YACrC,oBAAoB,OAAO,YAAY;AAAA,cACrC,oBAAoB,OAAO,YAAY;AAAA,gBACrC,oBAAoB,OAAO,YAAY;AAAA,kBACrC,aAAa,oBAAoB;AAAA,oBAC/B,OAAO;AAAA,oBACP,OAAO;AAAA,oBACP,aAAa;AAAA,oBACb,OAAO;AAAA,oBACP,QAAQ;AAAA,oBACR,UAAU;AAAA,oBACV,SAAS;AAAA,kBACX,CAAC;AAAA,gBACH,CAAC;AAAA,gBACD,oBAAoB,OAAO,YAAY;AAAA,kBACrC,aAAa,oBAAoB;AAAA,oBAC/B,OAAO;AAAA,oBACP,OAAO;AAAA,oBACP,aAAa;AAAA,oBACb,OAAO;AAAA,oBACP,QAAQ;AAAA,oBACR,UAAU;AAAA,oBACV,SAAS;AAAA,kBACX,CAAC;AAAA,gBACH,CAAC;AAAA,gBACD,oBAAoB,OAAO,YAAY;AAAA,kBACrC,aAAa,oBAAoB;AAAA,oBAC/B,OAAO;AAAA,oBACP,OAAO;AAAA,oBACP,aAAa;AAAA,oBACb,OAAO;AAAA,oBACP,UAAU;AAAA,kBACZ,CAAC;AAAA,gBACH,CAAC;AAAA,cACH,CAAC;AAAA,YACH,CAAC;AAAA,UACH,CAAC;AAAA,QACH,CAAC;AAAA,MACH,CAAC;AAAA,IACH;AAAA,EACA;AAEA,CAAC;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413663972,
+      "end": 1762413663972,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413663972,
+      "end": 1762413663972,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1762413663972,
+      "end": 1762413663972,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413663972,
+      "end": 1762413663972,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413663972,
+      "end": 1762413663972,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413663972,
+      "end": 1762413663972,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1762413663972,
+      "end": 1762413663972,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413663972,
+      "end": 1762413663972,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413663972,
+      "end": 1762413663973,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413663973,
+      "end": 1762413663973,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413663973,
+      "end": 1762413663973,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1762413663973,
+      "end": 1762413663973,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413663973,
+      "end": 1762413663973,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413663973,
+      "end": 1762413663973,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413663973,
+      "end": 1762413663973,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413663973,
+      "end": 1762413663973,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413663973,
+      "end": 1762413663973,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413663973,
+      "end": 1762413663973,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413663973,
+      "end": 1762413663973,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413663974,
+      "end": 1762413663979,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413663990,
+      "end": 1762413663990,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413663990,
+      "end": 1762413663990,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1762413663990,
+      "end": 1762413663990,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1762413663990,
+      "end": 1762413663990,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413663991,
+      "end": 1762413663991,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413663992,
+      "end": 1762413663992,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413663992,
+      "end": 1762413663992,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413663992,
+      "end": 1762413663992,
+      "order": "normal"
+    }
+  ]
+}

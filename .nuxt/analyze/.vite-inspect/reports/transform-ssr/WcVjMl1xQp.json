@@ -1,0 +1,256 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/components/PWAMonitor.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\n  <div class=\"pwa-monitor\" v-if=\"showMonitor\">\n    <!-- 网络状态指示器 -->\n    <v-snackbar\n      v-model=\"showNetworkStatus\"\n      :timeout=\"networkStatusTimeout\"\n      :color=\"networkStatusColor\"\n      location=\"top\"\n      class=\"network-status-snackbar\"\n    >\n      <div class=\"d-flex align-center\">\n        <v-icon :icon=\"networkStatusIcon\" class=\"mr-2\" />\n        <span>{{ networkStatusMessage }}</span>\n      </div>\n      <template #actions>\n        <v-btn\n          variant=\"text\"\n          size=\"small\"\n          @click=\"showNetworkStatus = false\"\n        >\n          关闭\n        </v-btn>\n      </template>\n    </v-snackbar>\n\n    <!-- PWA更新通知 -->\n    <v-snackbar\n      v-model=\"showUpdateNotification\"\n      :timeout=\"-1\"\n      color=\"info\"\n      location=\"bottom\"\n      class=\"update-notification-snackbar\"\n    >\n      <div class=\"d-flex align-center\">\n        <v-icon icon=\"mdi-download\" class=\"mr-2\" />\n        <div>\n          <div class=\"font-weight-medium\">应用更新可用</div>\n          <div class=\"text-caption\">新版本已准备就绪</div>\n        </div>\n      </div>\n      <template #actions>\n        <v-btn\n          variant=\"text\"\n          size=\"small\"\n          @click=\"applyUpdate\"\n          :loading=\"applyingUpdate\"\n        >\n          更新\n        </v-btn>\n        <v-btn\n          variant=\"text\"\n          size=\"small\"\n          @click=\"dismissUpdate\"\n        >\n          稍后\n        </v-btn>\n      </template>\n    </v-snackbar>\n\n    <!-- PWA安装提示 -->\n    <v-snackbar\n      v-model=\"showInstallPrompt\"\n      :timeout=\"-1\"\n      color=\"primary\"\n      location=\"bottom\"\n      class=\"install-prompt-snackbar\"\n    >\n      <div class=\"d-flex align-center\">\n        <v-icon icon=\"mdi-cellphone-arrow-down\" class=\"mr-2\" />\n        <div>\n          <div class=\"font-weight-medium\">安装应用</div>\n          <div class=\"text-caption\">添加到主屏幕以获得更好的体验</div>\n        </div>\n      </div>\n      <template #actions>\n        <v-btn\n          variant=\"text\"\n          size=\"small\"\n          @click=\"installPWA\"\n          :loading=\"installing\"\n        >\n          安装\n        </v-btn>\n        <v-btn\n          variant=\"text\"\n          size=\"small\"\n          @click=\"dismissInstallPrompt\"\n        >\n          取消\n        </v-btn>\n      </template>\n    </v-snackbar>\n\n    <!-- 开发环境PWA状态浮动按钮 -->\n    <v-fab\n      v-if=\"showDevButton\"\n      icon=\"mdi-wifi-check\"\n      location=\"bottom end\"\n      app\n      color=\"secondary\"\n      size=\"small\"\n      class=\"pwa-dev-fab\"\n      @click=\"toggleDevInfo\"\n    />\n\n    <!-- 开发环境PWA信息弹窗 -->\n    <v-dialog v-model=\"showDevInfo\" max-width=\"600\">\n      <v-card>\n        <v-card-title class=\"bg-secondary text-white\">\n          <v-icon left>mdi-information</v-icon>\n          PWA 开发信息\n        </v-card-title>\n        <v-card-text class=\"pa-4\">\n          <v-row>\n            <v-col cols=\"6\">\n              <div class=\"mb-2\">\n                <strong>网络状态:</strong>\n                <v-chip \n                  :color=\"isOnline ? 'success' : 'error'\" \n                  size=\"small\" \n                  class=\"ml-2\"\n                >\n                  {{ isOnline ? '在线' : '离线' }}\n                </v-chip>\n              </div>\n              <div class=\"mb-2\">\n                <strong>PWA安装:</strong>\n                <v-chip \n                  :color=\"isPWAInstalled ? 'success' : 'warning'\" \n                  size=\"small\" \n                  class=\"ml-2\"\n                >\n                  {{ isPWAInstalled ? '已安装' : '未安装' }}\n                </v-chip>\n              </div>\n              <div class=\"mb-2\">\n                <strong>Service Worker:</strong>\n                <v-chip \n                  :color=\"getServiceWorkerColor(serviceWorkerStatus)\" \n                  size=\"small\" \n                  class=\"ml-2\"\n                >\n                  {{ serviceWorkerStatus }}\n                </v-chip>\n              </div>\n            </v-col>\n            <v-col cols=\"6\">\n              <div class=\"mb-2\">\n                <strong>缓存数量:</strong>\n                <v-chip color=\"info\" size=\"small\" class=\"ml-2\">\n                  {{ cacheStats.totalCaches }}\n                </v-chip>\n              </div>\n              <div class=\"mb-2\">\n                <strong>缓存条目:</strong>\n                <v-chip color=\"info\" size=\"small\" class=\"ml-2\">\n                  {{ cacheStats.totalEntries }}\n                </v-chip>\n              </div>\n              <div class=\"mb-2\">\n                <strong>缓存大小:</strong>\n                <v-chip color=\"info\" size=\"small\" class=\"ml-2\">\n                  {{ formatBytes(cacheStats.totalSize) }}\n                </v-chip>\n              </div>\n            </v-col>\n          </v-row>\n\n          <v-divider class=\"my-3\" />\n\n          <div class=\"d-flex gap-2\">\n            <v-btn \n              size=\"small\" \n              variant=\"outlined\" \n              @click=\"refreshStatus\"\n              :loading=\"refreshing\"\n            >\n              刷新状态\n            </v-btn>\n            <v-btn \n              size=\"small\" \n              variant=\"outlined\" \n              @click=\"runQuickTest\"\n              :loading=\"testing\"\n            >\n              快速测试\n            </v-btn>\n            <v-btn \n              size=\"small\" \n              variant=\"outlined\" \n              to=\"/pwa-test\"\n            >\n              详细测试\n            </v-btn>\n          </div>\n\n          <div v-if=\"lastTestResults.length > 0\" class=\"mt-3\">\n            <h4 class=\"mb-2\">最近测试结果:</h4>\n            <div class=\"test-results-container\" style=\"max-height: 200px; overflow-y: auto;\">\n              <div \n                v-for=\"result in lastTestResults.slice(0, 5)\" \n                :key=\"result.id\"\n                class=\"d-flex align-center mb-1\"\n              >\n                <v-icon \n                  :color=\"getResultColor(result.type)\" \n                  size=\"small\" \n                  class=\"mr-2\"\n                >\n                  {{ getResultIcon(result.type) }}\n                </v-icon>\n                <span class=\"text-caption\">{{ result.message }}</span>\n              </div>\n            </div>\n          </div>\n        </v-card-text>\n      </v-card>\n    </v-dialog>\n  </div>\n</template>\n\n<script setup lang=\"ts\">\nimport { ref, computed, onMounted, onUnmounted } from 'vue'\nimport { usePWATest } from '~/composables/usePWATest'\n\n// 组合函数\nconst {\n  isOnline,\n  isPWAInstalled,\n  serviceWorkerStatus,\n  cacheStats,\n  testResults,\n  refreshPWAStatus,\n  testCacheStrategy,\n  addTestResult,\n  formatBytes\n} = usePWATest()\n\n// 组件状态\nconst showMonitor = ref(true)\nconst showNetworkStatus = ref(false)\nconst showUpdateNotification = ref(false)\nconst showInstallPrompt = ref(false)\nconst showDevInfo = ref(false)\nconst refreshing = ref(false)\nconst testing = ref(false)\nconst installing = ref(false)\nconst applyingUpdate = ref(false)\n\n// 网络状态\nconst networkStatusTimeout = ref(4000)\nconst networkStatusMessage = ref('')\nconst networkStatusColor = ref('success')\nconst networkStatusIcon = ref('mdi-wifi')\n\n// 开发环境按钮显示控制\nconst showDevButton = computed(() => {\n  return process.dev || (process.client && window.location.hostname === 'localhost')\n})\n\n// 最近测试结果\nconst lastTestResults = computed(() => testResults.value.slice(0, 10))\n\n// BeforeInstallPrompt事件\nlet deferredPrompt: any = null\n\n// 生命周期\nonMounted(() => {\n  // 监听PWA安装提示事件\n  window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt)\n  \n  // 监听网络状态变化\n  window.addEventListener('online', handleOnline)\n  window.addEventListener('offline', handleOffline)\n  \n  // 监听Service Worker更新\n  if ('serviceWorker' in navigator) {\n    navigator.serviceWorker.addEventListener('controllerchange', handleServiceWorkerUpdate)\n  }\n  \n  // 初始化状态\n  refreshPWAStatus()\n  \n  // 检查PWA安装提示显示条件\n  setTimeout(() => {\n    checkInstallPromptConditions()\n  }, 3000)\n})\n\nonUnmounted(() => {\n  window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt)\n  window.removeEventListener('online', handleOnline)\n  window.removeEventListener('offline', handleOffline)\n  \n  if ('serviceWorker' in navigator) {\n    navigator.serviceWorker.removeEventListener('controllerchange', handleServiceWorkerUpdate)\n  }\n})\n\n// 事件处理\nconst handleBeforeInstallPrompt = (e: Event) => {\n  e.preventDefault()\n  deferredPrompt = e\n  \n  // 延迟显示安装提示，避免打扰用户\n  setTimeout(() => {\n    if (!isPWAInstalled.value && !hasRecentlyDismissedInstall()) {\n      showInstallPrompt.value = true\n    }\n  }, 5000)\n}\n\nconst handleOnline = () => {\n  networkStatusMessage.value = '网络连接已恢复'\n  networkStatusColor.value = 'success'\n  networkStatusIcon.value = 'mdi-wifi'\n  showNetworkStatus.value = true\n  networkStatusTimeout.value = 4000\n  \n  addTestResult('网络连接已恢复', 'success', 'network')\n}\n\nconst handleOffline = () => {\n  networkStatusMessage.value = '网络连接已断开，应用将使用缓存继续工作'\n  networkStatusColor.value = 'warning'\n  networkStatusIcon.value = 'mdi-wifi-off'\n  showNetworkStatus.value = true\n  networkStatusTimeout.value = 8000\n  \n  addTestResult('网络连接已断开', 'warning', 'network')\n}\n\nconst handleServiceWorkerUpdate = () => {\n  showUpdateNotification.value = true\n  addTestResult('检测到应用更新', 'info', 'update')\n}\n\n// PWA功能方法\nconst installPWA = async () => {\n  if (!deferredPrompt) {\n    addTestResult('无可用的安装提示', 'error', 'install')\n    return\n  }\n  \n  installing.value = true\n  \n  try {\n    await deferredPrompt.prompt()\n    const { outcome } = await deferredPrompt.userChoice\n    \n    if (outcome === 'accepted') {\n      addTestResult('PWA安装成功', 'success', 'install')\n      showInstallPrompt.value = false\n      deferredPrompt = null\n    } else {\n      addTestResult('用户取消了PWA安装', 'info', 'install')\n      recordInstallDismissal()\n    }\n  } catch (error) {\n    addTestResult(`PWA安装失败: ${(error as Error).message}`, 'error', 'install')\n  } finally {\n    installing.value = false\n  }\n}\n\nconst dismissInstallPrompt = () => {\n  showInstallPrompt.value = false\n  recordInstallDismissal()\n  addTestResult('用户已关闭安装提示', 'info', 'install')\n}\n\nconst applyUpdate = async () => {\n  applyingUpdate.value = true\n  \n  try {\n    if ('serviceWorker' in navigator) {\n      const registration = await navigator.serviceWorker.getRegistration()\n      if (registration?.waiting) {\n        registration.waiting.postMessage({ type: 'SKIP_WAITING' })\n        \n        // 等待Service Worker激活后刷新页面\n        navigator.serviceWorker.addEventListener('controllerchange', () => {\n          if (process.client) {\n            window.location.reload()\n          }\n        })\n        \n        addTestResult('应用更新已应用', 'success', 'update')\n      }\n    }\n  } catch (error) {\n    addTestResult(`应用更新失败: ${(error as Error).message}`, 'error', 'update')\n  } finally {\n    applyingUpdate.value = false\n    showUpdateNotification.value = false\n  }\n}\n\nconst dismissUpdate = () => {\n  showUpdateNotification.value = false\n  addTestResult('用户推迟了应用更新', 'info', 'update')\n}\n\n// 开发功能方法\nconst toggleDevInfo = () => {\n  showDevInfo.value = !showDevInfo.value\n}\n\nconst refreshStatus = async () => {\n  refreshing.value = true\n  await refreshPWAStatus()\n  refreshing.value = false\n}\n\nconst runQuickTest = async () => {\n  testing.value = true\n  \n  try {\n    // 快速测试主要缓存策略\n    const strategies = ['fonts', 'images', 'static']\n    for (const strategy of strategies) {\n      const result = await testCacheStrategy(strategy)\n      addTestResult(result.message, result.success ? 'success' : 'error', 'cache')\n    }\n    \n    addTestResult('快速测试完成', 'success', 'test')\n  } catch (error) {\n    addTestResult(`快速测试失败: ${(error as Error).message}`, 'error', 'test')\n  } finally {\n    testing.value = false\n  }\n}\n\n// 工具方法\nconst getServiceWorkerColor = (status: string) => {\n  switch (status) {\n    case '活跃': return 'success'\n    case '安装中': return 'warning'\n    case '等待激活': return 'info'\n    default: return 'error'\n  }\n}\n\nconst getResultColor = (type: string) => {\n  switch (type) {\n    case 'success': return 'success'\n    case 'error': return 'error'\n    case 'warning': return 'warning'\n    case 'info': return 'info'\n    default: return 'grey'\n  }\n}\n\nconst getResultIcon = (type: string) => {\n  switch (type) {\n    case 'success': return 'mdi-check-circle'\n    case 'error': return 'mdi-alert-circle'\n    case 'warning': return 'mdi-alert'\n    case 'info': return 'mdi-information'\n    default: return 'mdi-circle-outline'\n  }\n}\n\nconst checkInstallPromptConditions = () => {\n  // 检查是否应该显示安装提示\n  if (!isPWAInstalled.value && deferredPrompt && !hasRecentlyDismissedInstall()) {\n    // 在用户进行了一些交互后显示\n    let interactionCount = 0\n    const countInteraction = () => {\n      interactionCount++\n      if (interactionCount >= 3) {\n        showInstallPrompt.value = true\n        document.removeEventListener('click', countInteraction)\n        document.removeEventListener('scroll', countInteraction)\n      }\n    }\n    \n    document.addEventListener('click', countInteraction)\n    document.addEventListener('scroll', countInteraction)\n  }\n}\n\nconst hasRecentlyDismissedInstall = (): boolean => {\n  const dismissed = localStorage.getItem('pwa-install-dismissed')\n  if (!dismissed) return false\n  \n  const dismissedTime = new Date(dismissed)\n  const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)\n  return dismissedTime > weekAgo\n}\n\nconst recordInstallDismissal = () => {\n  localStorage.setItem('pwa-install-dismissed', new Date().toISOString())\n}\n</script>\n\n<style scoped>\n.pwa-monitor {\n  position: relative;\n  z-index: 2000;\n}\n\n.network-status-snackbar {\n  z-index: 2001;\n}\n\n.update-notification-snackbar {\n  z-index: 2002;\n}\n\n.install-prompt-snackbar {\n  z-index: 2003;\n}\n\n.pwa-dev-fab {\n  z-index: 1500;\n}\n\n.test-results-container {\n  background-color: #f5f5f5;\n  border-radius: 4px;\n  padding: 8px;\n}\n\n.gap-2 {\n  gap: 0.5rem;\n}\n</style>",
+      "start": 1762413668977,
+      "end": 1762413669001,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413669001,
+      "end": 1762413669001,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413669001,
+      "end": 1762413669001,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413669001,
+      "end": 1762413669001,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413669001,
+      "end": 1762413669001,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413669001,
+      "end": 1762413669002,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1762413669002,
+      "end": 1762413669002,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1762413669002,
+      "end": 1762413669002,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413669002,
+      "end": 1762413669002,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413669002,
+      "end": 1762413669002,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/home/user/NTE-company-website/components/PWAMonitor.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/home/user/NTE-company-website/components/PWAMonitor.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/home/user/NTE-company-website/components/PWAMonitor.vue?vue&type=style&index=0&scoped=3ac90970&lang.css\";\nimport { useSSRContext as __vite_useSSRContext } from \"vue\";\nconst _sfc_setup = _sfc_main.setup;\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext();\n  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add(\"components/PWAMonitor.vue\");\n  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;\n};\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-3ac90970\"]]);\n",
+      "start": 1762413669002,
+      "end": 1762413669034,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413669034,
+      "end": 1762413669034,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413669034,
+      "end": 1762413669034,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413669034,
+      "end": 1762413669034,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413669035,
+      "end": 1762413669035,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413669035,
+      "end": 1762413669035,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413669035,
+      "end": 1762413669035,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413669035,
+      "end": 1762413669035,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413669035,
+      "end": 1762413669035,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413669035,
+      "end": 1762413669035,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413669035,
+      "end": 1762413669035,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1762413669035,
+      "end": 1762413669035,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413669035,
+      "end": 1762413669035,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413669035,
+      "end": 1762413669035,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413669035,
+      "end": 1762413669035,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413669035,
+      "end": 1762413669035,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413669035,
+      "end": 1762413669035,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413669035,
+      "end": 1762413669035,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413669035,
+      "end": 1762413669035,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413669035,
+      "end": 1762413669035,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413669035,
+      "end": 1762413669036,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413669035,
+      "end": 1762413669036,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413669036,
+      "end": 1762413669036,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413669036,
+      "end": 1762413669036,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413669036,
+      "end": 1762413669036,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413669036,
+      "end": 1762413669036,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1762413669036,
+      "end": 1762413669036,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413669036,
+      "end": 1762413669036,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413669036,
+      "end": 1762413669036,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413669036,
+      "end": 1762413669037,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413669037,
+      "end": 1762413669037,
+      "order": "normal"
+    }
+  ]
+}

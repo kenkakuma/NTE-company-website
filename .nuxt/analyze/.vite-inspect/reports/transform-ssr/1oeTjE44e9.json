@@ -1,0 +1,256 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/components/ImageUploader.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<!-- 图片上传组件 -->\n<template>\n  <div class=\"image-uploader\">\n    <!-- 拖拽上传区域 -->\n    <div \n      class=\"upload-area\"\n      :class=\"{ \n        'drag-over': isDragOver,\n        'uploading': loading \n      }\"\n      @drop.prevent=\"handleDrop\"\n      @dragover.prevent=\"isDragOver = true\"\n      @dragleave=\"isDragOver = false\"\n      @click=\"triggerFileInput\"\n    >\n      <div class=\"upload-content\">\n        <v-icon \n          size=\"64\" \n          color=\"primary\"\n          class=\"upload-icon\"\n        >\n          {{ isDragOver ? 'mdi-cloud-upload' : 'mdi-image-plus' }}\n        </v-icon>\n        \n        <h3 class=\"upload-title\">\n          {{ isDragOver ? '释放以上传图片' : '拖拽图片到此处' }}\n        </h3>\n        \n        <p class=\"upload-description\">\n          或点击选择文件上传\n        </p>\n        \n        <div class=\"upload-info\">\n          <p class=\"info-text\">\n            支持格式: JPG, PNG, WEBP, SVG\n          </p>\n          <p class=\"info-text\">\n            最大大小: 5MB\n          </p>\n        </div>\n      </div>\n      \n      <!-- 进度条 -->\n      <div v-if=\"loading\" class=\"upload-progress\">\n        <v-progress-linear\n          indeterminate\n          color=\"primary\"\n          height=\"4\"\n        />\n        <p class=\"progress-text\">正在上传...</p>\n      </div>\n    </div>\n\n    <!-- 文件输入 -->\n    <input\n      ref=\"fileInput\"\n      type=\"file\"\n      multiple\n      accept=\"image/*\"\n      style=\"display: none\"\n      @change=\"handleFileSelect\"\n    >\n\n    <!-- 上传选项 -->\n    <div class=\"upload-options\">\n      <v-row>\n        <v-col cols=\"12\" md=\"6\">\n          <v-select\n            v-model=\"selectedCategory\"\n            label=\"选择分类\"\n            :items=\"categoryOptions\"\n            item-value=\"value\"\n            item-title=\"title\"\n            prepend-icon=\"mdi-folder\"\n            variant=\"outlined\"\n            density=\"compact\"\n          />\n        </v-col>\n        \n        <v-col cols=\"12\" md=\"6\">\n          <v-text-field\n            v-model=\"tags\"\n            label=\"标签 (用逗号分隔)\"\n            prepend-icon=\"mdi-tag-multiple\"\n            variant=\"outlined\"\n            density=\"compact\"\n            placeholder=\"例如: logo, 首页, 背景\"\n          />\n        </v-col>\n      </v-row>\n      \n      <v-row>\n        <v-col cols=\"12\">\n          <v-text-field\n            v-model=\"description\"\n            label=\"描述\"\n            prepend-icon=\"mdi-text\"\n            variant=\"outlined\"\n            density=\"compact\"\n            placeholder=\"简单描述这张图片...\"\n          />\n        </v-col>\n      </v-row>\n    </div>\n\n    <!-- 上传结果 -->\n    <div v-if=\"uploadResults.length > 0\" class=\"upload-results\">\n      <h4 class=\"results-title\">\n        <v-icon start>mdi-check-circle</v-icon>\n        已上传 {{ uploadResults.length }} 个文件\n      </h4>\n      \n      <div class=\"results-grid\">\n        <div \n          v-for=\"result in uploadResults\" \n          :key=\"result.id\"\n          class=\"result-item\"\n        >\n          <div class=\"result-image\">\n            <img :src=\"result.url\" :alt=\"result.originalName\">\n          </div>\n          <div class=\"result-info\">\n            <p class=\"result-name\">{{ result.originalName }}</p>\n            <p class=\"result-size\">{{ formatFileSize(result.size) }}</p>\n          </div>\n          <v-btn\n            icon=\"mdi-close\"\n            size=\"small\"\n            variant=\"text\"\n            @click=\"removeResult(result.id)\"\n          />\n        </div>\n      </div>\n      \n      <div class=\"results-actions\">\n        <v-btn\n          color=\"primary\"\n          @click=\"clearResults\"\n        >\n          清除列表\n        </v-btn>\n      </div>\n    </div>\n\n    <!-- 错误信息 -->\n    <v-alert\n      v-if=\"error\"\n      type=\"error\"\n      closable\n      @click:close=\"error = ''\"\n      class=\"mt-4\"\n    >\n      {{ error }}\n    </v-alert>\n  </div>\n</template>\n\n<script setup lang=\"ts\">\nimport type { ImageAsset } from '~/types/image'\nimport { useImageManager } from '~/composables/useImageManager'\n\n// Props\ninterface Props {\n  defaultCategory?: string\n  maxFiles?: number\n  showOptions?: boolean\n}\n\nconst props = withDefaults(defineProps<Props>(), {\n  defaultCategory: 'general',\n  maxFiles: 10,\n  showOptions: true\n})\n\n// Emits\nconst emit = defineEmits<{\n  upload: [images: ImageAsset[]]\n  error: [message: string]\n}>()\n\n// Composables\nconst { uploadImages, categoryOptions, validateFile } = useImageManager()\n\n// 响应式状态\nconst isDragOver = ref(false)\nconst loading = ref(false)\nconst error = ref('')\nconst uploadResults = ref<ImageAsset[]>([])\n\n// 上传选项\nconst selectedCategory = ref(props.defaultCategory)\nconst tags = ref('')\nconst description = ref('')\n\n// 文件输入引用\nconst fileInput = ref<HTMLInputElement>()\n\n// 格式化文件大小\nconst formatFileSize = (bytes: number): string => {\n  if (bytes === 0) return '0 B'\n  const k = 1024\n  const sizes = ['B', 'KB', 'MB', 'GB']\n  const i = Math.floor(Math.log(bytes) / Math.log(k))\n  return `${parseFloat((bytes / Math.pow(k, i)).toFixed(2))} ${sizes[i]}`\n}\n\n// 处理文件选择\nconst handleFileSelect = (event: Event) => {\n  const target = event.target as HTMLInputElement\n  const files = target.files\n  if (files) {\n    handleFiles(Array.from(files))\n  }\n}\n\n// 处理拖拽放置\nconst handleDrop = (event: DragEvent) => {\n  isDragOver.value = false\n  const files = event.dataTransfer?.files\n  if (files) {\n    handleFiles(Array.from(files))\n  }\n}\n\n// 处理文件\nconst handleFiles = async (files: File[]) => {\n  error.value = ''\n  \n  // 检查文件数量\n  if (files.length > props.maxFiles) {\n    error.value = `最多只能上传 ${props.maxFiles} 个文件`\n    return\n  }\n\n  // 验证文件\n  const validFiles: File[] = []\n  for (const file of files) {\n    const validationError = validateFile(file)\n    if (validationError) {\n      error.value = validationError\n      return\n    }\n    validFiles.push(file)\n  }\n\n  if (validFiles.length === 0) return\n\n  try {\n    loading.value = true\n    \n    // 准备上传选项\n    const uploadOptions: any = {\n      category: selectedCategory.value,\n      tags: tags.value.split(',').map(tag => tag.trim()).filter(Boolean)\n    }\n    if (description.value) uploadOptions.description = description.value\n\n    // 上传文件\n    const results = await uploadImages(validFiles, uploadOptions)\n    \n    // 更新结果\n    uploadResults.value.push(...results)\n    \n    // 发出事件\n    emit('upload', results)\n    \n    // 清空输入\n    if (fileInput.value) {\n      fileInput.value.value = ''\n    }\n    \n  } catch (err) {\n    const message = err instanceof Error ? err.message : '上传失败'\n    error.value = message\n    emit('error', message)\n  } finally {\n    loading.value = false\n  }\n}\n\n// 触发文件输入\nconst triggerFileInput = () => {\n  if (loading.value) return\n  fileInput.value?.click()\n}\n\n// 移除结果\nconst removeResult = (id: string) => {\n  const index = uploadResults.value.findIndex(r => r.id === id)\n  if (index !== -1) {\n    uploadResults.value.splice(index, 1)\n  }\n}\n\n// 清除结果\nconst clearResults = () => {\n  uploadResults.value = []\n}\n\n// 监听分类变化\nwatch(selectedCategory, (newValue) => {\n  if (newValue !== props.defaultCategory) {\n    selectedCategory.value = newValue\n  }\n})\n</script>\n\n<style scoped>\n.image-uploader {\n  width: 100%;\n}\n\n.upload-area {\n  border: 2px dashed #E0E0E0;\n  border-radius: 12px;\n  padding: 3rem 2rem;\n  text-align: center;\n  cursor: pointer;\n  transition: all 0.3s ease;\n  background: #FAFAFA;\n  position: relative;\n}\n\n.upload-area:hover {\n  border-color: #667eea;\n  background: #F5F7FF;\n}\n\n.upload-area.drag-over {\n  border-color: #667eea;\n  background: #F0F4FF;\n  transform: scale(1.02);\n}\n\n.upload-area.uploading {\n  pointer-events: none;\n  opacity: 0.7;\n}\n\n.upload-content {\n  position: relative;\n  z-index: 1;\n}\n\n.upload-icon {\n  margin-bottom: 1rem;\n  transition: transform 0.3s ease;\n}\n\n.drag-over .upload-icon {\n  transform: scale(1.2);\n}\n\n.upload-title {\n  font-size: 1.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 0.5rem;\n}\n\n.upload-description {\n  color: #666666;\n  margin-bottom: 1rem;\n  font-size: 1rem;\n}\n\n.upload-info {\n  margin-top: 1rem;\n}\n\n.info-text {\n  color: #888888;\n  font-size: 0.875rem;\n  margin: 0.25rem 0;\n}\n\n.upload-progress {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background: rgba(255, 255, 255, 0.95);\n  padding: 1rem;\n  border-radius: 0 0 12px 12px;\n}\n\n.progress-text {\n  margin-top: 0.5rem;\n  color: #667eea;\n  font-weight: 500;\n}\n\n.upload-options {\n  margin-top: 2rem;\n  padding: 1.5rem;\n  background: #F8F9FA;\n  border-radius: 8px;\n}\n\n.upload-results {\n  margin-top: 2rem;\n  padding: 1.5rem;\n  background: #F0F8FF;\n  border-radius: 8px;\n  border: 1px solid #E3F2FD;\n}\n\n.results-title {\n  color: #1976D2;\n  font-weight: 500;\n  margin-bottom: 1rem;\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n}\n\n.results-grid {\n  display: grid;\n  gap: 1rem;\n  margin-bottom: 1.5rem;\n}\n\n.result-item {\n  display: flex;\n  align-items: center;\n  gap: 1rem;\n  padding: 0.75rem;\n  background: white;\n  border-radius: 8px;\n  border: 1px solid #E0E0E0;\n}\n\n.result-image {\n  width: 50px;\n  height: 50px;\n  border-radius: 6px;\n  overflow: hidden;\n  flex-shrink: 0;\n}\n\n.result-image img {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n}\n\n.result-info {\n  flex: 1;\n}\n\n.result-name {\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 0.25rem;\n}\n\n.result-size {\n  color: #666666;\n  font-size: 0.875rem;\n  margin: 0;\n}\n\n.results-actions {\n  text-align: right;\n}\n\n/* 响应式设计 */\n@media (max-width: 768px) {\n  .upload-area {\n    padding: 2rem 1rem;\n  }\n  \n  .upload-title {\n    font-size: 1.25rem;\n  }\n  \n  .upload-options {\n    padding: 1rem;\n  }\n  \n  .upload-results {\n    padding: 1rem;\n  }\n}\n</style>",
+      "start": 1762413668394,
+      "end": 1762413668775,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413668775,
+      "end": 1762413668775,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413668775,
+      "end": 1762413668775,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413668775,
+      "end": 1762413668775,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413668775,
+      "end": 1762413668775,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413668775,
+      "end": 1762413668775,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1762413668775,
+      "end": 1762413668775,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1762413668775,
+      "end": 1762413668775,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413668775,
+      "end": 1762413668775,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413668775,
+      "end": 1762413668775,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/home/user/NTE-company-website/components/ImageUploader.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/home/user/NTE-company-website/components/ImageUploader.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/home/user/NTE-company-website/components/ImageUploader.vue?vue&type=style&index=0&scoped=2a917647&lang.css\";\nimport { useSSRContext as __vite_useSSRContext } from \"vue\";\nconst _sfc_setup = _sfc_main.setup;\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext();\n  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add(\"components/ImageUploader.vue\");\n  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;\n};\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-2a917647\"]]);\n",
+      "start": 1762413668775,
+      "end": 1762413668830,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413668830,
+      "end": 1762413668830,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413668830,
+      "end": 1762413668830,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413668830,
+      "end": 1762413668830,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413668830,
+      "end": 1762413668830,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413668830,
+      "end": 1762413668830,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413668830,
+      "end": 1762413668830,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413668830,
+      "end": 1762413668830,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413668830,
+      "end": 1762413668830,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413668830,
+      "end": 1762413668830,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413668830,
+      "end": 1762413668830,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1762413668830,
+      "end": 1762413668830,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413668830,
+      "end": 1762413668830,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413668830,
+      "end": 1762413668830,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413668830,
+      "end": 1762413668830,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413668830,
+      "end": 1762413668830,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413668830,
+      "end": 1762413668830,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413668830,
+      "end": 1762413668830,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413668830,
+      "end": 1762413668830,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413668830,
+      "end": 1762413668830,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413668830,
+      "end": 1762413668831,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413668830,
+      "end": 1762413668831,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413668831,
+      "end": 1762413668831,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413668831,
+      "end": 1762413668831,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413668832,
+      "end": 1762413668833,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413668832,
+      "end": 1762413668833,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1762413668834,
+      "end": 1762413668834,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413668834,
+      "end": 1762413668834,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413668834,
+      "end": 1762413668834,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413668834,
+      "end": 1762413668834,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413668834,
+      "end": 1762413668834,
+      "order": "normal"
+    }
+  ]
+}

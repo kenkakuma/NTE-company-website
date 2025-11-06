@@ -1,0 +1,256 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/pages/lab.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\n  <div class=\"anthropic-theme lab-page\">\n    <!-- Hero Section - Anthropic Style -->\n    <section class=\"lab-hero-section\">\n      <div class=\"custom-container\">\n        <div class=\"hero-content\">\n          <h1 class=\"hero-title\">ラボ | LAB</h1>\n          <p class=\"hero-subtitle\">技術研究・イノベーション</p>\n          <p class=\"hero-description\">\n            最先端技術とイノベーションで未来を創造\n          </p>\n        </div>\n      </div>\n    </section>\n\n    <!-- Research Areas -->\n    <section class=\"research-areas-section\">\n      <div class=\"custom-container\">\n        <div class=\"section-header\">\n          <h2 class=\"section-title\">研究開発領域</h2>\n          <p class=\"section-description\">\n            革新的な技術研究で社会課題の解決に取り組む専門分野\n          </p>\n        </div>\n        \n        <div class=\"research-grid\">\n          <div \n            v-for=\"area in researchAreas\" \n            :key=\"area.id\"\n            class=\"research-card\"\n          >\n            <div class=\"research-icon\">\n              <v-icon :icon=\"getResearchIcon(area.id)\" size=\"48\" color=\"#E17B47\"></v-icon>\n            </div>\n            <h3 class=\"research-title\">{{ area.title }}</h3>\n            <p class=\"research-description\">{{ area.description }}</p>\n            <ul class=\"research-features\">\n              <li v-for=\"feature in area.features\" :key=\"feature\">\n                {{ feature }}\n              </li>\n            </ul>\n          </div>\n        </div>\n      </div>\n    </section>\n\n\n    <!-- Innovation Process -->\n    <section class=\"innovation-process-section\">\n      <div class=\"custom-container\">\n        <div class=\"process-content\">\n          <div class=\"process-text\">\n            <h2 class=\"section-title\">イノベーション創出プロセス</h2>\n            <div class=\"process-steps\">\n              <div class=\"process-step\">\n                <h3 class=\"step-title\">1. 調査・分析</h3>\n                <p class=\"step-description\">\n                  市場動向や技術トレンドを徹底的に調査・分析し、イノベーションの機会を特定します。\n                </p>\n              </div>\n              \n              <div class=\"process-step\">\n                <h3 class=\"step-title\">2. 研究・開発</h3>\n                <p class=\"step-description\">\n                  最新技術と創造的アイデアを組み合わせた革新的なソリューションを開発します。\n                </p>\n              </div>\n              \n              <div class=\"process-step\">\n                <h3 class=\"step-title\">3. 実証・検証</h3>\n                <p class=\"step-description\">\n                  プロトタイプの作成と実証実験により、技術の有効性を検証します。\n                </p>\n              </div>\n              \n              <div class=\"process-step\">\n                <h3 class=\"step-title\">4. 実用化・展開</h3>\n                <p class=\"step-description\">\n                  実証された技術の実用化と市場展開をサポートします。\n                </p>\n              </div>\n            </div>\n          </div>\n          <div class=\"process-image\">\n            <img \n              src=\"https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&h=400\" \n              alt=\"Innovation Process\"\n            />\n          </div>\n        </div>\n      </div>\n    </section>\n\n    <!-- Partnership -->\n    <section class=\"partnership-section\">\n      <div class=\"custom-container\">\n        <div class=\"section-header\">\n          <h2 class=\"section-title\">パートナーシップ</h2>\n          <p class=\"section-description\">\n            研究開発を支える信頼できるパートナーネットワーク\n          </p>\n        </div>\n        \n        <div class=\"partners-grid\">\n          <div \n            v-for=\"partner in partners\"\n            :key=\"partner.id\"\n            class=\"partner-card\"\n          >\n            <div class=\"partner-icon\">\n              <v-icon :icon=\"getPartnerIcon(partner.id)\" size=\"48\" color=\"#E17B47\"></v-icon>\n            </div>\n            <h3 class=\"partner-name\">{{ partner.name }}</h3>\n            <p class=\"partner-type\">{{ partner.type }}</p>\n          </div>\n        </div>\n      </div>\n    </section>\n  </div>\n</template>\n\n<script setup lang=\"ts\">\n// SEO設定\nconst { setSEO } = useSEO()\nsetSEO('lab')\n\n// Helper functions for Material Design icons\nconst getResearchIcon = (researchId: string) => {\n  const iconMap: Record<string, string> = {\n    'ai-iot': 'mdi-brain',\n    'sustainable': 'mdi-leaf'\n  }\n  return iconMap[researchId] || 'mdi-microscope'\n}\n\nconst getPartnerIcon = (partnerId: number) => {\n  const iconMap: Record<number, string> = {\n    1: 'mdi-school',\n    2: 'mdi-laptop',\n    3: 'mdi-trophy',\n    4: 'mdi-currency-usd'\n  }\n  return iconMap[partnerId] || 'mdi-handshake'\n}\n\n// 研究領域データ\nconst researchAreas = [\n  {\n    id: 'ai-iot',\n    title: 'AI・IoTテクノロジー',\n    description: '人工知能とIoTの融合技術',\n    features: [\n      '機械学習・深層学習',\n      'スマートデバイス開発',\n      'データ分析・予測技術',\n      'エッジコンピューティング'\n    ]\n  },\n  {\n    id: 'sustainable',\n    title: 'サステナブル技術',\n    description: '持続可能な社会実現のための技術',\n    features: [\n      '環境配慮型材料開発',\n      'エネルギー効率化技術',\n      'リサイクル技術革新',\n      'カーボンニュートラル'\n    ]\n  }\n]\n\n\n// パートナー\nconst partners = [\n  {\n    id: 1,\n    name: '大学研究機関',\n    type: '学術パートナー'\n  },\n  {\n    id: 2,\n    name: 'テクノロジー企業',\n    type: '技術パートナー'\n  },\n  {\n    id: 3,\n    name: 'スポーツ団体',\n    type: '実証パートナー'\n  },\n  {\n    id: 4,\n    name: '投資機関',\n    type: '資金パートナー'\n  }\n]\n</script>\n\n<style scoped>\n/* Anthropic Theme Variables */\n.anthropic-theme {\n  background-color: #FAF9F7;\n  min-height: 100vh;\n}\n\n/* Custom Container */\n.custom-container {\n  max-width: 1200px;\n  margin: 0 auto;\n  padding: 0 24px;\n}\n\n/* Hero Section */\n.lab-hero-section {\n  padding: 80px 0 60px 0;\n  background-color: #FAF9F7;\n  border-bottom: 1px solid #E5E5E5;\n}\n\n.hero-content {\n  text-align: center;\n  max-width: 700px;\n  margin: 0 auto;\n}\n\n.hero-title {\n  font-size: 3.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 1rem;\n  line-height: 1.2;\n}\n\n.hero-subtitle {\n  font-size: 1.25rem;\n  color: #E17B47;\n  font-weight: 500;\n  margin-bottom: 1rem;\n}\n\n.hero-description {\n  font-size: 1.125rem;\n  color: #666666;\n  line-height: 1.6;\n  margin: 0;\n}\n\n/* Section Styles */\n.research-areas-section,\n.innovation-process-section {\n  padding: 80px 0;\n  background-color: #FAF9F7;\n}\n\n.partnership-section {\n  padding: 80px 0;\n  background-color: #F0EDE8;\n}\n\n.section-header {\n  text-align: center;\n  margin-bottom: 4rem;\n  max-width: 600px;\n  margin-left: auto;\n  margin-right: auto;\n}\n\n.section-title {\n  font-size: 2.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 1rem;\n  line-height: 1.3;\n}\n\n.section-description {\n  font-size: 1.125rem;\n  color: #666666;\n  line-height: 1.6;\n  margin: 0;\n}\n\n/* Research Areas Grid */\n.research-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));\n  gap: 2rem;\n}\n\n.research-card {\n  background: #FFFFFF;\n  border-radius: 16px;\n  padding: 2.5rem;\n  text-align: center;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);\n  border: 1px solid #E5E5E5;\n  transition: all 0.3s ease;\n}\n\n.research-card:hover {\n  transform: translateY(-4px);\n  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);\n  border-color: #E17B47;\n}\n\n.research-icon {\n  margin-bottom: 1.5rem;\n}\n\n\n.research-title {\n  font-size: 1.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 1rem;\n}\n\n.research-description {\n  color: #666666;\n  line-height: 1.6;\n  margin-bottom: 1.5rem;\n  font-size: 1rem;\n}\n\n.research-features {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n  text-align: left;\n}\n\n.research-features li {\n  position: relative;\n  padding-left: 1.5rem;\n  margin-bottom: 0.75rem;\n  color: #333333;\n  line-height: 1.5;\n}\n\n.research-features li::before {\n  content: '✓';\n  position: absolute;\n  left: 0;\n  color: #E17B47;\n  font-weight: 600;\n}\n\n\n/* Innovation Process */\n.process-content {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 4rem;\n  align-items: center;\n}\n\n.process-steps {\n  margin-top: 2rem;\n}\n\n.process-step {\n  margin-bottom: 2.5rem;\n}\n\n.step-title {\n  font-size: 1.25rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 0.75rem;\n}\n\n.step-description {\n  color: #666666;\n  line-height: 1.6;\n  margin: 0;\n  font-size: 1rem;\n}\n\n.process-image {\n  border-radius: 16px;\n  overflow: hidden;\n}\n\n.process-image img {\n  width: 100%;\n  height: 400px;\n  object-fit: cover;\n}\n\n/* Partners Grid */\n.partners-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));\n  gap: 2rem;\n}\n\n.partner-card {\n  background: #FFFFFF;\n  border-radius: 16px;\n  padding: 2rem;\n  text-align: center;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);\n  border: 1px solid #E5E5E5;\n  transition: all 0.3s ease;\n}\n\n.partner-card:hover {\n  transform: translateY(-4px);\n  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);\n  border-color: #E17B47;\n}\n\n.partner-icon {\n  margin-bottom: 1.5rem;\n}\n\n\n.partner-name {\n  font-size: 1.25rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 0.5rem;\n}\n\n.partner-type {\n  color: #666666;\n  font-size: 1rem;\n  margin: 0;\n}\n\n/* Responsive Design */\n@media (max-width: 768px) {\n  .custom-container {\n    padding: 0 16px;\n  }\n  \n  .lab-hero-section,\n  .research-areas-section,\n  .innovation-process-section,\n  .partnership-section {\n    padding: 60px 0;\n  }\n  \n  .hero-title {\n    font-size: 2.5rem;\n  }\n  \n  .section-title {\n    font-size: 2rem;\n  }\n  \n  .research-grid {\n    grid-template-columns: 1fr;\n  }\n  \n  \n  .partners-grid {\n    grid-template-columns: 1fr;\n  }\n  \n  .process-content {\n    grid-template-columns: 1fr;\n    gap: 2rem;\n  }\n  \n  .process-image {\n    order: -1;\n  }\n}\n\n@media (max-width: 480px) {\n  .hero-title {\n    font-size: 2rem;\n  }\n  \n  .section-title {\n    font-size: 1.75rem;\n  }\n  \n  .research-card,\n  .partner-card {\n    padding: 1.5rem;\n  }\n  \n}\n</style>",
+      "start": 1762413666154,
+      "end": 1762413666629,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413666629,
+      "end": 1762413666629,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413666629,
+      "end": 1762413666629,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413666629,
+      "end": 1762413666629,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413666629,
+      "end": 1762413666629,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413666629,
+      "end": 1762413666629,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1762413666629,
+      "end": 1762413666629,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1762413666629,
+      "end": 1762413666629,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413666629,
+      "end": 1762413666629,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413666629,
+      "end": 1762413666629,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/home/user/NTE-company-website/pages/lab.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/home/user/NTE-company-website/pages/lab.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/home/user/NTE-company-website/pages/lab.vue?vue&type=style&index=0&scoped=d248c239&lang.css\";\nimport { useSSRContext as __vite_useSSRContext } from \"vue\";\nconst _sfc_setup = _sfc_main.setup;\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext();\n  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add(\"pages/lab.vue\");\n  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;\n};\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-d248c239\"]]);\n",
+      "start": 1762413666629,
+      "end": 1762413667009,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413667009,
+      "end": 1762413667009,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413667009,
+      "end": 1762413667009,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413667009,
+      "end": 1762413667009,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413667009,
+      "end": 1762413667009,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413667009,
+      "end": 1762413667009,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413667009,
+      "end": 1762413667009,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413667009,
+      "end": 1762413667009,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413667009,
+      "end": 1762413667009,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413667009,
+      "end": 1762413667028,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413667028,
+      "end": 1762413667028,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1762413667029,
+      "end": 1762413667029,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413667029,
+      "end": 1762413667029,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413667029,
+      "end": 1762413667029,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413667029,
+      "end": 1762413667029,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413667029,
+      "end": 1762413667030,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413667031,
+      "end": 1762413667031,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413667031,
+      "end": 1762413667031,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413667031,
+      "end": 1762413667031,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413667031,
+      "end": 1762413667031,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413667031,
+      "end": 1762413667031,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413667031,
+      "end": 1762413667031,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413667031,
+      "end": 1762413667031,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413667031,
+      "end": 1762413667031,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413667031,
+      "end": 1762413667031,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413667031,
+      "end": 1762413667031,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1762413667031,
+      "end": 1762413667031,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413667032,
+      "end": 1762413667032,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413667032,
+      "end": 1762413667032,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413667032,
+      "end": 1762413667033,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413667033,
+      "end": 1762413667033,
+      "order": "normal"
+    }
+  ]
+}

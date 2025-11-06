@@ -1,0 +1,274 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/pages/club.vue?macro=true",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\n  <div class=\"anthropic-theme club-page\">\n    <!-- Hero Section - Anthropic Style -->\n    <section class=\"club-hero-section\">\n      <div class=\"custom-container\">\n        <div class=\"hero-content\">\n          <h1 class=\"hero-title\">クラブ | CLUB</h1>\n          <p class=\"hero-subtitle\">会員制コミュニティ</p>\n          <p class=\"hero-description\">\n            専門家ネットワークと限定サービスで特別な体験を\n          </p>\n        </div>\n      </div>\n    </section>\n\n    <!-- Clubs Section -->\n    <section class=\"clubs-section\">\n      <div class=\"custom-container\">\n        <div class=\"section-header\">\n          <h2 class=\"section-title\">コミュニティ一覧</h2>\n          <p class=\"section-description\">\n            興味と専門性を共有する3つの特別なコミュニティ\n          </p>\n        </div>\n        \n        <div class=\"clubs-grid\">\n          <div \n            v-for=\"club in clubs\" \n            :key=\"club.id\"\n            class=\"club-card\"\n          >\n            <div class=\"club-image\">\n              <img :src=\"club.image\" :alt=\"club.name\" />\n            </div>\n            <div class=\"club-content\">\n              <div class=\"club-header\">\n                <div class=\"club-icon\">\n                  <v-icon :icon=\"getClubIcon(club.id)\" size=\"32\" color=\"#E17B47\"></v-icon>\n                </div>\n                <h3 class=\"club-title\">{{ club.name }}</h3>\n                <div class=\"club-category\">{{ club.category }}</div>\n              </div>\n              <p class=\"club-description\">{{ club.description }}</p>\n              <div class=\"club-benefits\">\n                <strong class=\"benefits-title\">会員特典:</strong>\n                <ul class=\"benefits-list\">\n                  <li v-for=\"benefit in club.benefits\" :key=\"benefit\">\n                    {{ benefit }}\n                  </li>\n                </ul>\n              </div>\n              <div class=\"club-stats\">\n                <span class=\"member-count\">\n                  <v-icon icon=\"mdi-account-group\" size=\"16\" color=\"#666666\"></v-icon>\n                  {{ club.memberCount }}名\n                </span>\n              </div>\n              <button class=\"club-button\">詳細・入会案内</button>\n            </div>\n          </div>\n        </div>\n      </div>\n    </section>\n\n    <!-- Membership Benefits -->\n    <section class=\"membership-benefits-section\">\n      <div class=\"custom-container\">\n        <div class=\"section-header\">\n          <h2 class=\"section-title\">会員制サービスの特徴</h2>\n          <p class=\"section-description\">\n            会員だけが享受できる特別な価値とサービス\n          </p>\n        </div>\n        \n        <div class=\"features-grid\">\n          <div \n            v-for=\"feature in membershipFeatures\" \n            :key=\"feature.id\"\n            class=\"feature-card\"\n          >\n            <div class=\"feature-icon\">\n              <v-icon :icon=\"getFeatureIcon(feature.id)\" size=\"40\" color=\"white\"></v-icon>\n            </div>\n            <h3 class=\"feature-title\">{{ feature.title }}</h3>\n            <p class=\"feature-description\">{{ feature.description }}</p>\n          </div>\n        </div>\n      </div>\n    </section>\n\n    <!-- Events Calendar -->\n    <section class=\"events-section\">\n      <div class=\"custom-container\">\n        <div class=\"section-header\">\n          <h2 class=\"section-title\">今後のイベント</h2>\n          <p class=\"section-description\">\n            会員限定の特別なイベントとワークショップ (準備中)\n          </p>\n        </div>\n        \n        <div class=\"events-grid events-upcoming\">\n          <div \n            v-for=\"event in upcomingEvents\" \n            :key=\"event.id\"\n            class=\"event-card\"\n          >\n            <div class=\"event-date\">\n              <div class=\"event-month\">{{ formatMonth(event.date) }}</div>\n              <div class=\"event-day\">{{ formatDay(event.date) }}</div>\n            </div>\n            <div class=\"event-content\">\n              <h3 class=\"event-title\">{{ event.title }}</h3>\n              <div class=\"event-meta\">\n                <div class=\"event-location\">\n                  <v-icon icon=\"mdi-map-marker\" size=\"16\" color=\"#666666\"></v-icon>\n                  {{ event.location }}\n                </div>\n                <div class=\"event-time\">\n                  <v-icon icon=\"mdi-clock\" size=\"16\" color=\"#666666\"></v-icon>\n                  {{ event.time }}\n                </div>\n              </div>\n              <div class=\"event-club-tag\">{{ event.club }}</div>\n              <p class=\"event-description\">{{ event.description }}</p>\n            </div>\n          </div>\n        </div>\n      </div>\n    </section>\n\n    <!-- Join CTA -->\n    <section class=\"join-cta-section\">\n      <div class=\"custom-container\">\n        <div class=\"cta-content\">\n          <h2 class=\"cta-title\">コミュニティに参加しませんか？</h2>\n          <p class=\"cta-description\">\n            専門的な知識を共有し、新しいつながりを築きましょう\n          </p>\n          <div class=\"cta-buttons\">\n            <button class=\"cta-button primary\">入会申し込み</button>\n            <button class=\"cta-button secondary\">詳細資料請求</button>\n          </div>\n        </div>\n      </div>\n    </section>\n  </div>\n</template>\n\n<script setup lang=\"ts\">\n// SEO設定\nconst { setSEO } = useSEO()\nsetSEO('club')\n\n// クラブデータ\nconst clubs = [\n  {\n    id: 'coffee-lovers',\n    name: 'コーヒー愛好家クラブ',\n    category: '飲料文化',\n    description: '高品質コーヒーの知識を深め、愛好家同士の交流を楽しむコミュニティ',\n    image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&h=300',\n    memberCount: '120+',\n    benefits: [\n      '限定コーヒー豆の先行購入',\n      '専門家によるテイスティング講座',\n      '産地直送コーヒーツアー',\n      '焙煎体験ワークショップ'\n    ]\n  },\n  {\n    id: 'outdoor-sports',\n    name: 'アウトドアスポーツクラブ',\n    category: 'スポーツ',\n    description: '釣り・スキー・ゴルフなど多彩なアウトドアスポーツを楽しむアクティブコミュニティ',\n    image: 'https://images.unsplash.com/photo-1551632811-561732d1e306?w=400&h=300',\n    memberCount: '80+',\n    benefits: [\n      '専門ガイド付きツアー',\n      '最新器具の試用・割引',\n      '技術向上セミナー',\n      'プライベートレッスン'\n    ]\n  },\n  {\n    id: 'art-culture',\n    name: '文化芸術サークル',\n    category: '文化芸術',\n    description: '展示鑑賞・アート制作・文化イベントを通じて芸術への理解を深めるコミュニティ',\n    image: 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=300',\n    memberCount: '95+',\n    benefits: [\n      '展示会の優先予約・割引',\n      'アーティストとの交流会',\n      '創作ワークショップ',\n      'ギャラリーツアー'\n    ]\n  }\n]\n\n// 会員制サービスの特徴\nconst membershipFeatures = [\n  {\n    id: 1,\n    title: '専門家ネットワーク',\n    description: '各分野の専門家との直接的なつながり',\n    icon: 'mdi-account-tie'\n  },\n  {\n    id: 2,\n    title: '限定イベント',\n    description: '会員限定の特別なイベントや体験',\n    icon: 'mdi-star'\n  },\n  {\n    id: 3,\n    title: '学習機会',\n    description: '継続的なスキルアップとナレッジシェア',\n    icon: 'mdi-school'\n  },\n  {\n    id: 4,\n    title: 'コミュニティ',\n    description: '同じ興味を持つ仲間との深いつながり',\n    icon: 'mdi-heart'\n  }\n]\n\n// 今後のイベント (準備中)\nconst upcomingEvents = [\n  {\n    id: 1,\n    title: 'プレミアムコーヒーテイスティング',\n    date: '2025.02.15',\n    time: '14:00-16:00',\n    location: '中目黒スペース',\n    club: 'コーヒー愛好家',\n    description: '世界各地の希少コーヒー豆を専門家と一緒にテイスティング'\n  },\n  {\n    id: 2,\n    title: '春のフライフィッシング体験',\n    date: '2025.03.20',\n    time: '6:00-15:00',\n    location: '丹沢湖',\n    club: 'アウトドアスポーツ',\n    description: '経験豊富なガイドと一緒に春の釣りを楽しみましょう'\n  },\n  {\n    id: 3,\n    title: '現代アート鑑賞ツアー',\n    date: '2025.03.25',\n    time: '10:00-12:00',\n    location: '六本木アートミュージアム',\n    club: '文化芸術',\n    description: 'キュレーターによる解説付きの特別鑑賞ツアー'\n  }\n]\n\n// メソッド\nconst formatMonth = (dateStr: string) => {\n  const month = dateStr.split('.')[1]\n  return month + '月'\n}\n\nconst formatDay = (dateStr: string) => {\n  const day = dateStr.split('.')[2]\n  return day\n}\n\nconst getClubIcon = (clubId: string) => {\n  const icons: Record<string, string> = {\n    'coffee-lovers': 'mdi-coffee',\n    'outdoor-sports': 'mdi-run',\n    'art-culture': 'mdi-palette'\n  }\n  return icons[clubId] || 'mdi-account-group'\n}\n\nconst getFeatureIcon = (featureId: number) => {\n  const icons: Record<number, string> = {\n    1: 'mdi-account-tie',\n    2: 'mdi-star',\n    3: 'mdi-school',\n    4: 'mdi-heart'\n  }\n  return icons[featureId] || 'mdi-star'\n}\n\n</script>\n\n<style scoped>\n/* Anthropic Theme Variables */\n.anthropic-theme {\n  background-color: #FAF9F7;\n  min-height: 100vh;\n}\n\n/* Custom Container */\n.custom-container {\n  max-width: 1200px;\n  margin: 0 auto;\n  padding: 0 24px;\n}\n\n/* Hero Section */\n.club-hero-section {\n  padding: 80px 0 60px 0;\n  background-color: #FAF9F7;\n  border-bottom: 1px solid #E5E5E5;\n}\n\n.hero-content {\n  text-align: center;\n  max-width: 700px;\n  margin: 0 auto;\n}\n\n.hero-title {\n  font-size: 3.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 1rem;\n  line-height: 1.2;\n}\n\n.hero-subtitle {\n  font-size: 1.25rem;\n  color: #E17B47;\n  font-weight: 500;\n  margin-bottom: 1rem;\n}\n\n.hero-description {\n  font-size: 1.125rem;\n  color: #666666;\n  line-height: 1.6;\n  margin: 0;\n}\n\n/* Section Styles */\n.clubs-section,\n.events-section {\n  padding: 80px 0;\n  background-color: #FAF9F7;\n}\n\n.membership-benefits-section {\n  padding: 80px 0;\n  background-color: #F0EDE8;\n}\n\n.join-cta-section {\n  padding: 80px 0;\n  background-color: #1A1A1A;\n}\n\n.section-header {\n  text-align: center;\n  margin-bottom: 4rem;\n  max-width: 600px;\n  margin-left: auto;\n  margin-right: auto;\n}\n\n.section-title {\n  font-size: 2.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 1rem;\n  line-height: 1.3;\n}\n\n.section-description {\n  font-size: 1.125rem;\n  color: #666666;\n  line-height: 1.6;\n  margin: 0;\n}\n\n/* Clubs Grid */\n.clubs-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));\n  gap: 2rem;\n}\n\n.club-card {\n  background: #FFFFFF;\n  border-radius: 16px;\n  overflow: hidden;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);\n  border: 1px solid #E5E5E5;\n  transition: all 0.3s ease;\n}\n\n.club-card:hover {\n  transform: translateY(-4px);\n  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);\n  border-color: #E17B47;\n}\n\n.club-image {\n  width: 100%;\n  height: 200px;\n  overflow: hidden;\n}\n\n.club-image img {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n}\n\n.club-content {\n  padding: 2rem;\n}\n\n.club-header {\n  display: flex;\n  align-items: center;\n  gap: 1rem;\n  margin-bottom: 1rem;\n}\n\n.club-icon {\n  width: 50px;\n  height: 50px;\n  border-radius: 50%;\n  background: #F0EDE8;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-shrink: 0;\n}\n\n\n.club-title {\n  font-size: 1.25rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin: 0;\n  flex: 1;\n}\n\n.club-category {\n  background: #E17B47;\n  color: white;\n  padding: 0.25rem 0.75rem;\n  border-radius: 20px;\n  font-size: 0.75rem;\n  font-weight: 500;\n}\n\n.club-description {\n  color: #666666;\n  line-height: 1.6;\n  margin-bottom: 1.5rem;\n  font-size: 0.95rem;\n}\n\n.club-benefits {\n  margin-bottom: 1.5rem;\n}\n\n.benefits-title {\n  color: #1A1A1A;\n  font-size: 0.875rem;\n  font-weight: 600;\n  display: block;\n  margin-bottom: 0.75rem;\n}\n\n.benefits-list {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\n\n.benefits-list li {\n  position: relative;\n  padding-left: 1.5rem;\n  margin-bottom: 0.5rem;\n  color: #333333;\n  line-height: 1.5;\n  font-size: 0.875rem;\n}\n\n.benefits-list li::before {\n  content: '✓';\n  position: absolute;\n  left: 0;\n  color: #E17B47;\n  font-weight: 600;\n}\n\n.club-stats {\n  margin-bottom: 1.5rem;\n}\n\n.member-count {\n  color: #666666;\n  font-size: 0.875rem;\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n}\n\n.club-button {\n  width: 100%;\n  background: #E17B47;\n  color: white;\n  border: none;\n  padding: 0.875rem 1.5rem;\n  border-radius: 8px;\n  font-weight: 500;\n  cursor: pointer;\n  transition: all 0.3s ease;\n  font-size: 0.875rem;\n}\n\n.club-button:hover {\n  background: #1A1A1A;\n  transform: translateY(-1px);\n}\n\n/* Features Grid */\n.features-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));\n  gap: 2rem;\n}\n\n.feature-card {\n  background: #FFFFFF;\n  border-radius: 16px;\n  padding: 2rem;\n  text-align: center;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);\n  border: 1px solid #E5E5E5;\n  transition: all 0.3s ease;\n}\n\n.feature-card:hover {\n  transform: translateY(-4px);\n  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);\n  border-color: #E17B47;\n}\n\n.feature-icon {\n  width: 80px;\n  height: 80px;\n  border-radius: 50%;\n  background: #E17B47;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  margin: 0 auto 1.5rem auto;\n}\n\n\n.feature-title {\n  font-size: 1.25rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 0.75rem;\n}\n\n.feature-description {\n  color: #666666;\n  line-height: 1.6;\n  margin: 0;\n  font-size: 1rem;\n}\n\n/* Events Grid */\n.events-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));\n  gap: 2rem;\n}\n\n/* Events Upcoming - Blur Effect */\n.events-upcoming {\n  filter: blur(3px);\n  opacity: 0.6;\n  pointer-events: none;\n  position: relative;\n}\n\n.events-upcoming::after {\n  content: '準備中';\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  background: rgba(26, 26, 26, 0.9);\n  color: white;\n  padding: 1rem 2rem;\n  border-radius: 8px;\n  font-size: 1.5rem;\n  font-weight: 500;\n  pointer-events: none;\n  z-index: 10;\n  backdrop-filter: blur(10px);\n  border: 2px solid rgba(255, 255, 255, 0.1);\n}\n\n.event-card {\n  background: #FFFFFF;\n  border-radius: 16px;\n  display: flex;\n  overflow: hidden;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);\n  border: 1px solid #E5E5E5;\n  transition: all 0.3s ease;\n}\n\n.event-card:hover {\n  transform: translateY(-4px);\n  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);\n}\n\n.event-date {\n  background: #F0EDE8;\n  padding: 1.5rem;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  min-width: 100px;\n  text-align: center;\n}\n\n.event-month {\n  color: #E17B47;\n  font-size: 0.75rem;\n  font-weight: 600;\n  text-transform: uppercase;\n  margin-bottom: 0.25rem;\n}\n\n.event-day {\n  color: #1A1A1A;\n  font-size: 1.5rem;\n  font-weight: 600;\n}\n\n.event-content {\n  padding: 1.5rem;\n  flex: 1;\n}\n\n.event-title {\n  font-size: 1.125rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 0.75rem;\n}\n\n.event-meta {\n  margin-bottom: 0.75rem;\n}\n\n.event-location,\n.event-time {\n  color: #666666;\n  font-size: 0.875rem;\n  margin-bottom: 0.25rem;\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n}\n\n.event-club-tag {\n  background: #E17B47;\n  color: white;\n  padding: 0.25rem 0.75rem;\n  border-radius: 20px;\n  font-size: 0.75rem;\n  font-weight: 500;\n  display: inline-block;\n  margin-bottom: 0.75rem;\n}\n\n.event-description {\n  color: #666666;\n  line-height: 1.6;\n  margin: 0;\n  font-size: 0.875rem;\n}\n\n/* Join CTA Section */\n.cta-content {\n  text-align: center;\n  max-width: 600px;\n  margin: 0 auto;\n}\n\n.cta-title {\n  font-size: 2.5rem;\n  font-weight: 500;\n  color: #FFFFFF;\n  margin-bottom: 1rem;\n  line-height: 1.3;\n}\n\n.cta-description {\n  font-size: 1.125rem;\n  color: rgba(255, 255, 255, 0.9);\n  line-height: 1.6;\n  margin-bottom: 2rem;\n}\n\n.cta-buttons {\n  display: flex;\n  gap: 1rem;\n  justify-content: center;\n  flex-wrap: wrap;\n}\n\n.cta-button {\n  padding: 1rem 2rem;\n  border-radius: 8px;\n  font-weight: 500;\n  cursor: pointer;\n  transition: all 0.3s ease;\n  font-size: 1rem;\n  border: 2px solid transparent;\n}\n\n.cta-button.primary {\n  background: #E17B47;\n  color: white;\n  border-color: #E17B47;\n}\n\n.cta-button.primary:hover {\n  background: transparent;\n  color: #E17B47;\n  border-color: #E17B47;\n}\n\n.cta-button.secondary {\n  background: transparent;\n  color: white;\n  border-color: white;\n}\n\n.cta-button.secondary:hover {\n  background: white;\n  color: #1A1A1A;\n}\n\n/* Responsive Design */\n@media (max-width: 768px) {\n  .custom-container {\n    padding: 0 16px;\n  }\n  \n  .club-hero-section,\n  .clubs-section,\n  .membership-benefits-section,\n  .events-section,\n  .join-cta-section {\n    padding: 60px 0;\n  }\n  \n  .hero-title {\n    font-size: 2.5rem;\n  }\n  \n  .section-title,\n  .cta-title {\n    font-size: 2rem;\n  }\n  \n  .clubs-grid {\n    grid-template-columns: 1fr;\n  }\n  \n  .features-grid {\n    grid-template-columns: 1fr;\n  }\n  \n  .events-grid {\n    grid-template-columns: 1fr;\n  }\n  \n  .event-card {\n    flex-direction: column;\n  }\n  \n  .event-date {\n    flex-direction: row;\n    padding: 1rem;\n    min-width: auto;\n    justify-content: flex-start;\n    gap: 0.5rem;\n  }\n  \n  .cta-buttons {\n    flex-direction: column;\n    align-items: center;\n  }\n  \n  .cta-button {\n    width: 100%;\n    max-width: 300px;\n  }\n}\n\n@media (max-width: 480px) {\n  .hero-title {\n    font-size: 2rem;\n  }\n  \n  .section-title,\n  .cta-title {\n    font-size: 1.75rem;\n  }\n  \n  .club-content {\n    padding: 1.5rem;\n  }\n  \n  .feature-card {\n    padding: 1.5rem;\n  }\n  \n  .event-content {\n    padding: 1.25rem;\n  }\n}\n</style>",
+      "start": 1762413665994,
+      "end": 1762413666258,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413666258,
+      "end": 1762413666259,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413666258,
+      "end": 1762413666259,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413666259,
+      "end": 1762413666259,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413666259,
+      "end": 1762413666259,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413666259,
+      "end": 1762413666259,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1762413666259,
+      "end": 1762413666259,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1762413666259,
+      "end": 1762413666259,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413666259,
+      "end": 1762413666259,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413666259,
+      "end": 1762413666259,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/home/user/NTE-company-website/pages/club.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/home/user/NTE-company-website/pages/club.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/home/user/NTE-company-website/pages/club.vue?vue&type=style&index=0&scoped=cab07f4a&lang.css\";\nimport { useSSRContext as __vite_useSSRContext } from \"vue\";\nconst _sfc_setup = _sfc_main.setup;\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext();\n  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add(\"pages/club.vue\");\n  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;\n};\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-cab07f4a\"]]);\n",
+      "start": 1762413666259,
+      "end": 1762413666389,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413666389,
+      "end": 1762413666389,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413666389,
+      "end": 1762413666389,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413666389,
+      "end": 1762413666389,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413666390,
+      "end": 1762413666390,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413666390,
+      "end": 1762413666390,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413666390,
+      "end": 1762413666390,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413666390,
+      "end": 1762413666390,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413666390,
+      "end": 1762413666390,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413666390,
+      "end": 1762413666390,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413666391,
+      "end": 1762413666391,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1762413666391,
+      "end": 1762413666391,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413666391,
+      "end": 1762413666391,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413666391,
+      "end": 1762413666391,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413666391,
+      "end": 1762413666391,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413666391,
+      "end": 1762413666391,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413666393,
+      "end": 1762413666393,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413666393,
+      "end": 1762413666393,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413666393,
+      "end": 1762413666393,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413666393,
+      "end": 1762413666393,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413666394,
+      "end": 1762413666396,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413666394,
+      "end": 1762413666396,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413666396,
+      "end": 1762413666396,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413666396,
+      "end": 1762413666396,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "result": "export { default } from \"/home/user/NTE-company-website/pages/club.vue?macro=true&vue&type=script&setup=true&lang.ts\"",
+      "start": 1762413666397,
+      "end": 1762413666398,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          ""
+        ],
+        "names": [],
+        "mappings": "AAAA"
+      }
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "result": "export { default } from \"/home/user/NTE-company-website/pages/club.vue?macro=true&vue&type=script&setup=true&lang.ts\"",
+      "start": 1762413666397,
+      "end": 1762413666398,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          ""
+        ],
+        "names": [],
+        "mappings": "AAAA"
+      }
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1762413666398,
+      "end": 1762413666398,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413666400,
+      "end": 1762413666400,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413666400,
+      "end": 1762413666400,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413666400,
+      "end": 1762413666401,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413666401,
+      "end": 1762413666401,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,214 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/components/AppNavigation.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\n  <v-app-bar\n    app\n    :elevation=\"scrolled ? 4 : 0\"\n    :color=\"scrolled ? 'white' : 'transparent'\"\n    class=\"app-navigation\"\n    :class=\"{ 'nav-scrolled': scrolled }\"\n    height=\"80\"\n    scroll-behavior=\"fade-image\"\n  >\n    <v-container class=\"d-flex align-center\">\n      <!-- 品牌Logo -->\n      <nuxt-link to=\"/\" class=\"brand-link text-decoration-none\">\n        <div class=\"brand-container\">\n          <h1 class=\"brand-title d-none d-md-block\">\n            NO TRACE EXPLORER\n            <span class=\"brand-subtitle\">| 無迹探索株式会社</span>\n          </h1>\n          <h1 class=\"brand-title-mobile d-block d-md-none\">\n            NTE\n          </h1>\n        </div>\n      </nuxt-link>\n\n      <v-spacer />\n\n      <!-- 桌面端导航菜单 -->\n      <div class=\"d-none d-lg-flex navigation-menu\">\n        <v-btn\n          v-for=\"item in navigationItems\"\n          :key=\"item.to\"\n          :to=\"item.to\"\n          variant=\"text\"\n          class=\"nav-btn mx-1\"\n          :class=\"{ 'nav-btn-active': $route.path === item.to }\"\n        >\n          <v-icon v-if=\"item.icon\" :icon=\"item.icon\" start size=\"small\" />\n          {{ item.title }}\n        </v-btn>\n      </div>\n\n      <!-- 移动端菜单按钮 -->\n      <v-app-bar-nav-icon\n        class=\"d-lg-none\"\n        @click=\"drawer = !drawer\"\n      />\n    </v-container>\n  </v-app-bar>\n\n  <!-- 移动端抽屉导航 -->\n  <v-navigation-drawer\n    v-model=\"drawer\"\n    temporary\n    location=\"right\"\n    width=\"300\"\n    class=\"mobile-nav-drawer\"\n  >\n    <v-list nav class=\"py-4\">\n      <v-list-item\n        prepend-icon=\"mdi-close\"\n        @click=\"drawer = false\"\n        class=\"mb-4\"\n      >\n        <v-list-item-title class=\"text-h6\">メニュー</v-list-item-title>\n      </v-list-item>\n\n      <v-divider class=\"mb-4\" />\n\n      <v-list-item\n        v-for=\"item in navigationItems\"\n        :key=\"item.to\"\n        :to=\"item.to\"\n        @click=\"drawer = false\"\n        class=\"mobile-nav-item\"\n      >\n        <template #prepend>\n          <v-icon :icon=\"item.icon\" />\n        </template>\n        <v-list-item-title>{{ item.title }}</v-list-item-title>\n      </v-list-item>\n    </v-list>\n  </v-navigation-drawer>\n</template>\n\n<script setup lang=\"ts\">\nimport type { NavItem } from '~/types'\n\n// 响应式数据\nconst drawer = ref(false)\nconst scrolled = ref(false)\n\n// 导航项目配置\nconst navigationItems: NavItem[] = [\n  {\n    title: 'コーヒー',\n    to: '/coffee',\n    icon: 'mdi-coffee'\n  },\n  {\n    title: 'エキシビション',\n    to: '/exhibition',\n    icon: 'mdi-calendar-star'\n  },\n  {\n    title: 'ラボ',\n    to: '/lab',\n    icon: 'mdi-flask'\n  },\n  {\n    title: 'クラブ',\n    to: '/club',\n    icon: 'mdi-account-group'\n  },\n  {\n    title: '企業情報',\n    to: '/about',\n    icon: 'mdi-information'\n  },\n  {\n    title: 'お問い合わせ',\n    to: '/contact',\n    icon: 'mdi-email'\n  }\n]\n\n// 滚动检测\nconst handleScroll = () => {\n  scrolled.value = window.scrollY > 50\n}\n\n// 生命周期\nonMounted(() => {\n  window.addEventListener('scroll', handleScroll)\n})\n\nonUnmounted(() => {\n  window.removeEventListener('scroll', handleScroll)\n})\n</script>\n\n<style scoped>\n.app-navigation {\n  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n  backdrop-filter: blur(10px);\n}\n\n.nav-scrolled {\n  box-shadow: 0 2px 16px rgba(102, 126, 234, 0.1);\n  border-bottom: 1px solid rgba(102, 126, 234, 0.1);\n}\n\n.brand-link {\n  text-decoration: none;\n}\n\n.brand-container {\n  display: flex;\n  align-items: center;\n}\n\n.brand-title {\n  font-size: clamp(1.5rem, 3vw, 2rem);\n  font-weight: 300;\n  background: linear-gradient(\n    135deg,\n    rgb(var(--v-theme-primary)) 0%,\n    rgb(var(--v-theme-secondary)) 100%\n  );\n  -webkit-background-clip: text;\n  -webkit-text-fill-color: transparent;\n  background-clip: text;\n  letter-spacing: 0.02em;\n  line-height: 1.2;\n  margin: 0;\n}\n\n.brand-subtitle {\n  font-size: 0.7em;\n  opacity: 0.8;\n  font-weight: 400;\n  margin-left: 0.5rem;\n}\n\n.brand-title-mobile {\n  font-size: 1.8rem;\n  font-weight: 600;\n  background: linear-gradient(\n    135deg,\n    rgb(var(--v-theme-primary)) 0%,\n    rgb(var(--v-theme-secondary)) 100%\n  );\n  -webkit-background-clip: text;\n  -webkit-text-fill-color: transparent;\n  background-clip: text;\n  margin: 0;\n}\n\n.navigation-menu {\n  gap: 0.5rem;\n  align-items: center;\n}\n\n.nav-btn {\n  font-weight: 500;\n  letter-spacing: 0.02em;\n  text-transform: none;\n  position: relative;\n  transition: all 0.3s ease;\n  border-radius: 8px;\n  padding: 0 16px;\n  height: 40px;\n}\n\n.nav-btn::after {\n  content: '';\n  position: absolute;\n  bottom: -2px;\n  left: 50%;\n  width: 0;\n  height: 2px;\n  background: linear-gradient(90deg, rgb(var(--v-theme-primary)), rgb(var(--v-theme-secondary)));\n  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n  transform: translateX(-50%);\n  border-radius: 1px;\n}\n\n.nav-btn:hover::after,\n.nav-btn-active::after {\n  width: 80%;\n}\n\n.nav-btn:hover {\n  background: rgba(102, 126, 234, 0.08);\n  transform: translateY(-1px);\n}\n\n.nav-btn-active {\n  color: rgb(var(--v-theme-primary));\n  background: rgba(102, 126, 234, 0.1);\n}\n\n/* 移动端抽屉样式 */\n.mobile-nav-drawer :deep(.v-navigation-drawer__content) {\n  background: linear-gradient(\n    135deg,\n    rgba(102, 126, 234, 0.05) 0%,\n    rgba(118, 75, 162, 0.05) 100%\n  );\n}\n\n.mobile-nav-item {\n  margin: 0.5rem 1rem;\n  border-radius: 12px;\n  transition: all 0.3s ease;\n}\n\n.mobile-nav-item:hover {\n  background: rgba(102, 126, 234, 0.1);\n  transform: translateX(4px);\n}\n\n/* 响应式设计 */\n@media (max-width: 1279px) {\n  .brand-title {\n    font-size: 1.5rem;\n  }\n  \n  .brand-subtitle {\n    font-size: 0.6em;\n  }\n}\n\n@media (max-width: 959px) {\n  .app-navigation {\n    height: 64px;\n  }\n  \n  .brand-title-mobile {\n    font-size: 1.5rem;\n  }\n}\n\n/* 深色模式适配 */\n.v-theme--dark .nav-scrolled {\n  background: rgba(33, 33, 33, 0.95) !important;\n  border-bottom-color: rgba(102, 126, 234, 0.2);\n}\n\n.v-theme--dark .nav-btn:hover {\n  background: rgba(102, 126, 234, 0.15);\n}\n\n.v-theme--dark .nav-btn-active {\n  background: rgba(102, 126, 234, 0.2);\n}\n</style>",
+      "start": 1762413662472,
+      "end": 1762413663384,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413663384,
+      "end": 1762413663384,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413663384,
+      "end": 1762413663384,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413663384,
+      "end": 1762413663384,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1762413663384,
+      "end": 1762413663384,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1762413663384,
+      "end": 1762413663384,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413663384,
+      "end": 1762413663384,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413663384,
+      "end": 1762413663384,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/home/user/NTE-company-website/components/AppNavigation.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/home/user/NTE-company-website/components/AppNavigation.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/home/user/NTE-company-website/components/AppNavigation.vue?vue&type=style&index=0&scoped=d56a8f62&lang.css\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-d56a8f62\"]]);\n",
+      "start": 1762413663384,
+      "end": 1762413663685,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413663685,
+      "end": 1762413663685,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413663685,
+      "end": 1762413663685,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413663685,
+      "end": 1762413663685,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1762413663685,
+      "end": 1762413663685,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413663686,
+      "end": 1762413663686,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413663686,
+      "end": 1762413663686,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413663686,
+      "end": 1762413663686,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413663686,
+      "end": 1762413663687,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1762413663687,
+      "end": 1762413663687,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413663687,
+      "end": 1762413663687,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413663688,
+      "end": 1762413663688,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413663688,
+      "end": 1762413663688,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413663688,
+      "end": 1762413663688,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413663688,
+      "end": 1762413663688,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413663688,
+      "end": 1762413663688,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413663688,
+      "end": 1762413663689,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413663689,
+      "end": 1762413663690,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413663691,
+      "end": 1762413663691,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413663697,
+      "end": 1762413663698,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1762413663702,
+      "end": 1762413663702,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1762413663715,
+      "end": 1762413663715,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413663719,
+      "end": 1762413663719,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413663719,
+      "end": 1762413663720,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413663720,
+      "end": 1762413663720,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413663720,
+      "end": 1762413663720,
+      "order": "normal"
+    }
+  ]
+}

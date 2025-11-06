@@ -1,0 +1,223 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/pages/coffee.vue?macro=true",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\n  <div class=\"anthropic-theme coffee-page\">\n    <!-- Hero Section - Anthropic Style -->\n    <section class=\"coffee-hero-section\">\n      <div class=\"custom-container\">\n        <div class=\"hero-content\">\n          <h1 class=\"hero-title\">珈琲 | COFFEE</h1>\n          <p class=\"hero-subtitle\">飲料・文化事業</p>\n          <p class=\"hero-description\">\n            高品質コーヒー商品の企画開発・貿易・ブランド展開\n          </p>\n        </div>\n      </div>\n    </section>\n\n    <!-- Services Section -->\n    <section class=\"services-section\">\n      <div class=\"custom-container\">\n        <div class=\"section-header\">\n          <!-- Updated services section -->\n          <h2 class=\"section-title\">コーヒーサービス</h2>\n          <p class=\"section-description\">\n            品質と伝統を融合させた総合的なコーヒーソリューション\n          </p>\n        </div>\n        \n        <div class=\"services-grid\">\n          <div \n            v-for=\"service in services\" \n            :key=\"service.id\"\n            class=\"service-card\"\n          >\n            <div class=\"service-icon\">\n              <v-icon :icon=\"getServiceIcon(service.id)\" size=\"48\" color=\"#E17B47\"></v-icon>\n            </div>\n            <h3 class=\"service-title\">{{ service.title }}</h3>\n            <ul class=\"service-features\">\n              <li v-for=\"feature in service.features\" :key=\"feature\">\n                {{ feature }}\n              </li>\n            </ul>\n          </div>\n        </div>\n      </div>\n    </section>\n\n\n    <!-- Quality Promise -->\n    <section class=\"quality-section\">\n      <div class=\"custom-container\">\n        <div class=\"quality-content\">\n          <div class=\"quality-text\">\n            <h2 class=\"section-title\">品質へのこだわり</h2>\n            <div class=\"quality-features\">\n              <div class=\"quality-feature\">\n                <h3 class=\"feature-title\">厳選された豆</h3>\n                <p class=\"feature-description\">\n                  世界各地の優良農園から直接仕入れた高品質なコーヒー豆のみを使用しています。\n                </p>\n              </div>\n              <div class=\"quality-feature\">\n                <h3 class=\"feature-title\">独自の焙煎技術</h3>\n                <p class=\"feature-description\">\n                  豆の特性を最大限に引き出す独自の焙煎技術により、最高の風味を実現しています。\n                </p>\n              </div>\n              <div class=\"quality-feature\">\n                <h3 class=\"feature-title\">サステナブルな取り組み</h3>\n                <p class=\"feature-description\">\n                  環境と生産者に配慮したサステナブルなコーヒー作りに取り組んでいます。\n                </p>\n              </div>\n            </div>\n          </div>\n          <div class=\"quality-image\">\n            <img \n              src=\"https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=600&h=400\" \n              alt=\"Coffee Quality\"\n            />\n          </div>\n        </div>\n      </div>\n    </section>\n  </div>\n</template>\n\n<script setup lang=\"ts\">\n// SEO設定\nconst { setSEO } = useSEO()\nsetSEO('coffee')\n\n// Helper function for service icons\nconst getServiceIcon = (serviceId: string) => {\n  const iconMap: Record<string, string> = {\n    development: 'mdi-lightbulb-variant',\n    trade: 'mdi-earth',\n    brand: 'mdi-trophy',\n    international: 'mdi-airplane'\n  }\n  return iconMap[serviceId] || 'mdi-coffee'\n}\n\n// 服务数据\nconst services = [\n  {\n    id: 'development',\n    title: '商品企画開発',\n    icon: 'mdi-lightbulb-variant',\n    features: [\n      '高品質コーヒー商品の企画開発',\n      'ドリップバッグ開発・製造',\n      'オリジナルブレンド開発',\n      'パッケージデザイン'\n    ]\n  },\n  {\n    id: 'trade',\n    title: 'コーヒー貿易',\n    icon: 'mdi-earth',\n    features: [\n      '世界各地からの優良豆輸入',\n      '直接取引による品質保証',\n      '適正価格での安定供給',\n      'サステナブル調達'\n    ]\n  },\n  {\n    id: 'branding',\n    title: 'ブランド展開',\n    icon: 'mdi-trophy',\n    features: [\n      'オリジナルブランド展開',\n      'マーケティング戦略立案',\n      '販売チャネル開拓',\n      'ブランド価値向上'\n    ]\n  },\n  {\n    id: 'international',\n    title: '中国戦略展開',\n    icon: 'mdi-airplane',\n    features: [\n      '中国市場向け商品開発',\n      '海外販売戦略立案',\n      '現地パートナーシップ構築',\n      'クロスボーダーEC展開'\n    ]\n  }\n]\n\n</script>\n\n<style scoped>\n/* Anthropic Theme Variables */\n.anthropic-theme {\n  background-color: #FAF9F7;\n  min-height: 100vh;\n}\n\n/* Custom Container */\n.custom-container {\n  max-width: 1200px;\n  margin: 0 auto;\n  padding: 0 24px;\n}\n\n/* Hero Section */\n.coffee-hero-section {\n  padding: 80px 0 60px 0;\n  background-color: #FAF9F7;\n  border-bottom: 1px solid #E5E5E5;\n}\n\n.hero-content {\n  text-align: center;\n  max-width: 700px;\n  margin: 0 auto;\n}\n\n.hero-title {\n  font-size: 3.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 1rem;\n  line-height: 1.2;\n}\n\n.hero-subtitle {\n  font-size: 1.25rem;\n  color: #E17B47;\n  font-weight: 500;\n  margin-bottom: 1rem;\n}\n\n.hero-description {\n  font-size: 1.125rem;\n  color: #666666;\n  line-height: 1.6;\n  margin: 0;\n}\n\n/* Section Styles */\n.services-section,\n.quality-section {\n  padding: 80px 0;\n  background-color: #FAF9F7;\n}\n\n.section-header {\n  text-align: center;\n  margin-bottom: 4rem;\n  max-width: 600px;\n  margin-left: auto;\n  margin-right: auto;\n}\n\n.section-title {\n  font-size: 2.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 1rem;\n  line-height: 1.3;\n}\n\n.section-description {\n  font-size: 1.125rem;\n  color: #666666;\n  line-height: 1.6;\n  margin: 0;\n}\n\n/* Services Grid */\n.services-grid {\n  display: grid;\n  grid-template-columns: repeat(4, 1fr);\n  gap: 2rem;\n}\n\n.service-card {\n  background: #FFFFFF;\n  border-radius: 16px;\n  padding: 2.5rem;\n  text-align: center;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);\n  border: 1px solid #E5E5E5;\n  transition: all 0.3s ease;\n}\n\n.service-card:hover {\n  transform: translateY(-4px);\n  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);\n  border-color: #E17B47;\n}\n\n.service-icon {\n  margin-bottom: 1.5rem;\n}\n\n\n.service-title {\n  font-size: 1.5rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 1.5rem;\n}\n\n.service-features {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n  text-align: left;\n}\n\n.service-features li {\n  position: relative;\n  padding-left: 1.5rem;\n  margin-bottom: 0.75rem;\n  color: #333333;\n  line-height: 1.5;\n}\n\n.service-features li::before {\n  content: '✓';\n  position: absolute;\n  left: 0;\n  color: #E17B47;\n  font-weight: 600;\n}\n\n\n/* Quality Section */\n.quality-content {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 4rem;\n  align-items: center;\n}\n\n.quality-features {\n  margin-top: 2rem;\n}\n\n.quality-feature {\n  margin-bottom: 2rem;\n}\n\n.feature-title {\n  font-size: 1.25rem;\n  font-weight: 500;\n  color: #1A1A1A;\n  margin-bottom: 0.75rem;\n}\n\n.feature-description {\n  color: #666666;\n  line-height: 1.6;\n  margin: 0;\n}\n\n.quality-image {\n  border-radius: 16px;\n  overflow: hidden;\n}\n\n.quality-image img {\n  width: 100%;\n  height: 400px;\n  object-fit: cover;\n}\n\n/* Responsive Design */\n@media (max-width: 1024px) {\n  .services-grid {\n    grid-template-columns: repeat(2, 1fr);\n  }\n}\n\n@media (max-width: 768px) {\n  .custom-container {\n    padding: 0 16px;\n  }\n  \n  .coffee-hero-section,\n  .services-section,\n  .quality-section {\n    padding: 60px 0;\n  }\n  \n  .hero-title {\n    font-size: 2.5rem;\n  }\n  \n  .section-title {\n    font-size: 2rem;\n  }\n  \n  .services-grid {\n    grid-template-columns: 1fr;\n  }\n  \n  .quality-content {\n    grid-template-columns: 1fr;\n    gap: 2rem;\n  }\n  \n  .quality-image {\n    order: -1;\n  }\n}\n</style>",
+      "start": 1762413661413,
+      "end": 1762413661862,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413661862,
+      "end": 1762413661862,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413661862,
+      "end": 1762413661862,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413661862,
+      "end": 1762413661862,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1762413661862,
+      "end": 1762413661862,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1762413661862,
+      "end": 1762413661862,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413661862,
+      "end": 1762413661862,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413661862,
+      "end": 1762413661862,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/home/user/NTE-company-website/pages/coffee.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/home/user/NTE-company-website/pages/coffee.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/home/user/NTE-company-website/pages/coffee.vue?vue&type=style&index=0&scoped=b9afb4b5&lang.css\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-b9afb4b5\"]]);\n",
+      "start": 1762413661862,
+      "end": 1762413662268,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413662269,
+      "end": 1762413662269,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413662269,
+      "end": 1762413662269,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413662269,
+      "end": 1762413662269,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1762413662269,
+      "end": 1762413662269,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413662269,
+      "end": 1762413662269,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413662270,
+      "end": 1762413662270,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413662270,
+      "end": 1762413662270,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413662270,
+      "end": 1762413662270,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1762413662270,
+      "end": 1762413662270,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413662270,
+      "end": 1762413662270,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413662270,
+      "end": 1762413662270,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413662270,
+      "end": 1762413662270,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413662271,
+      "end": 1762413662271,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413662271,
+      "end": 1762413662271,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413662271,
+      "end": 1762413662271,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413662271,
+      "end": 1762413662271,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413662271,
+      "end": 1762413662272,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413662273,
+      "end": 1762413662273,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "result": "export { default } from \"/home/user/NTE-company-website/pages/coffee.vue?macro=true&vue&type=script&setup=true&lang.ts\"",
+      "start": 1762413662277,
+      "end": 1762413662277,
+      "order": "post",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          ""
+        ],
+        "names": [],
+        "mappings": "AAAA"
+      }
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1762413662280,
+      "end": 1762413662281,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1762413662282,
+      "end": 1762413662282,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413662282,
+      "end": 1762413662282,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413662283,
+      "end": 1762413662283,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413662283,
+      "end": 1762413662283,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413662283,
+      "end": 1762413662283,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,210 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/node_modules/vuetify/lib/composables/hotkey/hotkey-parsing.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "// Utilities\nimport { normalizeKey } from \"./key-aliases.js\";\nimport { consoleWarn } from \"../../util/console.js\"; // Types\nexport const MODIFIERS = ['ctrl', 'shift', 'alt', 'meta', 'cmd'];\n\n/**\n * Splits a single combination string into individual key parts.\n *\n * A combination is a set of keys that must be pressed simultaneously.\n * e.g. `ctrl+k`, `shift--`\n */\nexport function splitKeyCombination(combination) {\n  let isInternal = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;\n  if (!combination) {\n    if (!isInternal) consoleWarn('Invalid hotkey combination: empty string provided');\n    return [];\n  }\n\n  // --- VALIDATION ---\n  const startsWithPlusOrUnderscore = combination.startsWith('+') || combination.startsWith('_');\n  const hasInvalidLeadingSeparator =\n  // Starts with a single '+' or '_' followed by a non-separator character (e.g. '+a', '_a')\n  startsWithPlusOrUnderscore && !(combination.startsWith('++') || combination.startsWith('__'));\n  const hasInvalidStructure =\n  // Invalid leading separator patterns\n  combination.length > 1 && hasInvalidLeadingSeparator ||\n  // Disallow literal + or _ keys (they require shift)\n  combination.includes('++') || combination.includes('__') || combination === '+' || combination === '_' ||\n  // Ends with a separator that is not part of a doubled literal\n  combination.length > 1 && (combination.endsWith('+') || combination.endsWith('_')) && combination.at(-2) !== combination.at(-1) ||\n  // Stand-alone doubled separators (dangling)\n  combination === '++' || combination === '--' || combination === '__';\n  if (hasInvalidStructure) {\n    if (!isInternal) consoleWarn(`Invalid hotkey combination: \"${combination}\" has invalid structure`);\n    return [];\n  }\n  const keys = [];\n  let buffer = '';\n  const flushBuffer = () => {\n    if (buffer) {\n      keys.push(normalizeKey(buffer));\n      buffer = '';\n    }\n  };\n  for (let i = 0; i < combination.length; i++) {\n    const char = combination[i];\n    const nextChar = combination[i + 1];\n    if (char === '+' || char === '_' || char === '-') {\n      if (char === nextChar) {\n        flushBuffer();\n        keys.push(char);\n        i++;\n      } else if (char === '+' || char === '_') {\n        flushBuffer();\n      } else {\n        buffer += char;\n      }\n    } else {\n      buffer += char;\n    }\n  }\n  flushBuffer();\n\n  // Within a combination, `-` is only valid as a literal key (e.g., `ctrl+-`).\n  // `-` cannot be part of a longer key name within a combination.\n  const hasInvalidMinus = keys.some(key => key.length > 1 && key.includes('-') && key !== '--');\n  if (hasInvalidMinus) {\n    if (!isInternal) consoleWarn(`Invalid hotkey combination: \"${combination}\" has invalid structure`);\n    return [];\n  }\n  if (keys.length === 0 && combination) {\n    return [normalizeKey(combination)];\n  }\n  return keys;\n}\n\n/**\n * Splits a hotkey string into its constituent combination groups.\n *\n * A sequence is a series of combinations that must be pressed in order.\n * e.g. `a-b`, `ctrl+k-p`\n */\nexport function splitKeySequence(str) {\n  if (!str) {\n    consoleWarn('Invalid hotkey sequence: empty string provided');\n    return [];\n  }\n\n  // A sequence is invalid if it starts or ends with a separator,\n  // unless it is part of a combination (e.g., `shift+-`).\n  const hasInvalidStart = str.startsWith('-') && !['---', '--+'].includes(str);\n  const hasInvalidEnd = str.endsWith('-') && !str.endsWith('+-') && !str.endsWith('_-') && str !== '-' && str !== '---';\n  if (hasInvalidStart || hasInvalidEnd) {\n    consoleWarn(`Invalid hotkey sequence: \"${str}\" contains invalid combinations`);\n    return [];\n  }\n  const result = [];\n  let buffer = '';\n  let i = 0;\n  while (i < str.length) {\n    const char = str[i];\n    if (char === '-') {\n      // Determine if this hyphen is part of the current combination\n      const prevChar = str[i - 1];\n      const prevPrevChar = i > 1 ? str[i - 2] : undefined;\n      const precededBySinglePlusOrUnderscore = (prevChar === '+' || prevChar === '_') && prevPrevChar !== '+';\n      if (precededBySinglePlusOrUnderscore) {\n        // Treat as part of the combination (e.g., 'ctrl+-')\n        buffer += char;\n        i++;\n      } else {\n        // Treat as sequence separator\n        if (buffer) {\n          result.push(buffer);\n          buffer = '';\n        } else {\n          // Empty buffer means we have a literal '-' key\n          result.push('-');\n        }\n        i++;\n      }\n    } else {\n      buffer += char;\n      i++;\n    }\n  }\n\n  // Add final buffer if it exists\n  if (buffer) {\n    result.push(buffer);\n  }\n\n  // Collapse runs of '-' so that every second '-' is removed\n  const collapsed = [];\n  let minusCount = 0;\n  for (const part of result) {\n    if (part === '-') {\n      if (minusCount % 2 === 0) collapsed.push('-');\n      minusCount++;\n    } else {\n      minusCount = 0;\n      collapsed.push(part);\n    }\n  }\n\n  // Validate that each part of the sequence is a valid combination\n  const areAllValid = collapsed.every(s => splitKeyCombination(s, true).length > 0);\n  if (!areAllValid) {\n    consoleWarn(`Invalid hotkey sequence: \"${str}\" contains invalid combinations`);\n    return [];\n  }\n  return collapsed;\n}\n//# sourceMappingURL=hotkey-parsing.js.map",
+      "start": 1762413665540,
+      "end": 1762413665540,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413665540,
+      "end": 1762413665540,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413665540,
+      "end": 1762413665540,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413665540,
+      "end": 1762413665540,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1762413665540,
+      "end": 1762413665540,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1762413665540,
+      "end": 1762413665540,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413665540,
+      "end": 1762413665540,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413665540,
+      "end": 1762413665540,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1762413665540,
+      "end": 1762413665540,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413665540,
+      "end": 1762413665540,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413665540,
+      "end": 1762413665540,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413665540,
+      "end": 1762413665540,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1762413665540,
+      "end": 1762413665540,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413665540,
+      "end": 1762413665541,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413665541,
+      "end": 1762413665541,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413665541,
+      "end": 1762413665541,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413665541,
+      "end": 1762413665541,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1762413665541,
+      "end": 1762413665541,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413665541,
+      "end": 1762413665541,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413665541,
+      "end": 1762413665541,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413665541,
+      "end": 1762413665541,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413665541,
+      "end": 1762413665541,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413665541,
+      "end": 1762413665541,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413665541,
+      "end": 1762413665541,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413665541,
+      "end": 1762413665541,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413665541,
+      "end": 1762413665541,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413665541,
+      "end": 1762413665541,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413665541,
+      "end": 1762413665541,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1762413665541,
+      "end": 1762413665541,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1762413665541,
+      "end": 1762413665541,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413665541,
+      "end": 1762413665541,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413665541,
+      "end": 1762413665541,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413665541,
+      "end": 1762413665541,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413665541,
+      "end": 1762413665541,
+      "order": "normal"
+    }
+  ]
+}

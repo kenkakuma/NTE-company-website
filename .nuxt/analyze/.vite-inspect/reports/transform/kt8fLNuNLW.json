@@ -1,0 +1,214 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/components/PresentationPages.vue",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<template>\n  <section class=\"py-5\">\n    <div class=\"container\">\n      <!-- 标题区域 -->\n      <div class=\"row\">\n        <div class=\"col-lg-10 col-md-12 mx-auto text-center\">\n          <div class=\"divider-dot\"></div>\n          <h2 class=\"text-gradient mb-2\">企業最新情報</h2>\n          <p class=\"text-h6 text-muted mb-4\">CORPORATE NEWS & UPDATES</p>\n          <div class=\"mx-auto mb-6\" style=\"max-width: 600px;\">\n            <p class=\"text-body-1 text-muted mb-2\">\n              NO TRACE EXPLORERの最新ニュース、お知らせ、サービス情報をご覧いただけます。\n            </p>\n            <p class=\"text-body-1 text-muted\">\n              企業の成長と革新的な取り組みを随時更新しています。\n            </p>\n          </div>\n        </div>\n      </div>\n\n      <!-- 新闻列表 -->\n      <div class=\"row\">\n        <div class=\"col-lg-10 col-md-12 mx-auto\">\n          <div \n            v-for=\"(article, index) in articles\" \n            :key=\"article.id\"\n            class=\"news-card card mb-4\"\n            :style=\"{ animationDelay: `${index * 150}ms` }\"\n            @click=\"handleArticleClick(article)\"\n          >\n            <div class=\"card-body\">\n              <div class=\"row align-items-center\">\n                <!-- 日期徽章 -->\n                <div class=\"col-auto\">\n                  <div class=\"date-badge\">\n                    <div class=\"date-month\">{{ formatMonth(article.date) }}</div>\n                    <div class=\"date-day\">{{ formatDay(article.date) }}</div>\n                  </div>\n                </div>\n\n                <!-- 文章内容 -->\n                <div class=\"col\">\n                  <div class=\"d-flex align-items-center justify-content-between mb-2\">\n                    <span \n                      class=\"badge category-badge\"\n                      :style=\"{ backgroundColor: getCategoryColor(article.category) }\"\n                    >\n                      <i class=\"material-icons me-1\" style=\"font-size: 14px;\">\n                        {{ getCategoryIcon(article.category) }}\n                      </i>\n                      {{ article.category }}\n                    </span>\n                    \n                    <div class=\"d-flex align-items-center text-muted\">\n                      <i class=\"material-icons me-1\" style=\"font-size: 16px;\">schedule</i>\n                      <span class=\"small\">{{ article.readTime }}</span>\n                    </div>\n                  </div>\n\n                  <h3 class=\"news-title mb-2\">{{ article.title }}</h3>\n\n                  <p class=\"news-excerpt text-muted mb-3\">{{ article.excerpt }}</p>\n\n                  <div class=\"d-flex align-items-center justify-content-between\">\n                    <div class=\"d-flex flex-wrap\">\n                      <span \n                        v-for=\"tag in article.tags.slice(0, 3)\"\n                        :key=\"tag\"\n                        class=\"tag-item badge badge-light me-1 mb-1\"\n                      >\n                        {{ tag }}\n                      </span>\n                      <span \n                        v-if=\"article.tags.length > 3\"\n                        class=\"tag-item badge badge-light me-1 mb-1\"\n                      >\n                        +{{ article.tags.length - 3 }}\n                      </span>\n                    </div>\n\n                    <div class=\"news-arrow\">\n                      <i class=\"material-icons\">chevron_right</i>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <!-- 查看更多按钮 -->\n          <div class=\"text-center mt-5\">\n            <NuxtLink \n              to=\"/about\"\n              class=\"btn btn-primary btn-lg\"\n              @click=\"handleViewAllClick\"\n            >\n              <i class=\"material-icons me-2\">newspaper</i>\n              すべてのニュースを見る\n            </NuxtLink>\n          </div>\n        </div>\n      </div>\n    </div>\n  </section>\n</template>\n\n<script setup lang=\"ts\">\nimport { getLatestArticles } from '~/data/articles'\nimport type { Article } from '~/types'\n\n// 获取最新文章\nconst articles: Article[] = getLatestArticles(5)\n\n// 分类颜色映射\nconst categoryColors: Record<string, string> = {\n  '企業ニュース': '#667eea',\n  'サービス': '#28a745',\n  'コーヒー事業': '#8d4925',\n  '展示・イベント': '#6f42c1',\n  '釣具・器具': '#007bff',\n  'LAB・研究開発': '#fd7e14',\n  'クラブ活動': '#e91e63'\n}\n\n// 分类图标映射\nconst categoryIcons: Record<string, string> = {\n  '企業ニュース': 'business',\n  'サービス': 'settings',\n  'コーヒー事業': 'local_cafe',\n  '展示・イベント': 'event',\n  '釣具・器具': 'build',\n  'LAB・研究開発': 'science',\n  'クラブ活動': 'group'\n}\n\n// 方法\nconst getCategoryColor = (category: string): string => {\n  return categoryColors[category] || '#6c757d'\n}\n\nconst getCategoryIcon = (category: string): string => {\n  return categoryIcons[category] || 'info'\n}\n\nconst handleArticleClick = (article: Article) => {\n  navigateTo(`/about#article-${article.id}`)\n}\n\nconst handleViewAllClick = () => {\n  // 可以在这里添加分析代码\n}\n\nconst formatMonth = (dateStr: string): string => {\n  const month = dateStr.split('.')[1]\n  return month + '月'\n}\n\nconst formatDay = (dateStr: string): string => {\n  return dateStr.split('.')[2]\n}\n</script>\n\n<style scoped>\n/* ===== Material Kit样式 ===== */\n.py-5 {\n  padding-top: 3rem;\n  padding-bottom: 3rem;\n}\n\n.container {\n  max-width: 1200px;\n  margin: 0 auto;\n  padding: 0 1rem;\n}\n\n/* 标题样式 */\n.text-gradient {\n  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n  -webkit-background-clip: text;\n  -webkit-text-fill-color: transparent;\n  background-clip: text;\n  font-size: 2rem;\n  font-weight: 600;\n  text-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);\n}\n\n.divider-dot {\n  width: 10px;\n  height: 10px;\n  background: linear-gradient(135deg, #667eea, #764ba2);\n  border-radius: 50%;\n  margin: 0 auto 1.5rem;\n  animation: pulseGlow 2.5s ease-in-out infinite;\n  box-shadow: \n    0 0 10px rgba(102, 126, 234, 0.6),\n    0 0 20px rgba(102, 126, 234, 0.4);\n}\n\n@keyframes pulseGlow {\n  0%, 100% { \n    transform: scale(1); \n    opacity: 0.8;\n  }\n  50% { \n    transform: scale(1.3); \n    opacity: 1;\n  }\n}\n\n/* 新闻卡片样式 */\n.news-card {\n  background: white;\n  border: 0;\n  border-radius: 15px;\n  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);\n  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n  cursor: pointer;\n  opacity: 0;\n  transform: translateY(20px);\n  animation: slideInUp 0.6s ease forwards;\n  overflow: hidden;\n  position: relative;\n}\n\n.news-card::before {\n  content: '';\n  position: absolute;\n  left: 0;\n  top: 0;\n  bottom: 0;\n  width: 4px;\n  background: linear-gradient(135deg, #667eea, #764ba2);\n  transform: scaleY(0);\n  transform-origin: bottom;\n  transition: transform 0.3s ease;\n}\n\n.news-card:hover::before {\n  transform: scaleY(1);\n}\n\n.news-card:hover {\n  transform: translateY(-4px);\n  box-shadow: 0 12px 30px rgba(102, 126, 234, 0.15);\n}\n\n@keyframes slideInUp {\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n\n.card-body {\n  padding: 1.8rem;\n  position: relative;\n  z-index: 2;\n}\n\n/* 日期徽章 */\n.date-badge {\n  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n  border-radius: 12px;\n  padding: 12px 16px;\n  min-width: 80px;\n  text-align: center;\n  color: white;\n  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);\n}\n\n.date-month {\n  font-size: 0.75rem;\n  font-weight: 600;\n  opacity: 0.9;\n  line-height: 1;\n}\n\n.date-day {\n  font-size: 1.25rem;\n  font-weight: 700;\n  line-height: 1;\n  margin-top: 2px;\n}\n\n/* 分类徽章 */\n.category-badge {\n  font-size: 0.8rem;\n  font-weight: 500;\n  padding: 0.4rem 0.8rem;\n  border-radius: 20px;\n  display: inline-flex;\n  align-items: center;\n  color: white;\n  border: none;\n}\n\n/* 文章内容 */\n.news-title {\n  font-size: 1.15rem;\n  font-weight: 600;\n  color: #333;\n  line-height: 1.4;\n  margin-bottom: 0.5rem;\n  transition: color 0.3s ease;\n}\n\n.news-card:hover .news-title {\n  color: #667eea;\n}\n\n.news-excerpt {\n  font-size: 0.9rem;\n  line-height: 1.6;\n  color: #666;\n  display: -webkit-box;\n  -webkit-line-clamp: 2;\n  -webkit-box-orient: vertical;\n  overflow: hidden;\n}\n\n/* 标签 */\n.tag-item {\n  font-size: 0.75rem;\n  padding: 0.2rem 0.5rem;\n  background-color: #f8f9fa !important;\n  color: #666 !important;\n  border: 1px solid #e9ecef;\n  border-radius: 10px;\n  text-decoration: none;\n}\n\n/* 箭头 */\n.news-arrow {\n  color: #667eea;\n  transition: all 0.3s ease;\n}\n\n.news-card:hover .news-arrow {\n  transform: translateX(5px);\n  color: #764ba2;\n}\n\n/* 按钮样式 */\n.btn {\n  border: 1px solid transparent;\n  border-radius: 0.5rem;\n  cursor: pointer;\n  display: inline-flex;\n  align-items: center;\n  font-size: 0.875rem;\n  font-weight: 600;\n  line-height: 1.5;\n  padding: 0.625rem 1.25rem;\n  text-align: center;\n  text-decoration: none;\n  transition: all 0.15s ease-in-out;\n  user-select: none;\n  vertical-align: middle;\n  white-space: nowrap;\n}\n\n.btn-primary {\n  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n  border-color: transparent;\n  color: #ffffff;\n  box-shadow: 0 4px 7px -1px rgba(102, 126, 234, 0.5), 0 2px 4px -1px rgba(102, 126, 234, 0.3);\n}\n\n.btn-primary:hover {\n  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);\n  transform: translateY(-1px);\n  box-shadow: 0 7px 14px rgba(102, 126, 234, 0.4), 0 3px 6px rgba(102, 126, 234, 0.3);\n  text-decoration: none;\n  color: #ffffff;\n}\n\n.btn-lg {\n  border-radius: 0.5rem;\n  font-size: 1rem;\n  line-height: 1.5;\n  padding: 0.875rem 1.75rem;\n}\n\n/* Bootstrap Grid System */\n.container {\n  margin-left: auto;\n  margin-right: auto;\n  max-width: 1200px;\n  padding-left: 1rem;\n  padding-right: 1rem;\n  width: 100%;\n}\n\n.row {\n  display: flex;\n  flex-wrap: wrap;\n  margin-left: -0.75rem;\n  margin-right: -0.75rem;\n}\n\n.col,\n.col-auto,\n.col-lg-10 {\n  padding-left: 0.75rem;\n  padding-right: 0.75rem;\n}\n\n.col-auto {\n  flex: 0 0 auto;\n  width: auto;\n}\n\n.col {\n  flex: 1 0 0%;\n}\n\n.col-lg-10 {\n  flex: 0 0 auto;\n  width: 83.333333%;\n}\n\n@media (max-width: 991px) {\n  .col-lg-10 {\n    width: 100%;\n  }\n}\n\n/* 工具类 */\n.text-center { text-align: center; }\n.text-muted { color: #67748e !important; }\n.text-h6 { font-size: 1.25rem; font-weight: 500; }\n.text-body-1 { font-size: 1rem; line-height: 1.6; }\n\n.mx-auto { margin-left: auto; margin-right: auto; }\n.mb-2 { margin-bottom: 0.5rem; }\n.mb-3 { margin-bottom: 1rem; }\n.mb-4 { margin-bottom: 1.5rem; }\n.mb-5 { margin-bottom: 3rem; }\n.mb-6 { margin-bottom: 4rem; }\n.mt-5 { margin-top: 3rem; }\n.me-1 { margin-right: 0.25rem; }\n.me-2 { margin-right: 0.5rem; }\n\n.d-flex { display: flex; }\n.align-items-center { align-items: center; }\n.justify-content-between { justify-content: space-between; }\n.flex-wrap { flex-wrap: wrap; }\n\n.small { font-size: 0.875rem; }\n\n.badge {\n  display: inline-flex;\n  align-items: center;\n  padding: 0.35em 0.65em;\n  font-size: 0.75em;\n  font-weight: 500;\n  line-height: 1;\n  color: #fff;\n  text-align: center;\n  white-space: nowrap;\n  vertical-align: baseline;\n  border-radius: 0.375rem;\n}\n\n.badge-light {\n  background-color: #f8f9fa;\n  color: #6c757d;\n}\n\n/* 响应式设计 */\n@media (max-width: 767px) {\n  .text-gradient {\n    font-size: 1.8rem;\n  }\n  \n  .card-body {\n    padding: 1.5rem;\n  }\n  \n  .date-badge {\n    min-width: 70px;\n    padding: 10px 12px;\n  }\n  \n  .date-day {\n    font-size: 1.1rem;\n  }\n  \n  .news-title {\n    font-size: 1rem;\n  }\n  \n  .news-excerpt {\n    font-size: 0.85rem;\n    -webkit-line-clamp: 3;\n  }\n  \n  .row.align-items-center {\n    flex-direction: column;\n    align-items: flex-start !important;\n  }\n  \n  .col-auto {\n    margin-bottom: 1rem;\n  }\n  \n  .btn-lg {\n    font-size: 0.9rem;\n    padding: 0.75rem 1.5rem;\n  }\n}\n\n@media (max-width: 575px) {\n  .container {\n    padding-left: 0.5rem;\n    padding-right: 0.5rem;\n  }\n  \n  .news-card {\n    margin-bottom: 1rem;\n  }\n}\n</style>",
+      "start": 1762413662489,
+      "end": 1762413663389,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413663389,
+      "end": 1762413663389,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413663389,
+      "end": 1762413663389,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413663389,
+      "end": 1762413663389,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1762413663389,
+      "end": 1762413663389,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1762413663389,
+      "end": 1762413663389,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413663389,
+      "end": 1762413663389,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413663389,
+      "end": 1762413663389,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": "import _sfc_main from \"/home/user/NTE-company-website/components/PresentationPages.vue?vue&type=script&setup=true&lang.ts\";\nexport * from \"/home/user/NTE-company-website/components/PresentationPages.vue?vue&type=script&setup=true&lang.ts\";\nimport \"/home/user/NTE-company-website/components/PresentationPages.vue?vue&type=style&index=0&scoped=729f5988&lang.css\";\nimport _export_sfc from \"\\0plugin-vue:export-helper\";\nexport default /* @__PURE__ */ _export_sfc(_sfc_main, [[\"__scopeId\", \"data-v-729f5988\"]]);\n",
+      "start": 1762413663389,
+      "end": 1762413663685,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413663685,
+      "end": 1762413663685,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413663685,
+      "end": 1762413663685,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413663685,
+      "end": 1762413663685,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:chunk-error",
+      "start": 1762413663685,
+      "end": 1762413663685,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413663686,
+      "end": 1762413663686,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413663686,
+      "end": 1762413663686,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413663686,
+      "end": 1762413663686,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413663686,
+      "end": 1762413663687,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1762413663687,
+      "end": 1762413663687,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413663687,
+      "end": 1762413663687,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413663688,
+      "end": 1762413663688,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413663688,
+      "end": 1762413663688,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413663688,
+      "end": 1762413663688,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413663688,
+      "end": 1762413663688,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413663688,
+      "end": 1762413663688,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413663688,
+      "end": 1762413663689,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413663689,
+      "end": 1762413663690,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413663691,
+      "end": 1762413663691,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413663697,
+      "end": 1762413663698,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:runtime-paths-dep",
+      "start": 1762413663702,
+      "end": 1762413663702,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:route-injection-plugin",
+      "start": 1762413663715,
+      "end": 1762413663715,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413663719,
+      "end": 1762413663719,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413663719,
+      "end": 1762413663720,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413663720,
+      "end": 1762413663720,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413663720,
+      "end": 1762413663720,
+      "order": "normal"
+    }
+  ]
+}

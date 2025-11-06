@@ -1,0 +1,294 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/components/AnalyticsManager.vue?vue&type=style&index=0&scoped=86369a80&lang.css",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "\n.analytics-manager {\n  width: 100%;\n}\n\n.overview-cards {\n  margin-bottom: 2rem;\n}\n\n.stat-card {\n  height: 100%;\n}\n\n.stat-content {\n  display: flex;\n  align-items: center;\n  gap: 1rem;\n}\n\n.stat-icon {\n  flex-shrink: 0;\n}\n\n.stat-info {\n  flex: 1;\n}\n\n.stat-number {\n  font-size: 2rem;\n  font-weight: 600;\n  color: #1A1A1A;\n  line-height: 1;\n}\n\n.stat-label {\n  color: #666666;\n  font-size: 0.875rem;\n  margin-top: 0.25rem;\n}\n\n.charts-section {\n  margin-bottom: 2rem;\n}\n\n.chart-container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  min-height: 300px;\n}\n\n.details-section {\n  margin-bottom: 2rem;\n}\n\n.system-section {\n  margin-bottom: 2rem;\n}\n\n.system-info h4 {\n  color: #1A1A1A;\n  margin-bottom: 1rem;\n  font-size: 1.1rem;\n}\n\n.system-info p {\n  margin: 0.5rem 0;\n  color: #666666;\n}\n\n.actions-section {\n  margin-bottom: 2rem;\n}\n\n.action-buttons {\n  display: flex;\n  gap: 1rem;\n  flex-wrap: wrap;\n}\n\n/* 响应式设计 */\n@media (max-width: 768px) {\n  .action-buttons {\n    flex-direction: column;\n  }\n  \n  .action-buttons .v-btn {\n    width: 100%;\n  }\n  \n  .stat-content {\n    flex-direction: column;\n    text-align: center;\n  }\n  \n  .chart-container {\n    min-height: 250px;\n  }\n}\n\n/* 深色主题支持 */\n.v-theme--dark .stat-number {\n  color: #FFFFFF;\n}\n\n.v-theme--dark .system-info h4 {\n  color: #FFFFFF;\n}\n\n.v-theme--dark .system-info p {\n  color: #CCCCCC;\n}\n",
+      "start": 1762413668270,
+      "end": 1762413668270,
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/home/user/NTE-company-website/components/AnalyticsManager.vue"
+        ],
+        "names": [],
+        "mappings": "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",
+        "file": "/home/user/NTE-company-website/components/AnalyticsManager.vue",
+        "sourceRoot": "",
+        "sourcesContent": [
+          "<!-- 数据分析组件 -->\n<template>\n  <div class=\"analytics-manager\">\n    <!-- 概览卡片 -->\n    <div class=\"overview-cards\">\n      <v-row>\n        <v-col cols=\"12\" sm=\"6\" md=\"3\">\n          <v-card class=\"stat-card\">\n            <v-card-text>\n              <div class=\"stat-content\">\n                <div class=\"stat-icon\">\n                  <v-icon size=\"32\" color=\"blue\">mdi-newspaper</v-icon>\n                </div>\n                <div class=\"stat-info\">\n                  <div class=\"stat-number\">{{ stats.totalArticles }}</div>\n                  <div class=\"stat-label\">总文章数</div>\n                </div>\n              </div>\n            </v-card-text>\n          </v-card>\n        </v-col>\n        \n        <v-col cols=\"12\" sm=\"6\" md=\"3\">\n          <v-card class=\"stat-card\">\n            <v-card-text>\n              <div class=\"stat-content\">\n                <div class=\"stat-icon\">\n                  <v-icon size=\"32\" color=\"green\">mdi-image</v-icon>\n                </div>\n                <div class=\"stat-info\">\n                  <div class=\"stat-number\">{{ stats.totalImages }}</div>\n                  <div class=\"stat-label\">图片总数</div>\n                </div>\n              </div>\n            </v-card-text>\n          </v-card>\n        </v-col>\n        \n        <v-col cols=\"12\" sm=\"6\" md=\"3\">\n          <v-card class=\"stat-card\">\n            <v-card-text>\n              <div class=\"stat-content\">\n                <div class=\"stat-icon\">\n                  <v-icon size=\"32\" color=\"orange\">mdi-harddisk</v-icon>\n                </div>\n                <div class=\"stat-info\">\n                  <div class=\"stat-number\">{{ formatSize(stats.totalStorage) }}</div>\n                  <div class=\"stat-label\">存储使用</div>\n                </div>\n              </div>\n            </v-card-text>\n          </v-card>\n        </v-col>\n        \n        <v-col cols=\"12\" sm=\"6\" md=\"3\">\n          <v-card class=\"stat-card\">\n            <v-card-text>\n              <div class=\"stat-content\">\n                <div class=\"stat-icon\">\n                  <v-icon size=\"32\" color=\"purple\">mdi-clock</v-icon>\n                </div>\n                <div class=\"stat-info\">\n                  <div class=\"stat-number\">{{ stats.lastUpdate }}</div>\n                  <div class=\"stat-label\">最后更新</div>\n                </div>\n              </div>\n            </v-card-text>\n          </v-card>\n        </v-col>\n      </v-row>\n    </div>\n\n    <!-- 分析图表 -->\n    <div class=\"charts-section\">\n      <v-row>\n        <v-col cols=\"12\" md=\"6\">\n          <v-card title=\"文章分类分布\">\n            <v-card-text>\n              <div class=\"chart-container\">\n                <canvas ref=\"categoryChart\" width=\"400\" height=\"300\"></canvas>\n              </div>\n            </v-card-text>\n          </v-card>\n        </v-col>\n        \n        <v-col cols=\"12\" md=\"6\">\n          <v-card title=\"图片分类统计\">\n            <v-card-text>\n              <div class=\"chart-container\">\n                <canvas ref=\"imageChart\" width=\"400\" height=\"300\"></canvas>\n              </div>\n            </v-card-text>\n          </v-card>\n        </v-col>\n      </v-row>\n    </div>\n\n    <!-- 详细统计表格 -->\n    <div class=\"details-section\">\n      <v-row>\n        <v-col cols=\"12\" md=\"6\">\n          <v-card>\n            <v-card-title class=\"d-flex align-center\">\n              <v-icon start>mdi-newspaper</v-icon>\n              文章统计详情\n            </v-card-title>\n            <v-card-text>\n              <v-table density=\"compact\">\n                <thead>\n                  <tr>\n                    <th>分类</th>\n                    <th>数量</th>\n                    <th>占比</th>\n                  </tr>\n                </thead>\n                <tbody>\n                  <tr v-for=\"item in articleStats\" :key=\"item.category\">\n                    <td>\n                      <v-chip :color=\"getCategoryColor(item.category)\" size=\"small\">\n                        {{ item.category }}\n                      </v-chip>\n                    </td>\n                    <td>{{ item.count }}</td>\n                    <td>{{ item.percentage }}%</td>\n                  </tr>\n                </tbody>\n              </v-table>\n            </v-card-text>\n          </v-card>\n        </v-col>\n        \n        <v-col cols=\"12\" md=\"6\">\n          <v-card>\n            <v-card-title class=\"d-flex align-center\">\n              <v-icon start>mdi-image</v-icon>\n              图片统计详情\n            </v-card-title>\n            <v-card-text>\n              <v-table density=\"compact\">\n                <thead>\n                  <tr>\n                    <th>分类</th>\n                    <th>数量</th>\n                    <th>大小</th>\n                  </tr>\n                </thead>\n                <tbody>\n                  <tr v-for=\"item in imageStats\" :key=\"item.category\">\n                    <td>{{ item.category }}</td>\n                    <td>{{ item.count }}</td>\n                    <td>{{ formatSize(item.size) }}</td>\n                  </tr>\n                </tbody>\n              </v-table>\n            </v-card-text>\n          </v-card>\n        </v-col>\n      </v-row>\n    </div>\n\n    <!-- 系统信息 -->\n    <div class=\"system-section\">\n      <v-card>\n        <v-card-title class=\"d-flex align-center\">\n          <v-icon start>mdi-information</v-icon>\n          系统使用情况\n        </v-card-title>\n        <v-card-text>\n          <v-row>\n            <v-col cols=\"12\" md=\"4\">\n              <div class=\"system-info\">\n                <h4>存储详情</h4>\n                <p><strong>LocalStorage使用:</strong> {{ formatSize(systemInfo.storageUsed) }}</p>\n                <p><strong>可用空间:</strong> {{ formatSize(systemInfo.storageAvailable) }}</p>\n                <p><strong>使用率:</strong> {{ systemInfo.storagePercentage }}%</p>\n              </div>\n            </v-col>\n            \n            <v-col cols=\"12\" md=\"4\">\n              <div class=\"system-info\">\n                <h4>浏览器信息</h4>\n                <p><strong>浏览器:</strong> {{ systemInfo.browser }}</p>\n                <p><strong>版本:</strong> {{ systemInfo.version }}</p>\n                <p><strong>平台:</strong> {{ systemInfo.platform }}</p>\n              </div>\n            </v-col>\n            \n            <v-col cols=\"12\" md=\"4\">\n              <div class=\"system-info\">\n                <h4>性能监控</h4>\n                <p><strong>页面加载时间:</strong> {{ systemInfo.loadTime }}ms</p>\n                <p><strong>内存使用:</strong> {{ systemInfo.memoryUsage }}MB</p>\n                <p><strong>连接状态:</strong> \n                  <v-chip \n                    :color=\"systemInfo.online ? 'success' : 'error'\" \n                    size=\"small\"\n                  >\n                    {{ systemInfo.online ? '在线' : '离线' }}\n                  </v-chip>\n                </p>\n              </div>\n            </v-col>\n          </v-row>\n        </v-card-text>\n      </v-card>\n    </div>\n\n    <!-- 操作按钮 -->\n    <div class=\"actions-section\">\n      <v-row>\n        <v-col cols=\"12\">\n          <v-card>\n            <v-card-title>数据管理操作</v-card-title>\n            <v-card-text>\n              <div class=\"action-buttons\">\n                <v-btn\n                  color=\"primary\"\n                  prepend-icon=\"mdi-refresh\"\n                  @click=\"refreshData\"\n                  :loading=\"refreshing\"\n                >\n                  刷新数据\n                </v-btn>\n                \n                <v-btn\n                  color=\"success\"\n                  prepend-icon=\"mdi-download\"\n                  @click=\"exportData\"\n                >\n                  导出数据\n                </v-btn>\n                \n                <v-btn\n                  color=\"warning\"\n                  prepend-icon=\"mdi-broom\"\n                  @click=\"cleanupData\"\n                >\n                  清理数据\n                </v-btn>\n                \n                <v-btn\n                  color=\"info\"\n                  prepend-icon=\"mdi-chart-line\"\n                  @click=\"generateReport\"\n                >\n                  生成报告\n                </v-btn>\n              </div>\n            </v-card-text>\n          </v-card>\n        </v-col>\n      </v-row>\n    </div>\n\n    <!-- 消息提示 -->\n    <v-snackbar\n      v-model=\"showMessage\"\n      :color=\"messageType\"\n      :timeout=\"3000\"\n    >\n      {{ message }}\n      <template v-slot:actions>\n        <v-btn variant=\"text\" @click=\"showMessage = false\">关闭</v-btn>\n      </template>\n    </v-snackbar>\n  </div>\n</template>\n\n<script setup lang=\"ts\">\nimport { ref, onMounted, nextTick } from 'vue'\nimport type { Article } from '~/types'\nimport type { ImageAsset } from '~/types/image'\n\n// 响应式状态\nconst refreshing = ref(false)\nconst showMessage = ref(false)\nconst message = ref('')\nconst messageType = ref<'success' | 'error' | 'warning'>('success')\n\n// 图表引用\nconst categoryChart = ref<HTMLCanvasElement>()\nconst imageChart = ref<HTMLCanvasElement>()\n\n// 统计数据\nconst stats = ref({\n  totalArticles: 0,\n  totalImages: 0,\n  totalStorage: 0,\n  lastUpdate: ''\n})\n\nconst articleStats = ref<Array<{\n  category: string\n  count: number\n  percentage: number\n}>>([])\n\nconst imageStats = ref<Array<{\n  category: string\n  count: number\n  size: number\n}>>([])\n\nconst systemInfo = ref({\n  storageUsed: 0,\n  storageAvailable: 0,\n  storagePercentage: 0,\n  browser: '',\n  version: '',\n  platform: '',\n  loadTime: 0,\n  memoryUsage: 0,\n  online: true\n})\n\n// 计算属性\nconst formatSize = (bytes: number): string => {\n  if (bytes === 0) return '0 B'\n  const k = 1024\n  const sizes = ['B', 'KB', 'MB', 'GB']\n  const i = Math.floor(Math.log(bytes) / Math.log(k))\n  return `${parseFloat((bytes / Math.pow(k, i)).toFixed(2))} ${sizes[i]}`\n}\n\nconst getCategoryColor = (category: string): string => {\n  const colors: Record<string, string> = {\n    '企業ニュース': 'blue',\n    'サービス': 'green',\n    'コーヒー事業': 'brown',\n    '展示・イベント': 'purple',\n    '釣具・器具': 'orange',\n    'LAB・研究開発': 'red',\n    'クラブ活動': 'pink'\n  }\n  return colors[category] || 'grey'\n}\n\n// 方法\nconst loadAnalyticsData = () => {\n  try {\n    // 加载文章数据\n    const articlesData = localStorage.getItem('notrace_articles')\n    const articles: Article[] = articlesData ? JSON.parse(articlesData) : []\n    \n    // 加载图片数据\n    const imagesData = localStorage.getItem('notrace_images')\n    const images: ImageAsset[] = imagesData ? JSON.parse(imagesData) : []\n    \n    // 计算基础统计\n    stats.value.totalArticles = articles.length\n    stats.value.totalImages = images.length\n    stats.value.totalStorage = images.reduce((total, img) => total + img.size, 0)\n    \n    // 获取最后更新时间\n    const lastArticle = articles.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())[0]\n    stats.value.lastUpdate = lastArticle ? formatRelativeTime(lastArticle.date) : '无数据'\n    \n    // 计算文章分类统计\n    const articleCategoryMap = new Map<string, number>()\n    articles.forEach(article => {\n      const count = articleCategoryMap.get(article.category) || 0\n      articleCategoryMap.set(article.category, count + 1)\n    })\n    \n    articleStats.value = Array.from(articleCategoryMap.entries()).map(([category, count]) => ({\n      category,\n      count,\n      percentage: Math.round((count / articles.length) * 100)\n    }))\n    \n    // 计算图片分类统计\n    const imageCategoryMap = new Map<string, { count: number, size: number }>()\n    images.forEach(image => {\n      const current = imageCategoryMap.get(image.category) || { count: 0, size: 0 }\n      imageCategoryMap.set(image.category, {\n        count: current.count + 1,\n        size: current.size + image.size\n      })\n    })\n    \n    imageStats.value = Array.from(imageCategoryMap.entries()).map(([category, data]) => ({\n      category,\n      count: data.count,\n      size: data.size\n    }))\n    \n    // 系统信息\n    updateSystemInfo()\n    \n  } catch (error) {\n    console.error('Failed to load analytics data:', error)\n  }\n}\n\nconst updateSystemInfo = () => {\n  // 计算localStorage使用量\n  let totalSize = 0\n  for (let key in localStorage) {\n    if (localStorage.hasOwnProperty(key)) {\n      totalSize += (localStorage.getItem(key)?.length || 0)\n    }\n  }\n  \n  systemInfo.value.storageUsed = totalSize\n  systemInfo.value.storageAvailable = 5 * 1024 * 1024 // 5MB 估算\n  systemInfo.value.storagePercentage = Math.round((totalSize / systemInfo.value.storageAvailable) * 100)\n  \n  // 浏览器信息\n  const ua = navigator.userAgent\n  systemInfo.value.browser = getBrowserName(ua)\n  systemInfo.value.version = getBrowserVersion(ua)\n  systemInfo.value.platform = navigator.platform\n  \n  // 性能信息\n  systemInfo.value.loadTime = Math.round(performance.now())\n  systemInfo.value.memoryUsage = (performance as any).memory ? \n    Math.round((performance as any).memory.usedJSHeapSize / 1024 / 1024) : 0\n  systemInfo.value.online = navigator.onLine\n}\n\nconst getBrowserName = (ua: string): string => {\n  if (ua.includes('Chrome')) return 'Chrome'\n  if (ua.includes('Firefox')) return 'Firefox'\n  if (ua.includes('Safari')) return 'Safari'\n  if (ua.includes('Edge')) return 'Edge'\n  return 'Unknown'\n}\n\nconst getBrowserVersion = (ua: string): string => {\n  const match = ua.match(/(Chrome|Firefox|Safari|Edge)\\/(\\d+)/)\n  return match ? match[2] : 'Unknown'\n}\n\nconst formatRelativeTime = (dateString: string): string => {\n  const date = new Date(dateString.replace(/\\./g, '-'))\n  const now = new Date()\n  const diffMs = now.getTime() - date.getTime()\n  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24))\n  \n  if (diffDays === 0) return '今天'\n  if (diffDays === 1) return '昨天'\n  if (diffDays < 7) return `${diffDays}天前`\n  if (diffDays < 30) return `${Math.floor(diffDays / 7)}周前`\n  return `${Math.floor(diffDays / 30)}月前`\n}\n\nconst drawCharts = () => {\n  // 简单的图表绘制（使用Canvas API）\n  nextTick(() => {\n    drawCategoryChart()\n    drawImageChart()\n  })\n}\n\nconst drawCategoryChart = () => {\n  const canvas = categoryChart.value\n  if (!canvas) return\n  \n  const ctx = canvas.getContext('2d')\n  if (!ctx) return\n  \n  ctx.clearRect(0, 0, canvas.width, canvas.height)\n  \n  // 绘制饼图\n  const centerX = canvas.width / 2\n  const centerY = canvas.height / 2\n  const radius = Math.min(centerX, centerY) - 20\n  \n  let currentAngle = 0\n  const colors = ['#667eea', '#764ba2', '#f093fb', '#f5576c', '#4facfe', '#00f2fe', '#43e97b']\n  \n  articleStats.value.forEach((item, index) => {\n    const sliceAngle = (item.percentage / 100) * 2 * Math.PI\n    \n    ctx.beginPath()\n    ctx.arc(centerX, centerY, radius, currentAngle, currentAngle + sliceAngle)\n    ctx.lineTo(centerX, centerY)\n    ctx.fillStyle = colors[index % colors.length]\n    ctx.fill()\n    \n    currentAngle += sliceAngle\n  })\n}\n\nconst drawImageChart = () => {\n  const canvas = imageChart.value\n  if (!canvas) return\n  \n  const ctx = canvas.getContext('2d')\n  if (!ctx) return\n  \n  ctx.clearRect(0, 0, canvas.width, canvas.height)\n  \n  // 绘制柱状图\n  const padding = 40\n  const chartWidth = canvas.width - padding * 2\n  const chartHeight = canvas.height - padding * 2\n  \n  if (imageStats.value.length === 0) return\n  \n  const maxCount = Math.max(...imageStats.value.map(item => item.count))\n  const barWidth = chartWidth / imageStats.value.length\n  \n  imageStats.value.forEach((item, index) => {\n    const barHeight = (item.count / maxCount) * chartHeight\n    const x = padding + index * barWidth\n    const y = padding + chartHeight - barHeight\n    \n    ctx.fillStyle = '#667eea'\n    ctx.fillRect(x + 5, y, barWidth - 10, barHeight)\n    \n    // 绘制标签\n    ctx.fillStyle = '#333'\n    ctx.font = '12px sans-serif'\n    ctx.textAlign = 'center'\n    ctx.fillText(item.category, x + barWidth/2, canvas.height - 10)\n    ctx.fillText(item.count.toString(), x + barWidth/2, y - 5)\n  })\n}\n\nconst refreshData = async () => {\n  refreshing.value = true\n  try {\n    await new Promise(resolve => setTimeout(resolve, 1000)) // 模拟加载\n    loadAnalyticsData()\n    drawCharts()\n    showMessage.value = true\n    message.value = '数据已刷新'\n    messageType.value = 'success'\n  } catch (error) {\n    showMessage.value = true\n    message.value = '刷新失败'\n    messageType.value = 'error'\n  } finally {\n    refreshing.value = false\n  }\n}\n\nconst exportData = () => {\n  try {\n    const exportData = {\n      statistics: stats.value,\n      articleStats: articleStats.value,\n      imageStats: imageStats.value,\n      systemInfo: systemInfo.value,\n      exportTime: new Date().toISOString()\n    }\n    \n    const dataStr = JSON.stringify(exportData, null, 2)\n    const blob = new Blob([dataStr], { type: 'application/json' })\n    const url = URL.createObjectURL(blob)\n    \n    const a = document.createElement('a')\n    a.href = url\n    a.download = `notrace-analytics-${new Date().toISOString().split('T')[0]}.json`\n    a.click()\n    \n    URL.revokeObjectURL(url)\n    \n    showMessage.value = true\n    message.value = '数据导出完成'\n    messageType.value = 'success'\n  } catch (error) {\n    showMessage.value = true\n    message.value = '导出失败'\n    messageType.value = 'error'\n  }\n}\n\nconst cleanupData = () => {\n  try {\n    // 清理过期的缓存数据（保留核心数据）\n    const keysToKeep = [\n      'notrace_articles',\n      'notrace_images',\n      'notrace_homepage',\n      'notrace_image_categories'\n    ]\n    \n    let cleanedCount = 0\n    for (let key in localStorage) {\n      if (key.startsWith('notrace_') && !keysToKeep.includes(key)) {\n        localStorage.removeItem(key)\n        cleanedCount++\n      }\n    }\n    \n    // 刷新数据\n    loadAnalyticsData()\n    \n    showMessage.value = true\n    message.value = `已清理 ${cleanedCount} 个缓存项`\n    messageType.value = 'success'\n  } catch (error) {\n    showMessage.value = true\n    message.value = '清理失败'\n    messageType.value = 'error'\n  }\n}\n\nconst generateReport = () => {\n  try {\n    const reportData = {\n      title: 'NO TRACE EXPLORER 数据分析报告',\n      generateTime: new Date().toLocaleString('zh-CN'),\n      summary: {\n        totalArticles: stats.value.totalArticles,\n        totalImages: stats.value.totalImages,\n        storageUsage: formatSize(stats.value.totalStorage)\n      },\n      insights: [\n        `共发布了 ${stats.value.totalArticles} 篇文章`,\n        `上传了 ${stats.value.totalImages} 张图片`,\n        `使用了 ${formatSize(stats.value.totalStorage)} 存储空间`,\n        `最后更新时间: ${stats.value.lastUpdate}`\n      ],\n      recommendations: [\n        '定期备份重要数据',\n        '清理不必要的缓存文件',\n        '优化图片大小以节省存储空间',\n        '保持内容更新频率'\n      ]\n    }\n    \n    const reportHtml = `\n      <!DOCTYPE html>\n      <html>\n      <head>\n        <title>${reportData.title}</title>\n        <meta charset=\"utf-8\">\n        <style>\n          body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }\n          h1 { color: #667eea; }\n          h2 { color: #333; border-bottom: 2px solid #eee; padding-bottom: 10px; }\n          .summary { background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0; }\n          .insight, .recommendation { margin: 10px 0; padding: 10px; background: #fff; border-left: 4px solid #667eea; }\n        </style>\n      </head>\n      <body>\n        <h1>${reportData.title}</h1>\n        <p><strong>生成时间:</strong> ${reportData.generateTime}</p>\n        \n        <h2>数据概览</h2>\n        <div class=\"summary\">\n          <p><strong>文章总数:</strong> ${reportData.summary.totalArticles}</p>\n          <p><strong>图片总数:</strong> ${reportData.summary.totalImages}</p>\n          <p><strong>存储使用:</strong> ${reportData.summary.storageUsage}</p>\n        </div>\n        \n        <h2>数据洞察</h2>\n        ${reportData.insights.map(insight => `<div class=\"insight\">${insight}</div>`).join('')}\n        \n        <h2>建议</h2>\n        ${reportData.recommendations.map(rec => `<div class=\"recommendation\">${rec}</div>`).join('')}\n      </body>\n      </html>\n    `\n    \n    const blob = new Blob([reportHtml], { type: 'text/html' })\n    const url = URL.createObjectURL(blob)\n    \n    const a = document.createElement('a')\n    a.href = url\n    a.download = `notrace-report-${new Date().toISOString().split('T')[0]}.html`\n    a.click()\n    \n    URL.revokeObjectURL(url)\n    \n    showMessage.value = true\n    message.value = '报告生成完成'\n    messageType.value = 'success'\n  } catch (error) {\n    showMessage.value = true\n    message.value = '报告生成失败'\n    messageType.value = 'error'\n  }\n}\n\n// 生命周期\nonMounted(() => {\n  loadAnalyticsData()\n  drawCharts()\n  \n  // 监听在线状态变化\n  window.addEventListener('online', () => {\n    systemInfo.value.online = true\n  })\n  \n  window.addEventListener('offline', () => {\n    systemInfo.value.online = false\n  })\n})\n</script>\n\n<style scoped>\n.analytics-manager {\n  width: 100%;\n}\n\n.overview-cards {\n  margin-bottom: 2rem;\n}\n\n.stat-card {\n  height: 100%;\n}\n\n.stat-content {\n  display: flex;\n  align-items: center;\n  gap: 1rem;\n}\n\n.stat-icon {\n  flex-shrink: 0;\n}\n\n.stat-info {\n  flex: 1;\n}\n\n.stat-number {\n  font-size: 2rem;\n  font-weight: 600;\n  color: #1A1A1A;\n  line-height: 1;\n}\n\n.stat-label {\n  color: #666666;\n  font-size: 0.875rem;\n  margin-top: 0.25rem;\n}\n\n.charts-section {\n  margin-bottom: 2rem;\n}\n\n.chart-container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  min-height: 300px;\n}\n\n.details-section {\n  margin-bottom: 2rem;\n}\n\n.system-section {\n  margin-bottom: 2rem;\n}\n\n.system-info h4 {\n  color: #1A1A1A;\n  margin-bottom: 1rem;\n  font-size: 1.1rem;\n}\n\n.system-info p {\n  margin: 0.5rem 0;\n  color: #666666;\n}\n\n.actions-section {\n  margin-bottom: 2rem;\n}\n\n.action-buttons {\n  display: flex;\n  gap: 1rem;\n  flex-wrap: wrap;\n}\n\n/* 响应式设计 */\n@media (max-width: 768px) {\n  .action-buttons {\n    flex-direction: column;\n  }\n  \n  .action-buttons .v-btn {\n    width: 100%;\n  }\n  \n  .stat-content {\n    flex-direction: column;\n    text-align: center;\n  }\n  \n  .chart-container {\n    min-height: 250px;\n  }\n}\n\n/* 深色主题支持 */\n.v-theme--dark .stat-number {\n  color: #FFFFFF;\n}\n\n.v-theme--dark .system-info h4 {\n  color: #FFFFFF;\n}\n\n.v-theme--dark .system-info p {\n  color: #CCCCCC;\n}\n</style>"
+        ]
+      }
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413668270,
+      "end": 1762413668270,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413668270,
+      "end": 1762413668270,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413668270,
+      "end": 1762413668270,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413668270,
+      "end": 1762413668270,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413668271,
+      "end": 1762413668271,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": ".analytics-manager{width:100%}.overview-cards{margin-bottom:2rem}.stat-card{height:100%}.stat-content{align-items:center;display:flex;gap:1rem}.stat-icon{flex-shrink:0}.stat-info{flex:1}.stat-number{color:#1a1a1a;font-size:2rem;font-weight:600;line-height:1}.stat-label{color:#666;font-size:.875rem;margin-top:.25rem}.charts-section{margin-bottom:2rem}.chart-container{align-items:center;display:flex;justify-content:center;min-height:300px}.details-section,.system-section{margin-bottom:2rem}.system-info h4{color:#1a1a1a;font-size:1.1rem;margin-bottom:1rem}.system-info p{color:#666;margin:.5rem 0}.actions-section{margin-bottom:2rem}.action-buttons{display:flex;flex-wrap:wrap;gap:1rem}@media (max-width:768px){.action-buttons{flex-direction:column}.action-buttons .v-btn{width:100%}.stat-content{flex-direction:column;text-align:center}.chart-container{min-height:250px}}.v-theme--dark .stat-number,.v-theme--dark .system-info h4{color:#fff}.v-theme--dark .system-info p{color:#ccc}",
+      "start": 1762413668271,
+      "end": 1762413668302,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "/home/user/NTE-company-website/components/AnalyticsManager.vue",
+        "mappings": "AACA,mBACE,UACF,CAEA,gBACE,kBACF,CAEA,WACE,WACF,CAEA,cAEE,kBAAmB,CADnB,YAAa,CAEb,QACF,CAEA,WACE,aACF,CAEA,WACE,MACF,CAEA,aAGE,aAAc,CAFd,cAAe,CACf,eAAgB,CAEhB,aACF,CAEA,YACE,UAAc,CACd,iBAAmB,CACnB,iBACF,CAEA,gBACE,kBACF,CAEA,iBAGE,kBAAmB,CAFnB,YAAa,CACb,sBAAuB,CAEvB,gBACF,CAMA,iCACE,kBACF,CAEA,gBACE,aAAc,CAEd,gBAAiB,CADjB,kBAEF,CAEA,eAEE,UAAc,CADd,cAEF,CAEA,iBACE,kBACF,CAEA,gBACE,YAAa,CAEb,cAAe,CADf,QAEF,CAGA,yBACE,gBACE,qBACF,CAEA,uBACE,UACF,CAEA,cACE,qBAAsB,CACtB,iBACF,CAEA,iBACE,gBACF,CACF,CAOA,2DACE,UACF,CAEA,8BACE,UACF",
+        "names": [],
+        "sources": [
+          "/home/user/NTE-company-website/components/AnalyticsManager.vue"
+        ],
+        "sourcesContent": [
+          "\n.analytics-manager {\n  width: 100%;\n}\n\n.overview-cards {\n  margin-bottom: 2rem;\n}\n\n.stat-card {\n  height: 100%;\n}\n\n.stat-content {\n  display: flex;\n  align-items: center;\n  gap: 1rem;\n}\n\n.stat-icon {\n  flex-shrink: 0;\n}\n\n.stat-info {\n  flex: 1;\n}\n\n.stat-number {\n  font-size: 2rem;\n  font-weight: 600;\n  color: #1A1A1A;\n  line-height: 1;\n}\n\n.stat-label {\n  color: #666666;\n  font-size: 0.875rem;\n  margin-top: 0.25rem;\n}\n\n.charts-section {\n  margin-bottom: 2rem;\n}\n\n.chart-container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  min-height: 300px;\n}\n\n.details-section {\n  margin-bottom: 2rem;\n}\n\n.system-section {\n  margin-bottom: 2rem;\n}\n\n.system-info h4 {\n  color: #1A1A1A;\n  margin-bottom: 1rem;\n  font-size: 1.1rem;\n}\n\n.system-info p {\n  margin: 0.5rem 0;\n  color: #666666;\n}\n\n.actions-section {\n  margin-bottom: 2rem;\n}\n\n.action-buttons {\n  display: flex;\n  gap: 1rem;\n  flex-wrap: wrap;\n}\n\n/* 响应式设计 */\n@media (max-width: 768px) {\n  .action-buttons {\n    flex-direction: column;\n  }\n  \n  .action-buttons .v-btn {\n    width: 100%;\n  }\n  \n  .stat-content {\n    flex-direction: column;\n    text-align: center;\n  }\n  \n  .chart-container {\n    min-height: 250px;\n  }\n}\n\n/* 深色主题支持 */\n.v-theme--dark .stat-number {\n  color: #FFFFFF;\n}\n\n.v-theme--dark .system-info h4 {\n  color: #FFFFFF;\n}\n\n.v-theme--dark .system-info p {\n  color: #CCCCCC;\n}\n"
+        ],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1762413668302,
+      "end": 1762413668302,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413668302,
+      "end": 1762413668302,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413668302,
+      "end": 1762413668302,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": ".analytics-manager[data-v-86369a80]{width:100%}.overview-cards[data-v-86369a80]{margin-bottom:2rem}.stat-card[data-v-86369a80]{height:100%}.stat-content[data-v-86369a80]{align-items:center;display:flex;gap:1rem}.stat-icon[data-v-86369a80]{flex-shrink:0}.stat-info[data-v-86369a80]{flex:1}.stat-number[data-v-86369a80]{color:#1a1a1a;font-size:2rem;font-weight:600;line-height:1}.stat-label[data-v-86369a80]{color:#666;font-size:.875rem;margin-top:.25rem}.charts-section[data-v-86369a80]{margin-bottom:2rem}.chart-container[data-v-86369a80]{align-items:center;display:flex;justify-content:center;min-height:300px}.details-section[data-v-86369a80],.system-section[data-v-86369a80]{margin-bottom:2rem}.system-info h4[data-v-86369a80]{color:#1a1a1a;font-size:1.1rem;margin-bottom:1rem}.system-info p[data-v-86369a80]{color:#666;margin:.5rem 0}.actions-section[data-v-86369a80]{margin-bottom:2rem}.action-buttons[data-v-86369a80]{display:flex;flex-wrap:wrap;gap:1rem}@media (max-width:768px){.action-buttons[data-v-86369a80]{flex-direction:column}.action-buttons .v-btn[data-v-86369a80]{width:100%}.stat-content[data-v-86369a80]{flex-direction:column;text-align:center}.chart-container[data-v-86369a80]{min-height:250px}}.v-theme--dark .stat-number[data-v-86369a80],.v-theme--dark .system-info h4[data-v-86369a80]{color:#fff}.v-theme--dark .system-info p[data-v-86369a80]{color:#ccc}",
+      "start": 1762413668306,
+      "end": 1762413668308,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "/home/user/NTE-company-website/components/AnalyticsManager.vue",
+        "mappings": "AAAA,oCAAmB,UAAU,CAAC,iCAAgB,kBAAkB,CAAC,4BAAW,WAAW,CAAC,+BAAc,kBAAkB,CAAC,YAAY,CAAC,QAAQ,CAAC,4BAAW,aAAa,CAAC,4BAAW,MAAM,CAAC,8BAAa,aAAa,CAAC,cAAc,CAAC,eAAe,CAAC,aAAa,CAAC,6BAAY,UAAU,CAAC,iBAAiB,CAAC,iBAAiB,CAAC,iCAAgB,kBAAkB,CAAC,kCAAiB,kBAAkB,CAAC,YAAY,CAAC,sBAAsB,CAAC,gBAAgB,CAAC,mEAAiC,kBAAkB,CAAC,iCAAgB,aAAa,CAAC,gBAAgB,CAAC,kBAAkB,CAAC,gCAAe,UAAU,CAAC,cAAc,CAAC,kCAAiB,kBAAkB,CAAC,iCAAgB,YAAY,CAAC,cAAc,CAAC,QAAQ,CAAC,yBAAyB,iCAAgB,qBAAqB,CAAC,wCAAuB,UAAU,CAAC,+BAAc,qBAAqB,CAAC,iBAAiB,CAAC,kCAAiB,gBAAgB,CAAC,CAAC,6FAA2D,UAAU,CAAC,+CAA8B,UAAU",
+        "names": [],
+        "sources": [
+          "/home/user/NTE-company-website/components/AnalyticsManager.vue"
+        ],
+        "sourcesContent": [
+          null
+        ],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413668308,
+      "end": 1762413668308,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413668308,
+      "end": 1762413668308,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413668308,
+      "end": 1762413668308,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413668308,
+      "end": 1762413668308,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413668308,
+      "end": 1762413668308,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413668308,
+      "end": 1762413668308,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413668309,
+      "end": 1762413668309,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413668309,
+      "end": 1762413668309,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413668309,
+      "end": 1762413668309,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413668309,
+      "end": 1762413668309,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "export default ''",
+      "start": 1762413668309,
+      "end": 1762413668309,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413668309,
+      "end": 1762413668309,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413668309,
+      "end": 1762413668309,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413668309,
+      "end": 1762413668309,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413668309,
+      "end": 1762413668309,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413668309,
+      "end": 1762413668309,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413668309,
+      "end": 1762413668309,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413668309,
+      "end": 1762413668309,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413668309,
+      "end": 1762413668309,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413668309,
+      "end": 1762413668309,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413668309,
+      "end": 1762413668309,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413668313,
+      "end": 1762413668313,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413668313,
+      "end": 1762413668313,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413668313,
+      "end": 1762413668313,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413668313,
+      "end": 1762413668313,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1762413668313,
+      "end": 1762413668313,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413668313,
+      "end": 1762413668313,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413668313,
+      "end": 1762413668313,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413668313,
+      "end": 1762413668313,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413668313,
+      "end": 1762413668313,
+      "order": "normal"
+    }
+  ]
+}

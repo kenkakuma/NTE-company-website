@@ -1,0 +1,264 @@
+{
+  "resolvedId": "/home/user/NTE-company-website/types/image.ts",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "// 图片管理相关类型定义\nexport interface ImageAsset {\n  id: string\n  filename: string\n  originalName: string\n  category: string\n  size: number\n  type: string\n  url: string // Object URL or Base64\n  uploadDate: string\n  tags: string[]\n  usage: string[] // 记录在哪些地方使用了\n  description?: string\n}\n\nexport interface ImageCategory {\n  id: string\n  name: string\n  description: string\n  count: number\n  createdAt: string\n}\n\nexport interface ImageUploadOptions {\n  category?: string\n  tags?: string[]\n  description?: string\n  maxSize?: number // MB\n  allowedTypes?: string[]\n}\n\nexport interface ImageFilter {\n  category?: string\n  tags?: string[]\n  search?: string\n  dateRange?: {\n    start: string\n    end: string\n  }\n}\n\nexport interface ImageStats {\n  totalImages: number\n  totalSize: number\n  categories: Record<string, number>\n  recentUploads: number\n  unusedImages: number\n}\n\n// 预设分类\nexport const DEFAULT_CATEGORIES: ImageCategory[] = [\n  {\n    id: 'hero-backgrounds',\n    name: 'Hero背景图',\n    description: '首页Hero区域的背景图片',\n    count: 0,\n    createdAt: new Date().toISOString()\n  },\n  {\n    id: 'service-images',\n    name: '服务图片',\n    description: '服务展示相关图片',\n    count: 0,\n    createdAt: new Date().toISOString()\n  },\n  {\n    id: 'logos',\n    name: 'Logo图标',\n    description: '企业Logo和品牌图标',\n    count: 0,\n    createdAt: new Date().toISOString()\n  },\n  {\n    id: 'partners',\n    name: '合作伙伴',\n    description: '合作伙伴Logo和图片',\n    count: 0,\n    createdAt: new Date().toISOString()\n  },\n  {\n    id: 'articles',\n    name: '文章图片',\n    description: '文章内容相关图片',\n    count: 0,\n    createdAt: new Date().toISOString()\n  },\n  {\n    id: 'general',\n    name: '通用图片',\n    description: '其他通用图片素材',\n    count: 0,\n    createdAt: new Date().toISOString()\n  }\n]\n\n// 支持的文件类型\nexport const SUPPORTED_IMAGE_TYPES = [\n  'image/jpeg',\n  'image/jpg', \n  'image/png',\n  'image/webp',\n  'image/svg+xml'\n]\n\n// 最大文件大小 (5MB)\nexport const MAX_FILE_SIZE = 5 * 1024 * 1024",
+      "start": 1762413668859,
+      "end": 1762413669001,
+      "sourcemaps": null
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413669001,
+      "end": 1762413669001,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1762413669001,
+      "end": 1762413669001,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413669001,
+      "end": 1762413669001,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1762413669001,
+      "end": 1762413669001,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1762413669001,
+      "end": 1762413669001,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "start": 1762413669001,
+      "end": 1762413669001,
+      "order": "normal"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "export const DEFAULT_CATEGORIES = [\n  {\n    id: \"hero-backgrounds\",\n    name: \"Hero背景图\",\n    description: \"首页Hero区域的背景图片\",\n    count: 0,\n    createdAt: (/* @__PURE__ */ new Date()).toISOString()\n  },\n  {\n    id: \"service-images\",\n    name: \"服务图片\",\n    description: \"服务展示相关图片\",\n    count: 0,\n    createdAt: (/* @__PURE__ */ new Date()).toISOString()\n  },\n  {\n    id: \"logos\",\n    name: \"Logo图标\",\n    description: \"企业Logo和品牌图标\",\n    count: 0,\n    createdAt: (/* @__PURE__ */ new Date()).toISOString()\n  },\n  {\n    id: \"partners\",\n    name: \"合作伙伴\",\n    description: \"合作伙伴Logo和图片\",\n    count: 0,\n    createdAt: (/* @__PURE__ */ new Date()).toISOString()\n  },\n  {\n    id: \"articles\",\n    name: \"文章图片\",\n    description: \"文章内容相关图片\",\n    count: 0,\n    createdAt: (/* @__PURE__ */ new Date()).toISOString()\n  },\n  {\n    id: \"general\",\n    name: \"通用图片\",\n    description: \"其他通用图片素材\",\n    count: 0,\n    createdAt: (/* @__PURE__ */ new Date()).toISOString()\n  }\n];\nexport const SUPPORTED_IMAGE_TYPES = [\n  \"image/jpeg\",\n  \"image/jpg\",\n  \"image/png\",\n  \"image/webp\",\n  \"image/svg+xml\"\n];\nexport const MAX_FILE_SIZE = 5 * 1024 * 1024;\n",
+      "start": 1762413669001,
+      "end": 1762413669034,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "/home/user/NTE-company-website/types/image.ts"
+        ],
+        "sourcesContent": [
+          "// 图片管理相关类型定义\nexport interface ImageAsset {\n  id: string\n  filename: string\n  originalName: string\n  category: string\n  size: number\n  type: string\n  url: string // Object URL or Base64\n  uploadDate: string\n  tags: string[]\n  usage: string[] // 记录在哪些地方使用了\n  description?: string\n}\n\nexport interface ImageCategory {\n  id: string\n  name: string\n  description: string\n  count: number\n  createdAt: string\n}\n\nexport interface ImageUploadOptions {\n  category?: string\n  tags?: string[]\n  description?: string\n  maxSize?: number // MB\n  allowedTypes?: string[]\n}\n\nexport interface ImageFilter {\n  category?: string\n  tags?: string[]\n  search?: string\n  dateRange?: {\n    start: string\n    end: string\n  }\n}\n\nexport interface ImageStats {\n  totalImages: number\n  totalSize: number\n  categories: Record<string, number>\n  recentUploads: number\n  unusedImages: number\n}\n\n// 预设分类\nexport const DEFAULT_CATEGORIES: ImageCategory[] = [\n  {\n    id: 'hero-backgrounds',\n    name: 'Hero背景图',\n    description: '首页Hero区域的背景图片',\n    count: 0,\n    createdAt: new Date().toISOString()\n  },\n  {\n    id: 'service-images',\n    name: '服务图片',\n    description: '服务展示相关图片',\n    count: 0,\n    createdAt: new Date().toISOString()\n  },\n  {\n    id: 'logos',\n    name: 'Logo图标',\n    description: '企业Logo和品牌图标',\n    count: 0,\n    createdAt: new Date().toISOString()\n  },\n  {\n    id: 'partners',\n    name: '合作伙伴',\n    description: '合作伙伴Logo和图片',\n    count: 0,\n    createdAt: new Date().toISOString()\n  },\n  {\n    id: 'articles',\n    name: '文章图片',\n    description: '文章内容相关图片',\n    count: 0,\n    createdAt: new Date().toISOString()\n  },\n  {\n    id: 'general',\n    name: '通用图片',\n    description: '其他通用图片素材',\n    count: 0,\n    createdAt: new Date().toISOString()\n  }\n]\n\n// 支持的文件类型\nexport const SUPPORTED_IMAGE_TYPES = [\n  'image/jpeg',\n  'image/jpg', \n  'image/png',\n  'image/webp',\n  'image/svg+xml'\n]\n\n// 最大文件大小 (5MB)\nexport const MAX_FILE_SIZE = 5 * 1024 * 1024"
+        ],
+        "mappings": "AAkDO,aAAM,qBAAsC;AAAA,EACjD;AAAA,IACE,IAAI;AAAA,IACJ,MAAM;AAAA,IACN,aAAa;AAAA,IACb,OAAO;AAAA,IACP,YAAW,oBAAI,KAAK,GAAE,YAAY;AAAA,EACpC;AAAA,EACA;AAAA,IACE,IAAI;AAAA,IACJ,MAAM;AAAA,IACN,aAAa;AAAA,IACb,OAAO;AAAA,IACP,YAAW,oBAAI,KAAK,GAAE,YAAY;AAAA,EACpC;AAAA,EACA;AAAA,IACE,IAAI;AAAA,IACJ,MAAM;AAAA,IACN,aAAa;AAAA,IACb,OAAO;AAAA,IACP,YAAW,oBAAI,KAAK,GAAE,YAAY;AAAA,EACpC;AAAA,EACA;AAAA,IACE,IAAI;AAAA,IACJ,MAAM;AAAA,IACN,aAAa;AAAA,IACb,OAAO;AAAA,IACP,YAAW,oBAAI,KAAK,GAAE,YAAY;AAAA,EACpC;AAAA,EACA;AAAA,IACE,IAAI;AAAA,IACJ,MAAM;AAAA,IACN,aAAa;AAAA,IACb,OAAO;AAAA,IACP,YAAW,oBAAI,KAAK,GAAE,YAAY;AAAA,EACpC;AAAA,EACA;AAAA,IACE,IAAI;AAAA,IACJ,MAAM;AAAA,IACN,aAAa;AAAA,IACb,OAAO;AAAA,IACP,YAAW,oBAAI,KAAK,GAAE,YAAY;AAAA,EACpC;AACF;AAGO,aAAM,wBAAwB;AAAA,EACnC;AAAA,EACA;AAAA,EACA;AAAA,EACA;AAAA,EACA;AACF;AAGO,aAAM,gBAAgB,IAAI,OAAO;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:json",
+      "start": 1762413669034,
+      "end": 1762413669034,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1762413669034,
+      "end": 1762413669034,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "start": 1762413669034,
+      "end": 1762413669035,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1762413669035,
+      "end": 1762413669035,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413669035,
+      "end": 1762413669035,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413669035,
+      "end": 1762413669035,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413669035,
+      "end": 1762413669035,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1762413669035,
+      "end": 1762413669035,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413669035,
+      "end": 1762413669035,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1762413669035,
+      "end": 1762413669035,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1762413669035,
+      "end": 1762413669035,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1762413669035,
+      "end": 1762413669035,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1762413669035,
+      "end": 1762413669035,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "start": 1762413669035,
+      "end": 1762413669035,
+      "order": "normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1762413669035,
+      "end": 1762413669035,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1762413669035,
+      "end": 1762413669035,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1762413669035,
+      "end": 1762413669035,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1762413669035,
+      "end": 1762413669035,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1762413669035,
+      "end": 1762413669035,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1762413669036,
+      "end": 1762413669036,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413669036,
+      "end": 1762413669036,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1762413669036,
+      "end": 1762413669036,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413669036,
+      "end": 1762413669036,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1762413669036,
+      "end": 1762413669036,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413669036,
+      "end": 1762413669036,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1762413669036,
+      "end": 1762413669036,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413669036,
+      "end": 1762413669036,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1762413669036,
+      "end": 1762413669036,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1762413669036,
+      "end": 1762413669036,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1762413669037,
+      "end": 1762413669037,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1762413669037,
+      "end": 1762413669037,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1762413669037,
+      "end": 1762413669037,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1762413669037,
+      "end": 1762413669037,
+      "order": "normal"
+    }
+  ]
+}
