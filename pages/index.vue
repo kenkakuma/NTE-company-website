@@ -605,12 +605,40 @@ onMounted(() => {
 })
 
 // Hero section dynamic content
-const backgroundImage = ref('https://images.unsplash.com/photo-1531804055935-76f44d7c3621?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2232&q=80')
+const defaultBackgroundImage = 'https://images.unsplash.com/photo-1531804055935-76f44d7c3621?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2232&q=80'
+const backgroundImage = ref(defaultBackgroundImage)
+const isImageLoaded = ref(false)
 
 const heroContent = ref({
   title: '夢の家探しを<br>お手伝いします。',
   description: '商品の香りもとてもよく、お客様にも大変喜ばれております。ヴァルプデートツイス、<br>トチョコレートの利点もあります。悲しい湖の観えも、ウラムコーパー・ルトラム'
 })
+
+// Preload image before setting it
+const preloadImage = (url: string): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    const img = new Image()
+    img.onload = () => resolve()
+    img.onerror = () => reject(new Error(`Failed to load image: ${url}`))
+    img.src = url
+  })
+}
+
+// Load and apply background image
+const loadBackgroundImage = async (imageUrl: string) => {
+  try {
+    await preloadImage(imageUrl)
+    backgroundImage.value = imageUrl
+    isImageLoaded.value = true
+  } catch (error) {
+    console.error('Failed to preload background image:', error)
+    // Fallback to default image
+    if (imageUrl !== defaultBackgroundImage) {
+      backgroundImage.value = defaultBackgroundImage
+      isImageLoaded.value = true
+    }
+  }
+}
 
 // 确保heroContent响应式更新
 watch(heroContent, () => {
@@ -631,21 +659,33 @@ watch(heroContent, () => {
 }, { deep: true })
 
 // Load homepage settings
-onMounted(() => {
+onMounted(async () => {
   if (process.client) {
     const savedSettings = localStorage.getItem('homepage_settings')
     if (savedSettings) {
       try {
         const settings = JSON.parse(savedSettings)
-        if (settings.backgroundImage) {
-          backgroundImage.value = settings.backgroundImage
-        }
+
+        // Load hero content first (no async needed)
         if (settings.heroContent) {
           heroContent.value = { ...heroContent.value, ...settings.heroContent }
         }
+
+        // Preload and apply background image
+        if (settings.backgroundImage && settings.backgroundImage !== backgroundImage.value) {
+          await loadBackgroundImage(settings.backgroundImage)
+        } else {
+          // Preload default image
+          await loadBackgroundImage(defaultBackgroundImage)
+        }
       } catch (error) {
         console.error('Failed to load homepage settings:', error)
+        // Ensure default image is loaded
+        await loadBackgroundImage(defaultBackgroundImage)
       }
+    } else {
+      // No saved settings, load default image
+      await loadBackgroundImage(defaultBackgroundImage)
     }
     
     // 确保Hero区域和按钮正确渲染

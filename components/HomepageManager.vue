@@ -407,11 +407,11 @@ const presetImages = [
 // 方法
 const loadSettings = () => {
   try {
-    const savedSettings = localStorage.getItem('notrace_homepage')
+    const savedSettings = localStorage.getItem('homepage_settings')
     if (savedSettings) {
       const settings = JSON.parse(savedSettings)
-      if (settings.background) {
-        currentBackground.value = settings.background
+      if (settings.backgroundImage) {
+        currentBackground.value = settings.backgroundImage
       }
       if (settings.heroContent) {
         heroContent.value = { ...heroContent.value, ...settings.heroContent }
@@ -428,11 +428,11 @@ const loadSettings = () => {
 const saveSettings = () => {
   try {
     const settings = {
-      background: currentBackground.value,
+      backgroundImage: currentBackground.value,
       heroContent: heroContent.value,
       partners: partners.value
     }
-    localStorage.setItem('notrace_homepage', JSON.stringify(settings))
+    localStorage.setItem('homepage_settings', JSON.stringify(settings))
   } catch (error) {
     console.error('Failed to save settings:', error)
   }
